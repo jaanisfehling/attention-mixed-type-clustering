@@ -1,5 +1,5 @@
-### Attention in Mixed-Type Clustering
+# Attention in Mixed-Type Clustering
 
 ## Datasets
-- Heart Credit Derma Adult Bands dataset
+- Heart Credit Derma Adult Bands
 - UCI - Machine learning
