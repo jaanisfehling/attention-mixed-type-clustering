@@ -6,6 +6,4 @@
 - Heart Credit Derma Adult Bands
 
 ## TODO
- - BatchNorm Layer
- - Decoder Output auf kategorische werte
- - Accuracy nur mit kategorischen Werten messen, nicht Clustern
+- Attention Layer
