@@ -1,0 +1,236 @@
+\def\fileversion{v2.1}
+\def\filedate{2019/12/02}
+
+\NeedsTeXFormat{LaTeX2e}
+
+\ProvidesPackage{dmmdbstmpl}[\filedate\space\fileversion]
+
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[german, english]{babel}
+%\RequirePackage[english]{babel}
+%\RequirePackage{ngerman}
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{geometry}
+\RequirePackage{fancyhdr}
+\RequirePackage[nottoc]{tocbibind}
+\RequirePackage{graphicx}
+\RequirePackage{subfigure}
+\RequirePackage{ifthen}
+
+% Check if input paramter is german
+\newboolean{german}
+\newcommand{\languagesselection}{\setboolean{german}{false}}
+\DeclareOption{german}{
+	\renewcommand{\languagesselection}{\selectlanguage{german}
+	\setboolean{german}{true}}
+}
+%% Fallback
+\DeclareOption*{
+}
+\ProcessOptions\relax
+
+
+%%
+%% Globale Variablen
+%%
+
+\newtoks\arbeittyp       	% Art der Arbeit
+\newtoks\bearbeiter         % Name des Bearbeiters
+\newtoks\betreuer           % Name des Betreuers
+\newtoks\aufgabensteller    % Name des Aufgabenstellers
+\newtoks\abgabetermin       % Datum der Abgabe
+\newtoks\ort                % Wohnort des Bearbeiters
+\newtoks\gerFach            % Studiengang
+\newtoks\gerTitel           % Titel der Arbeit
+\newtoks\gerAbstracttext    % Text des Abstracts
+\newtoks\englTitel          % Englischer Titel der Arbeit
+\newtoks\englFach           % Englischer Studiengang Titel
+\newtoks\englAbstracttext   % Englischer Text des Abstracts
+
+
+%%
+%% haeufig benutzte Symbole
+%%
+\newcommand{\N}{\mathbb{N}}			% Menge der natuerlichen Zahlen
+\newcommand{\Z}{\mathbb{Z}}			% Menge der ganzen Zahlen
+\newcommand{\Q}{\mathbb{Q}}			% Menge der rationalen Zahlen
+\newcommand{\R}{\mathbb{R}}			% Menge der reellen Zahlen
+\newcommand{\C}{\mathbb{C}}			% Menge der komplexen Zahlen
+\newcommand{\pluseq}{\mathrel{+}=}	% Plus qual sign
+\newcommand{\minuseq}{\mathrel{-}=}	% Plus qual sign
+
+\newcommand{\emptypage}{
+	\begin{titlepage}
+		\vspace*{\fill}
+	\end{titlepage}
+}
+
+%%
+%% Einstellungen
+%%
+
+% Seitenraender
+\geometry{body={140mm,210mm},footskip=12mm}
+
+% Gestaltung der Kopf- und Fusszeilen
+\pagestyle{fancy}
+\headheight 14pt
+\fancyhf{}
+\fancyhead[L]{\small\slshape\leftmark}
+\fancyfoot[C]{\thepage}
+
+% subsubsections numerieren und ins Inhaltsverzeichnis aufnehmen
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+
+%%
+%% Ausgabe des Deckblatts fuer eine Bachelor- oder Master.
+%%
+\newcommand{\gerDeckblatt}{
+  \begin{titlepage}
+  ~
+  \vspace{-2cm}
+  \begin{center}
+	\vspace*{-0.8cm}
+   %\parbox[t]{145.5mm}{ \includegraphics[width=145.5mm]{dmmheader} }
+	\hspace*{-1.5cm}\includegraphics[width=170mm]{dmmheader}
+  \end{center}
+    
+  \begin{center}
+  
+      \vspace{2.5cm}
+      \Large{\the\arbeittyp arbeit}
+    
+      {\large in \the\gerFach}
+
+      \vspace{1cm}\huge
+      \the\gerTitel
+
+      \vspace{1cm}\large
+      \the\bearbeiter
+		
+      \vspace{\fill}\normalsize
+      \begin{tabular}{ll}
+        Aufgabensteller: & \the\aufgabensteller\\
+        Betreuer:        & \the\betreuer\\
+        Abgabedatum:     & \the\abgabetermin
+      \end{tabular}
+    
+    \end{center}
+  
+  \end{titlepage}
+}
+\newcommand{\englDeckblatt}{
+	\begin{titlepage}
+		~
+		\vspace{-2cm}
+		\begin{center}
+			\vspace*{-0.8cm}
+			%\parbox[t]{145.5mm}{ \includegraphics[width=145.5mm]{dmmheader} }
+			\hspace*{-1.5cm}\includegraphics[width=170mm]{dmmheader}
+		\end{center}
+		
+		\begin{center}
+			
+			\vspace{2.5cm}
+			\Large{\the\arbeittyp\ Thesis}
+			
+			{\large in \the\englFach}
+			
+			\vspace{1cm}\huge
+			\the\englTitel
+			
+			\vspace{1cm}\large
+			\the\bearbeiter
+			
+			% Show only in english thesis
+			\ifthenelse{\boolean{german}}{}{
+				\vspace{\fill}\normalsize
+				\begin{tabular}{ll}
+					Aufgabensteller: & \the\aufgabensteller\\
+					Betreuer:        & \the\betreuer\\
+					Abgabedatum:     & \the\abgabetermin
+				\end{tabular}
+			}
+		\end{center}
+		
+	\end{titlepage}
+}
+
+\newcommand{\deckblatt}{
+	  \ifthenelse{\boolean{german}}{\gerDeckblatt \ifthenelse{\boolean{doublesided}}{\emptypage}{} \englDeckblatt}
+	  {\englDeckblatt}
+}
+
+%%
+%% Ausgabe der Erklaerung ueber die selbstaendige Anfertigung
+%% einer Diplomarbeit
+%%
+
+\newcommand{\gerDeclarationhead}{Erklärung}
+\newcommand{\gerDeclaration}{Ich erkläre hiermit, dass ich die vorliegende Arbeit selbständig angefertigt habe. Die aus fremden Quellen direkt und indirekt übernommenen Gedanken sind als solche kenntlich gemacht.\newline
+	Die Arbeit wurde weder einer anderen Prüfungsbehörde vorgelegt noch veröffentlicht.
+	
+	\vspace{1cm}
+	\the\ort, den \the\abgabetermin
+	
+	\vspace{1.5cm}
+	\makebox[9.8cm]{\dotfill}\\
+	\the\bearbeiter
+}
+
+\newcommand{\englDeclarationhead}{Declaration of Authorship}
+\newcommand{\englDeclaration}{I hereby declare that the thesis submitted is my own unaided work. All direct or indirect
+	sources used are acknowledged as references. \newline
+	This paper was not previously presented to another examination board and has not
+	been published.
+	
+	\vspace{1cm}
+	\the\ort, \the\abgabetermin
+	
+	\vspace{1.5cm}
+	\makebox[9.8cm]{\dotfill}\\
+	\the\bearbeiter
+}
+
+\newcommand{\erklaerung}{
+  \begin{titlepage}
+    \vspace*{\fill}
+    \parindent 0cm
+    \begin{center}
+    	\ifthenelse{\boolean{german}}{\gerDeclarationhead}{\englDeclarationhead}
+		\vspace{1cm}
+  
+      \begin{minipage}{9.8cm}
+      	\ifthenelse{\boolean{german}}{\gerDeclaration}{\englDeclaration}
+
+      \end{minipage}
+  
+    \end{center}
+  
+    \vspace*{\fill}
+  \end{titlepage}
+}
+
+%%
+%% Ausgabe des Abstracts
+%%
+
+\newcommand{\gerAbstract}{
+	\begin{abstract}
+	\the\gerAbstracttext
+	\end{abstract}
+}
+
+\newcommand{\englAbstract}{
+	\begin{abstract}
+	\the\englAbstracttext
+	\end{abstract}
+}
+
+\newcommand{\inputabstract}{
+      \ifthenelse{\boolean{german}}
+      {\gerAbstract \ifthenelse{\boolean{doublesided}}{\emptypage}{} \selectlanguage{english} \englAbstract \selectlanguage{german}}
+      {\englAbstract \ifthenelse{\equal{\the\gerAbstracttext}{}}{}{\ifthenelse{\boolean{doublesided}}{\emptypage}{} \selectlanguage{german} \gerAbstract \selectlanguage{english}}}
+}
