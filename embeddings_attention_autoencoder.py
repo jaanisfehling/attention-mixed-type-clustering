@@ -4,7 +4,6 @@ import torch.nn.functional as F
 import torch
 import numpy as np
 from clustpy.deep._early_stopping import EarlyStopping
-from clustpy.deep._data_utils import get_dataloader
 from torch import nn
 
 
@@ -12,6 +11,8 @@ class EmbeddingsAttentionAutoencoder(torch.nn.Module):
     def __init__(self, encoder: nn.Sequential, decoder: nn.Sequential, embedding_sizes: List[Tuple[int, int]]):
         super().__init__()
         self.fitted = False
+        self.encoder = encoder
+        self.decoder = decoder
         self.embeddings = nn.ModuleList([nn.Embedding(num, dim) for num, dim in embedding_sizes])
 
     def encode(self, x_cat: torch.Tensor, x_cont: torch.Tensor) -> torch.Tensor:
@@ -75,8 +76,9 @@ class EmbeddingsAttentionAutoencoder(torch.nn.Module):
                 optimizer.zero_grad()
                 loss.backward()
                 optimizer.step()
-            if print_step > 0 and ((epoch_i - 1) % print_step == 0 or epoch_i == (n_epochs - 1)):
-                print(f"Epoch {epoch_i}/{n_epochs - 1} - Batch Reconstruction loss: {loss.item():.6f}")
+            # if print_step > 0 and ((epoch_i - 1) % print_step == 0 or epoch_i == (n_epochs - 1)):
+            #     print(f"Epoch {epoch_i}/{n_epochs - 1} - Batch Reconstruction loss: {loss.item():.6f}")
+            print(f"Epoch {epoch_i}/{n_epochs - 1} - Batch Reconstruction loss: {loss.item():.6f}")
 
             if scheduler is not None and not eval_step_scheduler:
                 scheduler.step()
