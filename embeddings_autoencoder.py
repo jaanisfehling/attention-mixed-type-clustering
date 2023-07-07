@@ -1,3 +1,4 @@
+import math
 from typing import List, Tuple
 import torch.nn.functional as F
 
@@ -7,21 +8,40 @@ from clustpy.deep._early_stopping import EarlyStopping
 from torch import nn
 
 
-class EmbeddingsAttentionAutoencoder(torch.nn.Module):
-    def __init__(self, encoder: nn.Sequential, decoder: nn.Sequential, embedding_sizes: List[Tuple[int, int]]):
+def scaled_dot_product(q, k, v):
+    attn_weights = torch.bmm(q, k.transpose(1, 2))
+    verctor_dim = q.size()[2]
+    attn_weights = attn_weights / math.sqrt(verctor_dim)
+    attention = F.softmax(attn_weights, dim=2)
+    values = torch.bmm(attention, v)
+    return values
+
+
+class EmbeddingsAutoencoder(torch.nn.Module):
+    def __init__(self, encoder: nn.Sequential, decoder: nn.Sequential, input_dim:int, embedding_sizes: List[Tuple[int, int]], attention: bool = False):
         super().__init__()
         self.fitted = False
+
+        self.attention = attention
+        self.to_keys = nn.Linear(input_dim, input_dim, bias=False)
+        self.to_queries = nn.Linear(input_dim, input_dim, bias=False)
+        self.to_values = nn.Linear(input_dim, input_dim, bias=False)
+
         self.encoder = encoder
         self.decoder = decoder
         self.embeddings = nn.ModuleList([nn.Embedding(num, dim) for num, dim in embedding_sizes])
 
     def encode(self, x_cat: torch.Tensor, x_cont: torch.Tensor) -> torch.Tensor:
         x_cat = x_cat.to(torch.long)
-        embedded = torch.cat([e(x_cat[:, i]) for i, e in enumerate(self.embeddings)], 1)
-        self.last_target = embedded.clone().detach()
+        embedded_cat = torch.cat([e(x_cat[:, i]) for i, e in enumerate(self.embeddings)], 1)
+        self.last_target = embedded_cat.clone().detach()
+        x = torch.cat((embedded_cat, x_cont), 1)
 
-        qkv = torch.cat((embedded, x_cont), 1)
-        x = F.scaled_dot_product_attention(qkv, qkv, qkv)
+        if self.attention:
+            q = self.to_queries(x)
+            k = self.to_keys(x)
+            v = self.to_values(x)
+            x = scaled_dot_product(q, k, v)
 
         return self.encoder(x)
 

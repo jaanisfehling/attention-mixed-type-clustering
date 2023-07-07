@@ -15,3 +15,6 @@
 - DCN
 - DEC
 - IDEC
+
+Wie vergleichen wir die 1 bis 50-dimensionalen Embedding Vektoren der kategorischen Spalten 
+mit den eindimensionalen Werten der kontinuierlichen Vektoren?
