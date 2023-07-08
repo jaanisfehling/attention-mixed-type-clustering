@@ -8,17 +8,17 @@ from clustpy.deep._early_stopping import EarlyStopping
 from torch import nn
 
 
-def scaled_dot_product(q, k, v):
-    attn_weights = torch.bmm(q, k.transpose(1, 2))
-    verctor_dim = q.size()[2]
-    attn_weights = attn_weights / math.sqrt(verctor_dim)
-    attention = F.softmax(attn_weights, dim=2)
-    values = torch.bmm(attention, v)
+def scaled_dot_product_attention(q, k, v):
+    attn_weights = torch.matmul(q, k.transpose(-2, -1))
+    vector_dim = q.size()[-1]
+    attn_weights = attn_weights / math.sqrt(vector_dim)
+    attention = F.softmax(attn_weights, dim=-1)
+    values = torch.matmul(attention, v)
     return values
 
 
 class EmbeddingsAutoencoder(torch.nn.Module):
-    def __init__(self, encoder: nn.Sequential, decoder: nn.Sequential, input_dim:int, embedding_sizes: List[Tuple[int, int]], attention: bool = False):
+    def __init__(self, encoder: nn.Sequential, decoder: nn.Sequential, input_dim: int, cat_dim: int, embedding_sizes: List[Tuple[int, int]], attention: bool = False):
         super().__init__()
         self.fitted = False
 
@@ -33,15 +33,15 @@ class EmbeddingsAutoencoder(torch.nn.Module):
 
     def encode(self, x_cat: torch.Tensor, x_cont: torch.Tensor) -> torch.Tensor:
         x_cat = x_cat.to(torch.long)
-        embedded_cat = torch.cat([e(x_cat[:, i]) for i, e in enumerate(self.embeddings)], 1)
-        self.last_target = embedded_cat.clone().detach()
-        x = torch.cat((embedded_cat, x_cont), 1)
+        x = torch.cat([e(x_cat[:, i]) for i, e in enumerate(self.embeddings)], 1)
+        self.last_target = x.clone().detach()
+        x = torch.cat((x, x_cont), 1)
 
         if self.attention:
             q = self.to_queries(x)
             k = self.to_keys(x)
             v = self.to_values(x)
-            x = scaled_dot_product(q, k, v)
+            x = scaled_dot_product_attention(q, k, v)
 
         return self.encoder(x)
 
