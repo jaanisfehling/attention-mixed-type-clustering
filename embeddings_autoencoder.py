@@ -18,7 +18,8 @@ def scaled_dot_product_attention(q, k, v):
 
 
 class EmbeddingsAutoencoder(torch.nn.Module):
-    def __init__(self, encoder: nn.Sequential, decoder: nn.Sequential, input_dim: int, cat_dim: int, embedding_sizes: List[Tuple[int, int]], attention: bool = False):
+    def __init__(self, encoder: nn.Sequential, decoder: nn.Sequential, input_dim: int, cat_dim: int,
+                 embedding_sizes: List[Tuple[int, int]], attention: bool = False):
         super().__init__()
         self.fitted = False
 
@@ -72,7 +73,7 @@ class EmbeddingsAutoencoder(torch.nn.Module):
             loss_fn: torch.nn.modules.loss._Loss = torch.nn.MSELoss(), patience: int = 5,
             scheduler: torch.optim.lr_scheduler = None, scheduler_params: dict = None,
             device: torch.device = torch.device("cpu"), model_path: str = None,
-            print_step: int = 0) -> 'EmbeddingsAutoencoder':
+            print_step: int = 1) -> 'EmbeddingsAutoencoder':
         params_dict = {'params': self.parameters(), 'lr': lr}
         optimizer = optimizer_class(**params_dict)
 
@@ -96,9 +97,8 @@ class EmbeddingsAutoencoder(torch.nn.Module):
                 optimizer.zero_grad()
                 loss.backward()
                 optimizer.step()
-            # if print_step > 0 and ((epoch_i - 1) % print_step == 0 or epoch_i == (n_epochs - 1)):
-            #     print(f"Epoch {epoch_i}/{n_epochs - 1} - Batch Reconstruction loss: {loss.item():.6f}")
-            print(f"Epoch {epoch_i}/{n_epochs - 1} - Batch Reconstruction loss: {loss.item():.6f}")
+            if print_step > 0 and ((epoch_i - 1) % print_step == 0 or epoch_i == (n_epochs - 1)):
+                print(f"Epoch {epoch_i + 1}/{n_epochs} - Batch Reconstruction loss: {loss.item():.6f}")
 
             if scheduler is not None and not eval_step_scheduler:
                 scheduler.step()
@@ -107,7 +107,7 @@ class EmbeddingsAutoencoder(torch.nn.Module):
                 # self.evaluate calls self.eval()
                 val_loss = self.evaluate(dataloader=evalloader, loss_fn=loss_fn, device=device)
                 if print_step > 0 and ((epoch_i - 1) % print_step == 0 or epoch_i == (n_epochs - 1)):
-                    print(f"Epoch {epoch_i} EVAL loss total: {val_loss.item():.6f}")
+                    print(f"Epoch {epoch_i + 1} EVAL loss total: {val_loss.item():.6f}")
                 early_stopping(val_loss)
                 if val_loss < best_loss:
                     best_loss = val_loss
