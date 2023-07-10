@@ -73,7 +73,7 @@ class EmbeddingsAutoencoder(torch.nn.Module):
             loss_fn: torch.nn.modules.loss._Loss = torch.nn.MSELoss(), patience: int = 5,
             scheduler: torch.optim.lr_scheduler = None, scheduler_params: dict = None,
             device: torch.device = torch.device("cpu"), model_path: str = None,
-            print_step: int = 1) -> 'EmbeddingsAutoencoder':
+            print_step: int = 25) -> 'EmbeddingsAutoencoder':
         params_dict = {'params': self.parameters(), 'lr': lr}
         optimizer = optimizer_class(**params_dict)
 

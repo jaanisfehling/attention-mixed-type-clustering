@@ -20,49 +20,6 @@ def _dcn(dataloader: torch.utils.data.DataLoader, n_clusters: int, batch_size: i
          autoencoder: torch.nn.Module, embedding_size: int, degree_of_space_distortion: float,
          degree_of_space_preservation: float, random_state: np.random.RandomState) -> (
         np.ndarray, np.ndarray, np.ndarray, np.ndarray, torch.nn.Module):
-    """
-    Start the actual DCN clustering procedure on the input data set.
-
-    Parameters
-    ----------
-    X : np.ndarray / torch.Tensor
-        the given data set. Can be a np.ndarray or a torch.Tensor
-    n_clusters : int
-        number of clusters
-    batch_size : int
-        size of the data batches
-    pretrain_learning_rate : float
-        learning rate for the pretraining of the autoencoder
-    clustering_learning_rate : float
-        learning rate of the actual clustering procedure
-    pretrain_epochs : int
-        number of epochs for the pretraining of the autoencoder
-    clustering_epochs : int
-        number of epochs for the actual clustering procedure
-    optimizer_class : torch.optim.Optimizer
-        the optimizer class
-    loss_fn : torch.nn.modules.loss._Loss
-         loss function for the reconstruction
-    autoencoder : torch.nn.Module
-        the input autoencoder. If None a new FlexibleAutoencoder will be created
-    embedding_size : int
-        size of the embedding within the autoencoder
-    degree_of_space_distortion : float
-        weight of the reconstruction loss
-    degree_of_space_preservation : float
-        weight of the clustering loss
-    random_state : np.random.RandomState
-        use a fixed random state to get a repeatable solution
-
-    Returns
-    -------
-    tuple : (np.ndarray, np.ndarray, np.ndarray, np.ndarray, torch.nn.Module)
-        The labels as identified by a final KMeans execution,
-        The cluster centers as identified by a final KMeans execution,
-        The labels as identified by DCN after the training terminated,
-        The cluster centers as identified by DCN after the training terminated,
-        The final autoencoder
-    """
     device = detect_device()
     trainloader = dataloader
     testloader = dataloader
@@ -92,30 +49,6 @@ def _dcn(dataloader: torch.utils.data.DataLoader, n_clusters: int, batch_size: i
 
 def _compute_centroids(centers: torch.Tensor, embedded: torch.Tensor, count: torch.Tensor, labels: torch.Tensor) -> (
         torch.Tensor, torch.Tensor):
-    """
-    Update the centers and amount of object ever assigned to a center.
-
-    New center is calculated by (see Eq. 8 in the paper):
-    center - eta (center - embedded[i])
-    => center - eta * center + eta * embedded[i]
-    => (1 - eta) center + eta * embedded[i]
-
-    Parameters
-    ----------
-    centers : torch.Tensor
-        The current cluster centers
-    embedded : torch.Tensor
-        The embedded samples
-    count : torch.Tensor
-        The total amount of objects that ever got assigned to a cluster. Affects the learning rate of the center update
-    labels : torch.Tensor
-        The current hard labels
-
-    Returns
-    -------
-    centers, count : (torch.Tensor, torch.Tensor)
-        The updated centers and the updated counts
-    """
     for i in range(embedded.shape[0]):
         c = labels[i].item()
         count[c] += 1
@@ -125,100 +58,25 @@ def _compute_centroids(centers: torch.Tensor, embedded: torch.Tensor, count: tor
 
 
 class _DCN_Module(torch.nn.Module):
-    """
-    The _DCN_Module. Contains most of the algorithm specific procedures like the loss and prediction functions.
-
-    Parameters
-    ----------
-    init_np_centers : np.ndarray
-        The initial numpy centers
-
-    Attributes
-    ----------
-    centers : torch.Tensor
-        the cluster centers
-    """
-
     def __init__(self, init_np_centers: np.ndarray):
         super().__init__()
         self.centers = torch.tensor(init_np_centers)
 
     def dcn_loss(self, embedded: torch.Tensor, weights: torch.Tensor = None) -> torch.Tensor:
-        """
-        Calculate the DCN loss of given embedded samples.
-
-        Parameters
-        ----------
-        embedded : torch.Tensor
-            the embedded samples
-        weights : torch.Tensor
-            feature weights for the squared euclidean distance (default: None)
-
-        Returns
-        -------
-        loss: torch.Tensor
-            the final DCN loss
-        """
         dist = squared_euclidean_distance(embedded, self.centers, weights=weights)
         loss = (dist.min(dim=1)[0]).mean()
         return loss
 
     def predict_hard(self, embedded: torch.Tensor, weights: torch.Tensor = None) -> torch.Tensor:
-        """
-        Hard prediction of the given embedded samples. Returns the corresponding hard labels.
-        Uses the minimum squared euclidean distance to the cluster centers to get the labels.
-
-        Parameters
-        ----------
-        embedded : torch.Tensor
-            the embedded samples
-        weights : torch.Tensor
-            feature weights for the squared euclidean distance (default: None)
-
-        Returns
-        -------
-        labels : torch.Tensor
-            the final labels
-        """
         dist = squared_euclidean_distance(embedded, self.centers, weights=weights)
         labels = (dist.min(dim=1)[1])
         return labels
 
     def update_centroids(self, embedded: torch.Tensor, count: torch.Tensor, labels: torch.Tensor) -> torch.Tensor:
-        """
-        Update the cluster centers of the _DCN_Module.
-
-        Parameters
-        ----------
-        embedded : torch.Tensor
-            the embedded samples
-        count : torch.Tensor
-            The total amount of objects that ever got assigned to a cluster. Affects the learning rate of the center update
-        labels : torch.Tensor
-            The current hard labels
-
-        Returns
-        -------
-        count : torch.Tensor
-            The new amount of objects that ever got assigned to a cluster
-        """
         self.centers, count = _compute_centroids(self.centers, embedded, count, labels)
         return count
 
     def to_device(self, device: torch.device) -> '_DCN_Module':
-        """
-        Move the _DCN_Module and the cluster centers to the specified device (cpu or cuda).
-
-        Parameters
-        ----------
-        device : torch.device
-            device to be trained on
-
-        Returns
-        -------
-        self : _DCN_Module
-            this instance of the _DCN_Module
-        """
         self.centers = self.centers.to(device)
         self.to(device)
         return self
@@ -226,33 +84,6 @@ class _DCN_Module(torch.nn.Module):
     def fit(self, autoencoder: torch.nn.Module, trainloader: torch.utils.data.DataLoader, n_epochs: int,
             device: torch.device, optimizer: torch.optim.Optimizer, loss_fn: torch.nn.modules.loss._Loss,
             degree_of_space_distortion: float, degree_of_space_preservation: float) -> '_DCN_Module':
-        """
-        Trains the _DCN_Module in place.
-
-        Parameters
-        ----------
-        autoencoder : torch.nn.Module
-            the autoencoder
-        trainloader : torch.utils.data.DataLoader
-            dataloader to be used for training
-        n_epochs : int
-            number of epochs for the clustering procedure
-        device : torch.device
-            device to be trained on
-        optimizer : torch.optim.Optimizer
-            the optimizer for training
-        loss_fn : torch.nn.modules.loss._Loss
-            loss function for the reconstruction
-        degree_of_space_distortion : float
-            weight of the clustering loss
-        degree_of_space_preservation : float
-            weight of the reconstruction loss
-
-        Returns
-        -------
-        self : _DCN_Module
-            this instance of the _DCN_Module
-        """
         # DCN training loop
         # Init for count from original DCN code (not reported in Paper)
         # This means centroid learning rate at the beginning is scaled by a hundred
@@ -260,8 +91,8 @@ class _DCN_Module(torch.nn.Module):
         for _ in range(n_epochs):
             # Update Network
             for batch in trainloader:
-                x_cat, x_cont = batch[0].to(device), batch[1].to(device)
-                embedded = autoencoder.encode(x_cat, x_cont)
+                batch_data = batch[1].to(device)
+                embedded = autoencoder.encode(batch_data)
                 reconstruction = autoencoder.decode(embedded)
                 # compute reconstruction loss
                 ae_loss = loss_fn(reconstruction, autoencoder.last_target)
@@ -298,70 +129,7 @@ class _DCN_Module(torch.nn.Module):
         return self
 
 
-class DCN(BaseEstimator, ClusterMixin):
-    """
-    The Deep Clustering Network (DCN) algorithm.
-    First, an autoencoder (AE) will be trained (will be skipped if input autoencoder is given).
-    Afterwards, KMeans identifies the initial clusters.
-    Last, the AE will be optimized using the DCN loss function.
-
-    Parameters
-    ----------
-    n_clusters : int
-        number of clusters
-    batch_size : int
-        size of the data batches (default: 256)
-    pretrain_learning_rate : float
-        learning rate for the pretraining of the autoencoder (default: 1e-3)
-    clustering_learning_rate : float
-        learning rate of the actual clustering procedure (default: 1e-4)
-    pretrain_epochs : int
-        number of epochs for the pretraining of the autoencoder (default: 100)
-    clustering_epochs : int
-        number of epochs for the actual clustering procedure (default: 150)
-    optimizer_class : torch.optim.Optimizer
-        the optimizer class (default: torch.optim.Adam)
-    loss_fn : torch.nn.modules.loss._Loss
-         loss function for the reconstruction (default: torch.nn.MSELoss())
-    degree_of_space_distortion : float
-        weight of the clustering loss (default: 0.05)
-    degree_of_space_preservation : float
-        weight of the reconstruction loss (default: 1.0)
-    autoencoder : torch.nn.Module
-        the input autoencoder. If None a new FlexibleAutoencoder will be created (default: None)
-    embedding_size : int
-        size of the embedding within the autoencoder (default: 10)
-    random_state : np.random.RandomState
-        use a fixed random state to get a repeatable solution. Can also be of type int (default: None)
-
-    Attributes
-    ----------
-    labels_ : np.ndarray
-        The final labels (obtained by a final KMeans execution)
-    cluster_centers_ : np.ndarray
-        The final cluster centers (obtained by a final KMeans execution)
-    dcn_labels_ : np.ndarray
-        The final DCN labels
-    dcn_cluster_centers_ : np.ndarray
-        The final DCN cluster centers
-    autoencoder : torch.nn.Module
-        The final autoencoder
-
-    Examples
-    ----------
-    from clustpy.data import load_mnist
-    from clustpy.deep import DCN
-    data, labels = load_mnist()
-    dcn = DCN(n_clusters=10)
-    dcn.fit(data)
-
-    References
-    ----------
-    Yang, Bo, et al. "Towards k-means-friendly spaces:
-    Simultaneous deep learning and clustering." international
-    conference on machine learning. PMLR, 2017.
-    """
-
+class DCNDuped(BaseEstimator, ClusterMixin):
     def __init__(self, n_clusters: int, batch_size: int = 256, pretrain_learning_rate: float = 1e-3,
                  clustering_learning_rate: float = 1e-4, pretrain_epochs: int = 100, clustering_epochs: int = 150,
                  optimizer_class: torch.optim.Optimizer = torch.optim.Adam,
@@ -384,20 +152,6 @@ class DCN(BaseEstimator, ClusterMixin):
         torch.manual_seed(self.random_state.get_state()[1][0])
 
     def fit(self, dataloader: torch.utils.data.DataLoader = None) -> 'DCN':
-        """
-        Initiate the actual clustering process on the input data set.
-        The resulting cluster labels will be stored in the labels_ attribute.
-
-        Parameters
-        ----------
-        X : np.ndarray
-            the given data set
-
-        Returns
-        -------
-        self : DCN
-            this instance of the DCN algorithm
-        """
         kmeans_labels, kmeans_centers, dcn_labels, dcn_centers, autoencoder = _dcn(dataloader, self.n_clusters, self.batch_size,
                                                                                    self.pretrain_learning_rate,
                                                                                    self.clustering_learning_rate,
