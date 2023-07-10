@@ -4,7 +4,7 @@ Lukas Miklautz
 Dominik Mautz
 """
 
-from _utils_duped import detect_device, encode_batchwise, \
+from ._utils_duped import detect_device, encode_batchwise, \
     squared_euclidean_distance, predict_batchwise
 from clustpy.deep._train_utils import get_trained_autoencoder
 import torch
