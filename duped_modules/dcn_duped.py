@@ -91,8 +91,8 @@ class _DCN_Module(torch.nn.Module):
         for _ in range(n_epochs):
             # Update Network
             for batch in trainloader:
-                batch_data = batch[1].to(device)
-                embedded = autoencoder.encode(batch_data)
+                x_cat, x_cont = batch[0].to(device), batch[1].to(device)
+                embedded = autoencoder.encode(x_cat, x_cont)
                 reconstruction = autoencoder.decode(embedded)
                 # compute reconstruction loss
                 ae_loss = loss_fn(reconstruction, autoencoder.last_target)
@@ -151,7 +151,7 @@ class DCNDuped(BaseEstimator, ClusterMixin):
         self.random_state = check_random_state(random_state)
         torch.manual_seed(self.random_state.get_state()[1][0])
 
-    def fit(self, dataloader: torch.utils.data.DataLoader = None) -> 'DCN':
+    def fit(self, dataloader: torch.utils.data.DataLoader) -> 'DCN':
         kmeans_labels, kmeans_centers, dcn_labels, dcn_centers, autoencoder = _dcn(dataloader, self.n_clusters, self.batch_size,
                                                                                    self.pretrain_learning_rate,
                                                                                    self.clustering_learning_rate,

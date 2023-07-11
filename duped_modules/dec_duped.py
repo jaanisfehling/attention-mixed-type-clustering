@@ -24,7 +24,7 @@ def _dec(dataloader: torch.utils.data.DataLoader, n_clusters: int, alpha: float,
     trainloader = dataloader
     testloader = dataloader
     autoencoder = get_trained_autoencoder(trainloader, pretrain_learning_rate, pretrain_epochs, device,
-                                          optimizer_class, loss_fn, X.shape[1], embedding_size, autoencoder)
+                                          optimizer_class, loss_fn, 0, embedding_size, autoencoder)
 
     # Execute kmeans in embedded space - initial clustering
     embedded_data = encode_batchwise(testloader, autoencoder, device)
@@ -97,14 +97,14 @@ class _DEC_Module(torch.nn.Module):
             use_reconstruction_loss: bool, cluster_loss_weight: float) -> '_DEC_Module':
         for _ in range(n_epochs):
             for batch in trainloader:
-                batch_data = batch[1].to(device)
-                embedded = autoencoder.encode(batch_data)
+                x_cat, x_cont = batch[0].to(device), batch[1].to(device)
+                embedded = autoencoder.encode(x_cat, x_cont)
                 cluster_loss = self.dec_loss(embedded)
                 loss = cluster_loss * cluster_loss_weight
                 # Reconstruction loss is not included in DEC
                 if use_reconstruction_loss:
                     reconstruction = autoencoder.decode(embedded)
-                    ae_loss = loss_fn(batch_data, reconstruction)
+                    ae_loss = loss_fn(autoencoder.last_target, reconstruction)
                     loss += ae_loss
 
                 # Backward pass
@@ -137,8 +137,8 @@ class DECDuped(BaseEstimator, ClusterMixin):
         self.random_state = check_random_state(random_state)
         torch.manual_seed(self.random_state.get_state()[1][0])
 
-    def fit(self, X: np.ndarray, y: np.ndarray = None) -> 'DEC':
-        kmeans_labels, kmeans_centers, dec_labels, dec_centers, autoencoder = _dec(X, self.n_clusters, self.alpha,
+    def fit(self, dataloader: torch.utils.data.DataLoader) -> 'DEC':
+        kmeans_labels, kmeans_centers, dec_labels, dec_centers, autoencoder = _dec(dataloader, self.n_clusters, self.alpha,
                                                                                    self.batch_size,
                                                                                    self.pretrain_learning_rate,
                                                                                    self.clustering_learning_rate,
