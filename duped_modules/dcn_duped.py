@@ -94,10 +94,11 @@ class _DCN_Module(torch.nn.Module):
                 x_cat, x_cont = batch[0].to(device), batch[1].to(device)
                 embedded = autoencoder.encode(x_cat, x_cont)
                 reconstruction = autoencoder.decode(embedded)
+                embedded = torch.cat((embedded, x_cont), 1)
                 # compute reconstruction loss
                 ae_loss = loss_fn(reconstruction, autoencoder.last_target)
                 # compute cluster loss
-                cluster_loss = self.dcn_loss(torch.cat((embedded, x_cont), 1))
+                cluster_loss = self.dcn_loss(embedded)
                 # compute total loss
                 loss = degree_of_space_preservation * ae_loss + 0.5 * degree_of_space_distortion * cluster_loss
                 # Backward pass - update weights
