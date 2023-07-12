@@ -24,9 +24,10 @@ class EmbeddingsAutoencoder(torch.nn.Module):
         self.fitted = False
 
         self.attention = attention
-        self.to_keys = nn.Linear(input_dim, input_dim, bias=False)
-        self.to_queries = nn.Linear(input_dim, input_dim, bias=False)
-        self.to_values = nn.Linear(input_dim, input_dim, bias=False)
+        if self.attention:
+            self.to_keys = nn.Linear(input_dim, input_dim, bias=False)
+            self.to_queries = nn.Linear(input_dim, input_dim, bias=False)
+            self.to_values = nn.Linear(input_dim, input_dim, bias=False)
 
         self.encoder = encoder
         self.decoder = decoder
