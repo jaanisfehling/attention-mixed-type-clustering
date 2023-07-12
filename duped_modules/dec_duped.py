@@ -99,7 +99,7 @@ class _DEC_Module(torch.nn.Module):
             for batch in trainloader:
                 x_cat, x_cont = batch[0].to(device), batch[1].to(device)
                 embedded = autoencoder.encode(x_cat, x_cont)
-                cluster_loss = self.dec_loss(embedded)
+                cluster_loss = self.dec_loss(torch.cat((embedded, x_cont), 1))
                 loss = cluster_loss * cluster_loss_weight
                 # Reconstruction loss is not included in DEC
                 if use_reconstruction_loss:

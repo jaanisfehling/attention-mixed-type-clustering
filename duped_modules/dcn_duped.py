@@ -97,7 +97,7 @@ class _DCN_Module(torch.nn.Module):
                 # compute reconstruction loss
                 ae_loss = loss_fn(reconstruction, autoencoder.last_target)
                 # compute cluster loss
-                cluster_loss = self.dcn_loss(embedded)
+                cluster_loss = self.dcn_loss(torch.cat((embedded, x_cont), 1))
                 # compute total loss
                 loss = degree_of_space_preservation * ae_loss + 0.5 * degree_of_space_distortion * cluster_loss
                 # Backward pass - update weights
@@ -109,6 +109,7 @@ class _DCN_Module(torch.nn.Module):
                 for batch in trainloader:
                     x_cat, x_cont = batch[0].to(device), batch[1].to(device)
                     embedded = autoencoder.encode(x_cat, x_cont)
+                    embedded = torch.cat((embedded, x_cont), 1)
 
                     ## update centroids [on gpu] About 40 seconds for 1000 iterations
                     ## No overhead from loading between gpu and cpu
