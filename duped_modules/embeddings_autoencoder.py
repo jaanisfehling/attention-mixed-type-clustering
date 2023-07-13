@@ -18,34 +18,35 @@ def scaled_dot_product_attention(q, k, v):
 
 
 class EmbeddingsAutoencoder(torch.nn.Module):
-    def __init__(self, encoder: nn.Sequential, decoder: nn.Sequential, input_dim: int, cat_dim: int,
+    def __init__(self, cat_encoder: nn.Sequential, cont_encoder: nn.Sequential, decoder: nn.Sequential, input_dim: int, cat_dim: int,
                  embedding_sizes: List[Tuple[int, int]], attention: bool = False):
         super().__init__()
         self.fitted = False
 
         self.attention = attention
         if self.attention:
-            self.to_keys = nn.Linear(input_dim, input_dim, bias=False)
-            self.to_queries = nn.Linear(input_dim, input_dim, bias=False)
-            self.to_values = nn.Linear(input_dim, input_dim, bias=False)
+            self.to_keys = nn.Linear(cat_dim, cat_dim, bias=False)
+            self.to_queries = nn.Linear(cat_dim, cat_dim, bias=False)
+            self.to_values = nn.Linear(cat_dim, cat_dim, bias=False)
 
-        self.encoder = encoder
+        self.cat_encoder = cat_encoder
+        self.cont_encoder = cont_encoder
         self.decoder = decoder
         self.embeddings = nn.ModuleList([nn.Embedding(num, dim) for num, dim in embedding_sizes])
 
     def encode(self, x_cat: torch.Tensor, x_cont: torch.Tensor) -> torch.Tensor:
-        x_cat = x_cat.to(torch.long)
-        x = torch.cat([e(x_cat[:, i]) for i, e in enumerate(self.embeddings)], 1)
-        self.last_target = x.clone().detach()
-        x = torch.cat((x, x_cont), 1)
+        cat_embeddings = torch.cat([e(x_cat[:, i]) for i, e in enumerate(self.embeddings)], 1)
+        self.last_target = torch.cat((cat_embeddings, x_cont), 1).clone().detach()
 
         if self.attention:
-            q = self.to_queries(x)
-            k = self.to_keys(x)
-            v = self.to_values(x)
-            x = scaled_dot_product_attention(q, k, v)
+            q = self.to_queries(cat_embeddings)
+            k = self.to_keys(cat_embeddings)
+            v = self.to_values(cat_embeddings)
+            x_cat = scaled_dot_product_attention(q, k, v)
 
-        return self.encoder(x)
+        cat_embedded = self.cat_encoder(x_cat)
+        cont_embedded = self.cont_encoder(x_cont)
+        return torch.cat((cat_embedded, cont_embedded), 1)
 
     def decode(self, encoded: torch.Tensor) -> torch.Tensor:
         return self.decoder(encoded)
@@ -98,7 +99,7 @@ class EmbeddingsAutoencoder(torch.nn.Module):
                 optimizer.zero_grad()
                 loss.backward()
                 optimizer.step()
-            if print_step > 0 and ((epoch_i - 1) % print_step == 0 or epoch_i == (n_epochs - 1)):
+            if print_step > 0 and ((epoch_i + 1) % print_step == 0 or epoch_i == (n_epochs - 1)):
                 print(f"Epoch {epoch_i + 1}/{n_epochs} - Batch Reconstruction loss: {loss.item():.6f}")
 
             if scheduler is not None and not eval_step_scheduler:
@@ -107,7 +108,7 @@ class EmbeddingsAutoencoder(torch.nn.Module):
             if evalloader is not None:
                 # self.evaluate calls self.eval()
                 val_loss = self.evaluate(dataloader=evalloader, loss_fn=loss_fn, device=device)
-                if print_step > 0 and ((epoch_i - 1) % print_step == 0 or epoch_i == (n_epochs - 1)):
+                if print_step > 0 and ((epoch_i + 1) % print_step == 0 or epoch_i == (n_epochs - 1)):
                     print(f"Epoch {epoch_i + 1} EVAL loss total: {val_loss.item():.6f}")
                 early_stopping(val_loss)
                 if val_loss < best_loss:
