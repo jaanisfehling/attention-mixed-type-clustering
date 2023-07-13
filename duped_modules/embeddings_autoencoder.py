@@ -35,13 +35,14 @@ class EmbeddingsAutoencoder(torch.nn.Module):
         self.embeddings = nn.ModuleList([nn.Embedding(num, dim) for num, dim in embedding_sizes])
 
     def encode(self, x_cat: torch.Tensor, x_cont: torch.Tensor) -> torch.Tensor:
-        cat_embeddings = torch.cat([e(x_cat[:, i]) for i, e in enumerate(self.embeddings)], 1)
-        self.last_target = torch.cat((cat_embeddings, x_cont), 1).clone().detach()
+        x_cat = torch.cat([e(x_cat[:, i]) for i, e in enumerate(self.embeddings)], 1)
+        x_cat = x_cat.to(torch.float)
+        self.last_target = torch.cat((x_cat, x_cont), 1).clone().detach()
 
         if self.attention:
-            q = self.to_queries(cat_embeddings)
-            k = self.to_keys(cat_embeddings)
-            v = self.to_values(cat_embeddings)
+            q = self.to_queries(x_cat)
+            k = self.to_keys(x_cat)
+            v = self.to_values(x_cat)
             x_cat = scaled_dot_product_attention(q, k, v)
 
         cat_embedded = self.cat_encoder(x_cat)

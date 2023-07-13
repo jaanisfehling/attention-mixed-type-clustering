@@ -83,7 +83,7 @@ def encode_batchwise(dataloader: torch.utils.data.DataLoader, module: torch.nn.M
     for batch in dataloader:
         x_cat, x_cont = batch[0].to(device), batch[1].to(device)
         embedded = module.encode(x_cat, x_cont)
-        embeddings.append(torch.cat((embedded, x_cont), 1).detach().cpu())
+        embeddings.append(embedded.detach().cpu())
     embeddings_numpy = torch.cat(embeddings, dim=0).numpy()
     return embeddings_numpy
 
@@ -114,7 +114,7 @@ def predict_batchwise(dataloader: torch.utils.data.DataLoader, module: torch.nn.
     for batch in dataloader:
         x_cat, x_cont = batch[0].to(device), batch[1].to(device)
         embedded = module.encode(x_cat, x_cont)
-        prediction = cluster_module.predict_hard(torch.cat((embedded, x_cont), 1)).detach().cpu()
+        prediction = cluster_module.predict_hard(embedded).detach().cpu()
         predictions.append(prediction)
     predictions_numpy = torch.cat(predictions, dim=0).numpy()
     return predictions_numpy
