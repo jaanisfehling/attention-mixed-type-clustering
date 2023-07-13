@@ -18,7 +18,7 @@ def scaled_dot_product_attention(q, k, v):
 
 
 class EmbeddingsAutoencoder(torch.nn.Module):
-    def __init__(self, cat_encoder: nn.Sequential, cont_encoder: nn.Sequential, decoder: nn.Sequential, input_dim: int, cat_dim: int,
+    def __init__(self, encoder: nn.Sequential, decoder: nn.Sequential, input_dim: int, cat_dim: int,
                  embedding_sizes: List[Tuple[int, int]], attention: bool = False):
         super().__init__()
         self.fitted = False
@@ -29,8 +29,7 @@ class EmbeddingsAutoencoder(torch.nn.Module):
             self.to_queries = nn.Linear(cat_dim, cat_dim, bias=False)
             self.to_values = nn.Linear(cat_dim, cat_dim, bias=False)
 
-        self.cat_encoder = cat_encoder
-        self.cont_encoder = cont_encoder
+        self.encoder = encoder
         self.decoder = decoder
         self.embeddings = nn.ModuleList([nn.Embedding(num, dim) for num, dim in embedding_sizes])
 
@@ -45,9 +44,9 @@ class EmbeddingsAutoencoder(torch.nn.Module):
             v = self.to_values(x_cat)
             x_cat = scaled_dot_product_attention(q, k, v)
 
-        cat_embedded = self.cat_encoder(x_cat)
-        cont_embedded = self.cont_encoder(x_cont)
-        return torch.cat((cat_embedded, cont_embedded), 1)
+        x = torch.cat((x_cat, x_cont), 1)
+        x = self.encoder(x)
+        return x
 
     def decode(self, encoded: torch.Tensor) -> torch.Tensor:
         return self.decoder(encoded)
