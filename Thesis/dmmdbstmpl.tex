@@ -1,9 +1,7 @@
 % Mit twoside als weitere Option werden die Seitenränder angepasst, sodass beidseitig gedruckt werden kann
 \documentclass[pdftex,12pt,a4paper]{report}
 
-% It is also possible to choose the english version by deleting the parameter "german"
 \usepackage[]{dmmdbstmpl}
-%\usepackage[]{dmmdbstmpl}
 
 % Boolean - sets document to doublesided.
 % Creates empty page between english and german title page as well as english and german abstract
@@ -11,65 +9,32 @@
 \setboolean{doublesided}{false}
 %\setboolean{doublesided}{true}
 
-% Set thesis type to "Master" or "Bachelor"
 \global\arbeittyp{Bachelor}
-%\global\arbeittyp{Master}
 
-% === Enter your own data here ===
 % General information
 \global\bearbeiter{BEARBEITERNAME}
 \global\betreuer{BETREUERNAME}
 \global\aufgabensteller{Prof. Dr. Christian Böhm} % Normally Prof. Böhm
 \global\abgabetermin{tt.mm.yyyy}
-\global\ort{ORT}
+\global\ort{Munich}
 
 % English information
-\global\englTitel{ENGLISH TITLE OF THE THESIS CAN ALSO HAVE A SECOND LINE}
+\global\englTitel{Attention in Mixed-Type Clustering}
 \global\englFach{Computer Science}
 \global\englAbstracttext{This document serves as a model for the development of a thesis at the Department of Database Systems at the Institute for Computer Science at the LMU Munich. The abstract should not contain more than 300 words.}
-% German abstract text can be empty
-\global\gerAbstracttext{Dieses Dokument dient als Muster für die Ausarbeitung einer Arbeit
-	am Lehrstuhl für Datenbanksysteme am Institut für
-	Informatik der LMU München. Der Abstract sollte nicht mehr als 300 Wörter enthalten.}
-
-% --> ONLY IF THESIS IS IN GERMAN <--
-\global\gerTitel{TITEL DER ARBEIT KANN AUCH EINE ZWEITE ZEILE HABEN}
-\global\gerFach{Informatik}
-
-% ===================================
 
 
 \begin{document}
-% Set language to english/german
 \languagesselection
-
-% Deckblatt
 \deckblatt
-
-% Erklaerung fuer das Pruefungsamt
 \erklaerung
-
-% Zusammenfassung
 \inputabstract
-
-% Inhaltsverzeichnis (abhaengig von der Laenge des Dokuments)
 \tableofcontents
-
-% Hier beginnt der Hauptteil
-
-\input{Introduction}
-
-
-%% Ende Hauptteil
-
+\input{thesis}
 % Abbildungsverzeichnis (kann auch nach dem Inhaltsverzeichnis kommen)
 %\listoffigures
-
 % Tabellenverzeichnis (kann auch nach dem Inhaltsverzeichnis kommen)
 %\listoftables
-
-% Literaturverzeichnis
 \bibliographystyle{plain} 
 \bibliography{dmmdbstmpl}         % verwendet dmmdbstmpl.bib
-
 \end{document}

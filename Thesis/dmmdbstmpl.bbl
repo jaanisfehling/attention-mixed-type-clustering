@@ -1,0 +1,11 @@
+\begin{thebibliography}{1}
+
+\bibitem{kmeans}
+J.~B. MacQueen.
+\newblock Some methods for classification and analysis of multivariate
+  observations.
+\newblock In L.~M.~Le Cam and J.~Neyman, editors, {\em Proc. of the fifth
+  Berkeley Symposium on Mathematical Statistics and Probability}, volume~1,
+  pages 281--297. University of California Press, 1967.
+
+\end{thebibliography}
