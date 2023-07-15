@@ -1,5 +1,10 @@
 \begin{thebibliography}{1}
 
+\bibitem{mixed_type_survey_2019}
+Amir Ahmad and Shehroz~S. Khan.
+\newblock Survey of state-of-the-art mixed data clustering algorithms.
+\newblock {\em {IEEE} Access}, 7:31883--31902, 2019.
+
 \bibitem{kmeans}
 J.~B. MacQueen.
 \newblock Some methods for classification and analysis of multivariate
@@ -7,5 +12,12 @@ J.~B. MacQueen.
 \newblock In L.~M.~Le Cam and J.~Neyman, editors, {\em Proc. of the fifth
   Berkeley Symposium on Mathematical Statistics and Probability}, volume~1,
   pages 281--297. University of California Press, 1967.
+
+\bibitem{kmeans_np_hard}
+Meena Mahajan, Prajakta Nimbhorkar, and Kasturi Varadarajan.
+\newblock The planar k-means problem is np-hard.
+\newblock {\em Theoretical Computer Science}, 442:13--21, 2012.
+\newblock Special Issue on the Workshop on Algorithms and Computation (WALCOM
+  2009).
 
 \end{thebibliography}

@@ -3,12 +3,21 @@
 
 \section{Clustering}
 
-Clustering is a unsupervised machine learning method that groups similar observations together. Due to its ability to find patterns in an unlabeled dataset, its an essential Task in Data Mining and Knowledge Discovery. A \textit{cluster} is a group of similar observations that belong to a \textit{centroid} (center point of a cluster). Distance-based clustering algorithms use distance measures such as Euclidean distance to calculate the similarity of datapoints. The most well known distance-based clustering algorithm is k-means \cite{kmeans}. It is defined as follows: Suppose we have a finite set of $S$ points in $\mathbb{R}^d$ as our observations for a dataset with $d$ features, the goal of k-means is to find $k$ optimal centroids that minimize the sum of the squared Euclidean distance of each point in $S$ to its nearest centroid. Finding the optimal centroids is a NP-hard problem, even for $d=2$, as shown by Mahajan et al. \cite{kmeans_np_hard}.
+Clustering is a unsupervised machine learning method that groups similar observations together. Due to its ability to find patterns in an unlabeled dataset, its an essential Task in Data Mining and Knowledge Discovery. A \textit{cluster} is a group of similar observations that belong to a \textit{centroid} (center point of a cluster). Distance-based clustering algorithms use distance measures such as Euclidean distance to calculate the similarity of datapoints. Hierarchical methods partition the observations and merge (agglomerative) or split them into bigger or smaller clusters. Many other methods exist, but this work focuses only on methods for clustering \textit{mixed-type} data. \cite{mixed_type_survey_2019}
+
+\subsection{k-means}
+
+The most well known distance-based clustering algorithm is k-means \cite{kmeans}. It is defined as follows: Suppose we have a finite set of $n$ observations $S={p_1, p_2, ..., p_n} \in \R^m$ for a dataset with $m$ features, the goal of k-means is to find $k (\leq n)$ optimal centroids $B={b_1, b_2, ..., b_k} \subseteq \R^m$ that minimize the sum of the squared Euclidean distance of each point in $S$ to its nearest centroid: 
+
+$$\operatorname*{arg\,min}_B \sum_{i=1}^k \sum_{b \in B_i} d(b, )$$
+
+$d$ is the Euclidean distance from a point $p_i \in S$ to the nearest centroid in $B$
 
 
+Finding the optimal centroids is a NP-hard problem, even for $d=2$, as shown by Mahajan et al. \cite{kmeans_np_hard}. 
 
 
-
+Therefore, k-means uses an iterative algorithm to quickly approximate a local optimum. 
 
 \begin{enumerate} 
 	\item Initialize 
