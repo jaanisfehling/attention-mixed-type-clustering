@@ -1,11 +1,11 @@
 \chapter{Introduction}
 
 
-\section{Clustering}
+\section{Introduction}
 
 Clustering is an unsupervised machine learning method that groups similar observations together. Due to its ability to find patterns in an unlabeled dataset, its an essential Task in Data Mining and Knowledge Discovery. A \textit{cluster} is a group of similar observations that belong to a \textit{centroid} (center point of a cluster). Distance-based clustering algorithms use distance measures such as Euclidean distance to calculate the similarity of datapoints. Hierarchical methods partition the observations and merge (agglomerative) or split them into bigger or smaller clusters. Many other methods exist, but this work focuses on methods for clustering \textit{mixed-type} data. \cite{mixed_type_survey_2019}
 
-\subsection{k-means}
+\section{k-means}
 
 The most well known distance-based clustering method is k-means \cite{kmeans}. The goal is defined as follows: Suppose we have a finite set of $n$ observations $S=\{p_1, p_2, ..., p_n\} \in \R^m$ for a dataset with $m$ features, the target of k-means is to find $k (\leq n)$ optimal centroids $B=\{b_1, b_2, ..., b_k\} \subseteq \R^m$ that minimize the sum of the squared Euclidean distance of each point in $S$ to its nearest centroid. Formally
 $$\sum_{i=1}^n  d(p_i, B)$$
@@ -21,7 +21,7 @@ $$b_i^{(t+1)} = \frac{1}{|S_i^{(t)}|} \sum_{p_j \in S_i^{(t)}} p_j$$
 	\item Repeat steps 2. and 3. until the centroid assignments no longer change.
 \end{enumerate}
 
-\subsection{Mixed-Type Data}
+\section{Mixed-type data}
 
 
 

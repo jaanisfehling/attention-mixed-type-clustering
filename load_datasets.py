@@ -1,5 +1,16 @@
+from dataclasses import dataclass
+from typing import List
 import pandas as pd
+import numpy as np
 from sklearn.preprocessing import LabelEncoder, StandardScaler
+
+@dataclass
+class TabularDataSet:
+    name: str
+    df: pd.DataFrame
+    y: np.array
+    cat_cols: List[str]
+    cont_cols: List[str]
 
 
 def load_breast_cancer():
@@ -10,12 +21,12 @@ def load_breast_cancer():
     breast_y = breast_df["Class"]
     breast_df.drop(columns=["Sample_code_number", "Class"], axis=1, inplace=True)
 
-    breast_cat_cols = breast_df.columns.values
+    breast_cat_cols = breast_df.columns.values.tolist()
     breast_cont_cols = []
 
     breast_df[breast_cat_cols] = breast_df[breast_cat_cols].apply(LabelEncoder().fit_transform)
 
-    return breast_df, breast_y, breast_cat_cols, breast_cont_cols
+    return TabularDataSet("Breast Cancer", breast_df, breast_y, breast_cat_cols, breast_cont_cols)
 
 def load_soybean_disease():
     soybean_df = pd.read_csv("datasets/soybean_disease.csv")
@@ -25,12 +36,12 @@ def load_soybean_disease():
     soybean_y = soybean_df["class"]
     soybean_df.drop(columns=["class"], axis=1, inplace=True)
 
-    soybean_cat_cols = soybean_df.columns.values
+    soybean_cat_cols = soybean_df.columns.values.tolist()
     soybean_cont_cols = []
 
     soybean_df[soybean_cat_cols] = soybean_df[soybean_cat_cols].apply(LabelEncoder().fit_transform)
 
-    return soybean_df, soybean_y, soybean_cat_cols, soybean_cont_cols
+    return TabularDataSet("Soybean Disease", soybean_df, soybean_y, soybean_cat_cols, soybean_cont_cols)
 
 def load_bank_marketing():
     banking_df = pd.read_csv("datasets/bank_marketing.csv", sep=";")
@@ -45,7 +56,7 @@ def load_bank_marketing():
     banking_df[banking_cat_cols] = banking_df[banking_cat_cols].apply(LabelEncoder().fit_transform)
     banking_df[banking_cont_cols] = StandardScaler().fit_transform(banking_df[banking_cont_cols])
    
-    return banking_df, banking_y, banking_cat_cols, banking_cont_cols
+    return TabularDataSet("Bank Marketing", banking_df, banking_y, banking_cat_cols, banking_cont_cols)
 
 def load_census_income():
     census_df = pd.read_csv("datasets/census_income.csv")
@@ -63,7 +74,7 @@ def load_census_income():
     census_df[census_cat_cols] = census_df[census_cat_cols].apply(LabelEncoder().fit_transform)
     census_df[census_cont_cols] = StandardScaler().fit_transform(census_df[census_cont_cols])
     
-    return census_df, census_y, census_cat_cols, census_cont_cols
+    return TabularDataSet("Census Income", census_df, census_y, census_cat_cols, census_cont_cols)
 
 def load_credit_approval():
     credit_df = pd.read_csv("datasets/credit_approval.csv")
@@ -80,7 +91,7 @@ def load_credit_approval():
     credit_df[credit_cat_cols] = credit_df[credit_cat_cols].apply(LabelEncoder().fit_transform)
     credit_df[credit_cont_cols] = StandardScaler().fit_transform(credit_df[credit_cont_cols])
         
-    return credit_df, credit_y, credit_cat_cols, credit_cont_cols
+    return TabularDataSet("Credit Approval", credit_df, credit_y, credit_cat_cols, credit_cont_cols)
 
 def load_heart_disease():
     heart_df = pd.read_csv("datasets/heart_disease.csv")
@@ -97,4 +108,4 @@ def load_heart_disease():
     heart_df[heart_cat_cols] = heart_df[heart_cat_cols].apply(LabelEncoder().fit_transform)
     heart_df[heart_cont_cols] = StandardScaler().fit_transform(heart_df[heart_cont_cols])
     
-    return heart_df, heart_y, heart_cat_cols, heart_cont_cols
+    return TabularDataSet("Heart Disease", heart_df, heart_y, heart_cat_cols, heart_cont_cols)
