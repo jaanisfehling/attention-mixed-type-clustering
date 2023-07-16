@@ -5,6 +5,11 @@ Amir Ahmad and Shehroz~S. Khan.
 \newblock Survey of state-of-the-art mixed data clustering algorithms.
 \newblock {\em {IEEE} Access}, 7:31883--31902, 2019.
 
+\bibitem{kmeans_lloyd}
+S.~Lloyd.
+\newblock Least squares quantization in pcm.
+\newblock {\em IEEE Transactions on Information Theory}, 28(2):129--137, 1982.
+
 \bibitem{kmeans}
 J.~B. MacQueen.
 \newblock Some methods for classification and analysis of multivariate

@@ -3,25 +3,34 @@
 
 \section{Clustering}
 
-Clustering is a unsupervised machine learning method that groups similar observations together. Due to its ability to find patterns in an unlabeled dataset, its an essential Task in Data Mining and Knowledge Discovery. A \textit{cluster} is a group of similar observations that belong to a \textit{centroid} (center point of a cluster). Distance-based clustering algorithms use distance measures such as Euclidean distance to calculate the similarity of datapoints. Hierarchical methods partition the observations and merge (agglomerative) or split them into bigger or smaller clusters. Many other methods exist, but this work focuses only on methods for clustering \textit{mixed-type} data. \cite{mixed_type_survey_2019}
+Clustering is an unsupervised machine learning method that groups similar observations together. Due to its ability to find patterns in an unlabeled dataset, its an essential Task in Data Mining and Knowledge Discovery. A \textit{cluster} is a group of similar observations that belong to a \textit{centroid} (center point of a cluster). Distance-based clustering algorithms use distance measures such as Euclidean distance to calculate the similarity of datapoints. Hierarchical methods partition the observations and merge (agglomerative) or split them into bigger or smaller clusters. Many other methods exist, but this work focuses on methods for clustering \textit{mixed-type} data. \cite{mixed_type_survey_2019}
 
 \subsection{k-means}
 
-The most well known distance-based clustering algorithm is k-means \cite{kmeans}. It is defined as follows: Suppose we have a finite set of $n$ observations $S={p_1, p_2, ..., p_n} \in \R^m$ for a dataset with $m$ features, the goal of k-means is to find $k (\leq n)$ optimal centroids $B={b_1, b_2, ..., b_k} \subseteq \R^m$ that minimize the sum of the squared Euclidean distance of each point in $S$ to its nearest centroid: 
-
-$$\operatorname*{arg\,min}_B \sum_{i=1}^k \sum_{b \in B_i} d(b, )$$
-
-$d$ is the Euclidean distance from a point $p_i \in S$ to the nearest centroid in $B$
-
-
-Finding the optimal centroids is a NP-hard problem, even for $d=2$, as shown by Mahajan et al. \cite{kmeans_np_hard}. 
-
-
-Therefore, k-means uses an iterative algorithm to quickly approximate a local optimum. 
+The most well known distance-based clustering method is k-means \cite{kmeans}. The goal is defined as follows: Suppose we have a finite set of $n$ observations $S=\{p_1, p_2, ..., p_n\} \in \R^m$ for a dataset with $m$ features, the target of k-means is to find $k (\leq n)$ optimal centroids $B=\{b_1, b_2, ..., b_k\} \subseteq \R^m$ that minimize the sum of the squared Euclidean distance of each point in $S$ to its nearest centroid. Formally
+$$\sum_{i=1}^n  d(p_i, B)$$
+has to be minimized, where $d$ is the Euclidean distance from a point $p_i \in S$ to the nearest centroid in $B$; $d(p_i, B) = min_{1 \leq j \leq k} d(p_i, b_j)$ \cite{kmeans_np_hard}. The Euclidean distance between two points $p$ and $q$in an $n$-dimensional Euclidean space is defined as 
+$$d(p, q) = || p - q || = \sqrt{(p_1 - q_1)^2 + (p_2 - q_2)^2 + ... + (p_n - q_n)^2}$$
+Finding the optimal centroids is a NP-hard problem, even for $d=2$, as shown by Mahajan et al. \cite{kmeans_np_hard}. The most common algorithm used for the k-means problem is a iterative refinement technique proposed by Lloyd \cite{kmeans_lloyd}. It is defined as follows:
 
 \begin{enumerate} 
-	\item Initialize 
-	\item Zweiter Punkt
-	\item Erster Punkt
-	\item Zweiter Punkt
+	\item Randomly set $k$ initial cluster centroids $b_1^{(1)}, ..., b_k^{(1)}$.
+	\item Assign each obseration $p_i$ to the nearest centroid using squared Euclidean distance. This splits our observations into $S$ into $k$ sets $\{S_1^{(t)}, ..., S_k^{(t)}\}$.
+	\item Recalculate the optimal position of each centroid using the mean distance to each observation assigned to the centroid. 
+$$b_i^{(t+1)} = \frac{1}{|S_i^{(t)}|} \sum_{p_j \in S_i^{(t)}} p_j$$
+	\item Repeat steps 2. and 3. until the centroid assignments no longer change.
 \end{enumerate}
+
+\subsection{Mixed-Type Data}
+
+
+
+
+
+
+
+
+
+
+
+
