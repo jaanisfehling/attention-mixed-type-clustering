@@ -3,7 +3,7 @@
 
 \section{Introduction}
 
-Clustering is an unsupervised machine learning method that groups similar observations together. Due to its ability to find patterns in an unlabeled dataset, its an essential Task in Data Mining and Knowledge Discovery. A \textit{cluster} is a group of similar observations that belong to a \textit{centroid} (center point of a cluster). Distance-based clustering algorithms use distance measures such as Euclidean distance to calculate the similarity of datapoints. Hierarchical methods partition the observations and merge (agglomerative) or split them into bigger or smaller clusters. Many other methods exist, but this work focuses on methods for clustering \textit{mixed-type} data. \cite{mixed_type_survey_2019}
+Clustering is an unsupervised machine learning method that groups similar observations together. Due to its ability to find patterns in an unlabeled dataset, its an essential task in Data Mining and Knowledge Discovery. A \textit{cluster} is a group of similar observations that belong to a \textit{centroid} (center point of a cluster). Distance-based clustering algorithms use distance measures such as Euclidean distance to calculate the similarity of datapoints. Hierarchical methods partition the observations and merge (agglomerative) or split them into bigger or smaller clusters. Many other methods exist, but this work focuses on methods for clustering \textit{mixed-type} data. \cite{mixed_type_survey_2019}
 
 \section{k-means}
 
@@ -12,7 +12,6 @@ $$\sum_{i=1}^n  d(p_i, B)$$
 has to be minimized, where $d$ is the Euclidean distance from a point $p_i \in S$ to the nearest centroid in $B$; $d(p_i, B) = min_{1 \leq j \leq k} d(p_i, b_j)$ \cite{kmeans_np_hard}. The Euclidean distance between two points $p$ and $q$in an $n$-dimensional Euclidean space is defined as 
 $$d(p, q) = || p - q || = \sqrt{(p_1 - q_1)^2 + (p_2 - q_2)^2 + ... + (p_n - q_n)^2}$$
 Finding the optimal centroids is a NP-hard problem, even for $d=2$, as shown by Mahajan et al. \cite{kmeans_np_hard}. The most common algorithm used for the k-means problem is a iterative refinement technique proposed by Lloyd \cite{kmeans_lloyd}. It is defined as follows:
-
 \begin{enumerate} 
 	\item Randomly set $k$ initial cluster centroids $b_1^{(1)}, ..., b_k^{(1)}$.
 	\item Assign each obseration $p_i$ to the nearest centroid using squared Euclidean distance. This splits our observations into $S$ into $k$ sets $\{S_1^{(t)}, ..., S_k^{(t)}\}$.
@@ -22,6 +21,12 @@ $$b_i^{(t+1)} = \frac{1}{|S_i^{(t)}|} \sum_{p_j \in S_i^{(t)}} p_j$$
 \end{enumerate}
 
 \section{Mixed-type data}
+
+In many real world scenarios, besides continuous, numerical data, \textit{categorial} data exists. While Euclidean distance or other distance measures work well with continuous data, categorial data is different. Suppose we have states $\{A, B, C\}$ of a given feature, we would encode them into numeric values to allow for computation of a distance measure:
+$$\{A, B, C\} \equiv \{1, 2, 3\}$$
+While $A$ and $C$ can share the same semantic similarity as $A$ and $B$, numerically category $A$ and Category $C$ are now $|1-3| = 2$ apart, while Category $A$ and $B$ are only $|1-2|=1$ apart. During clustering, this could lead to observations being assigned to centroids based on a wrong distance assumption.
+
+A possible solution is to use \textit{one-hot encoding}, also known as \textit{dummy coding} in classical statistics. One-hot encoding turns a discrete feature containing $k$ mutually exclusive states into a vector $x$ of length $k$, in which only one of the elements $x_k$ equals 1 and all remaining elements equal 0 \cite{bishop_2006}. For a observation $B$ of a feature having $k=3$ separate states $\{A, B, C\}$, the one-hot vector $x$ would be represented by $x = (0, 1, 0)^{\intercal}$.
 
 
 
