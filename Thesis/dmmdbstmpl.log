@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.5) (preloaded format=pdflatex 2023.7.17)  17 JUL 2023 20:00
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.5) (preloaded format=pdflatex 2023.7.17)  17 JUL 2023 22:45
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -338,13 +338,18 @@ Overfull \hbox (3.81651pt too wide) in paragraph at lines 6--7
 
 [2
 
-]
-Overfull \hbox (49.0575pt too wide) in paragraph at lines 44--55
+] [3]
+Overfull \hbox (0.43506pt too wide) in paragraph at lines 36--37
+[]\OT1/cmr/m/n/12 In real-world applications, categorial features with hundreds or thousands
+ []
+
+
+Overfull \hbox (49.0575pt too wide) in paragraph at lines 53--64
  [] 
  []
 
-[3]) (dmmdbstmpl.bbl [4]
-Underfull \hbox (badness 1009) in paragraph at lines 20--26
+) (dmmdbstmpl.bbl [4]
+Underfull \hbox (badness 1009) in paragraph at lines 26--32
 []\OT1/cmr/m/n/12 J. B. MacQueen.  Some methods for classification and analysis of
  []
 
@@ -357,15 +362,15 @@ L3 programming layer <2023-06-30>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 5034 strings out of 477486
- 78991 string characters out of 5814204
- 1929244 words of memory out of 5000000
- 25934 multiletter control sequences out of 15000+600000
+ 5035 strings out of 477486
+ 78999 string characters out of 5814204
+ 1927244 words of memory out of 5000000
+ 25935 multiletter control sequences out of 15000+600000
  566007 words of font info for 65 fonts, out of 8000000 for 9000
  0 hyphenation exceptions out of 8191
- 72i,12n,79p,833b,321s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 72i,12n,79p,833b,353s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </home/jaanis/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmbx12.pfb></home/jaanis/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmex10.pfb></home/jaanis/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi12.pfb></home/jaanis/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi6.pfb></home/jaanis/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi8.pfb></home/jaanis/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr12.pfb></home/jaanis/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr17.pfb></home/jaanis/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr6.pfb></home/jaanis/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr8.pfb></home/jaanis/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmsl10.pfb></home/jaanis/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy10.pfb></home/jaanis/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy8.pfb></home/jaanis/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmti12.pfb></home/jaanis/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmtt12.pfb></home/jaanis/.miktex/texmfs/install/fonts/type1/public/amsfonts/symbols/msam10.pfb></home/jaanis/.miktex/texmfs/install/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on dmmdbstmpl.pdf (8 pages, 367539 bytes).
+Output written on dmmdbstmpl.pdf (8 pages, 369301 bytes).
 PDF statistics:
  112 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

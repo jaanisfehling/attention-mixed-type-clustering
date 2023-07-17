@@ -11,6 +11,12 @@ Christopher~M. Bishop.
   and Statistics)}.
 \newblock Springer-Verlag, Berlin, Heidelberg, 2006.
 
+\bibitem{kmodes}
+Zhexue Huang.
+\newblock Extensions to the k-means algorithm for clustering large data sets
+  with categorical values.
+\newblock {\em Data Mining and Knowledge Discovery}, 2:283--304, 1998.
+
 \bibitem{kmeans_lloyd}
 S.~Lloyd.
 \newblock Least squares quantization in pcm.
