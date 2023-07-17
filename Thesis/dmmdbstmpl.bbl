@@ -31,4 +31,10 @@ Meena Mahajan, Prajakta Nimbhorkar, and Kasturi Varadarajan.
 \newblock Special Issue on the Workshop on Algorithms and Computation (WALCOM
   2009).
 
+\bibitem{uci_ml_rpo}
+Kolby~Nottingham Markelle~Kelly, Rachel~Longjohn.
+\newblock {The UCI Machine Learning Repository}.
+\newblock \url{https://archive.ics.uci.edu}.
+\newblock Accessed: 2023-07-16.
+
 \end{thebibliography}

@@ -3,19 +3,19 @@
 
 \section{Introduction}
 
-Clustering is an unsupervised machine learning method that groups similar observations together. Due to its ability to find patterns in an unlabeled dataset, its an essential task in Data Mining and Knowledge Discovery. A \textit{cluster} is a group of similar observations that belong to a \textit{centroid} (center point of a cluster). Distance-based clustering algorithms use distance measures such as Euclidean distance to calculate the similarity of datapoints. Hierarchical methods partition the observations and merge (agglomerative) or split them into bigger or smaller clusters. Many other methods exist, but this work focuses on methods for clustering \textit{mixed-type} data. \cite{mixed_type_survey_2019}
+Clustering is an unsupervised machine learning method that groups similar observations together. Due to its ability to find patterns in an unlabeled dataset, its an essential task in Data Mining and Knowledge Discovery. A \textit{cluster} is a group of similar observations that belongs to a \textit{centroid} (center point of a cluster). Distance-based clustering algorithms use distance measures such as Euclidean distance to calculate the similarity of datapoints. Hierarchical methods partition the observations and merge (agglomerative) or split them into bigger or smaller clusters. Many other methods exist, but this work focuses on methods for clustering \textit{mixed-type} data. \cite{mixed_type_survey_2019}
 
 \section{k-means}
 
 The most well known distance-based clustering method is k-means \cite{kmeans}. The goal is defined as follows: Suppose we have a finite set of $n$ observations $S=\{p_1, p_2, ..., p_n\} \in \R^m$ for a dataset with $m$ features, the target of k-means is to find $k (\leq n)$ optimal centroids $B=\{b_1, b_2, ..., b_k\} \subseteq \R^m$ that minimize the sum of the squared Euclidean distance of each point in $S$ to its nearest centroid. Formally
 $$\sum_{i=1}^n  d(p_i, B)$$
-has to be minimized, where $d$ is the Euclidean distance from a point $p_i \in S$ to the nearest centroid in $B$; $d(p_i, B) = min_{1 \leq j \leq k} d(p_i, b_j)$ \cite{kmeans_np_hard}. The Euclidean distance between two points $p$ and $q$in an $n$-dimensional Euclidean space is defined as 
+has to be minimized, where $d$ is the Euclidean distance from a point $p_i \in S$ to the nearest centroid in $B$; $d(p_i, B) = min_{1 \leq j \leq k} d(p_i, b_j)$ \cite{kmeans_np_hard}. The Euclidean distance between two points $p$ and $q$ in an $n$-dimensional Euclidean space is defined as 
 $$d(p, q) = || p - q || = \sqrt{(p_1 - q_1)^2 + (p_2 - q_2)^2 + ... + (p_n - q_n)^2}$$
 Finding the optimal centroids is a NP-hard problem, even for $d=2$, as shown by Mahajan et al. \cite{kmeans_np_hard}. The most common algorithm used for the k-means problem is a iterative refinement technique proposed by Lloyd \cite{kmeans_lloyd}. It is defined as follows:
 \begin{enumerate} 
 	\item Randomly set $k$ initial cluster centroids $b_1^{(1)}, ..., b_k^{(1)}$.
 	\item Assign each obseration $p_i$ to the nearest centroid using squared Euclidean distance. This splits our observations into $S$ into $k$ sets $\{S_1^{(t)}, ..., S_k^{(t)}\}$.
-	\item Recalculate the optimal position of each centroid using the mean distance to each observation assigned to the centroid. 
+	\item Recalculate the optimal position of each centroid using the mean distance to each observation assigned to the centroid: 
 $$b_i^{(t+1)} = \frac{1}{|S_i^{(t)}|} \sum_{p_j \in S_i^{(t)}} p_j$$
 	\item Repeat steps 2. and 3. until the centroid assignments no longer change.
 \end{enumerate}
@@ -26,8 +26,36 @@ In many real world scenarios, besides continuous, numerical data, \textit{catego
 $$\{A, B, C\} \equiv \{1, 2, 3\}$$
 While $A$ and $C$ can share the same semantic similarity as $A$ and $B$, numerically category $A$ and Category $C$ are now $|1-3| = 2$ apart, while Category $A$ and $B$ are only $|1-2|=1$ apart. During clustering, this could lead to observations being assigned to centroids based on a wrong distance assumption.
 
-A possible solution is to use \textit{one-hot encoding}, also known as \textit{dummy coding} in classical statistics. One-hot encoding turns a discrete feature containing $k$ mutually exclusive states into a vector $x$ of length $k$, in which only one of the elements $x_k$ equals 1 and all remaining elements equal 0 \cite{bishop_2006}. For a observation $B$ of a feature having $k=3$ separate states $\{A, B, C\}$, the one-hot vector $x$ would be represented by $x = (0, 1, 0)^{\intercal}$.
+A possible solution is to use \textit{one-hot encoding}, also known as \textit{dummy coding} in classical statistics. One-hot encoding turns a discrete feature containing $k$ mutually exclusive states into a vector $x$ of length $k$, in which only one of the elements $x_k$ equals 1 and all remaining elements equal 0 \cite{bishop_2006}. For an observation $B$ of a feature having $k=3$ separate states $\{A, B, C\}$, the one-hot vector $x$ would be represented by $x = (0, 1, 0)^{\intercal}$.
 
+\subsection{k-modes}
+
+\section{Methodology}
+
+In this work we use 6 popular mixed-type datasets from the UC Irvine Machine Learning Repository \cite{uci_ml_rpo}.
+
+
+
+
+
+
+\begin{figure}
+\begin{center}
+    \begin{tabular}{|c|c|c|c|c|}
+	\hline
+	&Naive k-means&k-means one-hot&k-prototypes&Gower distance\\ \hline
+	Soybean Disease&0.679950&0.674068&\bf{0.694658}&0.669526\\ \hline
+	Heart Disease&\bf{0.198871}&0.193008&0.153387&0.140792\\ \hline
+	Breast Cancer&\bf{0.748214}&0.734909&0.587960&0.537113\\ \hline
+	Bank Marketing&0.017640&\bf{0.029666}&0.017566&0.000356\\ \hline
+	Census Income&0.072767&\bf{0.146271}&0.022475&0.000507\\ \hline
+	Credit Approval&\bf{0.225376}&0.161375&0.114664&0.003465\\
+	\hline
+    \end{tabular}
+\end{center}
+\caption{Comparsion of Normalized Mutual Information (NMI) of classical methods on clustering mixed-type data. Naive k-means and k-means with one-hot encoding where calculated 100 times and the average NMI was taken. After calculating the Gower distance matrix, Agglomerative Clustering with average linkage between sets of observation was used. Due to high runtime and memory consumption, the "Bank Marketing" and "Census Income" datasets where downsampled to the first 2000 instances.}
+\label{classical_comparison}
+\end{figure}
 
 
 
