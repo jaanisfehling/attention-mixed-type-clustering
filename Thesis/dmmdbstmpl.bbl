@@ -43,4 +43,11 @@ Kolby~Nottingham Markelle~Kelly, Rachel~Longjohn.
 \newblock \url{https://archive.ics.uci.edu}.
 \newblock Accessed: 2023-07-16.
 
+\bibitem{scikit_learn}
+F.~Pedregosa, G.~Varoquaux, A.~Gramfort, V.~Michel, B.~Thirion, O.~Grisel,
+  M.~Blondel, P.~Prettenhofer, R.~Weiss, V.~Dubourg, J.~Vanderplas, A.~Passos,
+  D.~Cournapeau, M.~Brucher, M.~Perrot, and E.~Duchesnay.
+\newblock Scikit-learn: Machine learning in {P}ython.
+\newblock {\em Journal of Machine Learning Research}, 12:2825--2830, 2011.
+
 \end{thebibliography}

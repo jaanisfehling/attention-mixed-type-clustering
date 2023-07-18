@@ -43,7 +43,12 @@ According to Huang \cite{kmodes}, one-hot encoding has two drawbacks:
 
 \section{Methodology}
 
-In this work we use 6 popular mixed-type datasets from the UC Irvine Machine Learning Repository \cite{uci_ml_rpo}.
+In this work we use 8 mixed-type datasets from the UC Irvine Machine Learning Repository \cite{uci_ml_rpo}. All observations containing missing values were removed. Categorial columns were standardized by removing the mean and scaling to unit variance, using the scikit-learn Python API \cite{scikit_learn}. The standardized score $z$ of a sample $x$ from a feature is calculated as:
+$$z = \frac{(x-\mu)}{\sigma}$$
+where $\mu$ is the mean of the samples $x_1, ...,x_N$ from a feature of length $N$, defined as
+$$\mu = \frac{1}{N} \sum^{N}_{i=1} x_i$$
+and $\sigma$ is the standard deviation of the samples of a feature, defined as
+$$\sigma = \sqrt{\frac{1}{N} \sum^{N}_{i=1}(x_i - \mu)^2}$$
 
 
 

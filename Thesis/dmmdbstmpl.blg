@@ -5,44 +5,44 @@ Reallocating 'name_of_file' (item size: 1) to 6 items.
 The style file: plain.bst
 Reallocating 'name_of_file' (item size: 1) to 11 items.
 Database file #1: dmmdbstmpl.bib
-You've used 7 entries,
+You've used 8 entries,
             2118 wiz_defined-function locations,
-            543 strings with 5189 characters,
-and the built_in function-call counts, 2199 in all, are:
-= -- 220
-> -- 74
+            550 strings with 5558 characters,
+and the built_in function-call counts, 2979 in all, are:
+= -- 285
+> -- 157
 < -- 2
-+ -- 30
-- -- 22
-* -- 135
-:= -- 367
-add.period$ -- 24
-call.type$ -- 7
-change.case$ -- 30
++ -- 63
+- -- 54
+* -- 217
+:= -- 508
+add.period$ -- 27
+call.type$ -- 8
+change.case$ -- 49
 chr.to.int$ -- 0
-cite$ -- 7
-duplicate$ -- 86
-empty$ -- 194
-format.name$ -- 22
-if$ -- 474
+cite$ -- 8
+duplicate$ -- 97
+empty$ -- 222
+format.name$ -- 54
+if$ -- 615
 int.to.chr$ -- 0
-int.to.str$ -- 7
-missing$ -- 7
-newline$ -- 40
-num.names$ -- 16
-pop$ -- 32
+int.to.str$ -- 8
+missing$ -- 8
+newline$ -- 45
+num.names$ -- 18
+pop$ -- 49
 preamble$ -- 1
-purify$ -- 24
+purify$ -- 42
 quote$ -- 0
-skip$ -- 61
+skip$ -- 68
 stack$ -- 0
-substring$ -- 158
-swap$ -- 18
+substring$ -- 194
+swap$ -- 19
 text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 26
+type$ -- 30
 warning$ -- 0
-while$ -- 22
-width$ -- 8
-write$ -- 83
+while$ -- 26
+width$ -- 9
+write$ -- 94
