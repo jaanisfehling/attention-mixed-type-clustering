@@ -15,7 +15,7 @@ class TabularDataSet:
 
 
 def load_abalone_age():
-    abalone_df = pd.read_csv("datasets/abalone_age.csv")
+    abalone_df = pd.read_csv("datasets/abalone_age.csv").sample(frac=1, random_state=0).reset_index(drop=True)
     abalone_df.dropna(inplace=True)
 
     abalone_y = abalone_df["Rings"]
@@ -32,7 +32,7 @@ def load_abalone_age():
 
 
 def load_auction_verification():
-    auction_df = pd.read_csv("datasets/auction_verification.csv")
+    auction_df = pd.read_csv("datasets/auction_verification.csv").sample(frac=1, random_state=0).reset_index(drop=True)
     auction_df.dropna(inplace=True)
 
     auction_y = auction_df["verification.result"]
@@ -49,7 +49,7 @@ def load_auction_verification():
 
 
 def load_bank_marketing(max_rows):
-    banking_df = pd.read_csv("datasets/bank_marketing.csv", sep=";")
+    banking_df = pd.read_csv("datasets/bank_marketing.csv", sep=";").sample(frac=1, random_state=0).reset_index(drop=True)
     banking_df.dropna(inplace=True)
     banking_df = banking_df.head(max_rows)
 
@@ -67,7 +67,7 @@ def load_bank_marketing(max_rows):
 
 
 def load_breast_cancer():
-    breast_df = pd.read_csv("datasets/breast_cancer.csv")
+    breast_df = pd.read_csv("datasets/breast_cancer.csv").sample(frac=1, random_state=0).reset_index(drop=True)
     breast_df.replace("?", pd.NA, inplace=True)
     breast_df.dropna(inplace=True)
 
@@ -84,7 +84,7 @@ def load_breast_cancer():
 
 
 def load_census_income(max_rows):
-    census_df = pd.read_csv("datasets/census_income.csv")
+    census_df = pd.read_csv("datasets/census_income.csv").sample(frac=1, random_state=0).reset_index(drop=True)
     census_df.replace("?", pd.NA, inplace=True)
     census_df.dropna(inplace=True)
     census_df = census_df.head(max_rows)
@@ -104,7 +104,7 @@ def load_census_income(max_rows):
 
 
 def load_credit_approval():
-    credit_df = pd.read_csv("datasets/credit_approval.csv")
+    credit_df = pd.read_csv("datasets/credit_approval.csv").sample(frac=1, random_state=0).reset_index(drop=True)
     credit_df.replace("?", pd.NA, inplace=True)
     credit_df.dropna(inplace=True)
 
@@ -121,7 +121,7 @@ def load_credit_approval():
     return TabularDataSet("Credit Approval", credit_df, credit_y, credit_cat_cols, credit_cont_cols)
 
 def load_heart_disease():
-    heart_df = pd.read_csv("datasets/heart_disease.csv")
+    heart_df = pd.read_csv("datasets/heart_disease.csv").sample(frac=1, random_state=0).reset_index(drop=True)
     heart_df.dropna(inplace=True)
 
     heart_y = heart_df["num"]
@@ -138,7 +138,7 @@ def load_heart_disease():
 
 
 def load_soybean_disease():
-    soybean_df = pd.read_csv("datasets/soybean_disease.csv")
+    soybean_df = pd.read_csv("datasets/soybean_disease.csv").sample(frac=1, random_state=0).reset_index(drop=True)
     soybean_df.replace("?", pd.NA, inplace=True)
     soybean_df.dropna(inplace=True)
 
