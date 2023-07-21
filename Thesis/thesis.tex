@@ -30,7 +30,7 @@ While $A$ and $C$ can share the same semantic similarity as $A$ and $B$, numeric
 
 A possible solution is to use \textit{one-hot encoding}, also known as \textit{dummy coding} in classical statistics. One-hot encoding turns a discrete feature containing $k$ mutually exclusive categories into a vector $x$ of length $k$, in which only one of the elements $x_k$ equals 1 and all remaining elements equal 0 \cite{bishop_2006}. For an observation $B$ of a feature having $k=3$ separate categories $\{A, B, C\}$, the one-hot vector $x$ would be represented by $x = (0, 1, 0)^{\intercal}$.
 
-\subsection{k-modes and k-prototypes}
+\subsection{k-modes} \label{k-modes}
 
 According to Huang \cite{kmodes}, one-hot encoding has two drawbacks:
 \begin{enumerate} 
@@ -57,6 +57,17 @@ Similar to k-means, we can use an iterative algorithm for efficient computation 
 	\item Repeat step 3. until the mode assignments no longer change.
 \end{enumerate}
 
+\subsection{k-prototypes}
+
+As proposed by Huang \cite{kmodes}, it is straightforward to combine the k-means and k-modes algorithms into the \textit{k-prototypes} algorithm, which can be used to cluster \textit{mixed-type} data (consisting of numerical, continuous and categorial features). The dissimilarity between two observations $X$ and $Y$ with features $A^r_1, A^r_2, ..., A^r_s, A_{s+1}^c, ..., A^c_m$, where features $A^r_1, ..., A^r_s$ are continuous and features $A_{s+1}^c, ..., A^c_m$ are categorial, is defined as
+$$d_2(X,Y) = \sum^s_{j=1}(x_j - y_j)^2 + \gamma \sum^m_{j=s+1}\delta(x_j, y_j)$$
+The first part of the equation is the Euclidean distance as used in k-means, while the second part is taken from the k-modes algorithm. Huang \cite{kmodes} states: "The weight $\gamma$ is used to avoid favouring either type of attribute".
+
+Again, we need to find $k$ optimal centroids $B=\{b_1, b_2, ..., b_k\}$ and therefore have to minimize
+$$\sum_{i=1}^n  d_2(p_i, B)$$
+where
+$$d_2(p_i, B) = min_{1 \leq l \leq k} \sum^s_{j=1}(p_{i,j} - b_{l,j})^2 + \gamma \sum^m_{j=s+1}\delta(p_{i,j}, b_{l,j})$$
+We can minimize both distance measures at the same time since they are nonnegative. Therefore, we can use the same algorithm as defined in \ref{k-modes}. \cite{kmodes}
 
 \section{Methodology}
 
