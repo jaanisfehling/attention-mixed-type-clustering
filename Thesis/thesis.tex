@@ -7,9 +7,11 @@ Clustering is an unsupervised machine learning method that groups similar observ
 
 \section{k-means}
 
-The most well known distance-based clustering method is k-means \cite{kmeans}. The goal is defined as follows: Suppose we have a finite set of $n$ observations $S=\{p_1, p_2, ..., p_n\} \in \R^m$ for a dataset with $m$ features, the target of k-means is to find $k (\leq n)$ optimal centroids $B=\{b_1, b_2, ..., b_k\} \subseteq \R^m$ that minimize the sum of the squared Euclidean distance of each point in $S$ to its nearest centroid. Formally
+The most well known distance-based clustering method is k-means \cite{kmeans}. The goal is defined as follows: Suppose we have a finite set of $n$ observations $S=\{p_1, p_2, ..., p_n\} \in \R^m$ for a dataset with $m$ features, the target of k-means is to find optimal centroids $B=\{b_1, b_2, ..., b_k\} \subseteq \R^m$ for a given $k (\leq n) \in \N$ that minimize the sum of the squared Euclidean distance of each point in $S$ to its nearest centroid. Formally
 $$\sum_{i=1}^n  d(p_i, B)$$
-has to be minimized, where $d$ is the Euclidean distance from a point $p_i \in S$ to the nearest centroid in $B$; $d(p_i, B) = min_{1 \leq j \leq k} d(p_i, b_j)$ \cite{kmeans_np_hard}. The Euclidean distance between two points $p$ and $q$ in an $n$-dimensional Euclidean space is defined as 
+has to be minimized, where $d$ is the Euclidean distance from a point $p_i \in S$ to the nearest centroid in $B$ \cite{kmeans_np_hard}: 
+$$d(p_i, B) = min_{1 \leq j \leq k} d(p_i, b_j)$$
+The Euclidean distance between two points $p$ and $q$ in an $n$-dimensional Euclidean space is defined as 
 $$d(p, q) = || p - q || = \sqrt{(p_1 - q_1)^2 + (p_2 - q_2)^2 + ... + (p_n - q_n)^2}$$
 Finding the optimal centroids is a NP-hard problem, even for $d=2$, as shown by Mahajan et al. \cite{kmeans_np_hard}. The most common algorithm used for the k-means problem is a iterative refinement technique proposed by Lloyd \cite{kmeans_lloyd}. It is defined as follows:
 \begin{enumerate} 
@@ -28,17 +30,32 @@ While $A$ and $C$ can share the same semantic similarity as $A$ and $B$, numeric
 
 A possible solution is to use \textit{one-hot encoding}, also known as \textit{dummy coding} in classical statistics. One-hot encoding turns a discrete feature containing $k$ mutually exclusive categories into a vector $x$ of length $k$, in which only one of the elements $x_k$ equals 1 and all remaining elements equal 0 \cite{bishop_2006}. For an observation $B$ of a feature having $k=3$ separate categories $\{A, B, C\}$, the one-hot vector $x$ would be represented by $x = (0, 1, 0)^{\intercal}$.
 
-\subsection{k-modes}
+\subsection{k-modes and k-prototypes}
 
 According to Huang \cite{kmodes}, one-hot encoding has two drawbacks:
-
 \begin{enumerate} 
 	\item In real-world applications, categorial features with hundreds or thousands of categories are encountered. This would result in a large number of binary features in the one-hot encoded representation, which will increase cost and space of computation.
 	\item The centroid value of a certain one-hot encoded feature, given by a real value between 0 and 1, cannot indicate the characteristics of the according cluster, since the feature only describes the presence or absence of one category.
 \end{enumerate}
-
-
-
+Therefore, Huang \cite{kmodes} proposed using the Kronecker-Delta as a dissimilarity measure between multiple categorial columns. Formally, if we have two observations $X$ and $Y$ of a dataset with $m$ categorial features, $d_1$ will count the number of mismatches between the categorial features of both instances, defined as
+$$d_1(X, Y) = \sum^m_{j=1} \delta (x_j, y_j)$$
+where the Kronecker delta $\delta (x_j, y_j)$ is defined as
+$$\delta (x_j, y_j) = 
+\begin{cases}
+    0, & (x_j = y_j)\\
+    1, & (x_j \neq y_j)
+\end{cases}$$
+If we have a finite set of $n$ observations $S=\{p_1, p_2, ..., p_n\} \in \R^m$ for a dataset with $m$ categorial features, the goal of \textit{k-modes} \cite{kmodes} is to find optimal \textit{modes} $B=\{b_1, b_2, ..., b_k\} \subseteq \R^m$ for a given $k (\leq n) \in \N$ that minimize
+$$\sum_{i=1}^n  d_1(p_i, B)$$
+where
+$$d_1(p_i, B) = min_{1 \leq l \leq k} \sum^m_{j=1} \delta (p_{i,j}, b_{l,j})$$
+Similar to k-means, we can use an iterative algorithm for efficient computation \cite{kmodes}:
+\begin{enumerate} 
+	\item Randonly choose $k$ observations from the dataset as initial modes for the clusters.
+	\item Assign each observation to their nearest mode using the proposed dissimilarity measure one by one and update the mode of each cluster after each assignment.
+	\item Test if each observation still belongs to its assigned mode, i.e. if each observation is assigned to its nearest mode. If the observation would belong to a different mode, reassign the observation and update the modes of both clusters.
+	\item Repeat step 3. until the mode assignments no longer change.
+\end{enumerate}
 
 
 \section{Methodology}
