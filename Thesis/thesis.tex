@@ -9,11 +9,11 @@ Clustering is an unsupervised machine learning method that groups similar observ
 
 The most well known distance-based clustering method is k-means \cite{kmeans}. The goal is defined as follows: Suppose we have a finite set of $n$ observations $S=\{p_1, p_2, ..., p_n\} \in \R^m$ for a dataset with $m$ features, the target of k-means is to find optimal centroids $B=\{b_1, b_2, ..., b_k\} \subseteq \R^m$ for a given $k (\leq n) \in \N$ that minimize the sum of the squared Euclidean distance of each point in $S$ to its nearest centroid. Formally
 $$\sum_{i=1}^n  d(p_i, B)$$
-has to be minimized, where $d$ is the Euclidean distance from a point $p_i \in S$ to the nearest centroid in $B$ \cite{kmeans_np_hard}: 
+has to be minimized, where $d$ is the Euclidean distance from a point $p_i \in S$ to the nearest centroid in $B$ \cite{kmeans_np_hard}:
 $$d(p_i, B) = min_{1 \leq j \leq k} d(p_i, b_j)$$
 The Euclidean distance between two points $p$ and $q$ in an $n$-dimensional Euclidean space is defined as 
 $$d(p, q) = || p - q || = \sqrt{(p_1 - q_1)^2 + (p_2 - q_2)^2 + ... + (p_n - q_n)^2}$$
-Finding the optimal centroids is a NP-hard problem, even for $d=2$, as shown by Mahajan et al. \cite{kmeans_np_hard}. The most common algorithm used for the k-means problem is a iterative refinement technique proposed by Lloyd \cite{kmeans_lloyd}. It is defined as follows:
+Finding the optimal centroids is a NP-hard problem, even for $d=2$, as shown by Mahajan et al. \cite{kmeans_np_hard}. The most common algorithm used for the k-means problem is a iterative refinement technique proposed by Lloyd \cite{kmeans_lloyd}. It is defined as follows
 \begin{enumerate} 
 	\item Randomly set $k$ initial cluster centroids $b_1^{(1)}, ..., b_k^{(1)}$.
 	\item Assign each obseration $p_i$ to the nearest centroid using squared Euclidean distance. This splits our observations into $S$ into $k$ sets $\{S_1^{(t)}, ..., S_k^{(t)}\}$.
@@ -71,41 +71,65 @@ We can minimize both distance measures at the same time since they are nonnegati
 
 \section{Methodology}
 
-In this work we use 8 mixed-type datasets from the UC Irvine Machine Learning Repository \cite{uci_ml_rpo}. All observations containing missing values were removed. Categorial columns were standardized by removing the mean and scaling to unit variance, using the scikit-learn Python API \cite{scikit_learn}. The standardized score $z$ of a sample $x$ from a feature is calculated as:
+In this work we use 8 mixed-type datasets from the UC Irvine Machine Learning Repository \cite{uci_ml_rpo}. 
+The Abalone dataset \cite{abalone} contains physical measurements from abalones. It has 4177 observations, one categorial feature and seven continuous features.
+The Auction Verification dataset \cite{auction_verification} has 2043 observations that contain verification runs of multi-round auctions. It is composed of six categorial and one continuous feauture.
+The Bank Marketing dataset \cite{bank_marketing} is related to a direct marketing campaign of a portuguese banking institution. It has 49732 observations, eight categorial and five continuous features.
+
+All observations containing missing values were removed. Categorial columns were standardized by removing the mean and scaling to unit variance, using the scikit-learn Python API \cite{scikit_learn}. The standardized score $z$ of a sample $x$ from a feature is calculated as
 $$z = \frac{(x-\mu)}{\sigma}$$
 where $\mu$ is the mean of the samples $x_1, ...,x_N$ from a feature of length $N$, defined as
 $$\mu = \frac{1}{N} \sum^{N}_{i=1} x_i$$
 and $\sigma$ is the standard deviation of the samples of a feature, defined as
 $$\sigma = \sqrt{\frac{1}{N} \sum^{N}_{i=1}(x_i - \mu)^2}$$
+The datasets were shuffled. For all random operations, a random state of Integer Value $1$ was used to ensure reproducibility.
 
 
 
+
+
+\section{Comparison of classical Clustering methods}
 
 \begin{figure}
 \begin{center}
-    \begin{tabular}{|c|c|c|c|c|}
-	\hline
-	&Naive k-means&k-means one-hot&k-prototypes&Gower distance\\ \hline
-	Soybean Disease&0.679950&0.674068&\bf{0.694658}&0.669526\\ \hline
-	Heart Disease&\bf{0.198871}&0.193008&0.153387&0.140792\\ \hline
-	Breast Cancer&\bf{0.748214}&0.734909&0.587960&0.537113\\ \hline
-	Bank Marketing&0.017640&\bf{0.029666}&0.017566&0.000356\\ \hline
-	Census Income&0.072767&\bf{0.146271}&0.022475&0.000507\\ \hline
-	Credit Approval&\bf{0.225376}&0.161375&0.114664&0.003465\\
-	\hline
-    \end{tabular}
+\scalebox{0.8}{
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+&Naive k-means&k-means one-hot&k-prototypes&Gower distance\\\hline
+Abalone&0.171795&\bf{0.173982}&0.171639&0.161416 \\ \hline
+Auction Verification&\bf{0.016172}&0.007087&0.007667&0.006170 \\ \hline
+Bank Marketing&0.019781&\bf{0.026060}&0.019522&0.001334 \\ \hline
+Breast Cancer&\bf{0.746818}&0.736310&0.592480&0.553707 \\ \hline
+Census Income&0.108029&\bf{0.184979}&0.141737&0.004259 \\ \hline
+Credit Approval&\bf{0.313076}&0.171038&0.116579&0.003465 \\ \hline
+Heart Disease&\bf{0.204577}&0.164486&0.189264&0.140792 \\ \hline
+Soybean Disease&0.672229&\bf{0.710164}&0.567635&0.669526 \\
+\hline
+\end{tabular}
+}
 \end{center}
-\caption{Comparsion of Normalized Mutual Information (NMI) of classical methods on clustering mixed-type data. Naive k-means and k-means with one-hot encoding where calculated 100 times and the average NMI was taken. After calculating the Gower distance matrix, Agglomerative Clustering with average linkage between sets of observation was used. Due to high runtime and memory consumption, the "Bank Marketing" and "Census Income" datasets where downsampled to the first 2000 instances.}
-\label{classical_comparison}
+\caption{Comparsion of Normalized Mutual Information of various classical methods on clustering mixed-type datasets.}
+\label{classical_comparison_nmi}
 \end{figure}
 
-
-
-
-
-
-
-
-
-
-
+\begin{figure}
+\begin{center}
+\scalebox{0.8}{
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+&Naive k-means&k-means one-hot&k-prototypes&Gower distance\\\hline
+Abalone&0.135265&0.131434&0.134307&\bf{0.195356} \\ \hline
+Auction Verification&0.664709&0.576114&0.580519&\bf{0.800783} \\ \hline
+Bank Marketing&0.779600&0.786600&0.787200&\bf{0.884200} \\ \hline
+Breast Cancer&\bf{0.960469}&0.950220&0.915081&0.900439 \\ \hline
+Census Income&0.608200&0.697600&0.625600&\bf{0.768400} \\ \hline
+Credit Approval&\bf{0.808576}&0.705972&0.666156&0.548239 \\ \hline
+Heart Disease&0.334448&0.321070&0.424749&\bf{0.565217} \\ \hline
+Soybean Disease&0.576512&\bf{0.599644}&0.471530&0.501779 \\
+\hline
+\end{tabular}
+}
+\end{center}
+\caption{Comparsion of Cluster Accuracy of various classical methods on clustering mixed-type datasets.}
+\label{classical_comparison_acc}
+\end{figure}

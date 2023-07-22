@@ -14,8 +14,8 @@ class TabularDataSet:
     cont_cols: List[str]
 
 
-def load_abalone_age():
-    abalone_df = pd.read_csv("datasets/abalone_age.csv").sample(frac=1, random_state=0).reset_index(drop=True)
+def load_abalone():
+    abalone_df = pd.read_csv("datasets/abalone.csv").sample(frac=1, random_state=0).reset_index(drop=True)
     abalone_df.dropna(inplace=True)
 
     abalone_y = abalone_df["Rings"]
@@ -28,7 +28,7 @@ def load_abalone_age():
     abalone_df[abalone_cat_cols] = abalone_df[abalone_cat_cols].apply(LabelEncoder().fit_transform)
     abalone_df[abalone_cont_cols] = StandardScaler().fit_transform(abalone_df[abalone_cont_cols])
 
-    return TabularDataSet("Abalone Age", abalone_df, abalone_y, abalone_cat_cols, abalone_cont_cols)
+    return TabularDataSet("Abalone", abalone_df, abalone_y, abalone_cat_cols, abalone_cont_cols)
 
 
 def load_auction_verification():
@@ -156,7 +156,7 @@ def load_soybean_disease():
 
 def load_all_datasets(max_rows) -> List[TabularDataSet]:
     return [
-        load_abalone_age(),
+        load_abalone(),
         load_auction_verification(),
         load_bank_marketing(max_rows),
         load_breast_cancer(),

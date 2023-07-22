@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.4) (preloaded format=pdflatex 2023.7.18)  21 JUL 2023 18:25
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.4) (preloaded format=pdflatex 2023.7.18)  22 JUL 2023 17:07
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -331,25 +331,25 @@ Chapter 1.
 [2
 
 ] [3] [4] [5]
-Overfull \hbox (49.0575pt too wide) in paragraph at lines 86--97
- [] 
+Overfull \hbox (6.98453pt too wide) in paragraph at lines 79--80
+[]\OT1/cmr/m/n/12 All ob-ser-va-tions con-tain-ing miss-ing val-ues were re-moved. Cat-e-go-rial columns
  []
 
-) (dmmdbstmpl.bbl [6]) [7
+) (dmmdbstmpl.bbl [6] [7] [8
 
-] (dmmdbstmpl.aux) ) 
+]) [9] (dmmdbstmpl.aux) ) 
 Here is how much of TeX's memory you used:
- 5019 strings out of 476331
- 80450 string characters out of 5787765
- 1860660 words of memory out of 5000000
- 25372 multiletter control sequences out of 15000+600000
+ 5023 strings out of 476331
+ 80527 string characters out of 5787765
+ 1865660 words of memory out of 5000000
+ 25376 multiletter control sequences out of 15000+600000
  520225 words of font info for 61 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 72i,13n,76p,835b,364s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 72i,12n,76p,835b,364s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/jaani/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/jaani/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/jaani/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/jaani/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/jaani/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/jaani/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/jaani/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/jaani/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/jaani/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/jaani/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsl10.pfb><C:/Users/jaani/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/jaani/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/jaani/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/jaani/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb><C:/Users/jaani/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/jaani/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on dmmdbstmpl.pdf (10 pages, 381239 bytes).
+Output written on dmmdbstmpl.pdf (12 pages, 385724 bytes).
 PDF statistics:
- 118 PDF objects out of 1000 (max. 8388607)
+ 124 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 

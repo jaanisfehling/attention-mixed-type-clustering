@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{mixed_type_survey_2019}
 Amir Ahmad and Shehroz~S. Khan.
@@ -42,6 +42,24 @@ Kolby~Nottingham Markelle~Kelly, Rachel~Longjohn.
 \newblock {The UCI Machine Learning Repository}.
 \newblock \url{https://archive.ics.uci.edu}.
 \newblock Accessed: 2023-07-16.
+
+\bibitem{bank_marketing}
+S.~Moro, P.~Rita, and P.~Cortez.
+\newblock {Bank Marketing}.
+\newblock UCI Machine Learning Repository, 2012.
+\newblock {DOI}: https://doi.org/10.24432/C5K306.
+
+\bibitem{abalone}
+Warwick Nash, Tracy Sellers, Simon Talbot, Andrew Cawthorn, and Wes Ford.
+\newblock {Abalone}.
+\newblock UCI Machine Learning Repository, 1995.
+\newblock {DOI}: https://doi.org/10.24432/C55C7W.
+
+\bibitem{auction_verification}
+Elaheh Ordoni, Jakob Bach, Ann-Katrin Fleck, and Jakob Bach.
+\newblock {Auction Verification}.
+\newblock UCI Machine Learning Repository, 2022.
+\newblock {DOI}: https://doi.org/10.24432/C52K6N.
 
 \bibitem{scikit_learn}
 F.~Pedregosa, G.~Varoquaux, A.~Gramfort, V.~Michel, B.~Thirion, O.~Grisel,
