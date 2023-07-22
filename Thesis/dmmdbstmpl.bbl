@@ -11,6 +11,11 @@ Christopher~M. Bishop.
   and Statistics)}.
 \newblock Springer-Verlag, Berlin, Heidelberg, 2006.
 
+\bibitem{gower}
+J.~C. Gower.
+\newblock A general coefficient of similarity and some of its properties.
+\newblock {\em Biometrics}, 27(4):857--871, 1971.
+
 \bibitem{kmodes}
 Zhexue Huang.
 \newblock Extensions to the k-means algorithm for clustering large data sets
@@ -87,7 +92,7 @@ Quinlan Quinlan.
 \newblock {DOI}: https://doi.org/10.24432/C5FS30.
 
 \bibitem{breast_cancer}
-WIlliam Wolberg.
+William Wolberg.
 \newblock {Breast Cancer Wisconsin (Original)}.
 \newblock UCI Machine Learning Repository, 1992.
 \newblock {DOI}: https://doi.org/10.24432/C5HP4Z.
