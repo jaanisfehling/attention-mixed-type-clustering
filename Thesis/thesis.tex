@@ -74,9 +74,15 @@ We can minimize both distance measures at the same time since they are nonnegati
 In this work we use 8 mixed-type datasets from the UC Irvine Machine Learning Repository \cite{uci_ml_rpo}. 
 The Abalone dataset \cite{abalone} contains physical measurements from abalones. It has 4177 observations, one categorial feature and seven continuous features.
 The Auction Verification dataset \cite{auction_verification} has 2043 observations that contain verification runs of multi-round auctions. It is composed of six categorial and one continuous feauture.
-The Bank Marketing dataset \cite{bank_marketing} is related to a direct marketing campaign of a portuguese banking institution. It has 49732 observations, eight categorial and five continuous features.
+The Bank Marketing dataset \cite{bank_marketing} is related to a direct marketing campaign of a portuguese banking institution. It has 49732 observations. The "age", "day" and "month" features were removed, which results in eight categorial and five continuous features.
+The Breast Cancer dataset \cite{breast_cancer} contains 699 observations and 9 categorial features.
+The Census Income dataset \cite{census_income} has a total of 48842 observations. It is composed of eight categorial and 6 continuous features.
+The Credit Approval dataset \cite{credit_approval} contains information of applications for credit cards. It has 690 observations, nine categorial features and six continuous features.
+The Heart Disease dataset \cite{heart_disease} is composed of four datasets and has 920 observations in total. It has seven categorial features and six continuous features.
+The Soybean (Large) Dataset \cite{abalone} consists of 683 observations from soybeans with a certain disease and has 35 categorial features.
 
-All observations containing missing values were removed. Categorial columns were standardized by removing the mean and scaling to unit variance, using the scikit-learn Python API \cite{scikit_learn}. The standardized score $z$ of a sample $x$ from a feature is calculated as
+
+All observations containing missing values were removed. Categorial columns were standardized by removing the mean and scaling to unit variance, using the scikit-learn Python API \cite{scikit_learn}. Formally, the standardized score $z$ of a sample $x$ from a feature is calculated as
 $$z = \frac{(x-\mu)}{\sigma}$$
 where $\mu$ is the mean of the samples $x_1, ...,x_N$ from a feature of length $N$, defined as
 $$\mu = \frac{1}{N} \sum^{N}_{i=1} x_i$$

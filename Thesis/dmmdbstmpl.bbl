@@ -17,6 +17,18 @@ Zhexue Huang.
   with categorical values.
 \newblock {\em Data Mining and Knowledge Discovery}, 2:283--304, 1998.
 
+\bibitem{heart_disease}
+Andras Janosi, William Steinbrunn, Matthias Pfisterer, and Robert Detrano.
+\newblock {Heart Disease}.
+\newblock UCI Machine Learning Repository, 1988.
+\newblock {DOI}: https://doi.org/10.24432/C52P4X.
+
+\bibitem{census_income}
+Ron Kohavi.
+\newblock {Census Income}.
+\newblock UCI Machine Learning Repository, 1996.
+\newblock {DOI}: https://doi.org/10.24432/C5GP7S.
+
 \bibitem{kmeans_lloyd}
 S.~Lloyd.
 \newblock Least squares quantization in pcm.
@@ -67,5 +79,17 @@ F.~Pedregosa, G.~Varoquaux, A.~Gramfort, V.~Michel, B.~Thirion, O.~Grisel,
   D.~Cournapeau, M.~Brucher, M.~Perrot, and E.~Duchesnay.
 \newblock Scikit-learn: Machine learning in {P}ython.
 \newblock {\em Journal of Machine Learning Research}, 12:2825--2830, 2011.
+
+\bibitem{credit_approval}
+Quinlan Quinlan.
+\newblock {Credit Approval}.
+\newblock UCI Machine Learning Repository.
+\newblock {DOI}: https://doi.org/10.24432/C5FS30.
+
+\bibitem{breast_cancer}
+WIlliam Wolberg.
+\newblock {Breast Cancer Wisconsin (Original)}.
+\newblock UCI Machine Learning Repository, 1992.
+\newblock {DOI}: https://doi.org/10.24432/C5HP4Z.
 
 \end{thebibliography}
