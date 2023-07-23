@@ -22,6 +22,11 @@ Zhexue Huang.
   with categorical values.
 \newblock {\em Data Mining and Knowledge Discovery}, 2:283--304, 1998.
 
+\bibitem{algorithms_for_clustering_data}
+Anil~K. Jain and Richard~C. Dubes.
+\newblock {\em Algorithms for Clustering Data}.
+\newblock Prentice-Hall, Inc., USA, 1988.
+
 \bibitem{heart_disease}
 Andras Janosi, William Steinbrunn, Matthias Pfisterer, and Robert Detrano.
 \newblock {Heart Disease}.
@@ -84,6 +89,12 @@ F.~Pedregosa, G.~Varoquaux, A.~Gramfort, V.~Michel, B.~Thirion, O.~Grisel,
   D.~Cournapeau, M.~Brucher, M.~Perrot, and E.~Duchesnay.
 \newblock Scikit-learn: Machine learning in {P}ython.
 \newblock {\em Journal of Machine Learning Research}, 12:2825--2830, 2011.
+
+\bibitem{philip_ottaway}
+G.~Philip and B.~S. Ottaway.
+\newblock Mixed data cluster analysis: An illustration using cypriot
+  hooked-tang weapons.
+\newblock {\em Archaeometry}, 25(2):119--133, 1983.
 
 \bibitem{credit_approval}
 Quinlan Quinlan.

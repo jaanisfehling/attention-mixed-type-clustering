@@ -8,4 +8,10 @@
 \contentsline {subsection}{\numberline {1.3.3}Gower distance}{5}{}%
 \contentsline {section}{\numberline {1.4}Methodology}{7}{}%
 \contentsline {section}{\numberline {1.5}Comparison of classical Clustering methods}{8}{}%
-\contentsline {chapter}{Bibliography}{9}{}%
+\contentsline {chapter}{\numberline {2}Neural Networks}{9}{}%
+\contentsline {chapter}{\numberline {3}Autoencoders}{10}{}%
+\contentsline {chapter}{\numberline {4}Deep clustering methods}{11}{}%
+\contentsline {chapter}{\numberline {5}Attention}{12}{}%
+\contentsline {section}{\numberline {5.1}Comparison of deep clustering methods}{12}{}%
+\contentsline {chapter}{\numberline {6}Outlook/Conclusion}{13}{}%
+\contentsline {chapter}{Bibliography}{14}{}%

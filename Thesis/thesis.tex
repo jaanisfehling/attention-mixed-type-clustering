@@ -78,16 +78,16 @@ The Score $s_{ijk}$ is calculated differently according to the type of feature \
 \begin{enumerate}
 	\item For \textit{dichotomous} (when a value is either present or absent) features, the score $s_{ijk}$ is 1 when the value is present in both features and 0 otherwise, as shown in Figure \ref{gower_dichotomous}.
 	\item For categorial features, the score $s_{ijk}$ is 1 if they both instances match on feature $k$ and 0 otherwise.
-	\item For continuous features
+	\item For continuous features the score is calculated as
 	$$s_{ijk} = 1-\frac{|x_i-x_j|}{R_k}$$
 	where $R_k$ is the range of feature $k$ in the dataset or in the sample.
 \end{enumerate}
-
 \begin{figure}
 	\includegraphics[width=\linewidth]{gower-dichotomous.png}
 	\caption{Score $s_{ijk}$ and quantity $\delta_{ijk}$ of a feature $k$ on two instances $x_i$ and $x_j$. Presence of a feature is denoted by "+" and absence by "-". \cite{gower}}
 	\label{gower_dichotomous}
 \end{figure}
+Gower \cite{gower} has shown that $\sqrt{1- S_{ij}}$ is a valid distance representation for two instances $x_i$ and $x_j$. We can now convert our similarity matrix $S$ into a distance matrix and are able to use Hierarchical clustering methods \cite{algorithms_for_clustering_data}. Philip and Ottaway \cite{philip_ottaway} used Gower distance with agglomerative clustering. Agglomerative clustering places each object into its own cluster and recursively merges the clusters together using the given distance matrix, until only the specified number of clusters is remaining \cite{algorithms_for_clustering_data}.
 
 
 \section{Methodology}
@@ -159,3 +159,10 @@ Soybean Disease&0.576512&\bf{0.599644}&0.471530&0.501779 \\
 \caption{Comparsion of Cluster Accuracy of various classical methods on clustering mixed-type datasets.}
 \label{classical_comparison_acc}
 \end{figure}
+
+\chapter{Neural Networks}
+\chapter{Autoencoders}
+\chapter{Deep clustering methods}
+\chapter{Attention}
+\section{Comparison of deep clustering methods}
+\chapter{Outlook/Conclusion}
