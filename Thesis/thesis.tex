@@ -70,12 +70,24 @@ We can minimize both distance measures at the same time since they are nonnegati
 
 \subsection{Gower distance}
 
-\textit{Gower Distance} \cite{gower} is a general similarity measurement between instances containing mixed-type features. It is defined as follows: When comparing instances $x_i$ and $x_j$, for each feature $k$ of $p$ total features, we calculate a score $s_{ijk} \in [0,1]$. The score will be close to one for two instances $x_{ik}$ and $x_{jk}$ of a feature $k$ if they are similar, and close to zero they are not similar.
-Gower distance is also computable between instances with missing values, therefore a quantity $\delta_{ijk}$ is calculated, which is equal to one, when feature $k$ can be compared across the two instances $x_i$ and $x_j$, and zero otherwise.
+\textit{Gower Distance} \cite{gower} is a general similarity measurement between instances containing mixed-type features. It is defined as follows: When comparing instances $x_i$ and $x_j$, for each feature $k$ of $p$ total features, we calculate a score $s_{ijk} \in [0,1]$. The score will be close to 1 for two instances $x_{ik}$ and $x_{jk}$ of a feature $k$ if they are similar, and close to 0 they are not similar.
+Gower distance is also computable between instances with missing values, therefore a quantity $\delta_{ijk}$ is calculated, which is equal to 1, when feature $k$ can be compared across the two instances $x_i$ and $x_j$, and 0 otherwise (illustrated in Figure \ref{gower_dichotomous}).
 Gower distance then is the average of the known score
 $$S_{ij} = \frac{\sum^p_{k=1}s_{ijk}\delta_{ijk}}{\sum^p_{k=1}\delta_{ijk}}$$
+The Score $s_{ijk}$ is calculated differently according to the type of feature \cite{gower}:
+\begin{enumerate}
+	\item For \textit{dichotomous} (when a value is either present or absent) features, the score $s_{ijk}$ is 1 when the value is present in both features and 0 otherwise, as shown in Figure \ref{gower_dichotomous}.
+	\item For categorial features, the score $s_{ijk}$ is 1 if they both instances match on feature $k$ and 0 otherwise.
+	\item For continuous features
+	$$s_{ijk} = 1-\frac{|x_i-x_j|}{R_k}$$
+	where $R_k$ is the range of feature $k$ in the dataset or in the sample.
+\end{enumerate}
 
-
+\begin{figure}
+	\includegraphics[width=\linewidth]{gower-dichotomous.png}
+	\caption{Score $s_{ijk}$ and quantity $\delta_{ijk}$ of a feature $k$ on two instances $x_i$ and $x_j$. Presence of a feature is denoted by "+" and absence by "-". \cite{gower}}
+	\label{gower_dichotomous}
+\end{figure}
 
 
 \section{Methodology}

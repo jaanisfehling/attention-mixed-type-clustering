@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex dmmdbstmpl"] 0 "dmmdbstmpl.aux" "dmmdbstmpl.bbl" "dmmdbstmpl" 1690053671 -1
+["bibtex dmmdbstmpl"] 1690115905 "dmmdbstmpl.aux" "dmmdbstmpl.bbl" "dmmdbstmpl" 1690116253 0
   "./dmmdbstmpl.bib" 1690050867 5967 7f33511025b98a927f60e64e5d17fbd1 ""
   "C:/Users/jaani/AppData/Local/Programs/MiKTeX/bibtex/bst/bibtex/plain.bst" 1291868336 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
-  "dmmdbstmpl.aux" 1690053671 2783 12bbeb01cd81a00ec86db7721e9ff190 "pdflatex"
+  "dmmdbstmpl.aux" 1690116252 3148 0f288857f5c99c8986d5e99015e38cec "pdflatex"
   (generated)
   "dmmdbstmpl.bbl"
   "dmmdbstmpl.blg"
   (rewritten before read)
-["pdflatex"] 1690053670 "c:/Users/jaani/repos/attention-mixed-type-clustering/Thesis/dmmdbstmpl.tex" "dmmdbstmpl.pdf" "dmmdbstmpl" 1690053671 0
+["pdflatex"] 1690116252 "c:/Users/jaani/repos/attention-mixed-type-clustering/Thesis/dmmdbstmpl.tex" "dmmdbstmpl.pdf" "dmmdbstmpl" 1690116253 0
   "C:/Users/jaani/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1690033679 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/jaani/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1689686788 23178960 7f427dbd69d71170e526b1e0b3ba77e9 ""
   "C:/Users/jaani/AppData/Local/Programs/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1233955448 1004 54797486969f23fa377b128694d548df ""
@@ -90,14 +90,15 @@
   "C:/Users/jaani/AppData/Local/Programs/MiKTeX/tex/latex/subfigure/subfigure.sty" 1114282570 14815 1d3da78e0f66f3c62133fbabffd13cf5 ""
   "C:/Users/jaani/AppData/Local/Programs/MiKTeX/tex/latex/tocbibind/tocbibind.sty" 1286957996 8927 46f54e33fc9cef24f78ab3bc811cb63f ""
   "C:/Users/jaani/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388494052 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
-  "c:/Users/jaani/repos/attention-mixed-type-clustering/Thesis/dmmdbstmpl.tex" 1690033730 1553 4a57c5ba15a6f6337b16024c33e94389 ""
-  "dmmdbstmpl.aux" 1690053671 2783 12bbeb01cd81a00ec86db7721e9ff190 "pdflatex"
-  "dmmdbstmpl.bbl" 1690051582 3602 5546349442aea7ef85e7c938315cc218 "bibtex dmmdbstmpl"
+  "c:/Users/jaani/repos/attention-mixed-type-clustering/Thesis/dmmdbstmpl.tex" 1690111226 1576 16b3134ecd0229612aba9be7393e9594 ""
+  "dmmdbstmpl.aux" 1690116252 3148 0f288857f5c99c8986d5e99015e38cec "pdflatex"
+  "dmmdbstmpl.bbl" 1690115906 3602 5546349442aea7ef85e7c938315cc218 "bibtex dmmdbstmpl"
   "dmmdbstmpl.sty" 1688460090 6211 8422bc03d468a89224b2ce55cf4263c1 ""
-  "dmmdbstmpl.tex" 1690033730 1553 4a57c5ba15a6f6337b16024c33e94389 ""
-  "dmmdbstmpl.toc" 1690053671 660 85e38125b3631c4cf5d2f5de8260eb68 "pdflatex"
+  "dmmdbstmpl.tex" 1690111226 1576 16b3134ecd0229612aba9be7393e9594 ""
+  "dmmdbstmpl.toc" 1690116252 660 2d6ca1593a2b5a7479b34434aa3fc890 "pdflatex"
   "dmmheader.png" 1688460090 190949 79029d255774da3304b06441b12fd5d9 ""
-  "thesis.tex" 1690053670 12331 2492b35ce2c2524bae526202b990db21 ""
+  "gower-dichotomous.png" 1690111378 41539 6417000d69adc41920d9accdb4709e2e ""
+  "thesis.tex" 1690116252 13276 a196a933debb48f481dd9cf5dd7c5d8b ""
   (generated)
   "dmmdbstmpl.aux"
   "dmmdbstmpl.log"
