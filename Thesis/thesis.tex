@@ -41,9 +41,10 @@ $$d_1(X, Y) = \sum^m_{j=1} \delta (x_j, y_j)$$
 where the Kronecker delta $\delta (x_j, y_j)$ is defined as
 $$\delta (x_j, y_j) = 
 \begin{cases}
-    0, & (x_j = y_j)\\
-    1, & (x_j \neq y_j)
-\end{cases}$$
+    0 & (x_j = y_j)\\
+    1 & (x_j \neq y_j)
+\end{cases}
+$$
 If we have a finite set of $n$ instances $S=\{p_1, p_2, ..., p_n\}$ for a dataset with $m$ categorial features, the goal of \textit{k-modes} \cite{kmodes} is to find optimal \textit{modes} $B=\{b_1, b_2, ..., b_k\}$ for a given $k (\leq n) \in \N$ that minimize
 $$\sum_{i=1}^n  d_1(p_i, B)$$
 where
@@ -161,8 +162,20 @@ Soybean Disease&0.576512&\bf{0.599644}&0.471530&0.501779 \\
 \end{figure}
 
 \chapter{Neural Networks}
+
+The idea of computation by neurons inspired by the human brain was first formalized into a mathematical model by McCulloch \cite{neural_network_1943}. A \textit{neuron} was defined as a element that takes multiple boolean inputs and has one boolean output. The neuron \textit{fires}, meaning the output is set to true, when the sum of the input values extends a certain threshold.
+
+The first single-layer \textit{perceptron}, the first neural machine learning algorithm, was invented by Rosenblatt \cite{perceptron}. It is a function $f$ that maps a input vector $x \in \R$ to a single binary valued ouput, which is then used to classify the input. Formally, $f$ is defined as
+$$f(x_i) = 
+\begin{cases}
+    1 & \sum_i w_{ij}x_i + b > 0\\
+    0 & otherwise
+\end{cases}
+$$
+where $w$ is the learnable weight matrix, and $b$ is a predefined bias. For training, the weights $w$ are simply incremented when the output is 0 but the ground truth is 1, and decremented if the output is 1 but should be 0. If the output was predicted right, no weights are changed.
+
 \chapter{Autoencoders}
 \chapter{Deep clustering methods}
 \chapter{Attention}
 \section{Comparison of deep clustering methods}
-\chapter{Outlook/Conclusion}
+\chapter{Conclusion}

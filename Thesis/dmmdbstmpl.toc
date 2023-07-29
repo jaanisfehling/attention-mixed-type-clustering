@@ -13,5 +13,5 @@
 \contentsline {chapter}{\numberline {4}Deep clustering methods}{11}{}%
 \contentsline {chapter}{\numberline {5}Attention}{12}{}%
 \contentsline {section}{\numberline {5.1}Comparison of deep clustering methods}{12}{}%
-\contentsline {chapter}{\numberline {6}Outlook/Conclusion}{13}{}%
+\contentsline {chapter}{\numberline {6}Conclusion}{13}{}%
 \contentsline {chapter}{Bibliography}{14}{}%
