@@ -107,16 +107,15 @@ Quinlan Quinlan.
 \newblock UCI Machine Learning Repository.
 \newblock {DOI}: https://doi.org/10.24432/C5FS30.
 
+\bibitem{perceptron}
+Frank Rosenblatt.
+\newblock The perceptron - a perceiving and recognizing automaton.
+\newblock 1957.
+
 \bibitem{hidden_layer_backprop}
 David~E. Rumelhart, Geoffrey~E. Hinton, and Ronald~J. Williams.
 \newblock Learning internal representations by error propagation.
 \newblock 1986.
-
-\bibitem{perceptron}
-Terence Sanger and Pallavi~N. Baljekar.
-\newblock The perceptron: a probabilistic model for information storage and
-  organization in the brain.
-\newblock {\em Psychological review}, 65 6:386--408, 1958.
 
 \bibitem{breast_cancer}
 William Wolberg.

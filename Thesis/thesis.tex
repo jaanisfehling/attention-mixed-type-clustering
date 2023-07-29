@@ -165,7 +165,7 @@ Soybean Disease&0.576512&\bf{0.599644}&0.471530&0.501779 \\
 
 The idea of computation by neurons inspired by the human brain was first formalized into a mathematical model by McCulloch \cite{neural_network_1943}. A \textit{neuron} was defined as a element that takes multiple boolean inputs and has one boolean output. The neuron \textit{fires}, meaning the output is set to true, when the sum of the input values extends a certain threshold.
 
-The single-layer \textit{perceptron}, the first neural machine learning algorithm, was invented by Rosenblatt \cite{perceptron}. Formally, the binary valued output $o_j$ given an input vector $x_i$ is calculated as
+The single-layer \textit{perceptron}, the first neural machine learning algorithm, was invented by Rosenblatt in 1957 \cite{perceptron}. Formally, the binary valued output $o_j$ given an input vector $x_i$ is calculated as
 $$o_j = 
 \begin{cases}
     1 & \sum_i w_{ij}x_i + b > 0\\
@@ -174,9 +174,10 @@ $$o_j =
 $$
 where $w$ is the learnable weight matrix, and $b$ is a predefined bias. For training, the weights $w$ are simply incremented when the output is 0 but the ground truth is 1, and decremented if the output is 1 but should be 0. If the output was predicted right, no weights are changed.
 
-The idea of neural networks was revived three decades later, using multiple perceptron layers and a differentiable error function \cite{hidden_layer_backprop}. In a multi-layer neural network, we have an input layer, an output layer and multiple hidden layers. Each layer is a collection of neurons, that acquire the outputs of each neuron from the previous layer (or from the input in case of the input layer) as their input, and produce a new output. Formally, the output $o_j$ of a the $j$th neuron of a layer that gets $d$ input values from the previous layer is defined as
-$$o_j = \sum^d_{i=1}w_{ji}^{(1)}x_i + b_j^{(1)}$$
-where $w_{ji}^{(1)}$ is the learnable weight of
+The idea of neural networks was revived three decades later, using multiple perceptron layers and a differentiable error function \cite{hidden_layer_backprop}. In a multi-layer neural network, we have an input layer, an output layer and multiple hidden layers. Each layer is a collection of neurons, that acquire the outputs of each neuron from the previous layer (or from the input in case of the input layer) as their input, and produce a new output. Formally, the output $a_j$ of the $j$th neuron of layer $n$ that gets $d$ input values from the previous layer is defined as
+$$a_j = \sum^d_{i=1}w_{ji}^{(n)}x_i + b_j^{(n)}$$
+where $w_{ji}^{(n)}$ is the learnable weight of the input $i$ going through neuron $j$ in layer $n$. A bias $b_j$ is also added. This output is commonly refered to as an \textit{activation} of a neuron. The activation $a_j$ is then passed into a activation function $f$
+
 
 \chapter{Autoencoders}
 \chapter{Deep clustering methods}
