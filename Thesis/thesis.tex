@@ -27,7 +27,7 @@ In many real-world scenarios, besides continuous, numerical data, \textit{catego
 $$\{A, B, C\} \equiv \{1, 2, 3\}$$
 While $A$ and $C$ can share the same semantic similarity as $A$ and $B$, numerically category $A$ and Category $C$ are now $|1-3| = 2$ apart, while Category $A$ and $B$ are only $|1-2|=1$ apart. During clustering, this could lead to instances being assigned to centroids based on a wrong distance assumption.
 
-A possible solution is to use \textit{one-hot encoding}, also known as \textit{dummy coding} in classical statistics. One-hot encoding turns a discrete feature containing $k$ mutually exclusive categories into a vector $x$ of length $k$, in which only one of the elements $x_k$ equals 1 and all remaining elements equal 0 \cite{bishop_2006}. For an instance $B$ of a feature having $k=3$ separate categories $\{A, B, C\}$, the one-hot vector $x$ would be represented by $x = (0, 1, 0)^{\intercal}$.
+A possible solution is to use \textit{one-hot encoding}, also known as \textit{dummy coding} in classical statistics. One-hot encoding turns a discrete feature containing $k$ mutually exclusive categories into a vector $x$ of length $k$, in which only one of the elements $x_k$ equals 1 and all remaining elements equal 0 \cite{pattern_recognition_machine_learning}. For an instance $B$ of a feature having $k=3$ separate categories $\{A, B, C\}$, the one-hot vector $x$ would be represented by $x = (0, 1, 0)^{\intercal}$.
 
 \subsection{k-modes} \label{k-modes}
 
@@ -165,14 +165,18 @@ Soybean Disease&0.576512&\bf{0.599644}&0.471530&0.501779 \\
 
 The idea of computation by neurons inspired by the human brain was first formalized into a mathematical model by McCulloch \cite{neural_network_1943}. A \textit{neuron} was defined as a element that takes multiple boolean inputs and has one boolean output. The neuron \textit{fires}, meaning the output is set to true, when the sum of the input values extends a certain threshold.
 
-The first single-layer \textit{perceptron}, the first neural machine learning algorithm, was invented by Rosenblatt \cite{perceptron}. It is a function $f$ that maps a input vector $x \in \R$ to a single binary valued ouput, which is then used to classify the input. Formally, $f$ is defined as
-$$f(x_i) = 
+The single-layer \textit{perceptron}, the first neural machine learning algorithm, was invented by Rosenblatt \cite{perceptron}. Formally, the binary valued output $o_j$ given an input vector $x_i$ is calculated as
+$$o_j = 
 \begin{cases}
     1 & \sum_i w_{ij}x_i + b > 0\\
     0 & otherwise
 \end{cases}
 $$
 where $w$ is the learnable weight matrix, and $b$ is a predefined bias. For training, the weights $w$ are simply incremented when the output is 0 but the ground truth is 1, and decremented if the output is 1 but should be 0. If the output was predicted right, no weights are changed.
+
+The idea of neural networks was revived three decades later, using multiple perceptron layers and a differentiable error function \cite{hidden_layer_backprop}. In a multi-layer neural network, we have an input layer, an output layer and multiple hidden layers. Each layer is a collection of neurons, that acquire the outputs of each neuron from the previous layer (or from the input in case of the input layer) as their input, and produce a new output. Formally, the output $o_j$ of a the $j$th neuron of a layer that gets $d$ input values from the previous layer is defined as
+$$o_j = \sum^d_{i=1}w_{ji}^{(1)}x_i + b_j^{(1)}$$
+where $w_{ji}^{(1)}$ is the learnable weight of
 
 \chapter{Autoencoders}
 \chapter{Deep clustering methods}
