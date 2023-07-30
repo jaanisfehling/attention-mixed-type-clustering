@@ -5,47 +5,44 @@ Reallocating 'name_of_file' (item size: 1) to 6 items.
 The style file: plain.bst
 Reallocating 'name_of_file' (item size: 1) to 11 items.
 Database file #1: dmmdbstmpl.bib
-Warning--empty journal in perceptron
-Warning--empty booktitle in hidden_layer_backprop
-You've used 21 entries,
+You've used 23 entries,
             2118 wiz_defined-function locations,
-            621 strings with 7256 characters,
-and the built_in function-call counts, 6590 in all, are:
-= -- 628
-> -- 341
-< -- 2
-+ -- 139
-- -- 114
-* -- 420
-:= -- 1130
-add.period$ -- 73
-call.type$ -- 21
-change.case$ -- 117
+            636 strings with 7684 characters,
+and the built_in function-call counts, 7354 in all, are:
+= -- 713
+> -- 366
+< -- 4
++ -- 149
+- -- 122
+* -- 463
+:= -- 1245
+add.period$ -- 79
+call.type$ -- 23
+change.case$ -- 125
 chr.to.int$ -- 0
 cite$ -- 23
-duplicate$ -- 214
-empty$ -- 522
-format.name$ -- 114
-if$ -- 1370
+duplicate$ -- 255
+empty$ -- 576
+format.name$ -- 122
+if$ -- 1549
 int.to.chr$ -- 0
-int.to.str$ -- 21
-missing$ -- 15
-newline$ -- 117
-num.names$ -- 44
-pop$ -- 152
+int.to.str$ -- 23
+missing$ -- 18
+newline$ -- 127
+num.names$ -- 48
+pop$ -- 159
 preamble$ -- 1
-purify$ -- 98
+purify$ -- 106
 quote$ -- 0
-skip$ -- 152
+skip$ -- 188
 stack$ -- 0
-substring$ -- 329
-swap$ -- 31
-text.length$ -- 2
+substring$ -- 375
+swap$ -- 53
+text.length$ -- 4
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 80
-warning$ -- 2
-while$ -- 56
-width$ -- 23
-write$ -- 239
-(There were 2 warnings)
+type$ -- 84
+warning$ -- 0
+while$ -- 62
+width$ -- 25
+write$ -- 267

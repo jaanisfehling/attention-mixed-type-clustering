@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.5) (preloaded format=pdflatex 2023.7.17)  29 JUL 2023 23:22
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.5) (preloaded format=pdflatex 2023.7.17)  30 JUL 2023 13:19
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -388,52 +388,57 @@ Overfull \hbox (8.69124pt too wide) in paragraph at lines 118--118
 Chapter 2.
 [9
 
-]
+] [10]
 Chapter 3.
-[10
-
-]
-Chapter 4.
 [11
 
 ]
-Chapter 5.
+Chapter 4.
 [12
 
 ]
-Chapter 6.
-) (dmmdbstmpl.bbl [13
-
-] [14
+Chapter 5.
+[13
 
 ]
-Underfull \hbox (badness 1365) in paragraph at lines 86--90
+Chapter 6.
+) (dmmdbstmpl.bbl [14
+
+] [15
+
+]
+Underfull \hbox (badness 1365) in paragraph at lines 97--101
 []\OT1/cmr/m/n/12 Elaheh Ordoni, Jakob Bach, Ann-Katrin Fleck, and Jakob Bach.
  []
 
 
-Underfull \hbox (badness 2119) in paragraph at lines 92--97
+Underfull \hbox (badness 2119) in paragraph at lines 103--108
 \OT1/cmr/m/n/12 O. Grisel, M. Blondel, P. Prettenhofer, R. Weiss, V. Dubourg,
  []
 
-) [15] (dmmdbstmpl.aux)
+
+Underfull \hbox (badness 1038) in paragraph at lines 128--132
+\OT1/cmr/m/it/12 Representations by Error Propagation\OT1/cmr/m/n/12 , page 318{362.  MIT Press,
+ []
+
+[16]) [17] (dmmdbstmpl.aux)
  ***********
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-06-30>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 5065 strings out of 477486
- 79591 string characters out of 5814204
+ 5067 strings out of 477486
+ 79650 string characters out of 5814204
  1934244 words of memory out of 5000000
- 25965 multiletter control sequences out of 15000+600000
+ 25967 multiletter control sequences out of 15000+600000
  566007 words of font info for 65 fonts, out of 8000000 for 9000
  0 hyphenation exceptions out of 8191
- 72i,13n,79p,827b,369s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 72i,13n,79p,827b,417s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </home/jaanis/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmbx12.pfb></home/jaanis/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmex10.pfb></home/jaanis/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi12.pfb></home/jaanis/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi6.pfb></home/jaanis/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi8.pfb></home/jaanis/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr12.pfb></home/jaanis/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr17.pfb></home/jaanis/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr6.pfb></home/jaanis/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr8.pfb></home/jaanis/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmsl10.pfb></home/jaanis/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy10.pfb></home/jaanis/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy8.pfb></home/jaanis/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmti12.pfb></home/jaanis/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmtt12.pfb></home/jaanis/.miktex/texmfs/install/fonts/type1/public/amsfonts/symbols/msam10.pfb></home/jaanis/.miktex/texmfs/install/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on dmmdbstmpl.pdf (18 pages, 442593 bytes).
+Output written on dmmdbstmpl.pdf (20 pages, 446284 bytes).
 PDF statistics:
- 145 PDF objects out of 1000 (max. 8388607)
+ 152 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 

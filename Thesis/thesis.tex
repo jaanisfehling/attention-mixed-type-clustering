@@ -71,7 +71,7 @@ We can minimize both distance measures at the same time since they are nonnegati
 
 \subsection{Gower distance}
 
-\textit{Gower Distance} \cite{gower} is a general similarity measurement between instances containing mixed-type features. It is defined as follows: When comparing instances $x_i$ and $x_j$, for each feature $k$ of $p$ total features, we calculate a score $s_{ijk} \in [0,1]$. The score will be close to 1 for two instances $x_{ik}$ and $x_{jk}$ of a feature $k$ if they are similar, and close to 0 they are not similar.
+\textit{Gower distance} \cite{gower} is a general similarity measurement between instances containing mixed-type features. It is defined as follows: When comparing instances $x_i$ and $x_j$, for each feature $k$ of $p$ total features, we calculate a score $s_{ijk} \in [0,1]$. The score will be close to 1 for two instances $x_{ik}$ and $x_{jk}$ of a feature $k$ if they are similar, and close to 0 they are not similar.
 Gower distance is also computable between instances with missing values, therefore a quantity $\delta_{ijk}$ is calculated, which is equal to 1, when feature $k$ can be compared across the two instances $x_i$ and $x_j$, and 0 otherwise (illustrated in Figure \ref{gower_dichotomous}).
 Gower distance then is the average of the known score
 $$S_{ij} = \frac{\sum^p_{k=1}s_{ijk}\delta_{ijk}}{\sum^p_{k=1}\delta_{ijk}}$$
@@ -176,8 +176,9 @@ where $w$ is the learnable weight matrix, and $b$ is a predefined bias. For trai
 
 The idea of neural networks was revived three decades later, using multiple perceptron layers and a differentiable error function \cite{hidden_layer_backprop}. In a multi-layer neural network, we have an input layer, an output layer and multiple hidden layers. Each layer is a collection of neurons, that acquire the outputs of each neuron from the previous layer (or from the input in case of the input layer) as their input, and produce a new output. Formally, the output $a_j$ of the $j$th neuron of layer $n$ that gets $d$ input values from the previous layer is defined as
 $$a_j = \sum^d_{i=1}w_{ji}^{(n)}x_i + b_j^{(n)}$$
-where $w_{ji}^{(n)}$ is the learnable weight of the input $i$ going through neuron $j$ in layer $n$. A bias $b_j$ is also added. This output is commonly refered to as an \textit{activation} of a neuron. The activation $a_j$ is then passed into a activation function $f$
-
+where $w_{ji}^{(n)}$ is the learnable weight of the input $i$ going through neuron $j$ in layer $n$ \cite{neural_networks_pattern_recognition}. A bias $b_j$ is also added. This output is commonly refered to as an \textit{activation} of a neuron \cite{neural_networks_pattern_recognition}. Because every neuron is a linear function, in order to avoid the collapse of each neuron from all layers into a single linear function, we pass the activation $a_j$ into a non-linear activation function $f$
+$$z_j = f(a_j)$$
+before being passed to the next layer of neurons \cite{activation_functions}.
 
 \chapter{Autoencoders}
 \chapter{Deep clustering methods}
