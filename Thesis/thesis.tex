@@ -93,7 +93,7 @@ Gower \cite{gower} has shown that $\sqrt{1- S_{ij}}$ is a valid distance represe
 
 \section{Methodology}
 
-In this work we use 8 mixed-type datasets from the UC Irvine Machine Learning Repository \cite{uci_ml_rpo}. 
+In this work we use 8 mixed-type datasets from the UC Irvine Machine Learning Repository \cite{uci_ml_rpo}.
 The Abalone dataset \cite{abalone} contains physical measurements from abalones. It has 4177 instances, one categorial feature and seven continuous features.
 The Auction Verification dataset \cite{auction_verification} has 2043 instances that contain verification runs of multi-round auctions. It is composed of six categorial and one continuous feauture.
 The Bank Marketing dataset \cite{bank_marketing} is related to a direct marketing campaign of a portuguese banking institution. It has 49732 instances. The "age", "day" and "month" features were removed, which results in eight categorial and five continuous features.
@@ -176,9 +176,36 @@ where $w$ is the learnable weight matrix, and $b$ is a predefined bias. For trai
 
 The idea of neural networks was revived three decades later, using multiple perceptron layers and a differentiable error function \cite{hidden_layer_backprop}. In a multi-layer neural network, we have an input layer, an output layer and multiple hidden layers. Each layer is a collection of neurons, that acquire the outputs of each neuron from the previous layer (or from the input in case of the input layer) as their input, and produce a new output. Formally, the output $a_j$ of the $j$th neuron of layer $n$ that gets $d$ input values from the previous layer is defined as
 $$a_j = \sum^d_{i=1}w_{ji}^{(n)}x_i + b_j^{(n)}$$
-where $w_{ji}^{(n)}$ is the learnable weight of the input $i$ going through neuron $j$ in layer $n$ \cite{neural_networks_pattern_recognition}. A bias $b_j$ is also added. This output is commonly refered to as an \textit{activation} of a neuron \cite{neural_networks_pattern_recognition}. Because every neuron is a linear function, in order to avoid the collapse of each neuron from all layers into a single linear function, we pass the activation $a_j$ into a non-linear activation function $f$
+where $w_{ji}^{(n)}$ is the learnable weight of the input $x_i$ going through neuron $j$ in layer $n$ \cite{neural_networks_pattern_recognition}. A bias $b_j$ is also added. This output is commonly refered to as an \textit{activation} of a neuron \cite{neural_networks_pattern_recognition}. Because every neuron is a linear function, in order to avoid the collapse of each neuron from all layers into a single linear function, we pass the activation $a_j$ into a non-linear activation function $f$
 $$z_j = f(a_j)$$
 before being passed to the next layer of neurons \cite{activation_functions}.
+
+As shown in a recent survey \cite{activation_functions}, there are many different activation functions used in neural networks. A simple example for an activation function, which naturally alligns with the idea of a biological neuron firing is the \textit{step function} (also known as \textit{Heaviside step function}) \cite{neural_networks_pattern_recognition}, that ouputs 0 for negative values and 1 for positive values:
+$$\text{step function}(x) = 
+\begin{cases}
+    1 & x \geq 0\\
+    0 & otherwise
+\end{cases}
+$$
+In order to stay between 0 and 1, but also utilize all real values inbetween, another activation function that has historicaly been popular is the \textit{logistic sigmoig} function \cite{activation_functions}, that squashes any input in $]0, 1[$:
+$$\text{logistic sigmoid}(x) = \frac{1}{1 + e^{-x}}$$
+Because the ouputs are in a range close to 0, it is prone to the \textit{vanishing gradient problem}. In the vanishing gradient problem, a gradient that is very close to 0 leads to almost no update in the weights of the network during training. Moreover, using a exponential value naturally leads to a greater computational complexity. \cite{activation_functions}
+
+The current state-of-the-art activation function, the \textit{Rectified Linear Unit} (ReLU) \cite{activation_functions}, is not limited by the above disadvantages. It is simple and computationally performant. It is defined as the identity for positive values and as 0 for negative values:
+$$\text{ReLU}(x) = max(0, x) = 
+\begin{cases}
+    x & x \geq 0\\
+    0 & otherwise
+\end{cases}
+$$
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{activation-functions.png}
+	\caption{An illustration of the step function, the logistic sigmoid, the ReLU and the Leaky ReLU activaiton functions.}
+	\label{activation_functions}
+\end{figure}
+
+
 
 \chapter{Autoencoders}
 \chapter{Deep clustering methods}
