@@ -1,10 +1,34 @@
 \chapter{Introduction}
 
-\section{Introduction}
-
 Clustering is an unsupervised machine learning method that groups similar observations together. Due to its ability to find patterns in an unlabeled dataset, its an essential task in Data Mining and Knowledge Discovery. A \textit{cluster} is a group of similar instances that belongs to a \textit{centroid} (center point of a cluster). Distance-based clustering algorithms use distance measures such as Euclidean distance to calculate the similarity of datapoints. Hierarchical methods partition the instances and merge (agglomerative) or split them into bigger or smaller clusters. Many other methods exist, but this work focuses on methods for clustering \textit{mixed-type} data. \cite{mixed_type_survey_2019}
 
-\section{k-means}
+\chapter{Related Work}
+
+\chapter{Foundation}
+
+\section{Methodology}
+
+In this work we use 8 mixed-type datasets from the UC Irvine Machine Learning Repository \cite{uci_ml_rpo}.
+The Abalone dataset \cite{abalone} contains physical measurements from abalones. It has 4177 instances, one categorial feature and seven continuous features.
+The Auction Verification dataset \cite{auction_verification} has 2043 instances that contain verification runs of multi-round auctions. It is composed of six categorial and one continuous feauture.
+The Bank Marketing dataset \cite{bank_marketing} is related to a direct marketing campaign of a portuguese banking institution. It has 49732 instances. The "age", "day" and "month" features were removed, which results in eight categorial and five continuous features.
+The Breast Cancer dataset \cite{breast_cancer} contains 699 instances and 9 categorial features.
+The Census Income dataset \cite{census_income} has a total of 48842 instances. It is composed of eight categorial and 6 continuous features.
+The Credit Approval dataset \cite{credit_approval} contains information of applications for credit cards. It has 690 instances, nine categorial features and six continuous features.
+The Heart Disease dataset \cite{heart_disease} is composed of four datasets and has 920 instances in total. It has seven categorial features and six continuous features.
+The Soybean (Large) Dataset \cite{abalone} consists of 683 instances from soybeans with a certain disease and has 35 categorial features.
+
+All instances containing missing values were removed. Duplicate instances were explicitly not removed, since there is no information available if they are duplicates by accident, or real duplicates. Categorial columns were standardized by removing the mean and scaling to unit variance, using the scikit-learn Python API \cite{scikit_learn}. Formally, the standardized score $z$ of a sample $x$ from a feature is calculated as
+$$z = \frac{(x-\mu)}{\sigma}$$
+where $\mu$ is the mean of the samples $x_1, ...,x_N$ from a feature of length $N$, defined as
+$$\mu = \frac{1}{N} \sum^{N}_{i=1} x_i$$
+and $\sigma$ is the standard deviation of the samples of a feature, defined as
+$$\sigma = \sqrt{\frac{1}{N} \sum^{N}_{i=1}(x_i - \mu)^2}$$
+The datasets were shuffled. For all random operations, a random state of integer value 0 was used to ensure reproducibility.
+
+\section{Traditional Methods for Mixed-Type data}
+
+\subsection{k-means}
 
 The most well known distance-based clustering method is k-means \cite{kmeans}. The goal is defined as follows: Suppose we have a finite set of $n$ instances $S=\{p_1, p_2, ..., p_n\} \in \R^m$ for a dataset with $m$ features, the target of k-means is to find optimal centroids $B=\{b_1, b_2, ..., b_k\} \subseteq \R^m$ for a given $k (\leq n) \in \N$ that minimize the sum of the squared Euclidean distance of each point in $S$ to its nearest centroid. Formally
 $$\sum_{i=1}^n  d(p_i, B)$$
@@ -21,15 +45,13 @@ $$b_i^{(t+1)} = \frac{1}{|S_i^{(t)}|} \sum_{p_j \in S_i^{(t)}} p_j$$
 	\item Repeat steps 2. and 3. until the centroid assignments no longer change.
 \end{enumerate}
 
-\section{Mixed-type data}
+\subsection{k-modes} \label{k-modes}
 
 In many real-world scenarios, besides continuous, numerical data, \textit{categorial} data exists. While Euclidean distance or other distance measures work well with continuous data, categorial data is different. Suppose we have categories $\{A, B, C\}$ of a given feature, we would encode them into numeric values to allow for computation of a distance measure:
 $$\{A, B, C\} \equiv \{1, 2, 3\}$$
 While $A$ and $C$ can share the same semantic similarity as $A$ and $B$, numerically category $A$ and Category $C$ are now $|1-3| = 2$ apart, while Category $A$ and $B$ are only $|1-2|=1$ apart. During clustering, this could lead to instances being assigned to centroids based on a wrong distance assumption.
 
 A possible solution is to use \textit{one-hot encoding}, also known as \textit{dummy coding} in classical statistics. One-hot encoding turns a discrete feature containing $k$ mutually exclusive categories into a vector $x$ of length $k$, in which only one of the elements $x_k$ equals 1 and all remaining elements equal 0 \cite{pattern_recognition_machine_learning}. For an instance $B$ of a feature having $k=3$ separate categories $\{A, B, C\}$, the one-hot vector $x$ would be represented by $x = (0, 1, 0)^{\intercal}$.
-
-\subsection{k-modes} \label{k-modes}
 
 According to Huang \cite{kmodes}, one-hot encoding has two drawbacks:
 \begin{enumerate} 
@@ -88,33 +110,63 @@ The Score $s_{ijk}$ is calculated differently according to the type of feature \
 	\caption{Score $s_{ijk}$ and quantity $\delta_{ijk}$ of a feature $k$ on two instances $x_i$ and $x_j$. Presence of a feature is denoted by "+" and absence by "-". \cite{gower}}
 	\label{gower_dichotomous}
 \end{figure}
-Gower \cite{gower} has shown that $\sqrt{1- S_{ij}}$ is a valid distance representation for two instances $x_i$ and $x_j$. We can now convert our similarity matrix $S$ into a distance matrix and are able to use Hierarchical clustering methods \cite{algorithms_for_clustering_data}. Philip and Ottaway \cite{philip_ottaway} used Gower distance with agglomerative clustering. Agglomerative clustering places each object into its own cluster and recursively merges the clusters together using the given distance matrix, until only the specified number of clusters is remaining \cite{algorithms_for_clustering_data}.
+Gower \cite{gower} has shown that $\sqrt{1- S_{ij}}$ is a valid distance representation for two instances $x_i$ and $x_j$. We can now convert our similarity matrix $S$ into a distance matrix and are able to use Hierarchical clustering methods \cite{algorithms_for_clustering_data}. Philip and Ottaway \cite{philip_ottaway} used Gower distance with agglomerative clustering. Agglomerative clustering places each instance into its own cluster and recursively merges the clusters together using the given distance matrix, until only the specified number of clusters is remaining \cite{algorithms_for_clustering_data}.
+
+\section{Deep Clustering}
+\subsection{Neural Networks}
+
+The idea of computation by neurons inspired by the human brain was first formalized into a mathematical model by McCulloch \cite{neural_network_1943}. A \textit{neuron} was defined as a element that takes multiple boolean inputs and has one boolean output. The neuron \textit{fires}, meaning the output is set to true, when the sum of the input values extends a certain threshold.
+
+The single-layer \textit{perceptron}, the first neural machine learning algorithm, was invented by Rosenblatt in 1957 \cite{perceptron}. Formally, the binary valued output $o_j$ given an input vector $x_i$ is calculated as
+$$o_j = 
+\begin{cases}
+    1 & \sum_i w_{ij}x_i + b > 0\\
+    0 & otherwise
+\end{cases}
+$$
+where $w$ is the learnable weight matrix, and $b$ is a predefined bias. For training, the weights $w$ are simply incremented when the output is 0 but the ground truth is 1, and decremented if the output is 1 but should be 0. If the output was predicted right, no weights are changed.
+
+The idea of neural networks was revived three decades later, using multiple perceptron layers and a differentiable error function \cite{hidden_layer_backprop}. In a multi-layer neural network, we have an input layer, an output layer and multiple hidden layers. Each layer is a collection of neurons, that acquire the outputs of each neuron from the previous layer (or from the input in case of the input layer) as their input, and produce a new output. Formally, the output $a_j$ of the $j$th neuron of layer $n$ that gets $d$ input values from the previous layer is defined as
+$$a_j = \sum^d_{i=1}w_{ji}^{(n)}x_i + b_j^{(n)}$$
+where $w_{ji}^{(n)}$ is the learnable weight of the input $x_i$ going through neuron $j$ in layer $n$ \cite{neural_networks_pattern_recognition}. A bias $b_j$ is also added. This output is commonly refered to as an \textit{activation} of a neuron \cite{neural_networks_pattern_recognition}. Because every neuron is a linear function, in order to avoid the collapse of each neuron from all layers into a single linear function, we pass the activation $a_j$ into a non-linear activation function $f$
+$$z_j = f(a_j)$$
+before being passed to the next layer of neurons \cite{activation_functions}.
+
+As shown in a recent survey \cite{activation_functions}, there are many different activation functions used in neural networks. A simple example for an activation function, which naturally alligns with the idea of a biological neuron firing is the \textit{step function} (also known as \textit{Heaviside step function}) \cite{neural_networks_pattern_recognition}, that ouputs 0 for negative values and 1 for positive values:
+$$\text{step function}(x) = 
+\begin{cases}
+    1 & x \geq 0\\
+    0 & otherwise
+\end{cases}
+$$
+In order to stay between 0 and 1, but also utilize all real values inbetween, another activation function that has historicaly been popular is the \textit{logistic sigmoig} function \cite{activation_functions}, that squashes any input in $]0, 1[$:
+$$\text{logistic sigmoid}(x) = \frac{1}{1 + e^{-x}}$$
+Because the ouputs are in a range close to 0, it is prone to the \textit{vanishing gradient problem}. In the vanishing gradient problem, a gradient that is very close to 0 leads to almost no update in the weights of the network during training. Moreover, using a exponential value naturally leads to a greater computational complexity. \cite{activation_functions}
+
+The current state-of-the-art activation function, the \textit{Rectified Linear Unit} (ReLU) \cite{activation_functions}, is not limited by the above disadvantages. It is simple and computationally performant. It is defined as the identity for positive values and as 0 for negative values:
+$$\text{ReLU}(x) = max(0, x) = 
+\begin{cases}
+    x & x \geq 0\\
+    0 & otherwise
+\end{cases}
+$$
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{activation-functions.png}
+	\caption{An illustration of the step function, the logistic sigmoid, the ReLU and the Leaky ReLU activaiton functions.}
+	\label{activation_functions}
+\end{figure}
 
 
-\section{Methodology}
 
-In this work we use 8 mixed-type datasets from the UC Irvine Machine Learning Repository \cite{uci_ml_rpo}.
-The Abalone dataset \cite{abalone} contains physical measurements from abalones. It has 4177 instances, one categorial feature and seven continuous features.
-The Auction Verification dataset \cite{auction_verification} has 2043 instances that contain verification runs of multi-round auctions. It is composed of six categorial and one continuous feauture.
-The Bank Marketing dataset \cite{bank_marketing} is related to a direct marketing campaign of a portuguese banking institution. It has 49732 instances. The "age", "day" and "month" features were removed, which results in eight categorial and five continuous features.
-The Breast Cancer dataset \cite{breast_cancer} contains 699 instances and 9 categorial features.
-The Census Income dataset \cite{census_income} has a total of 48842 instances. It is composed of eight categorial and 6 continuous features.
-The Credit Approval dataset \cite{credit_approval} contains information of applications for credit cards. It has 690 instances, nine categorial features and six continuous features.
-The Heart Disease dataset \cite{heart_disease} is composed of four datasets and has 920 instances in total. It has seven categorial features and six continuous features.
-The Soybean (Large) Dataset \cite{abalone} consists of 683 instances from soybeans with a certain disease and has 35 categorial features.
+\subsection{Autoencoders}
+\subsection{Deep clustering methods}
+\subsection{Attention}
+\subsection{Comparison of deep clustering methods}
 
-All instances containing missing values were removed. Duplicate instances were explicitly not removed, since there is no information available if they are duplicates by accident, or real duplicates. Categorial columns were standardized by removing the mean and scaling to unit variance, using the scikit-learn Python API \cite{scikit_learn}. Formally, the standardized score $z$ of a sample $x$ from a feature is calculated as
-$$z = \frac{(x-\mu)}{\sigma}$$
-where $\mu$ is the mean of the samples $x_1, ...,x_N$ from a feature of length $N$, defined as
-$$\mu = \frac{1}{N} \sum^{N}_{i=1} x_i$$
-and $\sigma$ is the standard deviation of the samples of a feature, defined as
-$$\sigma = \sqrt{\frac{1}{N} \sum^{N}_{i=1}(x_i - \mu)^2}$$
-The datasets were shuffled. For all random operations, a random state of integer value 0 was used to ensure reproducibility.
+\chapter{Attention in mixed-type clustering}
 
-
-
-
-
+\chapter{Experiments}
 \section{Comparison of classical Clustering methods}
 
 \begin{figure}
@@ -161,54 +213,5 @@ Soybean Disease&0.576512&\bf{0.599644}&0.471530&0.501779 \\
 \label{classical_comparison_acc}
 \end{figure}
 
-\chapter{Neural Networks}
 
-The idea of computation by neurons inspired by the human brain was first formalized into a mathematical model by McCulloch \cite{neural_network_1943}. A \textit{neuron} was defined as a element that takes multiple boolean inputs and has one boolean output. The neuron \textit{fires}, meaning the output is set to true, when the sum of the input values extends a certain threshold.
-
-The single-layer \textit{perceptron}, the first neural machine learning algorithm, was invented by Rosenblatt in 1957 \cite{perceptron}. Formally, the binary valued output $o_j$ given an input vector $x_i$ is calculated as
-$$o_j = 
-\begin{cases}
-    1 & \sum_i w_{ij}x_i + b > 0\\
-    0 & otherwise
-\end{cases}
-$$
-where $w$ is the learnable weight matrix, and $b$ is a predefined bias. For training, the weights $w$ are simply incremented when the output is 0 but the ground truth is 1, and decremented if the output is 1 but should be 0. If the output was predicted right, no weights are changed.
-
-The idea of neural networks was revived three decades later, using multiple perceptron layers and a differentiable error function \cite{hidden_layer_backprop}. In a multi-layer neural network, we have an input layer, an output layer and multiple hidden layers. Each layer is a collection of neurons, that acquire the outputs of each neuron from the previous layer (or from the input in case of the input layer) as their input, and produce a new output. Formally, the output $a_j$ of the $j$th neuron of layer $n$ that gets $d$ input values from the previous layer is defined as
-$$a_j = \sum^d_{i=1}w_{ji}^{(n)}x_i + b_j^{(n)}$$
-where $w_{ji}^{(n)}$ is the learnable weight of the input $x_i$ going through neuron $j$ in layer $n$ \cite{neural_networks_pattern_recognition}. A bias $b_j$ is also added. This output is commonly refered to as an \textit{activation} of a neuron \cite{neural_networks_pattern_recognition}. Because every neuron is a linear function, in order to avoid the collapse of each neuron from all layers into a single linear function, we pass the activation $a_j$ into a non-linear activation function $f$
-$$z_j = f(a_j)$$
-before being passed to the next layer of neurons \cite{activation_functions}.
-
-As shown in a recent survey \cite{activation_functions}, there are many different activation functions used in neural networks. A simple example for an activation function, which naturally alligns with the idea of a biological neuron firing is the \textit{step function} (also known as \textit{Heaviside step function}) \cite{neural_networks_pattern_recognition}, that ouputs 0 for negative values and 1 for positive values:
-$$\text{step function}(x) = 
-\begin{cases}
-    1 & x \geq 0\\
-    0 & otherwise
-\end{cases}
-$$
-In order to stay between 0 and 1, but also utilize all real values inbetween, another activation function that has historicaly been popular is the \textit{logistic sigmoig} function \cite{activation_functions}, that squashes any input in $]0, 1[$:
-$$\text{logistic sigmoid}(x) = \frac{1}{1 + e^{-x}}$$
-Because the ouputs are in a range close to 0, it is prone to the \textit{vanishing gradient problem}. In the vanishing gradient problem, a gradient that is very close to 0 leads to almost no update in the weights of the network during training. Moreover, using a exponential value naturally leads to a greater computational complexity. \cite{activation_functions}
-
-The current state-of-the-art activation function, the \textit{Rectified Linear Unit} (ReLU) \cite{activation_functions}, is not limited by the above disadvantages. It is simple and computationally performant. It is defined as the identity for positive values and as 0 for negative values:
-$$\text{ReLU}(x) = max(0, x) = 
-\begin{cases}
-    x & x \geq 0\\
-    0 & otherwise
-\end{cases}
-$$
-
-\begin{figure}
-	\includegraphics[width=\linewidth]{activation-functions.png}
-	\caption{An illustration of the step function, the logistic sigmoid, the ReLU and the Leaky ReLU activaiton functions.}
-	\label{activation_functions}
-\end{figure}
-
-
-
-\chapter{Autoencoders}
-\chapter{Deep clustering methods}
-\chapter{Attention}
-\section{Comparison of deep clustering methods}
-\chapter{Conclusion}
+\section{Conclusion}

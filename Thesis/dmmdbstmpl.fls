@@ -142,8 +142,8 @@ INPUT ./thesis.tex
 INPUT ./thesis.tex
 INPUT ./thesis.tex
 INPUT thesis.tex
-INPUT /home/jaanis/.miktex/texmfs/install/fonts/tfm/public/cm/cmbx12.tfm
 INPUT /home/jaanis/.miktex/texmfs/install/fonts/tfm/public/cm/cmti12.tfm
+INPUT /home/jaanis/.miktex/texmfs/install/fonts/tfm/public/cm/cmbx12.tfm
 INPUT /home/jaanis/.miktex/texmfs/install/fonts/tfm/public/cm/cmbx12.tfm
 INPUT /home/jaanis/.miktex/texmfs/install/fonts/tfm/public/cm/cmr10.tfm
 INPUT /home/jaanis/.miktex/texmfs/install/fonts/tfm/public/cm/cmsl10.tfm

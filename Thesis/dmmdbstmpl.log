@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.5) (preloaded format=pdflatex 2023.7.17)  30 JUL 2023 23:09
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.5) (preloaded format=pdflatex 2023.7.17)  31 JUL 2023 20:33
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -331,90 +331,92 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 ]
 Chapter 1.
-
-Overfull \hbox (11.41414pt too wide) in paragraph at lines 12--14
-\OT1/cmr/m/n/12 The Euclidean distance between two points $\OML/cmm/m/it/12 p$ \OT1/cmr/m/n/12 and $\OML/cmm/m/it/12 q$ \OT1/cmr/m/n/12 in an $\OML/cmm/m/it/12 n$\OT1/cmr/m/n/12 -dimensional Euclidean
- []
-
 [2
 
-] [3]
-Overfull \hbox (0.43506pt too wide) in paragraph at lines 36--37
-[]\OT1/cmr/m/n/12 In real-world applications, categorial features with hundreds or thousands
- []
+]
+Chapter 2.
+[3
 
+]
+Chapter 3.
 
-Overfull \hbox (6.30121pt too wide) in paragraph at lines 39--40
-\OT1/cmr/m/n/12 measure between multiple categorial columns. Formally, if we have two instances
- []
-
-
-Overfull \hbox (6.24472pt too wide) in paragraph at lines 55--56
-[]\OT1/cmr/m/n/12 Assign each instance to their nearest mode using the proposed dissimilarity
- []
-
-[4]
-Overfull \hbox (3.255pt too wide) in paragraph at lines 62--63
-\OML/cmm/m/it/12 A[]; A[]; :::; A[]; A[]; :::; A[]$\OT1/cmr/m/n/12 , where features $\OML/cmm/m/it/12 A[]; :::; A[]$ \OT1/cmr/m/n/12 are continuous and features
- []
-
-[5]
-<gower-dichotomous.png, id=45, 475.7775pt x 204.01219pt>
-File: gower-dichotomous.png Graphic file (type png)
-<use gower-dichotomous.png>
-Package pdftex.def Info: gower-dichotomous.png  used on input line 87.
-(pdftex.def)             Requested size: 398.33858pt x 170.81496pt.
- [6 <./gower-dichotomous.png>]
-Overfull \hbox (0.90877pt too wide) in paragraph at lines 96--105
+Overfull \hbox (0.90877pt too wide) in paragraph at lines 11--20
 \OT1/cmr/m/n/12 In this work we use 8 mixed-type datasets from the UC Irvine Machine Learning
  []
 
 
-Overfull \hbox (6.91925pt too wide) in paragraph at lines 96--105
+Overfull \hbox (6.91925pt too wide) in paragraph at lines 11--20
 \OT1/cmr/m/n/12 from abalones. It has 4177 instances, one categorial feature and seven continuous
  []
 
 
-Overfull \hbox (4.50816pt too wide) in paragraph at lines 106--107
+Overfull \hbox (4.50816pt too wide) in paragraph at lines 21--22
 \OT1/cmr/m/n/12 duplicates by accident, or real duplicates. Categorial columns were standardized
  []
 
-[7]
-Overfull \hbox (8.69124pt too wide) in paragraph at lines 118--118
-[]\OT1/cmr/bx/n/17.28 Comparison of classical Clustering methods 
- []
-
-[8]
-Chapter 2.
-[9
+[4
 
 ]
-Overfull \hbox (1.02255pt too wide) in paragraph at lines 183--184
+Overfull \hbox (11.41414pt too wide) in paragraph at lines 36--38
+\OT1/cmr/m/n/12 The Euclidean distance between two points $\OML/cmm/m/it/12 p$ \OT1/cmr/m/n/12 and $\OML/cmm/m/it/12 q$ \OT1/cmr/m/n/12 in an $\OML/cmm/m/it/12 n$\OT1/cmr/m/n/12 -dimensional Euclidean
+ []
+
+[5]
+Overfull \hbox (0.43506pt too wide) in paragraph at lines 58--59
+[]\OT1/cmr/m/n/12 In real-world applications, categorial features with hundreds or thousands
+ []
+
+
+Overfull \hbox (6.30121pt too wide) in paragraph at lines 61--62
+\OT1/cmr/m/n/12 measure between multiple categorial columns. Formally, if we have two instances
+ []
+
+[6]
+Overfull \hbox (6.24472pt too wide) in paragraph at lines 77--78
+[]\OT1/cmr/m/n/12 Assign each instance to their nearest mode using the proposed dissimilarity
+ []
+
+
+Overfull \hbox (3.255pt too wide) in paragraph at lines 84--85
+\OML/cmm/m/it/12 A[]; A[]; :::; A[]; A[]; :::; A[]$\OT1/cmr/m/n/12 , where features $\OML/cmm/m/it/12 A[]; :::; A[]$ \OT1/cmr/m/n/12 are continuous and features
+ []
+
+[7] [8]
+<gower-dichotomous.png, id=54, 475.7775pt x 204.01219pt>
+File: gower-dichotomous.png Graphic file (type png)
+<use gower-dichotomous.png>
+Package pdftex.def Info: gower-dichotomous.png  used on input line 109.
+(pdftex.def)             Requested size: 398.33858pt x 170.81496pt.
+
+Overfull \hbox (7.09332pt too wide) in paragraph at lines 113--114
+\OT1/cmr/m/n/12 Agglomerative clustering places each instance into its own cluster and recursively
+ []
+
+[9 <./gower-dichotomous.png>]
+Overfull \hbox (1.02255pt too wide) in paragraph at lines 135--136
 []\OT1/cmr/m/n/12 As shown in a recent survey [[]], there are many different activation functions
  []
 
-<activation-functions.png, id=59, 433.62pt x 338.2236pt>
+[10]
+<activation-functions.png, id=63, 433.62pt x 338.2236pt>
 File: activation-functions.png Graphic file (type png)
 <use activation-functions.png>
-Package pdftex.def Info: activation-functions.png  used on input line 203.
+Package pdftex.def Info: activation-functions.png  used on input line 155.
 (pdftex.def)             Requested size: 398.33858pt x 310.72049pt.
-[10] [11 <./activation-functions.png>]
-Chapter 3.
-[12
-
-]
+ [11] [12 <./activation-functions.png>]
 Chapter 4.
 [13
 
 ]
 Chapter 5.
-[14
 
-]
-Chapter 6.
-) (dmmdbstmpl.bbl [15
+Overfull \hbox (8.69124pt too wide) in paragraph at lines 170--170
+[]\OT1/cmr/bx/n/17.28 Comparison of classical Clustering methods 
+ []
 
-] [16
+) (dmmdbstmpl.bbl [14
+
+] [15] [16
 
 ]
 Underfull \hbox (badness 1365) in paragraph at lines 97--101
@@ -440,13 +442,13 @@ L3 programming layer <2023-06-30>
 Here is how much of TeX's memory you used:
  5075 strings out of 477486
  79888 string characters out of 5814204
- 1934244 words of memory out of 5000000
+ 1929244 words of memory out of 5000000
  25975 multiletter control sequences out of 15000+600000
  566007 words of font info for 65 fonts, out of 8000000 for 9000
  0 hyphenation exceptions out of 8191
- 72i,13n,79p,827b,417s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 72i,13n,79p,827b,421s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </home/jaanis/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmbx12.pfb></home/jaanis/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmex10.pfb></home/jaanis/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi12.pfb></home/jaanis/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi6.pfb></home/jaanis/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi8.pfb></home/jaanis/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr12.pfb></home/jaanis/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr17.pfb></home/jaanis/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr6.pfb></home/jaanis/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr8.pfb></home/jaanis/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmsl10.pfb></home/jaanis/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy10.pfb></home/jaanis/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy8.pfb></home/jaanis/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmti12.pfb></home/jaanis/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmtt12.pfb></home/jaanis/.miktex/texmfs/install/fonts/type1/public/amsfonts/symbols/msam10.pfb></home/jaanis/.miktex/texmfs/install/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on dmmdbstmpl.pdf (21 pages, 473265 bytes).
+Output written on dmmdbstmpl.pdf (21 pages, 475276 bytes).
 PDF statistics:
  157 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
