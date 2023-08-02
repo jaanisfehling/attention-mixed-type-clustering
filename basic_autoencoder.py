@@ -48,13 +48,13 @@ class BasicAutoencoder(torch.nn.Module):
 
     def fit(self, 
             dataloader: torch.utils.data.DataLoader,
-            n_epochs: int = 100, 
-            lr: float = 0.001,
+            n_epochs: int, 
+            lr: float,
             optimizer_class: torch.optim.Optimizer = torch.optim.Adam,
             loss_fn: torch.nn.modules.loss._Loss = torch.nn.MSELoss(),
             print_step: int = 25) -> 'BasicAutoencoder':
         
-        optimizer = optimizer_class(lr=lr)
+        optimizer = optimizer_class(params=self.parameters(), lr=lr)
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
         for epoch in range(n_epochs):

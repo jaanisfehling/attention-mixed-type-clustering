@@ -76,7 +76,7 @@ class EmbeddingsAutoencoder(torch.nn.Module):
             loss_fn: torch.nn.modules.loss._Loss = torch.nn.MSELoss(),
             print_step: int = 25) -> 'EmbeddingsAutoencoder':
         
-        optimizer = optimizer_class(lr=lr)
+        optimizer = optimizer_class(params=self.parameters(), lr=lr)
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
         for epoch in range(n_epochs):

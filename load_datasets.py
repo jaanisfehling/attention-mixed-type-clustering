@@ -9,7 +9,7 @@ import torch
 class _GenericPytorchDataset(Dataset):
     def __init__(self, df, cat_cols, cont_cols):
         self.cat = torch.tensor(df[cat_cols].values, dtype=torch.int)
-        self.cat = torch.tensor(df[cont_cols].values, dtype=torch.float)
+        self.cont = torch.tensor(df[cont_cols].values, dtype=torch.float)
     
     def __getitem__(self, idx):
         return self.cat[idx], self.cont[idx]
@@ -32,6 +32,7 @@ class _MixedTypeDataset:
         self.y: np.array = y
         self.cat_cols: List[str] = cat_cols
         self.cont_cols: List[str] = cont_cols
+        self.n_targets = len(np.unique(self.y))
 
         dataset = _GenericPytorchDataset(df, cat_cols, cont_cols)
         self.dataloader: DataLoader = DataLoader(dataset, batch_size=32)
