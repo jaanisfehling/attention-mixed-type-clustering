@@ -136,7 +136,7 @@ As shown in a recent survey \cite{activation_functions}, there are many differen
 $$\text{step function}(x) = 
 \begin{cases}
     1 & x \geq 0\\
-    0 & otherwise
+    0 & x < 0
 \end{cases}
 $$
 In order to stay between 0 and 1, but also utilize all real values inbetween, another activation function that has historicaly been popular is the \textit{logistic sigmoig} function \cite{activation_functions}, that squashes any input in $]0, 1[$:
@@ -147,9 +147,17 @@ The current state-of-the-art activation function, the \textit{Rectified Linear U
 $$\text{ReLU}(x) = max(0, x) = 
 \begin{cases}
     x & x \geq 0\\
-    0 & otherwise
+    0 & x < 0
 \end{cases}
 $$
+One downside of the ReLU activation function is that there will be a substantial amount of dead neurons in the network (neurons with output 0 will not affect the neurons of the next layer). The \textit{Leaky Rectfied Linear Unit} (Leaky ReLU or LReLU) \cite{activation_functions} utilizes negative values aswell, but with a small coefficient, usually set to $0.01$. It is defined as
+$$\text{Leaky ReLU}(x) = 
+\begin{cases}
+    x & x \geq 0\\
+    0.01 \times x & x < 0
+\end{cases}
+$$
+All four activation functions are illustrated in Figure \ref{activation_functions}.
 
 \begin{figure}
 	\includegraphics[width=\linewidth]{activation-functions.png}
