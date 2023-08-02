@@ -1,4 +1,3 @@
-from dataclasses import dataclass
 from typing import List, Tuple
 import pandas as pd
 import numpy as np
@@ -7,7 +6,7 @@ from torch.utils.data import Dataset, DataLoader
 import torch
 
 
-class GenericDataset(Dataset):
+class _GenericPytorchDataset(Dataset):
     def __init__(self, df, cat_cols, cont_cols):
         self.cat = torch.tensor(df[cat_cols].values, dtype=torch.int)
         self.cat = torch.tensor(df[cont_cols].values, dtype=torch.float)
@@ -19,7 +18,7 @@ class GenericDataset(Dataset):
         return self.cat.shape[0]
     
 
-class MixedTypeDataset:
+class _MixedTypeDataset:
 
     def __init__(self,     
         name: str,
@@ -34,7 +33,7 @@ class MixedTypeDataset:
         self.cat_cols: List[str] = cat_cols
         self.cont_cols: List[str] = cont_cols
 
-        dataset = GenericDataset(df, cat_cols, cont_cols)
+        dataset = _GenericPytorchDataset(df, cat_cols, cont_cols)
         self.dataloader: DataLoader = DataLoader(dataset, batch_size=32)
 
         self.embedding_sizes: List[Tuple[int, int]] = [(df[col].nunique(), min(50, df[col].nunique()+1) // 2) for col in df[cat_cols]]
@@ -57,7 +56,7 @@ def load_abalone():
     df[cat_cols] = df[cat_cols].apply(LabelEncoder().fit_transform)
     df[cont_cols] = StandardScaler().fit_transform(df[cont_cols])
 
-    return MixedTypeDataset("Abalone", df, y, cat_cols, cont_cols)
+    return _MixedTypeDataset("Abalone", df, y, cat_cols, cont_cols)
 
 
 def load_auction_verification():
@@ -77,7 +76,7 @@ def load_auction_verification():
     df[cat_cols] = df[cat_cols].apply(LabelEncoder().fit_transform)
     df[cont_cols] = StandardScaler().fit_transform(df[cont_cols])
 
-    return MixedTypeDataset("Auction Verification", df, y, cat_cols, cont_cols)
+    return _MixedTypeDataset("Auction Verification", df, y, cat_cols, cont_cols)
 
 
 def load_bank_marketing(max_rows):
@@ -95,7 +94,7 @@ def load_bank_marketing(max_rows):
     df[cat_cols] = df[cat_cols].apply(LabelEncoder().fit_transform)
     df[cont_cols] = StandardScaler().fit_transform(df[cont_cols])
 
-    return MixedTypeDataset("Bank Marketing", df, y, cat_cols, cont_cols)
+    return _MixedTypeDataset("Bank Marketing", df, y, cat_cols, cont_cols)
 
 
 def load_breast_cancer():
@@ -112,7 +111,7 @@ def load_breast_cancer():
 
     df[cat_cols] = df[cat_cols].apply(LabelEncoder().fit_transform)
 
-    return MixedTypeDataset("Breast Cancer", df, y, cat_cols, cont_cols)
+    return _MixedTypeDataset("Breast Cancer", df, y, cat_cols, cont_cols)
 
 
 def load_census_income(max_rows):
@@ -132,7 +131,7 @@ def load_census_income(max_rows):
     df[cat_cols] = df[cat_cols].apply(LabelEncoder().fit_transform)
     df[cont_cols] = StandardScaler().fit_transform(df[cont_cols])
     
-    return MixedTypeDataset("Census Income", df, y, cat_cols, cont_cols)
+    return _MixedTypeDataset("Census Income", df, y, cat_cols, cont_cols)
 
 
 def load_credit_approval():
@@ -150,7 +149,7 @@ def load_credit_approval():
     df[cat_cols] = df[cat_cols].apply(LabelEncoder().fit_transform)
     df[cont_cols] = StandardScaler().fit_transform(df[cont_cols])
         
-    return MixedTypeDataset("Credit Approval", df, y, cat_cols, cont_cols)
+    return _MixedTypeDataset("Credit Approval", df, y, cat_cols, cont_cols)
 
 def load_heart_disease():
     df = pd.read_csv("datasets/heart_disease.csv").sample(frac=1, random_state=0).reset_index(drop=True)
@@ -166,7 +165,7 @@ def load_heart_disease():
     df[cat_cols] = df[cat_cols].apply(LabelEncoder().fit_transform)
     df[cont_cols] = StandardScaler().fit_transform(df[cont_cols])
     
-    return MixedTypeDataset("Heart Disease", df, y, cat_cols, cont_cols)
+    return _MixedTypeDataset("Heart Disease", df, y, cat_cols, cont_cols)
 
 
 def load_soybean_disease():
@@ -183,17 +182,43 @@ def load_soybean_disease():
 
     df[cat_cols] = df[cat_cols].apply(LabelEncoder().fit_transform)
 
-    return MixedTypeDataset("Soybean Disease", df, y, cat_cols, cont_cols)
+    return _MixedTypeDataset("Soybean Disease", df, y, cat_cols, cont_cols)
 
 
-def load_all_datasets(max_rows) -> List[MixedTypeDataset]:
-    return [
-        load_abalone(),
-        load_auction_verification(),
-        load_bank_marketing(max_rows),
-        load_breast_cancer(),
-        load_census_income(max_rows),
-        load_credit_approval(),
-        load_heart_disease(),
-        load_soybean_disease()
-    ]
+class _AllDatasets:
+    def __init__(self, max_rows=5000):
+        self.abalone = load_abalone()
+        self.auction_verification = load_auction_verification()
+        self.bank_marketing = load_bank_marketing(max_rows)
+        self.breast_cancer = load_breast_cancer()
+        self.census_income = load_census_income(max_rows)
+        self.credit_approval = load_credit_approval()
+        self.heart_disease = load_heart_disease()
+        self.soybean_disease = load_soybean_disease()
+        self.all_datasets = [
+            self.abalone,
+            self.auction_verification,
+            self.bank_marketing,
+            self.breast_cancer,
+            self.census_income,
+            self.credit_approval,
+            self.heart_disease,
+            self.soybean_disease
+        ]
+
+    def __getitem__(self, i):
+        return self.all_datasets[i]
+    
+    def __iter__(self):
+        self.current_i = 0
+        return self
+    
+    def __next__(self):
+        if self.current_i >= len(self.all_datasets):
+            raise StopIteration
+        else:
+            self.current_i += 1
+            return self.all_datasets[self.current_i-1]
+        
+def load_all_datasets(max_rows=5000):
+    return _AllDatasets(max_rows=max_rows)
