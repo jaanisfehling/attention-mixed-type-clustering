@@ -1,11 +1,8 @@
 import math
 from typing import List, Tuple
-import torch.nn.functional as F
-
 import torch
-import numpy as np
-from clustpy.deep._early_stopping import EarlyStopping
 from torch import nn
+import torch.nn.functional as F
 
 
 def scaled_dot_product_attention(q, k, v):
@@ -17,9 +14,9 @@ def scaled_dot_product_attention(q, k, v):
     return values
 
 
-class EmbeddingsAutoencoder(torch.nn.Module):
+class AllToCatAutoencoder(torch.nn.Module):
     def __init__(self, encoder: nn.Sequential, decoder: nn.Sequential, input_dim: int, cat_dim: int,
-                 embedding_sizes: List[Tuple[int, int]], attention: bool = False):
+                 embedding_sizes: List[Tuple[int, int]], attention: bool = False, device: torch.device | str = "cpu"):
         super().__init__()
         self.fitted = False
 
@@ -33,10 +30,13 @@ class EmbeddingsAutoencoder(torch.nn.Module):
         self.decoder = decoder
         self.embeddings = nn.ModuleList([nn.Embedding(num, dim) for num, dim in embedding_sizes])
 
+        self.device = device
+        self.to(self.device)
+
     def encode(self, x_cat: torch.Tensor, x_cont: torch.Tensor) -> torch.Tensor:
         x_cat = torch.cat([e(x_cat[:, i]) for i, e in enumerate(self.embeddings)], 1)
         x_cat = x_cat.to(torch.float)
-        self.last_target = torch.cat((x_cat, x_cont), 1).clone().detach()
+        self.last_target = x_cat.clone().detach()
 
         if self.attention:
             q = self.to_queries(x_cat)
@@ -74,15 +74,14 @@ class EmbeddingsAutoencoder(torch.nn.Module):
             lr: float = 0.001,
             optimizer_class: torch.optim.Optimizer = torch.optim.Adam,
             loss_fn: torch.nn.modules.loss._Loss = torch.nn.MSELoss(),
-            print_step: int = 25) -> 'EmbeddingsAutoencoder':
+            print_step: int = 25):
         
         optimizer = optimizer_class(params=self.parameters(), lr=lr)
-        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
         for epoch in range(n_epochs):
             self.train()
             for batch in dataloader:
-                loss = self.loss(batch, loss_fn, device)
+                loss = self.loss(batch, loss_fn, self.device)
                 optimizer.zero_grad()
                 loss.backward()
                 optimizer.step()
