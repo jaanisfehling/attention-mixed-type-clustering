@@ -14,7 +14,7 @@ def scaled_dot_product_attention(q, k, v):
     return values
 
 
-class Attention(nn.Module):
+class Attention(torch.nn.Module):
     def __init__(self, dim, heads=8):
         super().__init__()
 
@@ -31,7 +31,7 @@ class Attention(nn.Module):
         return x
        
 
-class Transformer(nn.Module):
+class Transformer(torch.nn.Module):
     def __init__(self, dim, heads=8):
         super().__init__()
 
@@ -59,7 +59,8 @@ class TransformerAutoencoder(torch.nn.Module):
         self.fitted = False
 
         self.embeddings = nn.ModuleList([nn.Embedding(num, dim) for num, dim in embedding_sizes])
-        self.transformers = nn.Sequential(Transformer(cat_dim, heads=4) for _ in range(depth))
+        transformer_list = [Transformer(cat_dim, heads=4) for _ in range(depth)]
+        self.transformers = nn.Sequential(*transformer_list)
         self.encoder = encoder
         self.decoder = decoder
 
