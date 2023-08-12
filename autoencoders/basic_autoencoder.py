@@ -34,6 +34,7 @@ class BasicAutoencoder(torch.nn.Module):
 
     def encode(self, x_cat: torch.Tensor, x_cont: torch.Tensor) -> torch.Tensor:
         x_cat = x_cat.to(torch.float)
+        self.last_target = torch.cat((x_cat, x_cont), 1)
 
         if self.attention:
             q = self.to_queries(x_cat)

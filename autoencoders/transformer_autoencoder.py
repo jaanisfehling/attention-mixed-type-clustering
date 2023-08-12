@@ -21,7 +21,6 @@ class Attention(torch.nn.Module):
         self.head_dim = head_dim
         inner_dim = head_dim * heads
         
-
         self.to_keys = nn.Linear(dim, inner_dim, bias=False)
         self.to_queries = nn.Linear(dim, inner_dim, bias=False)
         self.to_values = nn.Linear(dim, inner_dim, bias=False)
