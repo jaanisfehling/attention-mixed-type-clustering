@@ -15,27 +15,54 @@ def scaled_dot_product_attention(q, k, v):
 
 
 class Attention(torch.nn.Module):
-    def __init__(self, dim, heads=8):
+    def __init__(self, dim, heads=8, head_dim=8):
         super().__init__()
+        self.heads = heads
+        self.head_dim = head_dim
+        inner_dim = head_dim * heads
+        
 
-        self.to_keys = nn.Linear(dim, dim, bias=False)
-        self.to_queries = nn.Linear(dim, dim, bias=False)
-        self.to_values = nn.Linear(dim, dim, bias=False)
-        self.to_out = nn.Linear(dim, dim, bias=False)
+        self.to_keys = nn.Linear(dim, inner_dim, bias=False)
+        self.to_queries = nn.Linear(dim, inner_dim, bias=False)
+        self.to_values = nn.Linear(dim, inner_dim, bias=False)
+        self.to_out = nn.Linear(inner_dim, dim)
 
     def forward(self, x):
+        # => x = b x d
+
         q = self.to_queries(x)
         k = self.to_keys(x)
         v = self.to_values(x)
+        # => q/k/v = b x (h h_d)
+
+        b = q.size()[0]
+        q = q.view(b, self.heads, self.head_dim)
+        k = k.view(b, self.heads, self.head_dim)
+        v = v.view(b, self.heads, self.head_dim)
+        # => q/k/v = b x h x h_d
+
+        q = q.view(b * self.heads, self.head_dim)
+        k = k.view(b * self.heads, self.head_dim)
+        v = v.view(b * self.heads, self.head_dim)
+        # => q/k/v = (b h) x h_d
+
         x = scaled_dot_product_attention(q, k, v)
+
+        x = x.view(b, self.heads, self.head_dim)
+        # => x = b x h x h_d
+
+        x = x.view(b, self.heads * self.head_dim)
+        # => x = b x (h h_d)
+
+        x = self.to_out(x)
         return x
        
 
 class Transformer(torch.nn.Module):
-    def __init__(self, dim, heads=8):
+    def __init__(self, dim):
         super().__init__()
 
-        self.attention = Attention(dim, heads)
+        self.attention = Attention(dim)
         self.norm1 = nn.LayerNorm(dim)
         self.feed_forward = nn.Sequential(
             nn.Linear(dim, 4 * dim),
@@ -59,7 +86,7 @@ class TransformerAutoencoder(torch.nn.Module):
         self.fitted = False
 
         self.embeddings = nn.ModuleList([nn.Embedding(num, dim) for num, dim in embedding_sizes])
-        transformer_list = [Transformer(cat_dim, heads=4) for _ in range(depth)]
+        transformer_list = [Transformer(cat_dim) for _ in range(depth)]
         self.transformers = nn.Sequential(*transformer_list)
         self.encoder = encoder
         self.decoder = decoder
