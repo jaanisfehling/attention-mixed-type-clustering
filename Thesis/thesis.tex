@@ -8,23 +8,36 @@ Clustering is an unsupervised machine learning method that groups similar observ
 
 \section{Methodology}
 
+\subsection{Datasets}
+
 In this work we use 8 mixed-type datasets from the UC Irvine Machine Learning Repository \cite{uci_ml_rpo}.
 The Abalone dataset \cite{abalone} contains physical measurements from abalones. It has 4177 instances, one categorial feature and seven continuous features.
 The Auction Verification dataset \cite{auction_verification} has 2043 instances that contain verification runs of multi-round auctions. It is composed of six categorial and one continuous feauture.
-The Bank Marketing dataset \cite{bank_marketing} is related to a direct marketing campaign of a portuguese banking institution. It has 49732 instances. The "age", "day" and "month" features were removed, which results in eight categorial and five continuous features.
+The Bank Marketing dataset \cite{bank_marketing} is related to a direct marketing campaign of a portuguese banking institution. It has 49732 instances, but was downsampled to 5000 random instances. The "age", "day" and "month" features were removed, which results in eight categorial and five continuous features.
 The Breast Cancer dataset \cite{breast_cancer} contains 699 instances and 9 categorial features.
-The Census Income dataset \cite{census_income} has a total of 48842 instances. It is composed of eight categorial and 6 continuous features.
+The Census Income dataset \cite{census_income} has a total of 48842 instances. It was downsampled to 5000 random instances. It is composed of eight categorial and 6 continuous features.
 The Credit Approval dataset \cite{credit_approval} contains information of applications for credit cards. It has 690 instances, nine categorial features and six continuous features.
 The Heart Disease dataset \cite{heart_disease} is composed of four datasets and has 920 instances in total. It has seven categorial features and six continuous features.
 The Soybean (Large) Dataset \cite{abalone} consists of 683 instances from soybeans with a certain disease and has 35 categorial features.
 
-All instances containing missing values were removed. Duplicate instances were explicitly not removed, since there is no information available if they are duplicates by accident, or real duplicates. Categorial columns were standardized by removing the mean and scaling to unit variance, using the scikit-learn Python API \cite{scikit_learn}. Formally, the standardized score $z$ of a sample $x$ from a feature is calculated as
+All instances containing missing values were removed. Duplicate instances were explicitly not removed, since there is no information available if they are duplicates by accident, or real duplicates. Categorial columns were standardized by removing the mean and scaling to unit variance, using the scikit-learn Python Library \cite{scikit_learn}. Formally, the standardized score $z$ of a sample $x$ from a feature is calculated as
 $$z = \frac{(x-\mu)}{\sigma}$$
 where $\mu$ is the mean of the samples $x_1, ...,x_N$ from a feature of length $N$, defined as
 $$\mu = \frac{1}{N} \sum^{N}_{i=1} x_i$$
 and $\sigma$ is the standard deviation of the samples of a feature, defined as
-$$\sigma = \sqrt{\frac{1}{N} \sum^{N}_{i=1}(x_i - \mu)^2}$$
-The datasets were shuffled. For all random operations, a random state of integer value 0 was used to ensure reproducibility.
+$$\sigma = \sqrt{\frac{1}{N} \sum^{N}_{i=1}(x_i - \mu)^2}.$$
+The datasets were shuffled. For all random operations, a random state of integer value 0 was used to ensure reproducibility. When using the PyTorch Python Libary \cite{pytorch} for implementing neural networks, a flag was set to only use deterministic algorithms.
+
+\subsection{Evaluation}
+
+The clustering results were each evaluated with two measurents, \textit{Accuracy} and \textit{Normalized Mutual Information}. Accuracy is defined as 
+$$\frac{\text{Instances predicted correctly}}{\text{Total number of instances}}.$$
+Since any clustering algorithm will assign arbitrary class labels to each instance that might not allign with the ground truth class labels, we map the predicted label classes to ground truth label classes in a way maximize the number of correctly predicted instances. This is an inversion of the \textit{Linear Assignment Problem}, we use an implementation provided by the Scipy Python Library \cite{scipy} to solve this problem and find the optimal solution. 
+
+As shown in Chapter \ref{Experiments}, some clustering methods falsely assign almost all instances to one target class. Because a part of the datasets we used are heavily imbalanced, this leads to unjustified high accuracy scores. Therefore, we use another metric, Normalized Mutual Information. It is based on \textit{Mutual Information}, which, for the ground truth labels $U$ and the predicted labels $V$ (switching both variables will not change the outcome) is defined as
+$$MI(U,V) = \sum^{|U|}_{i=1}\sum^{|V|}_{j=1} \frac{|U_i \cap V_j|}{N} log\frac{N|U_i \cap V_j|}{|U_i||V_j|}$$
+where $|U_i|$ is the number of instances assigned to cluster $U_i$ and $|V_i|$ is the number of instances assigned to cluster $V_i$ \cite{scikit_learn}. Normalized Mutual Information is Mutual Information normalized by the mean of the Entropies of $U$ and $Y$ \cite{scikit_learn}:
+$$NMI(U,V) = \frac{MI(U,V)}{\frac{1}{2}(H(U)H(V))}.$$
 
 \section{Traditional Methods for Mixed-Type data}
 
@@ -33,22 +46,22 @@ The datasets were shuffled. For all random operations, a random state of integer
 The most well known distance-based clustering method is k-means \cite{kmeans}. The goal is defined as follows: Suppose we have a finite set of $n$ instances $S=\{p_1, p_2, ..., p_n\} \in \R^m$ for a dataset with $m$ features, the target of k-means is to find optimal centroids $B=\{b_1, b_2, ..., b_k\} \subseteq \R^m$ for a given $k (\leq n) \in \N$ that minimize the sum of the squared Euclidean distance of each point in $S$ to its nearest centroid. Formally
 $$\sum_{i=1}^n  d(p_i, B)$$
 has to be minimized, where $d$ is the Euclidean distance from a point $p_i \in S$ to the nearest centroid in $B$ \cite{kmeans_np_hard}:
-$$d(p_i, B) = min_{1 \leq j \leq k} d(p_i, b_j)$$
+$$d(p_i, B) = min_{1 \leq j \leq k} d(p_i, b_j).$$
 The Euclidean distance between two points $p$ and $q$ in an $n$-dimensional Euclidean space is defined as 
-$$d(p, q) = || p - q || = \sqrt{(p_1 - q_1)^2 + (p_2 - q_2)^2 + ... + (p_n - q_n)^2}$$
+$$d(p, q) = || p - q || = \sqrt{(p_1 - q_1)^2 + (p_2 - q_2)^2 + ... + (p_n - q_n)^2}.$$
 Finding the optimal centroids is a NP-hard problem, even for $d=2$, as shown by Mahajan et al. \cite{kmeans_np_hard}. The most common algorithm used for the k-means problem is a iterative refinement technique proposed by Lloyd \cite{kmeans_lloyd}. It is defined as follows
 \begin{enumerate} 
 	\item Randomly set $k$ initial cluster centroids $b_1^{(1)}, ..., b_k^{(1)}$.
 	\item Assign each obseration $p_i$ to the nearest centroid using squared Euclidean distance. This splits our instances into $S$ into $k$ sets $\{S_1^{(t)}, ..., S_k^{(t)}\}$.
 	\item Recalculate the optimal position of each centroid using the mean distance to each instance assigned to the centroid: 
-$$b_i^{(t+1)} = \frac{1}{|S_i^{(t)}|} \sum_{p_j \in S_i^{(t)}} p_j$$
+$$b_i^{(t+1)} = \frac{1}{|S_i^{(t)}|} \sum_{p_j \in S_i^{(t)}} p_j.$$
 	\item Repeat steps 2. and 3. until the centroid assignments no longer change.
 \end{enumerate}
 
 \subsection{k-modes} \label{k-modes}
 
 In many real-world scenarios, besides continuous, numerical data, \textit{categorial} data exists. While Euclidean distance or other distance measures work well with continuous data, categorial data is different. Suppose we have categories $\{A, B, C\}$ of a given feature, we would encode them into numeric values to allow for computation of a distance measure:
-$$\{A, B, C\} \equiv \{1, 2, 3\}$$
+$$\{A, B, C\} \equiv \{1, 2, 3\}.$$
 While $A$ and $C$ can share the same semantic similarity as $A$ and $B$, numerically category $A$ and Category $C$ are now $|1-3| = 2$ apart, while Category $A$ and $B$ are only $|1-2|=1$ apart. During clustering, this could lead to instances being assigned to centroids based on a wrong distance assumption.
 
 A possible solution is to use \textit{one-hot encoding}, also known as \textit{dummy coding} in classical statistics. One-hot encoding turns a discrete feature containing $k$ mutually exclusive categories into a vector $x$ of length $k$, in which only one of the elements $x_k$ equals 1 and all remaining elements equal 0 \cite{pattern_recognition_machine_learning}. For an instance $B$ of a feature having $k=3$ separate categories $\{A, B, C\}$, the one-hot vector $x$ would be represented by $x = (0, 1, 0)^{\intercal}$.
@@ -65,12 +78,12 @@ $$\delta (x_j, y_j) =
 \begin{cases}
     0 & (x_j = y_j)\\
     1 & (x_j \neq y_j)
-\end{cases}
+\end{cases}.
 $$
 If we have a finite set of $n$ instances $S=\{p_1, p_2, ..., p_n\}$ for a dataset with $m$ categorial features, the goal of \textit{k-modes} \cite{kmodes} is to find optimal \textit{modes} $B=\{b_1, b_2, ..., b_k\}$ for a given $k (\leq n) \in \N$ that minimize
 $$\sum_{i=1}^n  d_1(p_i, B)$$
 where
-$$d_1(p_i, B) = min_{1 \leq l \leq k} \sum^m_{j=1} \delta (p_{i,j}, b_{l,j})$$
+$$d_1(p_i, B) = min_{1 \leq l \leq k} \sum^m_{j=1} \delta (p_{i,j}, b_{l,j}).$$
 Similar to k-means, we can use an iterative algorithm for efficient computation \cite{kmodes}:
 \begin{enumerate} 
 	\item Randonly choose $k$ instances from the dataset as initial modes for the clusters.
@@ -82,13 +95,13 @@ Similar to k-means, we can use an iterative algorithm for efficient computation 
 \subsection{k-prototypes}
 
 As proposed by Huang \cite{kmodes}, it is straightforward to combine the k-means and k-modes algorithms into the \textit{k-prototypes} algorithm, which can be used to cluster \textit{mixed-type} data (consisting of numerical, continuous and categorial features). The dissimilarity between two instances $X$ and $Y$ with features $A^r_1, A^r_2, ..., A^r_s, A_{s+1}^c, ..., A^c_m$, where features $A^r_1, ..., A^r_s$ are continuous and features $A_{s+1}^c, ..., A^c_m$ are categorial, is defined as
-$$d_2(X,Y) = \sum^s_{j=1}(x_j - y_j)^2 + \gamma \sum^m_{j=s+1}\delta(x_j, y_j)$$
+$$d_2(X,Y) = \sum^s_{j=1}(x_j - y_j)^2 + \gamma \sum^m_{j=s+1}\delta(x_j, y_j).$$
 The first part of the equation is the Euclidean distance as used in k-means, while the second part is taken from the k-modes algorithm. Huang \cite{kmodes} states: "The weight $\gamma$ is used to avoid favouring either type of attribute".
 
 Again, we need to find $k$ optimal centroids $B=\{b_1, b_2, ..., b_k\}$ and therefore have to minimize
 $$\sum_{i=1}^n  d_2(p_i, B)$$
 where
-$$d_2(p_i, B) = min_{1 \leq l \leq k} \sum^s_{j=1}(p_{i,j} - b_{l,j})^2 + \gamma \sum^m_{j=s+1}\delta(p_{i,j}, b_{l,j})$$
+$$d_2(p_i, B) = min_{1 \leq l \leq k} \sum^s_{j=1}(p_{i,j} - b_{l,j})^2 + \gamma \sum^m_{j=s+1}\delta(p_{i,j}, b_{l,j}).$$
 We can minimize both distance measures at the same time since they are nonnegative. Therefore, we can use the same algorithm as defined in \ref{k-modes}. \cite{kmodes}
 
 \subsection{Gower distance}
@@ -96,7 +109,7 @@ We can minimize both distance measures at the same time since they are nonnegati
 \textit{Gower distance} \cite{gower} is a general similarity measurement between instances containing mixed-type features. It is defined as follows: When comparing instances $x_i$ and $x_j$, for each feature $k$ of $p$ total features, we calculate a score $s_{ijk} \in [0,1]$. The score will be close to 1 for two instances $x_{ik}$ and $x_{jk}$ of a feature $k$ if they are similar, and close to 0 they are not similar.
 Gower distance is also computable between instances with missing values, therefore a quantity $\delta_{ijk}$ is calculated, which is equal to 1, when feature $k$ can be compared across the two instances $x_i$ and $x_j$, and 0 otherwise (illustrated in Figure \ref{gower_dichotomous}).
 Gower distance then is the average of the known score
-$$S_{ij} = \frac{\sum^p_{k=1}s_{ijk}\delta_{ijk}}{\sum^p_{k=1}\delta_{ijk}}$$
+$$S_{ij} = \frac{\sum^p_{k=1}s_{ijk}\delta_{ijk}}{\sum^p_{k=1}\delta_{ijk}}.$$
 The Score $s_{ijk}$ is calculated differently according to the type of feature \cite{gower}:
 \begin{enumerate}
 	\item For \textit{dichotomous} (when a value is either present or absent) features, the score $s_{ijk}$ is 1 when the value is present in both features and 0 otherwise, as shown in Figure \ref{gower_dichotomous}.
@@ -137,10 +150,10 @@ $$\text{step function}(x) =
 \begin{cases}
     1 & x \geq 0\\
     0 & x < 0
-\end{cases}
+\end{cases}.
 $$
 In order to stay between 0 and 1, but also utilize all real values inbetween, another activation function that has historicaly been popular is the \textit{logistic sigmoig} function \cite{activation_functions}, that squashes any input in $]0, 1[$:
-$$\text{logistic sigmoid}(x) = \frac{1}{1 + e^{-x}}$$
+$$\text{logistic sigmoid}(x) = \frac{1}{1 + e^{-x}}.$$
 Because the ouputs are in a range close to 0, it is prone to the \textit{vanishing gradient problem}. In the vanishing gradient problem, a gradient that is very close to 0 leads to almost no update in the weights of the network during training. Moreover, using a exponential value naturally leads to a greater computational complexity. \cite{activation_functions}
 
 The current state-of-the-art activation function, the \textit{Rectified Linear Unit} (ReLU) \cite{activation_functions}, is not limited by the above disadvantages. It is simple and computationally performant. It is defined as the identity for positive values and as 0 for negative values:
@@ -148,14 +161,14 @@ $$\text{ReLU}(x) = max(0, x) =
 \begin{cases}
     x & x \geq 0\\
     0 & x < 0
-\end{cases}
+\end{cases}.
 $$
 One downside of the ReLU activation function is that there will be a substantial amount of dead neurons in the network (neurons with output 0 will not affect the neurons of the next layer). The \textit{Leaky Rectfied Linear Unit} (Leaky ReLU or LReLU) \cite{activation_functions} utilizes negative values aswell, but with a small coefficient, usually set to $0.01$. It is defined as
 $$\text{Leaky ReLU}(x) = 
 \begin{cases}
     x & x \geq 0\\
     0.01 \times x & x < 0
-\end{cases}
+\end{cases}.
 $$
 All four activation functions are illustrated in Figure \ref{activation_functions}.
 
@@ -172,26 +185,29 @@ All four activation functions are illustrated in Figure \ref{activation_function
 \subsection{Attention}
 \subsection{Deep clustering methods}
 
-\chapter{Attention in mixed-type clustering}
+\chapter{Attention in Mixed-Type Clustering}
 
-\chapter{Experiments}
-\section{Comparison of classical Clustering methods}
+\chapter{Experiments} \label{Experiments}
+
+\section{Comparison of classical Clustering Methods}
+
+Our first comparison is between classical clustering methods for clustering mixed-type data. We evaluated k-means, k-means with one-hot encoding, k-prototypes and gower distance with agglomerative clustering, using average linkage (average distance between each instance of two sets).
+
 
 \begin{figure}
 \begin{center}
 \scalebox{0.8}{
 \begin{tabular}{|c|c|c|c|c|}
 \hline
-&Naive k-means&k-means one-hot&k-prototypes&Gower distance\\\hline
-Abalone&0.171795&\bf{0.173982}&0.171639&0.161416 \\ \hline
-Auction Verification&\bf{0.016172}&0.007087&0.007667&0.006170 \\ \hline
-Bank Marketing&0.019781&\bf{0.026060}&0.019522&0.001334 \\ \hline
-Breast Cancer&\bf{0.746818}&0.736310&0.592480&0.553707 \\ \hline
-Census Income&0.108029&\bf{0.184979}&0.141737&0.004259 \\ \hline
-Credit Approval&\bf{0.313076}&0.171038&0.116579&0.003465 \\ \hline
-Heart Disease&\bf{0.204577}&0.164486&0.189264&0.140792 \\ \hline
-Soybean Disease&0.672229&\bf{0.710164}&0.567635&0.669526 \\
-\hline
+&k-means&k-means one-hot&k-prototypes&Gower distance\\\hline
+Abalone&0.1718&\bf{0.1740}&0.1716&0.1614\\ \hline
+Auction Verification&\bf{0.0162}&0.0071&0.0077&0.0062\\ \hline
+Bank Marketing&0.0198&\bf{0.0261}&0.0195&0.0013\\ \hline
+Breast Cancer&\bf{0.7468}&0.7363&0.5925&0.5537\\ \hline
+Census Income&0.1080&\bf{0.1850}&0.1417&0.0043\\ \hline
+Credit Approval&\bf{0.3131}&0.1710&0.1166&0.0035\\ \hline
+Heart Disease&\bf{0.2046}&0.1645&0.1893&0.1408\\ \hline
+Soybean Disease&0.6722&\bf{0.7102}&0.5676&0.6695\\ \hline
 \end{tabular}
 }
 \end{center}
@@ -204,22 +220,70 @@ Soybean Disease&0.672229&\bf{0.710164}&0.567635&0.669526 \\
 \scalebox{0.8}{
 \begin{tabular}{|c|c|c|c|c|}
 \hline
-&Naive k-means&k-means one-hot&k-prototypes&Gower distance\\\hline
-Abalone&0.135265&0.131434&0.134307&\bf{0.195356} \\ \hline
-Auction Verification&0.664709&0.576114&0.580519&\bf{0.800783} \\ \hline
-Bank Marketing&0.779600&0.786600&0.787200&\bf{0.884200} \\ \hline
-Breast Cancer&\bf{0.960469}&0.950220&0.915081&0.900439 \\ \hline
-Census Income&0.608200&0.697600&0.625600&\bf{0.768400} \\ \hline
-Credit Approval&\bf{0.808576}&0.705972&0.666156&0.548239 \\ \hline
-Heart Disease&0.334448&0.321070&0.424749&\bf{0.565217} \\ \hline
-Soybean Disease&0.576512&\bf{0.599644}&0.471530&0.501779 \\
-\hline
+&k-means&k-means one-hot&k-prototypes&Gower distance\\ \hline
+Abalone&0.1353&0.1314&0.1343&\bf{0.1954}\\ \hline
+Auction Verification&0.6647&0.5761&0.5805&\bf{0.8008}\\ \hline
+Bank Marketing&0.7796&0.7866&0.7872&\bf{0.8842}\\ \hline
+Breast Cancer&\bf{0.9605}&0.9502&0.9151&0.9004\\ \hline
+Census Income&0.6082&0.6976&0.6256&\bf{0.7684}\\ \hline
+Credit Approval&\bf{0.8086}&0.7060&0.6662&0.5482\\ \hline
+Heart Disease&0.3344&0.3211&0.4247&\bf{0.5652}\\ \hline
+Soybean Disease&0.5765&\bf{0.5996}&0.4715&0.501\\ \hline
 \end{tabular}
 }
 \end{center}
-\caption{Comparsion of Cluster Accuracy of various classical methods on clustering mixed-type datasets.}
+\caption{Comparsion of Accuracy of various classical methods on clustering mixed-type datasets.}
 \label{classical_comparison_acc}
 \end{figure}
 
+\begin{figure}
+	\includegraphics[width=\linewidth]{class-imbalance.png}
+	\caption{Number of instances of each target class of each dataset used.}
+	\label{class_imbalance}
+\end{figure}
 
-\section{Conclusion}
+
+\begin{figure}
+\begin{center}
+\scalebox{0.8}{
+\begin{tabular}{|p{37mm}|p{27mm}|p{27mm}|p{27mm}|p{27mm}|}
+\hline
+&No Column Embedding AE&All Columns AE&Categorial Columns AE&All Columns to Categroial Columns AE\\ \hline
+Abalone&0.1560&0.1588&\bf{0.1854}&0.1709\\ \hline
+Auction Verification&0.0003&0.0162&0.0045&\bf{0.0174}\\ \hline
+Bank Marketing&0.0015&0.0168&\bf{0.0182}&0.0003\\ \hline
+Breast Cancer&\bf{0.7602}&0.7203&0.7180&0.6309\\ \hline
+Census Income&0.0000&0.0048&\bf{0.0460}&0.0025\\ \hline
+Credit Approval&0.0072&\bf{0.0111}&0.0004&0.0034\\ \hline
+Heart Disease&0.1852&0.1581&\bf{0.1858}&0.0989\\ \hline
+Soybean Disease&0.4793&\bf{0.5955}&0.4261&0.4041\\ \hline
+\end{tabular}
+}
+\end{center}
+\caption{Comparsion of Normalized Mutual Information of various Autoencoder architectures combined with k-means on clustering mixed-type datasets.}
+\label{ae_architecture_comparison_nmi}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\scalebox{0.8}{
+\begin{tabular}{|p{37mm}|p{27mm}|p{27mm}|p{27mm}|p{27mm}|}
+\hline
+&No Column Embedding AE&All Columns AE&Categorial Columns AE&All Columns to Categroial Columns AE\\ \hline
+Abalone&0.1245&0.1439&0.1448&\bf{0.1513}\\ \hline
+Auction Verification&0.5507&0.6074&0.6466&\bf{0.6676}\\ \hline
+Bank Marketing&0.6000&0.5918&0.5968&\bf{0.6684}\\ \hline
+Breast Cancer&\bf{0.9634}&0.9531&0.9546&0.9283\\ \hline
+Census Income&\bf{0.7198}&0.5004&0.6930&0.6102\\ \hline
+Credit Approval&\bf{0.5544}&0.5115&0.5360&0.5421\\ \hline
+Heart Disease&0.4080&0.3579&\bf{0.4114}&0.2943\\ \hline
+Soybean Disease&0.3879&\bf{0.4466}&0.3577&0.3665\\ \hline
+\end{tabular}
+}
+\end{center}
+\caption{Comparsion of Accuracy of various Autoencoder architectures combined with k-means on clustering mixed-type datasets.}
+\label{ae_architecture_comparison_acc}
+\end{figure}
+
+
+\chapter{Conclusion}

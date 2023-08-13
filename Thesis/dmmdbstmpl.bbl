@@ -99,6 +99,12 @@ Elaheh Ordoni, Jakob Bach, Ann-Katrin Fleck, and Jakob Bach.
 \newblock UCI Machine Learning Repository, 2022.
 \newblock {DOI}: https://doi.org/10.24432/C52K6N.
 
+\bibitem{pytorch}
+Adam Paszke, Sam Gross, Soumith Chintala, Gregory Chanan, Edward Yang, Zachary
+  DeVito, Zeming Lin, Alban Desmaison, Luca Antiga, and Adam Lerer.
+\newblock Automatic differentiation in pytorch.
+\newblock 2017.
+
 \bibitem{scikit_learn}
 F.~Pedregosa, G.~Varoquaux, A.~Gramfort, V.~Michel, B.~Thirion, O.~Grisel,
   M.~Blondel, P.~Prettenhofer, R.~Weiss, V.~Dubourg, J.~Vanderplas, A.~Passos,
@@ -129,6 +135,19 @@ D.~E. Rumelhart, G.~E. Hinton, and R.~J. Williams.
 \newblock {\em Learning Internal Representations by Error Propagation}, page
   318–362.
 \newblock MIT Press, Cambridge, MA, USA, 1986.
+
+\bibitem{scipy}
+Pauli Virtanen, Ralf Gommers, Travis~E. Oliphant, Matt Haberland, Tyler Reddy,
+  David Cournapeau, Evgeni Burovski, Pearu Peterson, Warren Weckesser, Jonathan
+  Bright, St{\'e}fan~J. {van der Walt}, Matthew Brett, Joshua Wilson, K.~Jarrod
+  Millman, Nikolay Mayorov, Andrew R.~J. Nelson, Eric Jones, Robert Kern, Eric
+  Larson, C~J Carey, {\.I}lhan Polat, Yu~Feng, Eric~W. Moore, Jake
+  {VanderPlas}, Denis Laxalde, Josef Perktold, Robert Cimrman, Ian Henriksen,
+  E.~A. Quintero, Charles~R. Harris, Anne~M. Archibald, Ant{\^o}nio~H. Ribeiro,
+  Fabian Pedregosa, Paul {van Mulbregt}, and {SciPy 1.0 Contributors}.
+\newblock {{SciPy} 1.0: Fundamental Algorithms for Scientific Computing in
+  Python}.
+\newblock {\em Nature Methods}, 17:261--272, 2020.
 
 \bibitem{breast_cancer}
 William Wolberg.

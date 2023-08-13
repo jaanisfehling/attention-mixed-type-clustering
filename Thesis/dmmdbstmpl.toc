@@ -3,19 +3,21 @@
 \contentsline {chapter}{\numberline {2}Related Work}{3}{}%
 \contentsline {chapter}{\numberline {3}Foundation}{4}{}%
 \contentsline {section}{\numberline {3.1}Methodology}{4}{}%
-\contentsline {section}{\numberline {3.2}Traditional Methods for Mixed-Type data}{5}{}%
-\contentsline {subsection}{\numberline {3.2.1}k-means}{5}{}%
-\contentsline {subsection}{\numberline {3.2.2}k-modes}{6}{}%
+\contentsline {subsection}{\numberline {3.1.1}Datasets}{4}{}%
+\contentsline {subsection}{\numberline {3.1.2}Evaluation}{5}{}%
+\contentsline {section}{\numberline {3.2}Traditional Methods for Mixed-Type data}{6}{}%
+\contentsline {subsection}{\numberline {3.2.1}k-means}{6}{}%
+\contentsline {subsection}{\numberline {3.2.2}k-modes}{7}{}%
 \contentsline {subsection}{\numberline {3.2.3}k-prototypes}{8}{}%
-\contentsline {subsection}{\numberline {3.2.4}Gower distance}{8}{}%
-\contentsline {section}{\numberline {3.3}Deep Clustering}{9}{}%
-\contentsline {subsection}{\numberline {3.3.1}Neural Networks}{9}{}%
-\contentsline {subsection}{\numberline {3.3.2}Autoencoders}{11}{}%
-\contentsline {subsection}{\numberline {3.3.3}Deep clustering methods}{11}{}%
-\contentsline {subsection}{\numberline {3.3.4}Attention}{11}{}%
-\contentsline {subsection}{\numberline {3.3.5}Comparison of deep clustering methods}{11}{}%
-\contentsline {chapter}{\numberline {4}Attention in mixed-type clustering}{13}{}%
-\contentsline {chapter}{\numberline {5}Experiments}{14}{}%
-\contentsline {section}{\numberline {5.1}Comparison of classical Clustering methods}{14}{}%
-\contentsline {section}{\numberline {5.2}Conclusion}{14}{}%
-\contentsline {chapter}{Bibliography}{16}{}%
+\contentsline {subsection}{\numberline {3.2.4}Gower distance}{9}{}%
+\contentsline {section}{\numberline {3.3}Deep Clustering}{10}{}%
+\contentsline {subsection}{\numberline {3.3.1}Neural Networks}{10}{}%
+\contentsline {subsection}{\numberline {3.3.2}Autoencoders}{12}{}%
+\contentsline {subsection}{\numberline {3.3.3}Deep clustering methods}{12}{}%
+\contentsline {subsection}{\numberline {3.3.4}Attention}{12}{}%
+\contentsline {subsection}{\numberline {3.3.5}Deep clustering methods}{12}{}%
+\contentsline {chapter}{\numberline {4}Attention in Mixed-Type Clustering}{14}{}%
+\contentsline {chapter}{\numberline {5}Experiments}{15}{}%
+\contentsline {section}{\numberline {5.1}Comparison of classical Clustering Methods}{15}{}%
+\contentsline {chapter}{\numberline {6}Conclusion}{18}{}%
+\contentsline {chapter}{Bibliography}{19}{}%
