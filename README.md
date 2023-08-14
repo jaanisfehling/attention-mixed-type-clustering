@@ -19,4 +19,5 @@
 - DCN
 - DEC
 - IDEC
-- DipDEC
+- DipEncoder
+- DipDeck (?)
