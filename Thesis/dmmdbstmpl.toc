@@ -5,7 +5,7 @@
 \contentsline {section}{\numberline {3.1}Methodology}{4}{}%
 \contentsline {subsection}{\numberline {3.1.1}Datasets}{4}{}%
 \contentsline {subsection}{\numberline {3.1.2}Evaluation}{5}{}%
-\contentsline {section}{\numberline {3.2}Traditional Methods for Mixed-Type data}{6}{}%
+\contentsline {section}{\numberline {3.2}Classical Methods for clustering Mixed-Type data}{6}{}%
 \contentsline {subsection}{\numberline {3.2.1}k-means}{6}{}%
 \contentsline {subsection}{\numberline {3.2.2}k-modes}{7}{}%
 \contentsline {subsection}{\numberline {3.2.3}k-prototypes}{8}{}%
@@ -13,11 +13,9 @@
 \contentsline {section}{\numberline {3.3}Deep Clustering}{10}{}%
 \contentsline {subsection}{\numberline {3.3.1}Neural Networks}{10}{}%
 \contentsline {subsection}{\numberline {3.3.2}Autoencoders}{12}{}%
-\contentsline {subsection}{\numberline {3.3.3}Deep clustering methods}{12}{}%
-\contentsline {subsection}{\numberline {3.3.4}Attention}{12}{}%
-\contentsline {subsection}{\numberline {3.3.5}Deep clustering methods}{12}{}%
 \contentsline {chapter}{\numberline {4}Attention in Mixed-Type Clustering}{14}{}%
-\contentsline {chapter}{\numberline {5}Experiments}{15}{}%
-\contentsline {section}{\numberline {5.1}Comparison of classical Clustering Methods}{15}{}%
-\contentsline {chapter}{\numberline {6}Conclusion}{18}{}%
-\contentsline {chapter}{Bibliography}{19}{}%
+\contentsline {section}{\numberline {4.1}Autoencoder and k-means}{14}{}%
+\contentsline {chapter}{\numberline {5}Experiments}{16}{}%
+\contentsline {section}{\numberline {5.1}Comparison of classical Clustering Methods}{16}{}%
+\contentsline {chapter}{\numberline {6}Conclusion}{19}{}%
+\contentsline {chapter}{Bibliography}{20}{}%

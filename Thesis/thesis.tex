@@ -39,7 +39,7 @@ $$MI(U,V) = \sum^{|U|}_{i=1}\sum^{|V|}_{j=1} \frac{|U_i \cap V_j|}{N} log\frac{N
 where $|U_i|$ is the number of instances assigned to cluster $U_i$ and $|V_i|$ is the number of instances assigned to cluster $V_i$ \cite{scikit_learn}. Normalized Mutual Information is Mutual Information normalized by the mean of the Entropies of $U$ and $Y$ \cite{scikit_learn}:
 $$NMI(U,V) = \frac{MI(U,V)}{\frac{1}{2}(H(U)H(V))}.$$
 
-\section{Traditional Methods for Mixed-Type data}
+\section{Classical Methods for clustering Mixed-Type data} \label{Classical Methods for clustering Mixed-Type data}
 
 \subsection{k-means}
 
@@ -178,14 +178,16 @@ All four activation functions are illustrated in Figure \ref{activation_function
 	\label{activation_functions}
 \end{figure}
 
-
-
 \subsection{Autoencoders}
-\subsection{Deep clustering methods}
-\subsection{Attention}
-\subsection{Deep clustering methods}
 
 \chapter{Attention in Mixed-Type Clustering}
+
+\section{Autoencoder and k-means}
+
+It is difficult to formulate statistical distance measures for comparing two values of a categorial feature. Categorial features are irregular in nature, they can be binary, ordinal, non-ordinal or composed of many semantically different classes. This makes it hard to cluster a mixed-type datasets with classical clustering methods. As described by Huang \cite{kmodes} and also explained in Section \ref{k-modes}, one-hot encoding is suboptimal for the use in clustering tasks. The proposed solution by Huang, k-prototypes \cite{kmodes}, does not beat k-means or k-means with one-hot encoding on any tested dataset, as shown in Chapter \ref{Experiments}. Gower distance shows great accuracy results on all datasets and manages to beat the other methods on five out of eight datasets. As further illustrated in Chapter \ref{Experiments}, the accuracy evaluation metric is highly problematic, since some datasets are heavily imbalanced. In fact, the datasets on which gower distance achieves the best accuracy results are greatly imbalanced. This means the agglomerative clustering used with gower distance falsely assigns almost all instances to one target class. When looking at Normalized Mutual Information (NMI), gower distance with agglomerative clustering does not beat k-means or k-means with one-hot encoding on any dataset. This leaves us with naive k-means intended for only numerical, continuous data and k-means with one-hot encoding, which is a inefficient, suboptimal encoding.
+
+Therefore, instead of using statistical distance measure to compare instances with categorial and continuous features, we use an autoencoder neural network to learn a dense representation of the data. The clustering architecture we build upon is a multi-stage process. We first train the autoencoder on our dataset indepently of the clustering process. The training step is repeating many times, in our experiments we train the network a hundred times (hundred epochs). After the initial training step, we can feed the dataset into the encoder part of our trained autoencoder to get the dense representation. We can perform k-means clustering over this representation to get the final cluster labels.
+
 
 % attention erklären + visualieren (ca. 3 seiten)
 % Positional Embeddings
