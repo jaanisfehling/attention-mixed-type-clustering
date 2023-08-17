@@ -1,3 +1,4 @@
+import math
 from typing import List, Tuple
 import pandas as pd
 import numpy as np
@@ -37,7 +38,7 @@ class _MixedTypeDataset:
         dataset = _GenericPytorchDataset(df, cat_cols, cont_cols)
         self.dataloader: DataLoader = DataLoader(dataset, batch_size=32)
 
-        self.embedding_sizes: List[Tuple[int, int]] = [(df[col].nunique(), min(50, df[col].nunique()+1) // 2) for col in df[cat_cols]]
+        self.embedding_sizes: List[Tuple[int, int]] = [(df[col].nunique(), min(50, math.ceil(df[col].nunique() / 2))) for col in df[cat_cols]]
         self.cat_dim: int = sum(d for _, d in self.embedding_sizes)
         self.cont_dim: int = len(cont_cols)
         self.input_dim: int = self.cat_dim + self.cont_dim
