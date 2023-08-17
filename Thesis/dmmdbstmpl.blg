@@ -6,45 +6,45 @@ The style file: plain.bst
 Reallocating 'name_of_file' (item size: 1) to 11 items.
 Database file #1: dmmdbstmpl.bib
 Warning--empty journal in pytorch
-You've used 25 entries,
+You've used 27 entries,
             2118 wiz_defined-function locations,
-            647 strings with 8742 characters,
-and the built_in function-call counts, 9192 in all, are:
-= -- 852
-> -- 597
-< -- 4
-+ -- 241
-- -- 212
-* -- 664
-:= -- 1590
-add.period$ -- 85
-call.type$ -- 25
-change.case$ -- 176
+            659 strings with 9223 characters,
+and the built_in function-call counts, 10171 in all, are:
+= -- 950
+> -- 658
+< -- 5
++ -- 265
+- -- 234
+* -- 723
+:= -- 1734
+add.period$ -- 91
+call.type$ -- 27
+change.case$ -- 193
 chr.to.int$ -- 0
-cite$ -- 26
-duplicate$ -- 276
-empty$ -- 619
-format.name$ -- 212
-if$ -- 1868
+cite$ -- 28
+duplicate$ -- 320
+empty$ -- 679
+format.name$ -- 234
+if$ -- 2089
 int.to.chr$ -- 0
-int.to.str$ -- 25
-missing$ -- 20
-newline$ -- 137
-num.names$ -- 52
-pop$ -- 210
+int.to.str$ -- 27
+missing$ -- 21
+newline$ -- 146
+num.names$ -- 56
+pop$ -- 233
 preamble$ -- 1
-purify$ -- 155
+purify$ -- 170
 quote$ -- 0
-skip$ -- 202
+skip$ -- 249
 stack$ -- 0
-substring$ -- 410
-swap$ -- 54
-text.length$ -- 4
+substring$ -- 442
+swap$ -- 79
+text.length$ -- 5
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 92
+type$ -- 100
 warning$ -- 1
-while$ -- 68
-width$ -- 27
-write$ -- 287
+while$ -- 73
+width$ -- 29
+write$ -- 309
 (There was 1 warning)

@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex dmmdbstmpl"] 1692277184 "dmmdbstmpl.aux" "dmmdbstmpl.bbl" "dmmdbstmpl" 1692277284 0
-  "./dmmdbstmpl.bib" 1692128407 10698 b880cf1435444682e1bf2eb6f6d134d9 ""
+["bibtex dmmdbstmpl"] 1692281500 "dmmdbstmpl.aux" "dmmdbstmpl.bbl" "dmmdbstmpl" 1692281564 0
+  "./dmmdbstmpl.bib" 1692280763 11531 eaa12ec881e560334d5045b21fa2ed36 ""
   "C:/Users/jaani/AppData/Local/Programs/MiKTeX/bibtex/bst/bibtex/plain.bst" 1291868336 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
-  "dmmdbstmpl.aux" 1692277283 6780 cbbb1d3bbb8a26c3ea668e7b01e1c4c5 "pdflatex"
+  "dmmdbstmpl.aux" 1692281563 7108 1c5d26167a725ebbc2666217cca65c02 "pdflatex"
   (generated)
   "dmmdbstmpl.bbl"
   "dmmdbstmpl.blg"
   (rewritten before read)
-["pdflatex"] 1692277282 "c:/Users/jaani/repos/attention-mixed-type-clustering/Thesis/dmmdbstmpl.tex" "dmmdbstmpl.pdf" "dmmdbstmpl" 1692277284 0
+["pdflatex"] 1692281562 "c:/Users/jaani/repos/attention-mixed-type-clustering/Thesis/dmmdbstmpl.tex" "dmmdbstmpl.pdf" "dmmdbstmpl" 1692281564 0
   "C:/Users/jaani/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1690033679 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/jaani/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1689686788 23178960 7f427dbd69d71170e526b1e0b3ba77e9 ""
   "C:/Users/jaani/AppData/Local/Programs/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1233955448 1004 54797486969f23fa377b128694d548df ""
@@ -93,14 +93,14 @@
   "activation-functions.png" 1690976326 31493 5bc5c5f2699916bdc57c86d94ef31dc6 ""
   "c:/Users/jaani/repos/attention-mixed-type-clustering/Thesis/dmmdbstmpl.tex" 1690111226 1576 16b3134ecd0229612aba9be7393e9594 ""
   "class-imbalance.png" 1691946696 37893 16d786982dd27700147c81dcaaebd4ac ""
-  "dmmdbstmpl.aux" 1692277283 6780 cbbb1d3bbb8a26c3ea668e7b01e1c4c5 "pdflatex"
-  "dmmdbstmpl.bbl" 1692277185 6111 0be650518bf1de4dd5f8878c5eab5e14 "bibtex dmmdbstmpl"
+  "dmmdbstmpl.aux" 1692281563 7108 1c5d26167a725ebbc2666217cca65c02 "pdflatex"
+  "dmmdbstmpl.bbl" 1692281500 6679 b257ba34b5ca5bd606508ebd82e7a8e9 "bibtex dmmdbstmpl"
   "dmmdbstmpl.sty" 1688460090 6211 8422bc03d468a89224b2ce55cf4263c1 ""
   "dmmdbstmpl.tex" 1690111226 1576 16b3134ecd0229612aba9be7393e9594 ""
-  "dmmdbstmpl.toc" 1692277283 1355 22e69c6afac826b30897349666a8c092 "pdflatex"
+  "dmmdbstmpl.toc" 1692281563 1481 e553c8edc08c6d006ca9ca4eba5f35bd "pdflatex"
   "dmmheader.png" 1688460090 190949 79029d255774da3304b06441b12fd5d9 ""
   "gower-dichotomous.png" 1690111378 41539 6417000d69adc41920d9accdb4709e2e ""
-  "thesis.tex" 1692277282 26963 83dd05d72e3e42099ef4a612d162cc58 ""
+  "thesis.tex" 1692281564 27276 429e1dad190fd1bdbe81eb6774bf956b ""
   (generated)
   "dmmdbstmpl.aux"
   "dmmdbstmpl.log"

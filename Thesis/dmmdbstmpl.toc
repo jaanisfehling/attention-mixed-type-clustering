@@ -15,6 +15,8 @@
 \contentsline {subsection}{\numberline {3.3.2}Autoencoders}{12}{}%
 \contentsline {chapter}{\numberline {4}Attention in Mixed-Type Clustering}{14}{}%
 \contentsline {section}{\numberline {4.1}Autoencoder and k-means}{14}{}%
+\contentsline {section}{\numberline {4.2}Column Embeddings}{15}{}%
+\contentsline {section}{\numberline {4.3}Attention}{15}{}%
 \contentsline {chapter}{\numberline {5}Experiments}{16}{}%
 \contentsline {section}{\numberline {5.1}Comparison of classical Clustering Methods}{16}{}%
 \contentsline {chapter}{\numberline {6}Conclusion}{19}{}%

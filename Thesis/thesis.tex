@@ -188,10 +188,15 @@ It is difficult to formulate statistical distance measures for comparing two val
 
 Therefore, instead of using statistical distance measure to compare instances with categorial and continuous features, we use an autoencoder neural network to learn a dense representation of the data. The clustering architecture we build upon is a multi-stage process. We first train the autoencoder on our dataset indepently of the clustering process. The training step is repeating many times, in our experiments we train the network a hundred times (hundred epochs). After the initial training step, we can feed the dataset into the encoder part of our trained autoencoder to get the dense representation. We can perform k-means clustering over this representation to get the final cluster labels.
 
+\section{Column Embeddings}
+
 Even when using neural networks, there is still the problem of representing categorial values, especially non-ordinal values, as explained in depth in Section \ref{k-modes}. Therefore, we use a learnable \textit{embedding} layer for categorial values. The resulting embedded tensor of the embedding layer for a categorial feature is a meaningful representation that is more dense that a one-hot encoded feature. The embedding layer is composed of a weight tensor $e_i$ for each categorial feauture $i$. The weight tensor $e_i$  has the following dimensionality: $|i| \times s_i$, where $|i|$ is the number of unique classes in categorial feature $i$ and $s_i$ is the corresponding embedding dimension. We calculate the embedding dimension $s_i$ of feature $i$ as
 $$s_i = min(50, \lceil \frac{|i|}{2} \rceil).$$
 We then encode the classes of each categorial feature with integer values, going from 0 onwards. The integer values serve as indices for the correponding weight tensor of our embedding layer. Passing a value $j$ of a feature $i$ in the embedding layer returns the one-dimensional tensor at index $j$ of the weight tensor $e_j$, which is of dimension $1 \times s_i$. The resulting tensors of the embedding layer are concatenated into a tensor of size $1 \times \sum^N_{i=1}s_i$, which includes the embeddings of all categorial features. This tensor will then be concatenated with the tensor of the continuous features, before being passed into the first linear layer of the encoder block.
 
+\section{Attention}
+
+\textit{Attention} is a machine learning mechanism for sequence processing, originally used in machine translation by Bahdanau et al. \cite{bahdanau} and extended into the \textit{Transformer} architecture by Vaswani et al. \cite{attention_is_all_you_need}.
 
 
 % attention erklären + visualieren (ca. 3 seiten)

@@ -5,6 +5,11 @@ Amir Ahmad and Shehroz~S. Khan.
 \newblock Survey of state-of-the-art mixed data clustering algorithms.
 \newblock {\em {IEEE} Access}, 7:31883--31902, 2019.
 
+\bibitem{bahdanau}
+Dzmitry Bahdanau, Kyunghyun Cho, and Yoshua Bengio.
+\newblock Neural machine translation by jointly learning to align and
+  translate, 2016.
+
 \bibitem{neural_networks_pattern_recognition}
 Christopher~M. Bishop.
 \newblock {\em Neural Networks for Pattern Recognition}.
@@ -135,6 +140,14 @@ D.~E. Rumelhart, G.~E. Hinton, and R.~J. Williams.
 \newblock {\em Learning Internal Representations by Error Propagation}, page
   318–362.
 \newblock MIT Press, Cambridge, MA, USA, 1986.
+
+\bibitem{attention_is_all_you_need}
+Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones,
+  Aidan~N. Gomez, \L{}ukasz Kaiser, and Illia Polosukhin.
+\newblock Attention is all you need.
+\newblock In {\em Proceedings of the 31st International Conference on Neural
+  Information Processing Systems}, NIPS'17, page 6000–6010, Red Hook, NY,
+  USA, 2017. Curran Associates Inc.
 
 \bibitem{scipy}
 Pauli Virtanen, Ralf Gommers, Travis~E. Oliphant, Matt Haberland, Tyler Reddy,
