@@ -6,69 +6,75 @@ import torch.nn.functional as F
 
 
 def scaled_dot_product_attention(q, k, v):
-    attn_weights = torch.matmul(q, k.transpose(-2, -1))
+    attn_weights = torch.bmm(q, k.transpose(-2, -1))
     vector_dim = q.size()[-1]
     attn_weights = attn_weights / math.sqrt(vector_dim)
     attention = F.softmax(attn_weights, dim=-1)
-    values = torch.matmul(attention, v)
+    values = torch.bmm(attention, v)
     return values
 
 
 class Attention(torch.nn.Module):
-    def __init__(self, dim, heads=8, head_dim=8):
+    def __init__(self, emb_dim=32, heads=8, head_dim=4):
         super().__init__()
         self.heads = heads
         self.head_dim = head_dim
         inner_dim = head_dim * heads
         
-        self.to_keys = nn.Linear(dim, inner_dim, bias=False)
-        self.to_queries = nn.Linear(dim, inner_dim, bias=False)
-        self.to_values = nn.Linear(dim, inner_dim, bias=False)
-        self.to_out = nn.Linear(inner_dim, dim)
+        self.to_keys = nn.Linear(emb_dim, inner_dim, bias=False)
+        self.to_queries = nn.Linear(emb_dim, inner_dim, bias=False)
+        self.to_values = nn.Linear(emb_dim, inner_dim, bias=False)
+        self.to_out = nn.Linear(inner_dim, emb_dim)
 
     def forward(self, x):
-        # => x = b x d
-
         q = self.to_queries(x)
         k = self.to_keys(x)
         v = self.to_values(x)
-        # => q/k/v = b x (h h_d)
+        # => q/k/v = b x n_emb x (h h_d)
 
-        b = q.size()[0]
-        q = q.view(b, self.heads, self.head_dim)
-        k = k.view(b, self.heads, self.head_dim)
-        v = v.view(b, self.heads, self.head_dim)
-        # => q/k/v = b x h x h_d
+        b, n_emb, emb_dim = q.size()
+        q = q.view(b, n_emb, self.heads, self.head_dim)
+        k = k.view(b, n_emb, self.heads, self.head_dim)
+        v = v.view(b, n_emb, self.heads, self.head_dim)
+        # => q/k/v = b x n_emb x h x h_d
 
-        q = q.view(b * self.heads, self.head_dim)
-        k = k.view(b * self.heads, self.head_dim)
-        v = v.view(b * self.heads, self.head_dim)
-        # => q/k/v = (b h) x h_d
+        q = q.transpose(1, 2).contiguous()
+        k = k.transpose(1, 2).contiguous()
+        v = v.transpose(1, 2).contiguous()
+        # => q/k/v = b x h x n_emb x h_d
+
+        q = q.view(b * self.heads, n_emb, self.head_dim)
+        k = k.view(b * self.heads, n_emb, self.head_dim)
+        v = v.view(b * self.heads, n_emb, self.head_dim)
+        # => q/k/v = (b h) x n_emb x h_d
 
         x = scaled_dot_product_attention(q, k, v)
 
-        x = x.view(b, self.heads, self.head_dim)
-        # => x = b x h x h_d
+        x = x.view(b, self.heads, n_emb, self.head_dim)
+        # => x = b x h x n_emb x h_d
 
-        x = x.view(b, self.heads * self.head_dim)
-        # => x = b x (h h_d)
+        x = x.transpose(1, 2).contiguous()
+        # => x = b x n_emb x h x h_d
+
+        x = x.view(b, n_emb, self.heads * self.head_dim)
+        # => x = b x n_emb x (h h_d)
 
         x = self.to_out(x)
         return x
-       
+
 
 class Transformer(torch.nn.Module):
-    def __init__(self, dim):
+    def __init__(self, emb_dim=32):
         super().__init__()
 
-        self.attention = Attention(dim)
-        self.norm1 = nn.LayerNorm(dim)
+        self.attention = Attention(emb_dim)
+        self.norm1 = nn.LayerNorm(emb_dim)
         self.feed_forward = nn.Sequential(
-            nn.Linear(dim, 4 * dim),
+            nn.Linear(emb_dim, 4 * emb_dim),
             nn.ReLU(),
-            nn.Linear(4 * dim, dim)
+            nn.Linear(4 * emb_dim, emb_dim)
         )
-        self.norm2 = nn.LayerNorm(dim)
+        self.norm2 = nn.LayerNorm(emb_dim)
 
     def forward(self, x):
         attended = self.attention(x)
@@ -79,13 +85,15 @@ class Transformer(torch.nn.Module):
 
 
 class TransformerAutoencoder(torch.nn.Module):
-    def __init__(self, encoder: nn.Sequential, decoder: nn.Sequential, input_dim: int, cat_dim: int,
-                 embedding_sizes: List[Tuple[int, int]], depth: int = 8, device: torch.device | str = "cpu"):
+    def __init__(self, encoder: nn.Sequential, decoder: nn.Sequential, 
+                 embedding_sizes: List[Tuple[int, int]], emb_dim: int = 32, depth: int = 6, device: torch.device | str = "cpu"):
         super().__init__()
         self.fitted = False
 
-        self.embeddings = nn.ModuleList([nn.Embedding(num, dim) for num, dim in embedding_sizes])
-        transformer_list = [Transformer(cat_dim) for _ in range(depth)]
+        self.embeddings = nn.ModuleList([nn.Embedding(num, emb_dim - (emb_dim // 8)) for num, dim in embedding_sizes])
+        self.shared_embedding = nn.Parameter(torch.empty(len(embedding_sizes), emb_dim // 8).uniform_(-1, 1))
+
+        transformer_list = [Transformer(emb_dim) for _ in range(depth)]
         self.transformers = nn.Sequential(*transformer_list)
         self.encoder = encoder
         self.decoder = decoder
@@ -94,15 +102,22 @@ class TransformerAutoencoder(torch.nn.Module):
         self.to(self.device)
 
     def encode(self, x_cat: torch.Tensor, x_cont: torch.Tensor) -> torch.Tensor:
-        x_cat = torch.cat([e(x_cat[:, i]) for i, e in enumerate(self.embeddings)], 1)
-        x_cat = x_cat.to(torch.float)
-        self.last_target = torch.cat((x_cat, x_cont), 1).clone().detach()
+        x_cat = torch.stack([e(x_cat[:, i]) for i, e in enumerate(self.embeddings)], 1)
 
+        # stretch shared embedding to batch size
+        stretched_shared_embedding = self.shared_embedding.unsqueeze(0).repeat(x_cat.size()[0], 1, 1)
+        
+        # add the shared embedding to embedding dimension
+        x_cat = torch.cat((x_cat, stretched_shared_embedding), 2)
+
+        self.last_target = torch.cat((x_cat.flatten(start_dim=1), x_cont), 1).clone().detach()
+    
         x_cat = self.transformers(x_cat)
 
-        x = torch.cat((x_cat, x_cont), 1)
+        x = torch.cat((x_cat.flatten(start_dim=1), x_cont), 1)
         x = self.encoder(x)
         return x
+
 
     def decode(self, encoded: torch.Tensor) -> torch.Tensor:
         return self.decoder(encoded)

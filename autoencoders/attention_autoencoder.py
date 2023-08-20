@@ -6,24 +6,26 @@ import torch.nn.functional as F
 
 
 def scaled_dot_product_attention(q, k, v):
-    attn_weights = torch.matmul(q, k.transpose(-2, -1))
+    attn_weights = torch.bmm(q, k.transpose(-2, -1))
     vector_dim = q.size()[-1]
     attn_weights = attn_weights / math.sqrt(vector_dim)
     attention = F.softmax(attn_weights, dim=-1)
-    values = torch.matmul(attention, v)
+    values = torch.bmm(attention, v)
     return values
 
 
 class AttentionAutoencoder(torch.nn.Module):
-    def __init__(self, encoder: nn.Sequential, decoder: nn.Sequential, cat_len: int,
-                 embedding_sizes: List[Tuple[int, int]], device: torch.device | str = "cpu"):
+    def __init__(self, encoder: nn.Sequential, decoder: nn.Sequential,
+                 embedding_sizes: List[Tuple[int, int]], emb_dim: int = 32, device: torch.device | str = "cpu"):
         super().__init__()
         self.fitted = False
 
-        self.embeddings = nn.ModuleList([nn.Embedding(num, 4) for num, dim in embedding_sizes])
-        self.to_keys = nn.Linear(4, 4, bias=False)
-        self.to_queries = nn.Linear(4, 4, bias=False)
-        self.to_values = nn.Linear(4, 4, bias=False)
+        self.embeddings = nn.ModuleList([nn.Embedding(num, emb_dim - (emb_dim // 8)) for num, dim in embedding_sizes])
+        self.shared_embedding = nn.Parameter(torch.empty(len(embedding_sizes), emb_dim // 8).uniform_(-1, 1))
+
+        self.to_keys = nn.Linear(emb_dim, emb_dim, bias=False)
+        self.to_queries = nn.Linear(emb_dim, emb_dim, bias=False)
+        self.to_values = nn.Linear(emb_dim, emb_dim, bias=False)
 
         self.encoder = encoder
         self.decoder = decoder
@@ -34,6 +36,13 @@ class AttentionAutoencoder(torch.nn.Module):
 
     def encode(self, x_cat: torch.Tensor, x_cont: torch.Tensor) -> torch.Tensor:
         x_cat = torch.stack([e(x_cat[:, i]) for i, e in enumerate(self.embeddings)], 1)
+
+        # stretch shared embedding to batch size
+        stretched_shared_embedding = self.shared_embedding.unsqueeze(0).repeat(x_cat.size()[0], 1, 1)
+        
+        # add the shared embedding to embedding dimension
+        x_cat = torch.cat((x_cat, stretched_shared_embedding), 2)
+
         self.last_target = torch.cat((x_cat.flatten(start_dim=1), x_cont), 1).clone().detach()
     
         q = self.to_queries(x_cat)

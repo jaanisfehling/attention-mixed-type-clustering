@@ -39,9 +39,6 @@ class _MixedTypeDataset:
         self.dataloader: DataLoader = DataLoader(dataset, batch_size=32)
 
         self.embedding_sizes: List[Tuple[int, int]] = [(df[col].nunique(), min(50, math.ceil(df[col].nunique() / 2))) for col in df[cat_cols]]
-        self.cat_dim: int = sum(d for _, d in self.embedding_sizes)
-        self.cont_dim: int = len(cont_cols)
-        self.input_dim: int = self.cat_dim + self.cont_dim
 
 
 def load_abalone():
