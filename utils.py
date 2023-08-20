@@ -39,8 +39,8 @@ def build_autoencoder(input_dim: int, output_dim: int, layer_per_block: int, act
     encoder_layer_list[-1] = hidden_dim
     encoder = build_block(encoder_layer_list, activation_fn, output_fn, bias, batch_norm, dropout)
 
-    decoder_layer_list = list(range(hidden_dim, output_dim + 1, max(1, round((output_dim - hidden_dim) / layer_per_block))))
-    decoder_layer_list[-1] = output_dim
-    decoder = build_block(decoder_layer_list, activation_fn, output_fn, bias, batch_norm, dropout)
+    decoder_layer_list = list(range(output_dim, hidden_dim - 1, min(-1, -round((output_dim - hidden_dim) / layer_per_block))))
+    decoder_layer_list[-1] = hidden_dim
+    decoder = build_block(decoder_layer_list[::-1], activation_fn, output_fn, bias, batch_norm, dropout)
 
     return encoder, decoder
