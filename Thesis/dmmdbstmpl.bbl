@@ -29,6 +29,10 @@ J.~C. Gower.
 \newblock A general coefficient of similarity and some of its properties.
 \newblock {\em Biometrics}, 27(4):857--871, 1971.
 
+\bibitem{tab_transformer}
+Xin Huang, Ashish Khetan, Milan Cvitkovic, and Zohar Karnin.
+\newblock Tabtransformer: Tabular data modeling using contextual embeddings, 2020.
+
 \bibitem{kmodes}
 Zhexue Huang.
 \newblock Extensions to the k-means algorithm for clustering large data sets with categorical values.
@@ -99,7 +103,7 @@ Elaheh Ordoni, Jakob Bach, Ann-Katrin Fleck, and Jakob Bach.
 \bibitem{pytorch}
 Adam Paszke, Sam Gross, Soumith Chintala, Gregory Chanan, Edward Yang, Zachary DeVito, Zeming Lin, Alban Desmaison, Luca Antiga, and Adam Lerer.
 \newblock Automatic differentiation in pytorch.
-\newblock 2017.
+\newblock In {\em NIPS-W}, 2017.
 
 \bibitem{scikit_learn}
 F.~Pedregosa, G.~Varoquaux, A.~Gramfort, V.~Michel, B.~Thirion, O.~Grisel, M.~Blondel, P.~Prettenhofer, R.~Weiss, V.~Dubourg, J.~Vanderplas, A.~Passos, D.~Cournapeau, M.~Brucher, M.~Perrot, and E.~Duchesnay.

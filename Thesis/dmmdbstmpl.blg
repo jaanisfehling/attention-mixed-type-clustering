@@ -3,46 +3,44 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: dmmdbstmpl.aux
 The style file: plain.bst
 Database file #1: dmmdbstmpl.bib
-Warning--empty journal in pytorch
-You've used 27 entries,
+You've used 28 entries,
             2118 wiz_defined-function locations,
-            659 strings with 9223 characters,
-and the built_in function-call counts, 10171 in all, are:
-= -- 950
-> -- 658
+            663 strings with 9373 characters,
+and the built_in function-call counts, 10499 in all, are:
+= -- 975
+> -- 681
 < -- 5
-+ -- 265
-- -- 234
-* -- 723
-:= -- 1734
-add.period$ -- 91
-call.type$ -- 27
-change.case$ -- 193
++ -- 274
+- -- 242
+* -- 743
+:= -- 1785
+add.period$ -- 93
+call.type$ -- 28
+change.case$ -- 200
 chr.to.int$ -- 0
 cite$ -- 28
-duplicate$ -- 320
-empty$ -- 679
-format.name$ -- 234
-if$ -- 2089
+duplicate$ -- 331
+empty$ -- 712
+format.name$ -- 242
+if$ -- 2161
 int.to.chr$ -- 0
-int.to.str$ -- 27
+int.to.str$ -- 28
 missing$ -- 21
-newline$ -- 146
-num.names$ -- 56
-pop$ -- 233
+newline$ -- 150
+num.names$ -- 58
+pop$ -- 247
 preamble$ -- 1
-purify$ -- 170
+purify$ -- 176
 quote$ -- 0
-skip$ -- 249
+skip$ -- 257
 stack$ -- 0
-substring$ -- 442
-swap$ -- 79
+substring$ -- 447
+swap$ -- 82
 text.length$ -- 5
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 100
-warning$ -- 1
-while$ -- 73
-width$ -- 29
-write$ -- 309
-(There was 1 warning)
+type$ -- 104
+warning$ -- 0
+while$ -- 75
+width$ -- 30
+write$ -- 318
