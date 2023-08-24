@@ -17,8 +17,8 @@
 \contentsline {section}{\numberline {4.1}Autoencoder and k-means}{14}{}%
 \contentsline {section}{\numberline {4.2}Column Embeddings}{15}{}%
 \contentsline {section}{\numberline {4.3}Attention}{15}{}%
-\contentsline {section}{\numberline {4.4}Transformer}{18}{}%
-\contentsline {chapter}{\numberline {5}Experiments}{20}{}%
-\contentsline {section}{\numberline {5.1}Comparison of classical Clustering Methods}{20}{}%
-\contentsline {chapter}{\numberline {6}Conclusion}{23}{}%
-\contentsline {chapter}{Bibliography}{24}{}%
+\contentsline {section}{\numberline {4.4}Transformer}{19}{}%
+\contentsline {chapter}{\numberline {5}Experiments}{21}{}%
+\contentsline {section}{\numberline {5.1}Comparison of classical Clustering Methods}{21}{}%
+\contentsline {chapter}{\numberline {6}Conclusion}{25}{}%
+\contentsline {chapter}{Bibliography}{26}{}%

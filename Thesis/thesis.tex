@@ -206,6 +206,12 @@ We then encode the classes of each categorial feature with integer values, going
 
 Self-attention operates with three input tensors: \textit{queries}, \textit{keys} and \textit{values}. Each of them is the input tensor, but used for different parts of the attention process. We add three independent linear projection to the input tensor to learn different representations for queries, keys and values. We apply attention to the categorial features after they were embedded in the embedding layer and then projected into queries, keys and values. The resulting vectors for each categorial feature are called \textit{contextual embeddings}, since they contain information on the context of the input sample. We concatenate these embedding vectors lengthwise, before passing them into the first linear layer of the encoder, as illustrated in Figure \ref{attention_architecture}.
 
+\begin{figure}
+	\includegraphics[width=0.9\linewidth]{attention_illustrated.png}
+	\caption{Illustration of the attention mechanism, inspired by Bloem \cite{transformers_from_scratch}. q1, k1, v1 represent the vectors at index 1 of Queries $Q$, Keys $K$ and Values $V$ respectively. The softmax function over the weights is not illustrated.}
+	\label{attention_illustrated}
+\end{figure}
+
 Queries, keys and values are a sequence of $n$ vectors that have $d$ dimensions, resulting in dimensionality $n \times d$. In our case, the input dimension and therefore also the queries $Q$, keys $K$ and values $V$ are one-dimensional vectors, since the embedded vectors of each categorial features are concatenated along the first axis, as further illustrated in the previous section. We therefore cannot use our previously created input tensor. Because we calculate an individual embedding dimension (with a formula defined in the previous section) for each categorial feature, we cannot concatenate the vectors row-wise, since they all differ in length. Instead, we have to use a fixed embedding dimension $d$ for every categorial feature. Then, we can create tensors $Q$, $K$ and $V$ with dimension $n \times d$ each, where $n$ is the number of categorial features. The value 32 was chosen for embedding dimension $d$.
 
 Because Attention is a mechanism that calculates values that combine multiple features, we need to be able to differentiate between the classes of different features, since we have a separate learnable embedding for each feature. A solution in the domain of text translation proposed by Vaswani et al \cite{attention_is_all_you_need} is to add a positional encoding to each embedding in order to indicate the position of the word in the sentence. This is not suitable for tabular data, since the features do not have a particular order. We instead use a solution proposed by Huang \cite{tab_transformer}, which uses a shared embedding across all categorial features. The goal of the shared embedding is to learn dissimilar representations for different classes of separate features in order to distinguish them. The shared embedding is a learnable tensor of size $n \times \frac{d}{8}$, that is concatenated to our input tensor in the first dimension. The fixed embedding dimension $d$ is therefore subtracted by 8, which results in a input tensor of categorial features of size $n \times d$. 
@@ -264,7 +270,7 @@ Soybean Disease&0.6722&\bf{0.7102}&0.5676&0.6695\\ \hline
 \end{tabular}
 }
 \end{center}
-\caption{Comparsion of Normalized Mutual Information of various classical methods on clustering mixed-type datasets.}
+\caption{Comparison of Normalized Mutual Information of various classical methods on clustering mixed-type datasets.}
 \label{classical_comparison_nmi}
 \end{figure}
 
@@ -285,7 +291,7 @@ Soybean Disease&0.5765&\bf{0.5996}&0.4715&0.501\\ \hline
 \end{tabular}
 }
 \end{center}
-\caption{Comparsion of Accuracy of various classical methods on clustering mixed-type datasets.}
+\caption{Comparison of Accuracy of various classical methods on clustering mixed-type datasets.}
 \label{classical_comparison_acc}
 \end{figure}
 
@@ -302,18 +308,18 @@ Soybean Disease&0.5765&\bf{0.5996}&0.4715&0.501\\ \hline
 \begin{tabular}{|p{37mm}|p{27mm}|p{27mm}|p{27mm}|p{27mm}|}
 \hline
 &No Column Embedding AE&All Columns AE&Categorial Columns AE&All Columns to Categroial Columns AE\\ \hline
-Abalone&0.1560&0.1588&\bf{0.1854}&0.1709\\ \hline
-Auction Verification&0.0003&0.0162&0.0045&\bf{0.0174}\\ \hline
-Bank Marketing&0.0015&0.0168&\bf{0.0182}&0.0003\\ \hline
-Breast Cancer&\bf{0.7602}&0.7203&0.7180&0.6309\\ \hline
-Census Income&0.0000&0.0048&\bf{0.0460}&0.0025\\ \hline
-Credit Approval&0.0072&\bf{0.0111}&0.0004&0.0034\\ \hline
-Heart Disease&0.1852&0.1581&\bf{0.1858}&0.0989\\ \hline
-Soybean Disease&0.4793&\bf{0.5955}&0.4261&0.4041\\ \hline
+Abalone&0.1559&0.1695&0.1684&\bf{0.1709}\\ \hline
+Auction Verification&0.0066&0.0012&0.0002&\bf{0.0413}\\ \hline
+Bank Marketing&0.0015&0.0039&\bf{0.0197}&0.0000\\ \hline
+Breast Cancer&\bf{0.7602}&0.7178&0.2878&0.6927\\ \hline
+Census Income&0.0003&0.0241&\bf{0.1024}&0.0042\\ \hline
+Credit Approval&0.0031&\bf{0.0097}&0.0008&0.0028\\ \hline
+Heart Disease&0.1389&0.1663&\bf{0.1848}&0.0947\\ \hline
+Soybean Disease&0.4974&0.4836&0.4169&\bf{0.5426}\\ \hline
 \end{tabular}
 }
 \end{center}
-\caption{Comparsion of Normalized Mutual Information of various Autoencoder architectures combined with k-means on clustering mixed-type datasets.}
+\caption{Comparison of Normalized Mutual Information of various Autoencoder architectures combined with k-means on clustering mixed-type datasets.}
 \label{ae_architecture_comparison_nmi}
 \end{figure}
 
@@ -322,21 +328,65 @@ Soybean Disease&0.4793&\bf{0.5955}&0.4261&0.4041\\ \hline
 \scalebox{0.8}{
 \begin{tabular}{|p{37mm}|p{27mm}|p{27mm}|p{27mm}|p{27mm}|}
 \hline
-&No Column Embedding AE&All Columns AE&Categorial Columns AE&All Columns to Categroial Columns AE\\ \hline
-Abalone&0.1245&0.1439&0.1448&\bf{0.1513}\\ \hline
-Auction Verification&0.5507&0.6074&0.6466&\bf{0.6676}\\ \hline
-Bank Marketing&0.6000&0.5918&0.5968&\bf{0.6684}\\ \hline
-Breast Cancer&\bf{0.9634}&0.9531&0.9546&0.9283\\ \hline
-Census Income&\bf{0.7198}&0.5004&0.6930&0.6102\\ \hline
-Credit Approval&\bf{0.5544}&0.5115&0.5360&0.5421\\ \hline
-Heart Disease&0.4080&0.3579&\bf{0.4114}&0.2943\\ \hline
-Soybean Disease&0.3879&\bf{0.4466}&0.3577&0.3665\\ \hline
+&No Column Embedding AE&All Columns AE&Categorical Columns AE&All Columns to Categorical Columns AE\\ \hline
+Abalone&0.1154&\bf{0.1688}&0.1384&0.1348\\ \hline
+Auction Verification&0.5497&0.5893&0.6667&\bf{0.8243}\\ \hline
+Bank Marketing&0.5310&0.7420&\bf{0.7894}&0.7484\\ \hline
+Breast Cancer&\bf{0.9634}&0.9502&0.7013&0.9458\\ \hline
+Census Income&\bf{0.7328}&0.6664&0.5778&0.6216\\ \hline
+Credit Approval&0.5069&0.5176&0.5130&\bf{0.5391}\\ \hline
+Heart Disease&0.3244&0.3278&\bf{0.4013}&0.3545\\ \hline
+Soybean Disease&0.3986&0.4075&0.3292&\bf{0.4413}\\ \hline
 \end{tabular}
 }
 \end{center}
-\caption{Comparsion of Accuracy of various Autoencoder architectures combined with k-means on clustering mixed-type datasets.}
+\caption{Comparison of Accuracy of various Autoencoder architectures combined with k-means on clustering mixed-type datasets.}
 \label{ae_architecture_comparison_acc}
 \end{figure}
+
+
+\begin{figure}
+\begin{center}
+\scalebox{0.8}{
+\begin{tabular}{|c|c|c|c|}
+\hline
+&All cols AE&AE with Attention&Transformer N=6\\ \hline
+Abalone&0.1603&\bf{0.1681}&0.1612\\ \hline
+Auction Verification&\bf{0.1234}&0.0109&0.0045\\ \hline
+Bank Marketing&0.0040&\bf{0.0394}&0.0022\\ \hline
+Breast Cancer&0.5521&0.1906&\bf{0.5569}\\ \hline
+Census Income&\bf{0.1475}&0.0237&0.0056\\ \hline
+Credit Approval&0.0123&0.1833&\bf{0.3061}\\ \hline
+Heart Disease&0.1550&0.1244&\bf{0.1863}\\ \hline
+Soybean Disease&\bf{0.5656}&0.2514&0.3966\\ \hline
+\end{tabular}
+}
+\end{center}
+\caption{Comparison of Normalized Mutual Information between an autoencoder, an autoencoder using the attention mechanism and a 6-layer Transformer with an autoencoder on clustering mixed-type datasets using k-means.}
+\label{attention_comparison_nmi}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\scalebox{0.8}{
+\begin{tabular}{|c|c|c|c|}
+\hline
+&All cols AE&AE with Attention&Transformer N=6\\ \hline
+Abalone&0.1503&\bf{0.1575}&0.1345\\ \hline
+Auction Verification&\bf{0.8331}&0.6422&0.6393\\ \hline
+Bank Marketing&\bf{0.7416}&0.7044&0.5636\\ \hline
+Breast Cancer&\bf{0.9136}&0.7277&0.8799\\ \hline
+Census Income&0.6740&\bf{0.7146}&0.6812\\ \hline
+Credit Approval&0.5360&0.7335&\bf{0.7887}\\ \hline
+Heart Disease&0.4448&0.3411&\bf{0.4515}\\ \hline
+Soybean Disease&\bf{0.4751}&0.2473&0.3114\\ \hline
+\end{tabular}
+}
+\end{center}
+\caption{Comparison of Accuracy between an autoencoder, an autoencoder using the attention mechanism and a 6-layer Transformer with an autoencoder on clustering mixed-type datasets using k-means.}
+\label{attention_comparison_acc}
+\end{figure}
+	
 
 
 \chapter{Conclusion}

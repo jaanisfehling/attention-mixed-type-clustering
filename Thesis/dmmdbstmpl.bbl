@@ -19,6 +19,12 @@ Christopher~M. Bishop.
 \newblock {\em Pattern Recognition and Machine Learning (Information Science and Statistics)}.
 \newblock Springer-Verlag, Berlin, Heidelberg, 2006.
 
+\bibitem{transformers_from_scratch}
+Peter Bloem.
+\newblock Transformers from scratch.
+\newblock \url{https://peterbloem.nl/blog/transformers}, August 2018.
+\newblock Accessed: 2023-08-24.
+
 \bibitem{activation_functions}
 Shiv~Ram Dubey, Satish~Kumar Singh, and Bidyut~Baran Chaudhuri.
 \newblock Activation functions in deep learning: A comprehensive survey and benchmark.
