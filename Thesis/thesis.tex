@@ -194,13 +194,17 @@ Even when using neural networks, there is still the problem of representing cate
 $$s_i = min(50, \lceil \frac{|i|}{2} \rceil).$$
 We then encode the classes of each categorial feature with integer values, going from 0 onwards. These integer values serve as indices for the corresponding weight tensor of our embedding layer. Passing a value $j$ of a feature $i$ in the embedding layer returns the one-dimensional tensor at index $j$ of the weight tensor $e_j$, which is of dimension $1 \times s_i$. The resulting tensors of each categorial feature from the embedding layer are concatenated into a tensor of size $1 \times \sum^n_{i=1}s_i$, where $n$ is the number of categorial features. To construct the complete input tensor, we concatenate the tensor of the embedded categorial features with the tensor of the continuous features. The continuous features of an instance are not embedded, but scaled by removing the mean and scaling to unit variance as explained in Section \ref{Datasets}. Having $m$ continuous features would result in a tensor of continuous features with size $1 \times m$. After concatenating both tensors, this leaves us with an input tensor of size $1 \times (m + \sum^n_{i=1}s_i)$. This input tensor can then be passed into the first linear layer of the encoder.
 
-
-
 \section{Attention}
+
+\begin{figure}
+	\includegraphics[width=1.2\linewidth]{attention_architecture.png}
+	\caption{Architecture of our self-attention autoencoder network.}
+	\label{attention_architecture}
+\end{figure}
 
 \textit{Self-attention} is a machine learning mechanism for sequence processing, originally used in machine translation by Bahdanau et al. \cite{bahdanau} and extended into the \textit{Transformer} architecture by Vaswani et al. \cite{attention_is_all_you_need}. It is a sequence-to-sequence operation, that aims to create a better representation of the input sequence by putting each element into the context of the other elements (paying "attention" to each other element). We do not operate with a sequence, but instead with multiple categorial features that might be related. For example, the relevance of a feature for the clustering process might depend of the value of another feature. The goal of the attention mechanism is to augment this feature (increase or decrease its vector representation) only when the other feature has this certain value. 
 
-Self-attention operates with three input tensors: \textit{queries}, \textit{keys} and \textit{values}. Each of them is the input tensor, but used for different parts of the attention process. We add three independent linear projection to the input tensor to learn different representations for queries, keys and values. We apply attention to the categorial features after they were embedded in the embedding layer and then projected into queries, keys and values, but before the tensor is passed passed into the encoder.
+Self-attention operates with three input tensors: \textit{queries}, \textit{keys} and \textit{values}. Each of them is the input tensor, but used for different parts of the attention process. We add three independent linear projection to the input tensor to learn different representations for queries, keys and values. We apply attention to the categorial features after they were embedded in the embedding layer and then projected into queries, keys and values. The resulting vectors for each categorial feature are called \textit{contextual embeddings}, since they contain information on the context of the input sample. We concatenate these embedding vectors lengthwise, before passing them into the first linear layer of the encoder, as illustrated in Figure \ref{attention_architecture}.
 
 Queries, keys and values are a sequence of $n$ vectors that have $d$ dimensions, resulting in dimensionality $n \times d$. In our case, the input dimension and therefore also the queries $Q$, keys $K$ and values $V$ are one-dimensional vectors, since the embedded vectors of each categorial features are concatenated along the first axis, as further illustrated in the previous section. We therefore cannot use our previously created input tensor. Because we calculate an individual embedding dimension (with a formula defined in the previous section) for each categorial feature, we cannot concatenate the vectors row-wise, since they all differ in length. Instead, we have to use a fixed embedding dimension $d$ for every categorial feature. Then, we can create tensors $Q$, $K$ and $V$ with dimension $n \times d$ each, where $n$ is the number of categorial features. The value 32 was chosen for embedding dimension $d$.
 
@@ -217,13 +221,21 @@ We are scaling by $\sqrt{d}$, since its the average increase in Euclidean length
 Now after we have obtained the attention weights that indicate how important a feature is to every other feature, we need to multiply these weights with each feature vector. This will result in vectors that carry information to which other feature vectors we need to pay attention to. We use the remaining linear projected tensor, the values $V$, for this step. The full Attention mechanism is therefore defined as
 $$\text{Attention}(Q, K, V) = \text{softmax}(\frac{QK^\intercal}{\sqrt{d}})V.$$
 
+\section{Transformer}
+
+\begin{figure}
+	\includegraphics[width=1.2\linewidth]{transformer_autoencoder.png}
+	\caption{Architecture of our transformer autoencoder network.}
+	\label{transformer_autoencoder}
+\end{figure}
+
+
 
 
 % attention erklären + visualieren (ca. 3 seiten)
 % Positional Embeddings
 % verschiedene Autoencoder Architekturen erklären
 % Wo man Attention einbaut
-% (AF Functions/Batch Norm (?))
 % Transformer
 % Deep Clustering Methoden +(Attention, Transformer)
 
