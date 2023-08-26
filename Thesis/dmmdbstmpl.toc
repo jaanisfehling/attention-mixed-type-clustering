@@ -16,9 +16,10 @@
 \contentsline {chapter}{\numberline {4}Attention in Mixed-Type Clustering}{14}{}%
 \contentsline {section}{\numberline {4.1}Autoencoder and k-means}{14}{}%
 \contentsline {section}{\numberline {4.2}Column Embeddings}{15}{}%
-\contentsline {section}{\numberline {4.3}Attention}{15}{}%
-\contentsline {section}{\numberline {4.4}Transformer}{19}{}%
-\contentsline {chapter}{\numberline {5}Experiments}{21}{}%
-\contentsline {section}{\numberline {5.1}Comparison of classical Clustering Methods}{21}{}%
-\contentsline {chapter}{\numberline {6}Conclusion}{25}{}%
-\contentsline {chapter}{Bibliography}{26}{}%
+\contentsline {section}{\numberline {4.3}Attention}{16}{}%
+\contentsline {section}{\numberline {4.4}Transformer}{20}{}%
+\contentsline {subsection}{\numberline {4.4.1}FT-Transformer}{20}{}%
+\contentsline {chapter}{\numberline {5}Experiments}{24}{}%
+\contentsline {section}{\numberline {5.1}Comparison of classical Clustering Methods}{24}{}%
+\contentsline {chapter}{\numberline {6}Conclusion}{28}{}%
+\contentsline {chapter}{Bibliography}{29}{}%

@@ -3,6 +3,8 @@
         "Autoencoder",
         "Bahdanau",
         "Bloem",
+        "Gorishniy",
+        "nmis",
         "softmax",
         "Vaswani"
     ]

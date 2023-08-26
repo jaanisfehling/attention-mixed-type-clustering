@@ -5,6 +5,10 @@ Amir Ahmad and Shehroz~S. Khan.
 \newblock Survey of state-of-the-art mixed data clustering algorithms.
 \newblock {\em {IEEE} Access}, 7:31883--31902, 2019.
 
+\bibitem{layer_normalization}
+Jimmy~Lei Ba, Jamie~Ryan Kiros, and Geoffrey~E. Hinton.
+\newblock Layer normalization, 2016.
+
 \bibitem{bahdanau}
 Dzmitry Bahdanau, Kyunghyun Cho, and Yoshua Bengio.
 \newblock Neural machine translation by jointly learning to align and translate, 2016.

@@ -84,75 +84,84 @@
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{toc}{\contentsline {section}{\numberline {4.1}Autoencoder and k-means}{14}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4.2}Column Embeddings}{15}{}\protected@file@percent }
 \citation{bahdanau}
 \citation{attention_is_all_you_need}
-\@writefile{toc}{\contentsline {section}{\numberline {4.2}Column Embeddings}{15}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4.3}Attention}{15}{}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces Architecture of our self-attention autoencoder network.}}{16}{}\protected@file@percent }
-\newlabel{attention_architecture}{{4.1}{16}{}{}{}}
 \citation{transformers_from_scratch}
 \citation{transformers_from_scratch}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces Illustration of the attention mechanism, inspired by Bloem \cite  {transformers_from_scratch}. q1, k1, v1 represent the vectors at index 1 of Queries $Q$, Keys $K$ and Values $V$ respectively. The softmax function over the weights is not illustrated.}}{17}{}\protected@file@percent }
-\newlabel{attention_illustrated}{{4.2}{17}{}{}{}}
 \citation{attention_is_all_you_need}
 \citation{tab_transformer}
+\@writefile{toc}{\contentsline {section}{\numberline {4.3}Attention}{16}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces Architecture of the self-attention autoencoder network.}}{17}{}\protected@file@percent }
+\newlabel{attention_architecture}{{4.1}{17}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces Illustration of the attention mechanism on calculating the first output vector, inspired by Bloem \cite  {transformers_from_scratch}. q1, k1, v1 represent the vectors at index 1 of Queries $Q$, Keys $K$ and Values $V$ respectively. The softmax function over the weights is not part of this illustration.}}{18}{}\protected@file@percent }
+\newlabel{attention_illustrated}{{4.2}{18}{}{}{}}
 \citation{neural_networks_pattern_recognition}
 \citation{attention_is_all_you_need}
-\@writefile{toc}{\contentsline {section}{\numberline {4.4}Transformer}{19}{}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces Architecture of our transformer autoencoder network.}}{20}{}\protected@file@percent }
-\newlabel{transformer_autoencoder}{{4.3}{20}{}{}{}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {5}Experiments}{21}{}\protected@file@percent }
+\citation{attention_is_all_you_need}
+\citation{attention_is_all_you_need}
+\citation{layer_normalization}
+\citation{tab_transformer}
+\citation{tab_transformer}
+\@writefile{toc}{\contentsline {section}{\numberline {4.4}Transformer}{20}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.1}FT-Transformer}{20}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces Architecture of the Transformer autoencoder network.}}{21}{}\protected@file@percent }
+\newlabel{transformer_autoencoder}{{4.3}{21}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.4}{\ignorespaces Architecture of the FT-Transformer autoencoder network.}}{23}{}\protected@file@percent }
+\newlabel{ft_transformer_autoencoder}{{4.4}{23}{}{}{}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {5}Experiments}{24}{}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{Experiments}{{5}{21}{}{}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.1}Comparison of classical Clustering Methods}{21}{}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces Comparison of Normalized Mutual Information of various classical methods on clustering mixed-type datasets.}}{21}{}\protected@file@percent }
-\newlabel{classical_comparison_nmi}{{5.1}{21}{}{}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces Comparison of Accuracy of various classical methods on clustering mixed-type datasets.}}{22}{}\protected@file@percent }
-\newlabel{classical_comparison_acc}{{5.2}{22}{}{}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.3}{\ignorespaces Number of instances of each target class of each dataset used.}}{22}{}\protected@file@percent }
-\newlabel{class_imbalance}{{5.3}{22}{}{}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.4}{\ignorespaces Comparison of Normalized Mutual Information of various Autoencoder architectures combined with k-means on clustering mixed-type datasets.}}{23}{}\protected@file@percent }
-\newlabel{ae_architecture_comparison_nmi}{{5.4}{23}{}{}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.5}{\ignorespaces Comparison of Accuracy of various Autoencoder architectures combined with k-means on clustering mixed-type datasets.}}{23}{}\protected@file@percent }
-\newlabel{ae_architecture_comparison_acc}{{5.5}{23}{}{}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.6}{\ignorespaces Comparison of Normalized Mutual Information between an autoencoder, an autoencoder using the attention mechanism and a 6-layer Transformer with an autoencoder on clustering mixed-type datasets using k-means.}}{23}{}\protected@file@percent }
-\newlabel{attention_comparison_nmi}{{5.6}{23}{}{}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.7}{\ignorespaces Comparison of Accuracy between an autoencoder, an autoencoder using the attention mechanism and a 6-layer Transformer with an autoencoder on clustering mixed-type datasets using k-means.}}{24}{}\protected@file@percent }
-\newlabel{attention_comparison_acc}{{5.7}{24}{}{}{}}
+\newlabel{Experiments}{{5}{24}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.1}Comparison of classical Clustering Methods}{24}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces Comparison of Normalized Mutual Information of various classical methods on clustering mixed-type datasets.}}{24}{}\protected@file@percent }
+\newlabel{classical_comparison_nmi}{{5.1}{24}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces Comparison of Accuracy of various classical methods on clustering mixed-type datasets.}}{25}{}\protected@file@percent }
+\newlabel{classical_comparison_acc}{{5.2}{25}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.3}{\ignorespaces Number of instances of each target class of each dataset used.}}{25}{}\protected@file@percent }
+\newlabel{class_imbalance}{{5.3}{25}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.4}{\ignorespaces Comparison of Normalized Mutual Information of various Autoencoder architectures combined with k-means on clustering mixed-type datasets.}}{26}{}\protected@file@percent }
+\newlabel{ae_architecture_comparison_nmi}{{5.4}{26}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.5}{\ignorespaces Comparison of Accuracy of various Autoencoder architectures combined with k-means on clustering mixed-type datasets.}}{26}{}\protected@file@percent }
+\newlabel{ae_architecture_comparison_acc}{{5.5}{26}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.6}{\ignorespaces Comparison of Normalized Mutual Information between an autoencoder, an autoencoder using the attention mechanism and a 6-layer Transformer with an autoencoder on clustering mixed-type datasets using k-means.}}{26}{}\protected@file@percent }
+\newlabel{attention_comparison_nmi}{{5.6}{26}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.7}{\ignorespaces Comparison of Accuracy between an autoencoder, an autoencoder using the attention mechanism and a 6-layer Transformer with an autoencoder on clustering mixed-type datasets using k-means.}}{27}{}\protected@file@percent }
+\newlabel{attention_comparison_acc}{{5.7}{27}{}{}{}}
 \bibstyle{plain}
 \bibdata{dmmdbstmpl}
-\@writefile{toc}{\contentsline {chapter}{\numberline {6}Conclusion}{25}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {6}Conclusion}{28}{}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \bibcite{mixed_type_survey_2019}{1}
-\bibcite{bahdanau}{2}
-\bibcite{neural_networks_pattern_recognition}{3}
-\bibcite{pattern_recognition_machine_learning}{4}
-\bibcite{transformers_from_scratch}{5}
-\bibcite{activation_functions}{6}
-\bibcite{gower}{7}
-\bibcite{tab_transformer}{8}
-\bibcite{kmodes}{9}
-\bibcite{algorithms_for_clustering_data}{10}
-\bibcite{heart_disease}{11}
-\bibcite{census_income}{12}
-\@writefile{toc}{\contentsline {chapter}{Bibliography}{26}{}\protected@file@percent }
-\bibcite{kmeans_lloyd}{13}
-\bibcite{kmeans}{14}
-\bibcite{kmeans_np_hard}{15}
-\bibcite{uci_ml_rpo}{16}
-\bibcite{neural_network_1943}{17}
-\bibcite{bank_marketing}{18}
-\bibcite{abalone}{19}
-\bibcite{auction_verification}{20}
-\bibcite{pytorch}{21}
-\bibcite{scikit_learn}{22}
-\bibcite{philip_ottaway}{23}
-\bibcite{credit_approval}{24}
-\bibcite{perceptron}{25}
-\bibcite{hidden_layer_backprop}{26}
-\bibcite{attention_is_all_you_need}{27}
-\bibcite{scipy}{28}
-\bibcite{breast_cancer}{29}
-\gdef \@abspage@last{31}
+\bibcite{layer_normalization}{2}
+\bibcite{bahdanau}{3}
+\bibcite{neural_networks_pattern_recognition}{4}
+\bibcite{pattern_recognition_machine_learning}{5}
+\bibcite{transformers_from_scratch}{6}
+\bibcite{activation_functions}{7}
+\bibcite{gower}{8}
+\bibcite{tab_transformer}{9}
+\bibcite{kmodes}{10}
+\bibcite{algorithms_for_clustering_data}{11}
+\bibcite{heart_disease}{12}
+\@writefile{toc}{\contentsline {chapter}{Bibliography}{29}{}\protected@file@percent }
+\bibcite{census_income}{13}
+\bibcite{kmeans_lloyd}{14}
+\bibcite{kmeans}{15}
+\bibcite{kmeans_np_hard}{16}
+\bibcite{uci_ml_rpo}{17}
+\bibcite{neural_network_1943}{18}
+\bibcite{bank_marketing}{19}
+\bibcite{abalone}{20}
+\bibcite{auction_verification}{21}
+\bibcite{pytorch}{22}
+\bibcite{scikit_learn}{23}
+\bibcite{philip_ottaway}{24}
+\bibcite{credit_approval}{25}
+\bibcite{perceptron}{26}
+\bibcite{hidden_layer_backprop}{27}
+\bibcite{attention_is_all_you_need}{28}
+\bibcite{scipy}{29}
+\bibcite{breast_cancer}{30}
+\gdef \@abspage@last{34}

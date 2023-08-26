@@ -71,7 +71,7 @@ According to Huang \cite{kmodes}, one-hot encoding has two drawbacks:
 	\item In real-world applications, categorial features with hundreds or thousands of categories are encountered. This would result in a large number of binary features in the one-hot encoded representation, which will increase cost and space of computation.
 	\item The centroid value of a certain one-hot encoded feature, given by a real value between 0 and 1, cannot indicate the characteristics of the according cluster, since the feature only describes the presence or absence of one category.
 \end{enumerate}
-Therefore, Huang \cite{kmodes} proposed using the Kronecker-Delta as a dissimilarity measure between multiple categorial columns. Formally, if we have two instances $X$ and $Y$ of a dataset with $m$ categorial features, $d_1$ will count the number of mismatches between the categorial features of both instances, defined as
+Therefore, Huang \cite{kmodes} proposed using the Kronecker-Delta as a dissimilarity measure between multiple categorial features. Formally, if we have two instances $X$ and $Y$ of a dataset with $m$ categorial features, $d_1$ will count the number of mismatches between the categorial features of both instances, defined as
 $$d_1(X, Y) = \sum^m_{j=1} \delta (x_j, y_j)$$
 where the Kronecker delta $\delta (x_j, y_j)$ is defined as
 $$\delta (x_j, y_j) = 
@@ -194,11 +194,13 @@ Even when using neural networks, there is still the problem of representing cate
 $$s_i = min(50, \lceil \frac{|i|}{2} \rceil).$$
 We then encode the classes of each categorial feature with integer values, going from 0 onwards. These integer values serve as indices for the corresponding weight tensor of our embedding layer. Passing a value $j$ of a feature $i$ in the embedding layer returns the one-dimensional tensor at index $j$ of the weight tensor $e_j$, which is of dimension $1 \times s_i$. The resulting tensors of each categorial feature from the embedding layer are concatenated into a tensor of size $1 \times \sum^n_{i=1}s_i$, where $n$ is the number of categorial features. To construct the complete input tensor, we concatenate the tensor of the embedded categorial features with the tensor of the continuous features. The continuous features of an instance are not embedded, but scaled by removing the mean and scaling to unit variance as explained in Section \ref{Datasets}. Having $m$ continuous features would result in a tensor of continuous features with size $1 \times m$. After concatenating both tensors, this leaves us with an input tensor of size $1 \times (m + \sum^n_{i=1}s_i)$. This input tensor can then be passed into the first linear layer of the encoder.
 
+The goal of the autoencoder therefore is to reconstruct the embeddings, not the actual input. To be able to use a loss function on this network, we clone the tensor of the embedded categorial features and save it in a variable, and later compare the decoder output with the cloned embedded tensor (concatenated with the continuous features).
+
 \section{Attention}
 
 \begin{figure}
-	\includegraphics[width=1.2\linewidth]{attention_architecture.png}
-	\caption{Architecture of our self-attention autoencoder network.}
+	\includegraphics[width=1.2\linewidth]{attention_autoencoder.png}
+	\caption{Architecture of the self-attention autoencoder network.}
 	\label{attention_architecture}
 \end{figure}
 
@@ -207,14 +209,14 @@ We then encode the classes of each categorial feature with integer values, going
 Self-attention operates with three input tensors: \textit{queries}, \textit{keys} and \textit{values}. Each of them is the input tensor, but used for different parts of the attention process. We add three independent linear projection to the input tensor to learn different representations for queries, keys and values. We apply attention to the categorial features after they were embedded in the embedding layer and then projected into queries, keys and values. The resulting vectors for each categorial feature are called \textit{contextual embeddings}, since they contain information on the context of the input sample. We concatenate these embedding vectors lengthwise, before passing them into the first linear layer of the encoder, as illustrated in Figure \ref{attention_architecture}.
 
 \begin{figure}
-	\includegraphics[width=0.9\linewidth]{attention_illustrated.png}
-	\caption{Illustration of the attention mechanism, inspired by Bloem \cite{transformers_from_scratch}. q1, k1, v1 represent the vectors at index 1 of Queries $Q$, Keys $K$ and Values $V$ respectively. The softmax function over the weights is not illustrated.}
+	\includegraphics[width=1.1\linewidth]{attention_illustrated.png}
+	\caption{Illustration of the attention mechanism on calculating the first output vector, inspired by Bloem \cite{transformers_from_scratch}. q1, k1, v1 represent the vectors at index 1 of Queries $Q$, Keys $K$ and Values $V$ respectively. The softmax function over the weights is not part of this illustration.}
 	\label{attention_illustrated}
 \end{figure}
 
 Queries, keys and values are a sequence of $n$ vectors that have $d$ dimensions, resulting in dimensionality $n \times d$. In our case, the input dimension and therefore also the queries $Q$, keys $K$ and values $V$ are one-dimensional vectors, since the embedded vectors of each categorial features are concatenated along the first axis, as further illustrated in the previous section. We therefore cannot use our previously created input tensor. Because we calculate an individual embedding dimension (with a formula defined in the previous section) for each categorial feature, we cannot concatenate the vectors row-wise, since they all differ in length. Instead, we have to use a fixed embedding dimension $d$ for every categorial feature. Then, we can create tensors $Q$, $K$ and $V$ with dimension $n \times d$ each, where $n$ is the number of categorial features. The value 32 was chosen for embedding dimension $d$.
 
-Because Attention is a mechanism that calculates values that combine multiple features, we need to be able to differentiate between the classes of different features, since we have a separate learnable embedding for each feature. A solution in the domain of text translation proposed by Vaswani et al \cite{attention_is_all_you_need} is to add a positional encoding to each embedding in order to indicate the position of the word in the sentence. This is not suitable for tabular data, since the features do not have a particular order. We instead use a solution proposed by Huang \cite{tab_transformer}, which uses a shared embedding across all categorial features. The goal of the shared embedding is to learn dissimilar representations for different classes of separate features in order to distinguish them. The shared embedding is a learnable tensor of size $n \times \frac{d}{8}$, that is concatenated to our input tensor in the first dimension. The fixed embedding dimension $d$ is therefore subtracted by 8, which results in a input tensor of categorial features of size $n \times d$. 
+Because Attention is a mechanism that calculates values that combine multiple features, we need to be able to differentiate between the classes of different features, since we have a separate learnable embedding for each feature. A solution in the domain of text translation proposed by Vaswani et al. \cite{attention_is_all_you_need} is to add a positional encoding to each embedding in order to indicate the position of the word in the sentence. This is not suitable for tabular data, since the features do not have a particular order. We instead use a solution proposed by Huang et al. \cite{tab_transformer}, which uses a shared embedding across all categorial features. The goal of the shared embedding is to learn dissimilar representations for different classes of separate features in order to distinguish them. The shared embedding is a learnable tensor of size $n \times \frac{d}{8}$, that is concatenated to our input tensor in the first dimension. The fixed embedding dimension $d$ is therefore subtracted by 8, which results in a input tensor of categorial features of size $n \times d$. 
 
 The first step of self-attention is to calculate attention weights for every element of the input sequence. For that, we will multiply every query of our queries with the keys. Formally, we can define this as a matrix multiplication:
 $$W = QK^\intercal,$$
@@ -226,16 +228,33 @@ We are scaling by $\sqrt{d}$, since its the average increase in Euclidean length
 
 Now after we have obtained the attention weights that indicate how important a feature is to every other feature, we need to multiply these weights with each feature vector. This will result in vectors that carry information to which other feature vectors we need to pay attention to. We use the remaining linear projected tensor, the values $V$, for this step. The full Attention mechanism is therefore defined as
 $$\text{Attention}(Q, K, V) = \text{softmax}(\frac{QK^\intercal}{\sqrt{d}})V.$$
+An illustration on how the first output vector in the attention mechanism is calculated is given by Figure \ref{attention_illustrated}.
 
 \section{Transformer}
 
 \begin{figure}
 	\includegraphics[width=1.2\linewidth]{transformer_autoencoder.png}
-	\caption{Architecture of our transformer autoencoder network.}
+	\caption{Architecture of the Transformer autoencoder network.}
 	\label{transformer_autoencoder}
 \end{figure}
 
+The \textit{Transformer} is a architecture based on the attention mechanism, first formalized by Vaswani et al. \cite{attention_is_all_you_need}. The Transformer extends attention into \textit{multi-head attention} and combines it with a feed-forward network and layer normalization. Multi-head attention \cite{attention_is_all_you_need} splits the input in $h$ parts and learns $h$ different representations for queries $Q$, keys $K$ and values $V$ respectively. Attention is then performed $h$ times in parallel using the different representations of $Q$, $K$ and $V$. This allows the model to perform attention over different subspaces of the embedded features at the same time. Using normal attention, we would only be able to attend to the complete embedding of the other features.
 
+After performing attention, the Transformer adds the attention outputs to the initial input and normalizes this sum using \textit{layer normalization} \cite{layer_normalization}. The output is then fed into two linear layers, the first layer projecting the input to four times its size, and the second layer projecting it onto the original size again. Once again, the output is added to the input of the linear layers, and normalized using layer normalization. This process, illustrated in Figure \ref{transformer_autoencoder}, is sequentially applied $N$ times. The layer normalization and feed-forward network between each multi-head attention operation allow the model to parameterize the attention outputs. This makes sure the model can learn from each attention step.
+
+The Transformer was originally designed for natural language tasks, but Huang et al. \cite{tab_transformer} proposed the \textit{Tab Transformer}, a multi-layer perceptron classifier for the tabular domain, based on the Transformer architecture. Inspired by the performance increase on mixed-type datasets using this architecture, we build a Transformer-based autoencoder network for clustering. The architecture, illustrated in Figure \ref{transformer_autoencoder}, is similar to the previous attention-based autoencoder but uses $N = 6$ Transformer blocks instead of one single self-attention block. Our categorial feature embedding size is 32 as previously. We perform multi-head attention with $h = 8$ heads, yielding a embedding dimension for each head of $\frac{d}{h} = 4$.
+
+\subsection{FT-Transformer}
+
+Gorishniy et al. extends the Tab Transformer into the \textit{FT-Transformer}, which uses embeddings for the numerical features as well. We implement a FT-Transformer autoencoder network, illustrated in Figure \ref{ft_transformer_autoencoder}. Our implementation uses separate linear layers for each continuous column, that transform a singular value of a continuous feature into a $1 \times d$ vector representation, where $d$ is the embedding dimension of the categorial features. This allows the continuous embeddings to be concatenated with the categorial embeddings, before being passed into the Transformer block. The rest of the implementation remains canonical to the previous architecture, only we do not concatenate the continuous feature values with the Transformer output, since the continuous features are already part of the Transformer block. The FT-Transformer paper does not use a shared embedding, we decided to keep still implement it, since Huang et al. \cite{tab_transformer} showed great accuracy gains when using a shared embedding.
+
+The intuition behind using the FT-Transformer is that many continuous features in the tabular domain are only composed of a small range of values, and can therefore easily represented by an embedding vector. Using Attention over both continuous and categorial features allows the model to learn dependencies across both types of features.
+
+\begin{figure}
+	\includegraphics[width=1.2\linewidth]{ft_transformer_autoencoder.png}
+	\caption{Architecture of the FT-Transformer autoencoder network.}
+	\label{ft_transformer_autoencoder}
+\end{figure}
 
 
 % attention erklären + visualieren (ca. 3 seiten)
