@@ -12,14 +12,14 @@
 \contentsline {subsection}{\numberline {3.2.4}Gower distance}{9}{}%
 \contentsline {section}{\numberline {3.3}Deep Clustering}{10}{}%
 \contentsline {subsection}{\numberline {3.3.1}Neural Networks}{10}{}%
-\contentsline {subsection}{\numberline {3.3.2}Autoencoders}{12}{}%
-\contentsline {chapter}{\numberline {4}Attention in Mixed-Type Clustering}{14}{}%
-\contentsline {section}{\numberline {4.1}Autoencoder and k-means}{14}{}%
-\contentsline {section}{\numberline {4.2}Column Embeddings}{15}{}%
-\contentsline {section}{\numberline {4.3}Attention}{16}{}%
-\contentsline {section}{\numberline {4.4}Transformer}{20}{}%
-\contentsline {subsection}{\numberline {4.4.1}FT-Transformer}{20}{}%
-\contentsline {chapter}{\numberline {5}Experiments}{24}{}%
-\contentsline {section}{\numberline {5.1}Comparison of classical Clustering Methods}{24}{}%
-\contentsline {chapter}{\numberline {6}Conclusion}{28}{}%
-\contentsline {chapter}{Bibliography}{29}{}%
+\contentsline {subsection}{\numberline {3.3.2}Autoencoder}{14}{}%
+\contentsline {chapter}{\numberline {4}Attention in Mixed-Type Clustering}{16}{}%
+\contentsline {section}{\numberline {4.1}Autoencoder and k-means}{16}{}%
+\contentsline {section}{\numberline {4.2}Column Embeddings}{17}{}%
+\contentsline {section}{\numberline {4.3}Attention}{18}{}%
+\contentsline {section}{\numberline {4.4}Transformer}{22}{}%
+\contentsline {subsection}{\numberline {4.4.1}FT-Transformer}{22}{}%
+\contentsline {chapter}{\numberline {5}Experiments}{26}{}%
+\contentsline {section}{\numberline {5.1}Comparison of classical Clustering Methods}{26}{}%
+\contentsline {chapter}{\numberline {6}Conclusion}{30}{}%
+\contentsline {chapter}{Bibliography}{31}{}%

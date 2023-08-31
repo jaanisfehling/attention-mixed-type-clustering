@@ -13,6 +13,11 @@ Jimmy~Lei Ba, Jamie~Ryan Kiros, and Geoffrey~E. Hinton.
 Dzmitry Bahdanau, Kyunghyun Cho, and Yoshua Bengio.
 \newblock Neural machine translation by jointly learning to align and translate, 2016.
 
+\bibitem{autoencoder}
+Dana~H. Ballard.
+\newblock Modular learning in neural networks.
+\newblock In {\em AAAI Conference on Artificial Intelligence}, 1987.
+
 \bibitem{neural_networks_pattern_recognition}
 Christopher~M. Bishop.
 \newblock {\em Neural Networks for Pattern Recognition}.

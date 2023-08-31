@@ -3,44 +3,44 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: dmmdbstmpl.aux
 The style file: plain.bst
 Database file #1: dmmdbstmpl.bib
-You've used 30 entries,
+You've used 31 entries,
             2118 wiz_defined-function locations,
-            672 strings with 9597 characters,
-and the built_in function-call counts, 10982 in all, are:
-= -- 1019
-> -- 706
+            677 strings with 9704 characters,
+and the built_in function-call counts, 11218 in all, are:
+= -- 1039
+> -- 713
 < -- 5
-+ -- 284
-- -- 250
-* -- 766
-:= -- 1866
-add.period$ -- 99
-call.type$ -- 30
-change.case$ -- 210
++ -- 287
+- -- 252
+* -- 775
+:= -- 1905
+add.period$ -- 102
+call.type$ -- 31
+change.case$ -- 214
 chr.to.int$ -- 0
-cite$ -- 30
-duplicate$ -- 345
-empty$ -- 756
-format.name$ -- 250
-if$ -- 2264
+cite$ -- 31
+duplicate$ -- 359
+empty$ -- 784
+format.name$ -- 252
+if$ -- 2316
 int.to.chr$ -- 0
-int.to.str$ -- 30
-missing$ -- 21
-newline$ -- 160
-num.names$ -- 62
-pop$ -- 266
+int.to.str$ -- 31
+missing$ -- 22
+newline$ -- 165
+num.names$ -- 64
+pop$ -- 274
 preamble$ -- 1
-purify$ -- 184
+purify$ -- 187
 quote$ -- 0
-skip$ -- 271
+skip$ -- 278
 stack$ -- 0
-substring$ -- 457
-swap$ -- 84
+substring$ -- 462
+swap$ -- 86
 text.length$ -- 5
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 112
+type$ -- 116
 warning$ -- 0
-while$ -- 79
-width$ -- 32
-write$ -- 338
+while$ -- 81
+width$ -- 33
+write$ -- 348
