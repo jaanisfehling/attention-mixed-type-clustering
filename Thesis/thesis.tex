@@ -41,7 +41,7 @@ $$NMI(U,V) = \frac{MI(U,V)}{\frac{1}{2}(H(U)H(V))}.$$
 
 \section{Classical Methods for clustering Mixed-Type data} \label{Classical Methods for clustering Mixed-Type data}
 
-\subsection{k-means}
+\subsection{k-means} \label{k-means}
 
 The most well known distance-based clustering method is k-means \cite{kmeans}. The goal is defined as follows: Suppose we have a finite set of $n$ instances $S=\{p_1, p_2, ..., p_n\} \in \R^m$ for a dataset with $m$ features, the target of k-means is to find optimal centroids $B=\{b_1, b_2, ..., b_k\} \subseteq \R^m$ for a given $k (\leq n) \in \N$ that minimize the sum of the squared Euclidean distance of each point in $S$ to its nearest centroid. Formally
 $$\sum_{i=1}^n  d(p_i, B)$$
@@ -179,7 +179,7 @@ All four activation functions are illustrated in Figure \ref{activation_function
 \end{figure}
 
 In a multi layer neural network, we need to be able to update the weights during training, so the network can learn the most optimal weights in order to fulfill its designated task. In the single layer perceptron, we were able to change the weights directly based on the predicted output, but in a multi layer network this is non-trivial, since we have multiple such perceptron layers that are sequentially attached. The solution is to use differentiable activation functions (or activation functions differentiable at almost every point, e.g. ReLU is not differentiable at 0), so each neuron together with its activation function becomes a differential function of the input, the weight and bias. We can now define a differentiable error function of the network outputs, which therefore is also a differentiable function of the weights. A common error function used in neural networks is the \textit{mean squared error}, defined as
-$$\text{MSE} = \frac{1}{n} \sum^n_{i=1}{(y_i - z_i)^2}$$
+$$\text{MSE} = \frac{1}{n} \sum^n_{i=1}{(y_i - z_i)^2},$$
 where $n$ is the number of input instances, $y_i$ ist the target label of instance $x_i$ and $z_i$ is the network output on instance $x_i$. The derivatives of the error function in combination with gradient descent can be then be used to find the weights that minimize the error function. \cite{neural_networks_pattern_recognition}
 
 \subsection{Autoencoder}
@@ -193,6 +193,21 @@ A neural network, as defined in the previous section, needs the target labels of
 \end{figure}
 
 In unsupervised learning such as clustering, the autoencoder can be used to learn a dense representation of the input data. After training, we can feed the data into the encoder part of the autoencoder in order to obtain the encoded data, before utilizing a classical clustering algorithm to acquire the final cluster labels. The encoded representation has a smaller dimensionality and only contains the most relevant parts of the data (which were needed for reconstruction), which can benefit clustering.
+
+\subsection{Deep Clustering}
+
+The problem of training an autoencoder before clustering is that the autoencoder cannot learn a suitable representation for the subsequent clustering step. The autoencoder has no objective that rewards learning a cluster-friendly representation \cite{dcn}. Instead of using a multi-stage process that splits autoencoder training and clustering, Xie et al. \cite{dec} proposed DEC, an approach using a iterative process that simultaneously learns feature representations and cluster assignments. 
+
+\begin{figure}
+	\includegraphics[width=1\linewidth]{dec.png}
+	\caption{Illustration of the DEC network by Xie et al. \cite{dec}.}
+	\label{dec}
+\end{figure}
+
+DEC initially trains the autoencoder on the data as with the previous multi-stage approach, but then leaves out the decoder, as illustrated in Figure \ref{dec}, and trains the encoder separately while clustering to learn more optimal feature representations. After the initial autoencoder pre-training, standard k-means (Section \ref{k-means}) is used on the encoded representation to obtain initial cluster labels. A two-step algorithm is then used to iteratively update both the cluster assignments and feature representations. The first step involves computing a \textit{soft assignment} between the encoded data points and the cluster centroids. Student's $t$-distribution is used as a kernel, with fixed degrees of freedom $\alpha = 1$:
+$$q_{ij} = \frac{(1 + \Vert z_i - \mu_j \Vert^2 / \alpha)^{-\frac{\alpha+1}{2}}}{\sum_{j'}(1 + \Vert z_i - \mu_{j'} \Vert^2 / \alpha)^{-\frac{\alpha+1}{2}}},$$
+where $z_i$ represents the encoded value of instance $x_i$ and $\mu_j$ the centroid value of cluster $j$. The resulting value $q_{ij}$ can be interpreted as the probability of assigning instance $x_i$ to cluster $j$. For the second step, we define a auxiliary distribution $P$:
+$$p_{ij} = $$
 
 \chapter{Attention in Mixed-Type Clustering}
 
@@ -269,15 +284,6 @@ The intuition behind using the FT-Transformer is that many continuous features i
 	\caption{Architecture of the FT-Transformer autoencoder network.}
 	\label{ft_transformer_autoencoder}
 \end{figure}
-
-
-% attention erklären + visualieren (ca. 3 seiten)
-% Positional Embeddings
-% verschiedene Autoencoder Architekturen erklären
-% Wo man Attention einbaut
-% Transformer
-% Deep Clustering Methoden +(Attention, Transformer)
-
 
 \chapter{Experiments} \label{Experiments}
 

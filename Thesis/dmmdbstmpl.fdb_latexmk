@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex dmmdbstmpl"] 1693506608 "dmmdbstmpl.aux" "dmmdbstmpl.bbl" "dmmdbstmpl" 1693506720 0
-  "./dmmdbstmpl.bib" 1693500862 12222 089bd317cea292e9b55308cfa8dacf6d ""
+["bibtex dmmdbstmpl"] 1693673795 "dmmdbstmpl.aux" "dmmdbstmpl.bbl" "dmmdbstmpl" 1693674115 0
+  "./dmmdbstmpl.bib" 1693669710 12756 79c94554f25ee982fe6eb3f6e2ba09e0 ""
   "/usr/local/texlive/2023/texmf-dist/bibtex/bst/base/plain.bst" 1292289607 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
-  "dmmdbstmpl.aux" 1693506719 10091 6f9947e8bc68a3a44eb776a5a8e6684e "pdflatex"
+  "dmmdbstmpl.aux" 1693674114 10517 8542fa671e4697f2f15f7bd3274b3396 "pdflatex"
   (generated)
   "dmmdbstmpl.bbl"
   "dmmdbstmpl.blg"
   (rewritten before read)
-["pdflatex"] 1693506719 "/home/jaanis/repos/attention-mixed-type-clustering/Thesis/dmmdbstmpl.tex" "dmmdbstmpl.pdf" "dmmdbstmpl" 1693506720 0
+["pdflatex"] 1693674113 "/home/jaanis/repos/attention-mixed-type-clustering/Thesis/dmmdbstmpl.tex" "dmmdbstmpl.pdf" "dmmdbstmpl" 1693674115 0
   "/home/jaanis/repos/attention-mixed-type-clustering/Thesis/dmmdbstmpl.tex" 1692309231 1530 16b3134ecd0229612aba9be7393e9594 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
@@ -43,6 +43,7 @@
   "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb" 1248133631 32726 0a1aea6fcd6468ee2cf64d891f5c43c8 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl10.pfb" 1248133631 35022 e40946b20bfdcd1099eafb2bcd9f25dd ""
   "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1248133631 32569 5e5ddc8df908dea60932f3c484a54c0d ""
+  "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb" 1248133631 32587 1788b0c1c5b39540c96f5e42ccd6dae8 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb" 1248133631 32626 4f5c1b83753b1dd3a97d1b399a005b4b ""
   "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb" 1248133631 36118 fad905eba93cff5bce1e185fe980a177 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb" 1248133631 24252 1e4e051947e12dfb50fee0b7f4e26e3a ""
@@ -97,15 +98,16 @@
   "attention_illustrated.png" 1692912774 7434 2b2ae572b4d9c775a1cecad0ea068a43 ""
   "autoencoder.png" 1693506548 10290 721f38f1974aaed9ae0b27a7f38edb98 ""
   "class-imbalance.png" 1692309231 37893 118516905b638759a266c7ae6beff5cf ""
-  "dmmdbstmpl.aux" 1693506719 10091 6f9947e8bc68a3a44eb776a5a8e6684e "pdflatex"
-  "dmmdbstmpl.bbl" 1693506608 7115 e37afcd0a52b470c30759e88a7aa2b72 "bibtex dmmdbstmpl"
+  "dec.png" 1693670112 100818 ddac3342c6cabc3704d8f5bbacb3a484 ""
+  "dmmdbstmpl.aux" 1693674114 10517 8542fa671e4697f2f15f7bd3274b3396 "pdflatex"
+  "dmmdbstmpl.bbl" 1693673795 7412 62f60bdb8415ecfdeaa118e6a516d246 "bibtex dmmdbstmpl"
   "dmmdbstmpl.sty" 1692309231 5975 8422bc03d468a89224b2ce55cf4263c1 ""
   "dmmdbstmpl.tex" 1692309231 1530 16b3134ecd0229612aba9be7393e9594 ""
-  "dmmdbstmpl.toc" 1693506719 1610 37b0b4fe5be3b08194388e6cc25af2bd "pdflatex"
+  "dmmdbstmpl.toc" 1693674114 1680 ccc7cb2b9af40e34e7c2d466e2db9889 "pdflatex"
   "dmmheader.png" 1692309231 190949 b10949d0f3b40eb482e1d316dc304305 ""
   "ft_transformer_autoencoder.png" 1693086028 62092 32af16772b3139bdf0f4f37eeeb281af ""
   "gower-dichotomous.png" 1692309231 41539 38bc2936b2441a430afcb11717b4a842 ""
-  "thesis.tex" 1693506719 42880 079a18ea6a1b89fa6318ce5662489cf2 ""
+  "thesis.tex" 1693674114 44553 d7dc8fa476f388c05feb2f48f003b1b9 ""
   "transformer_autoencoder.png" 1693060279 54469 a5c0d52d665d001bf4db0bf17aaecbb0 ""
   (generated)
   "dmmdbstmpl.aux"

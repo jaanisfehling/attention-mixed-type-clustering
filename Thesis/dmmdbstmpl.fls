@@ -157,6 +157,11 @@ INPUT ./autoencoder.png
 INPUT ./autoencoder.png
 INPUT ./autoencoder.png
 INPUT ./autoencoder.png
+INPUT ./dec.png
+INPUT ./dec.png
+INPUT ./dec.png
+INPUT ./dec.png
+INPUT ./dec.png
 INPUT ./attention_autoencoder.png
 INPUT ./attention_autoencoder.png
 INPUT ./attention_autoencoder.png
@@ -198,6 +203,7 @@ INPUT /usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl10.pfb
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
+INPUT /usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb

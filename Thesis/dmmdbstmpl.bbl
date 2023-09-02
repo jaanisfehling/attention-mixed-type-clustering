@@ -162,4 +162,12 @@ William Wolberg.
 \newblock UCI Machine Learning Repository, 1992.
 \newblock {DOI}: https://doi.org/10.24432/C5HP4Z.
 
+\bibitem{dec}
+Junyuan Xie, Ross Girshick, and Ali Farhadi.
+\newblock Unsupervised deep embedding for clustering analysis, 2016.
+
+\bibitem{dcn}
+Bo~Yang, Xiao Fu, Nicholas~D. Sidiropoulos, and Mingyi Hong.
+\newblock Towards k-means-friendly spaces: Simultaneous deep learning and clustering, 2017.
+
 \end{thebibliography}
