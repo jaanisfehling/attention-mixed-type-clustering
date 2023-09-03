@@ -64,9 +64,7 @@ In many real-world scenarios, besides continuous, numerical data, \textit{catego
 $$\{A, B, C\} \equiv \{1, 2, 3\}.$$
 While $A$ and $C$ can share the same semantic similarity as $A$ and $B$, numerically category $A$ and Category $C$ are now $|1-3| = 2$ apart, while Category $A$ and $B$ are only $|1-2|=1$ apart. During clustering, this could lead to instances being assigned to centroids based on a wrong distance assumption.
 
-A possible solution is to use \textit{one-hot encoding}, also known as \textit{dummy coding} in classical statistics. One-hot encoding turns a discrete feature containing $k$ mutually exclusive categories into a vector $x$ of length $k$, in which only one of the elements $x_k$ equals 1 and all remaining elements equal 0 \cite{pattern_recognition_machine_learning}. For an instance $B$ of a feature having $k=3$ separate categories $\{A, B, C\}$, the one-hot vector $x$ would be represented by $x = (0, 1, 0)^{\intercal}$.
-
-According to Huang \cite{kmodes}, one-hot encoding has two drawbacks:
+A possible solution is to use \textit{one-hot encoding}, also known as \textit{dummy coding} in classical statistics. One-hot encoding turns a discrete feature containing $k$ mutually exclusive categories into a vector $x$ of length $k$, in which only one of the elements $x_k$ equals 1 and all remaining elements equal 0 \cite{pattern_recognition_machine_learning}. For an instance $B$ of a feature having $k=3$ separate categories $\{A, B, C\}$, the one-hot vector $x$ would be represented by $x = (0, 1, 0)^{\intercal}$. According to Huang \cite{kmodes}, one-hot encoding has two drawbacks:
 \begin{enumerate} 
 	\item In real-world applications, categorial features with hundreds or thousands of categories are encountered. This would result in a large number of binary features in the one-hot encoded representation, which will increase cost and space of computation.
 	\item The centroid value of a certain one-hot encoded feature, given by a real value between 0 and 1, cannot indicate the characteristics of the according cluster, since the feature only describes the presence or absence of one category.
@@ -119,6 +117,7 @@ The Score $s_{ijk}$ is calculated differently according to the type of feature \
 	where $R_k$ is the range of feature $k$ in the dataset or in the sample.
 \end{enumerate}
 \begin{figure}
+\centering
 	\includegraphics[width=\linewidth]{gower-dichotomous.png}
 	\caption{Illustration from the original paper by Gower \cite{gower}. Score $s_{ijk}$ and quantity $\delta_{ijk}$ of a feature $k$ on two instances $x_i$ and $x_j$. Presence of a feature is denoted by "+" and absence by "-".}
 	\label{gower_dichotomous}
@@ -173,6 +172,7 @@ $$
 All four activation functions are illustrated in Figure \ref{activation_functions}.
 
 \begin{figure}
+\centering
 	\includegraphics[width=\linewidth]{activation-functions.png}
 	\caption{An illustration of the step function, the logistic sigmoid, the ReLU and the Leaky ReLU activation functions.}
 	\label{activation_functions}
@@ -180,13 +180,14 @@ All four activation functions are illustrated in Figure \ref{activation_function
 
 In a multi layer neural network, we need to be able to update the weights during training, so the network can learn the most optimal weights in order to fulfill its designated task. In the single layer perceptron, we were able to change the weights directly based on the predicted output, but in a multi layer network this is non-trivial, since we have multiple such perceptron layers that are sequentially attached. The solution is to use differentiable activation functions (or activation functions differentiable at almost every point, e.g. ReLU is not differentiable at 0), so each neuron together with its activation function becomes a differential function of the input, the weight and bias. We can now define a differentiable error function of the network outputs, which therefore is also a differentiable function of the weights. A common error function used in neural networks is the \textit{mean squared error}, defined as
 $$\text{MSE} = \frac{1}{n} \sum^n_{i=1}{(y_i - z_i)^2},$$
-where $n$ is the number of input instances, $y_i$ ist the target label of instance $x_i$ and $z_i$ is the network output on instance $x_i$. The derivatives of the error function in combination with gradient descent can be then be used to find the weights that minimize the error function. \cite{neural_networks_pattern_recognition}
+where $n$ is the number of input instances, $y_i$ ist the target label of instance $x_i$ and $z_i$ is the network output on instance $x_i$. The derivatives of the error function in combination with stochastic gradient descent can be then be used to find the weights that minimize the error function. \cite{neural_networks_pattern_recognition}
 
 \subsection{Autoencoder}
 
 A neural network, as defined in the previous section, needs the target labels of a dataset in order be trainable. In a unsupervised learning setting, this is unapplicable. An approach used for pre-training neural networks with unlabeled data is using an \textit{autoencoder} neural network, first formalized by Ballard \cite{autoencoder}. An autoencoder is a neural network, that projects the input into a lower-dimensional embedding space, and then back into its original dimensionality. The network tries to reconstruct the original input the best it can, after it was encoded into the embedding space. Therefore the target label fed into the loss function is the original input. This allows such a network to be trained without the need for labeled data. The autoencoder consists of two blocks, where each is a collection of fully connected linear layers. The \textit{encoder} maps the input into the embedding space, while the \textit{decoder} projects the encoded representation into its original dimensionality. Both blocks can contain multiple hidden layers, but typically they are constructed symmetrical, meaning the number and size of the linear layers in the decoder are the same as in the encoder, but inverted. 
 
 \begin{figure}
+\centering
 	\includegraphics[width=1.1\linewidth]{autoencoder.png}
 	\caption{Illustration of an autoencoder neural network.}
 	\label{autoencoder}
@@ -199,15 +200,27 @@ In unsupervised learning such as clustering, the autoencoder can be used to lear
 The problem of training an autoencoder before clustering is that the autoencoder cannot learn a suitable representation for the subsequent clustering step. The autoencoder has no objective that rewards learning a cluster-friendly representation \cite{dcn}. Instead of using a multi-stage process that splits autoencoder training and clustering, Xie et al. \cite{dec} proposed DEC, an approach using a iterative process that simultaneously learns feature representations and cluster assignments. 
 
 \begin{figure}
+\centering
 	\includegraphics[width=1\linewidth]{dec.png}
 	\caption{Illustration of the DEC network by Xie et al. \cite{dec}.}
 	\label{dec}
 \end{figure}
 
+\begin{figure}
+\centering
+	\includegraphics[width=0.7\linewidth]{p-and-q-distributions.png}
+	\caption{Illustration from Li \cite{comparing_DEC_and_DCN} on the distributions $Q$ and $P$ on two cluster centroids $\mu_1$ and $\mu_2$. It is notable that $P$ is more concentrated around the cluster centers, but still derived from $Q$.}
+	\label{p-and-q-distributions}
+\end{figure}	
+
 DEC initially trains the autoencoder on the data as with the previous multi-stage approach, but then leaves out the decoder, as illustrated in Figure \ref{dec}, and trains the encoder separately while clustering to learn more optimal feature representations. After the initial autoencoder pre-training, standard k-means (Section \ref{k-means}) is used on the encoded representation to obtain initial cluster labels. A two-step algorithm is then used to iteratively update both the cluster assignments and feature representations. The first step involves computing a \textit{soft assignment} between the encoded data points and the cluster centroids. Student's $t$-distribution is used as a kernel, with fixed degrees of freedom $\alpha = 1$:
 $$q_{ij} = \frac{(1 + \Vert z_i - \mu_j \Vert^2 / \alpha)^{-\frac{\alpha+1}{2}}}{\sum_{j'}(1 + \Vert z_i - \mu_{j'} \Vert^2 / \alpha)^{-\frac{\alpha+1}{2}}},$$
-where $z_i$ represents the encoded value of instance $x_i$ and $\mu_j$ the centroid value of cluster $j$. The resulting value $q_{ij}$ can be interpreted as the probability of assigning instance $x_i$ to cluster $j$. For the second step, we define a auxiliary distribution $P$:
-$$p_{ij} = $$
+where $z_i$ represents the encoded value of instance $x_i$ and $\mu_j$ the centroid value of cluster $j$. The resulting value $q_{ij}$ can be interpreted as the probability of assigning instance $x_i$ to cluster $j$. The objective of the second step is minimizing the Kullback-Leibler divergence between our previously defined distribution $Q$ and an auxiliary distribution $P$:
+$$\text{KL}(P \Vert Q) = \sum_i \sum_j p_{ij} log\frac{p_{ij}}{q_{ij}}.$$
+The auxiliary distribution $P$ is more concentrated around the cluster centers than $Q$ (illustrated in Figure \ref{p-and-q-distributions}), but not using an unnatural distribution such as a delta distribution. The goal of $P$ is to strengthen clustering predictions, put more emphasis on points assigned with high confidence and normalize loss contribution of each centroid. Therefore, $P$ is defined as
+$$p_{ij} = \frac{q_{ij}^2 / f_j}{\sum_{j'}q_{ij}^2 / f_{j'}},$$
+where $f_j = \sum_i q_{ij}$ is the soft cluster frequency. We can then train the encoder using stochastic gradient descent to produce points $z_i$ that minimize the Kullback-Leibler divergence. \cite{dec}
+
 
 \chapter{Attention in Mixed-Type Clustering}
 
@@ -228,6 +241,7 @@ The goal of the autoencoder therefore is to reconstruct the embeddings, not the 
 \section{Attention}
 
 \begin{figure}
+\centering
 	\includegraphics[width=1.2\linewidth]{attention_autoencoder.png}
 	\caption{Architecture of the self-attention autoencoder network.}
 	\label{attention_architecture}
@@ -238,6 +252,7 @@ The goal of the autoencoder therefore is to reconstruct the embeddings, not the 
 Self-attention operates with three input tensors: \textit{queries}, \textit{keys} and \textit{values}. Each of them is the input tensor, but used for different parts of the attention process. We add three independent linear projection to the input tensor to learn different representations for queries, keys and values. We apply attention to the categorial features after they were embedded in the embedding layer and then projected into queries, keys and values. The resulting vectors for each categorial feature are called \textit{contextual embeddings}, since they contain information on the context of the input sample. We concatenate these embedding vectors lengthwise, before passing them into the first linear layer of the encoder, as illustrated in Figure \ref{attention_architecture}.
 
 \begin{figure}
+\centering
 	\includegraphics[width=1.1\linewidth]{attention_illustrated.png}
 	\caption{Illustration of the attention mechanism on calculating the first output vector, inspired by Bloem \cite{transformers_from_scratch}. q1, k1, v1 represent the vectors at index 1 of Queries $Q$, Keys $K$ and Values $V$ respectively. The softmax function over the weights is not part of this illustration.}
 	\label{attention_illustrated}
@@ -262,6 +277,7 @@ An illustration on how the first output vector in the attention mechanism is cal
 \section{Transformer}
 
 \begin{figure}
+\centering
 	\includegraphics[width=1.2\linewidth]{transformer_autoencoder.png}
 	\caption{Architecture of the Transformer autoencoder network.}
 	\label{transformer_autoencoder}
@@ -280,6 +296,7 @@ Gorishniy et al. extends the Tab Transformer into the \textit{FT-Transformer}, w
 The intuition behind using the FT-Transformer is that many continuous features in the tabular domain are only composed of a small range of values, and can therefore easily represented by an embedding vector. Using Attention over both continuous and categorial features allows the model to learn dependencies across both types of features.
 
 \begin{figure}
+\centering
 	\includegraphics[width=1.2\linewidth]{ft_transformer_autoencoder.png}
 	\caption{Architecture of the FT-Transformer autoencoder network.}
 	\label{ft_transformer_autoencoder}
@@ -295,7 +312,7 @@ Our first comparison is between classical clustering methods for clustering mixe
 \begin{figure}
 \begin{center}
 \scalebox{0.8}{
-\begin{tabular}{|c|c|c|c|c|}
+\begin{tabular}{|p{37mm}|p{27mm}|p{27mm}|p{27mm}|p{27mm}|}
 \hline
 &k-means&k-means one-hot&k-prototypes&Gower distance\\\hline
 Abalone&0.1718&\bf{0.1740}&0.1716&0.1614\\ \hline
@@ -316,7 +333,7 @@ Soybean Disease&0.6722&\bf{0.7102}&0.5676&0.6695\\ \hline
 \begin{figure}
 \begin{center}
 \scalebox{0.8}{
-\begin{tabular}{|c|c|c|c|c|}
+\begin{tabular}{|p{37mm}|p{27mm}|p{27mm}|p{27mm}|p{27mm}|}
 \hline
 &k-means&k-means one-hot&k-prototypes&Gower distance\\ \hline
 Abalone&0.1353&0.1314&0.1343&\bf{0.1954}\\ \hline
@@ -387,17 +404,17 @@ Soybean Disease&0.3986&0.4075&0.3292&\bf{0.4413}\\ \hline
 \begin{figure}
 \begin{center}
 \scalebox{0.8}{
-\begin{tabular}{|c|c|c|c|}
+\begin{tabular}{|p{37mm}|p{27mm}|p{27mm}|p{27mm}|p{27mm}|}
 \hline
-&All cols AE&AE with Attention&Transformer N=6\\ \hline
-Abalone&0.1603&\bf{0.1681}&0.1612\\ \hline
-Auction Verification&\bf{0.1234}&0.0109&0.0045\\ \hline
-Bank Marketing&0.0040&\bf{0.0394}&0.0022\\ \hline
-Breast Cancer&0.5521&0.1906&\bf{0.5569}\\ \hline
-Census Income&\bf{0.1475}&0.0237&0.0056\\ \hline
-Credit Approval&0.0123&0.1833&\bf{0.3061}\\ \hline
-Heart Disease&0.1550&0.1244&\bf{0.1863}\\ \hline
-Soybean Disease&\bf{0.5656}&0.2514&0.3966\\ \hline
+&All cols AE&AE with Attention&Transformer N=6&FT-Transformer N=6\\ \hline
+Abalone&0.1603&0.1681&0.1612&\bf{0.1750}\\ \hline
+Auction Verification&\bf{0.1234}&0.0109&0.0045&0.0065\\ \hline
+Bank Marketing&0.0040&\bf{0.0394}&0.0022&0.0040\\ \hline
+Breast Cancer&0.5521&0.1906&\bf{0.5569}&0.4371\\ \hline
+Census Income&\bf{0.1475}&0.0237&0.0056&0.1423\\ \hline
+Credit Approval&0.0123&0.1833&\bf{0.3061}&0.0897\\ \hline
+Heart Disease&0.1550&0.1244&\bf{0.1863}&0.1717\\ \hline
+Soybean Disease&\bf{0.5656}&0.2514&0.3966&0.2755\\ \hline
 \end{tabular}
 }
 \end{center}
@@ -408,17 +425,17 @@ Soybean Disease&\bf{0.5656}&0.2514&0.3966\\ \hline
 \begin{figure}
 \begin{center}
 \scalebox{0.8}{
-\begin{tabular}{|c|c|c|c|}
+\begin{tabular}{|p{37mm}|p{27mm}|p{27mm}|p{27mm}|p{27mm}|}
 \hline
-&All cols AE&AE with Attention&Transformer N=6\\ \hline
-Abalone&0.1503&\bf{0.1575}&0.1345\\ \hline
-Auction Verification&\bf{0.8331}&0.6422&0.6393\\ \hline
-Bank Marketing&\bf{0.7416}&0.7044&0.5636\\ \hline
-Breast Cancer&\bf{0.9136}&0.7277&0.8799\\ \hline
-Census Income&0.6740&\bf{0.7146}&0.6812\\ \hline
-Credit Approval&0.5360&0.7335&\bf{0.7887}\\ \hline
-Heart Disease&0.4448&0.3411&\bf{0.4515}\\ \hline
-Soybean Disease&\bf{0.4751}&0.2473&0.3114\\ \hline
+&All cols AE&AE with Attention&Transformer N=6&FT-Transformer N=6\\ \hline
+Abalone&0.1503&0.1575&0.1345&\bf{0.1609}\\ \hline
+Auction Verification&\bf{0.8331}&0.6422&0.6393&0.6290\\ \hline
+Bank Marketing&0.7416&0.7044&0.5636&\bf{0.8796}\\ \hline
+Breast Cancer&\bf{0.9136}&0.7277&0.8799&0.8184\\ \hline
+Census Income&0.6740&0.7146&0.6812&\bf{0.7246}\\ \hline
+Credit Approval&0.5360&0.7335&\bf{0.7887}&0.6141\\ \hline
+Heart Disease&0.4448&0.3411&\bf{0.4515}&0.3813\\ \hline
+Soybean Disease&\bf{0.4751}&0.2473&0.3114&0.2420\\ \hline
 \end{tabular}
 }
 \end{center}
