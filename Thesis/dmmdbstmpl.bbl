@@ -44,6 +44,11 @@ J.~C. Gower.
 \newblock A general coefficient of similarity and some of its properties.
 \newblock {\em Biometrics}, 27(4):857--871, 1971.
 
+\bibitem{idec}
+Xifeng Guo, Long Gao, Xinwang Liu, and Jianping Yin.
+\newblock Improved deep embedded clustering with local structure preservation.
+\newblock In {\em Proceedings of the Twenty-Sixth International Joint Conference on Artificial Intelligence, {IJCAI-17}}, pages 1753--1759, 2017.
+
 \bibitem{tab_transformer}
 Xin Huang, Ashish Khetan, Milan Cvitkovic, and Zohar Karnin.
 \newblock Tabtransformer: Tabular data modeling using contextual embeddings, 2020.
@@ -175,5 +180,9 @@ Junyuan Xie, Ross Girshick, and Ali Farhadi.
 \bibitem{dcn}
 Bo~Yang, Xiao Fu, Nicholas~D. Sidiropoulos, and Mingyi Hong.
 \newblock Towards k-means-friendly spaces: Simultaneous deep learning and clustering, 2017.
+
+\bibitem{deep_clustering_survey}
+Sheng Zhou, Hongjia Xu, Zhuonan Zheng, Jiawei Chen, Zhao li, Jiajun Bu, Jia Wu, Xin Wang, Wenwu Zhu, and Martin Ester.
+\newblock A comprehensive survey on deep clustering: Taxonomy, challenges, and future directions, 2022.
 
 \end{thebibliography}
