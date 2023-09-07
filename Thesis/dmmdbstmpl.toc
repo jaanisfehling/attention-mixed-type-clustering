@@ -22,5 +22,5 @@
 \contentsline {subsection}{\numberline {4.4.1}FT-Transformer}{25}{}%
 \contentsline {chapter}{\numberline {5}Experiments}{29}{}%
 \contentsline {section}{\numberline {5.1}Comparison of classical Clustering Methods}{29}{}%
-\contentsline {chapter}{\numberline {6}Conclusion}{36}{}%
-\contentsline {chapter}{Bibliography}{37}{}%
+\contentsline {chapter}{\numberline {6}Conclusion}{37}{}%
+\contentsline {chapter}{Bibliography}{38}{}%

@@ -422,9 +422,9 @@ k-means without any modification for mixed type data shows great Normalized Mutu
 \label{ae_architecture_comparison_acc}
 \end{figure}
 
-The next comparison revolves around the autoencoder architecture that will be chosen for following modifications. We have the choice between only learning dense representations for categorical features or learning them for all features. Further, we can leave out the categorical column embeddings and feed the categorical values as they are into the autoencoder. An autoencoder that gets all features as input in the encoder but only learns to reconstruct the categorical features is also added.
+The next comparison (Figure \ref{ae_architecture_comparison_nmi} and \ref{ae_architecture_comparison_acc}) revolves around the autoencoder architecture that will be chosen for following modifications. We have the choice between only learning dense representations for categorical features or learning them for all features. Further, we can leave out the categorical column embeddings and feed the categorical values as they are into the autoencoder. An autoencoder that gets all features as input in the encoder but only learns to reconstruct the categorical features is also added to the comparison.
 
-
+The results do not clearly indicate which autoencoder architecture is the best. Therefore we build upon prior research on mixed-type classification with attention (\cite{tab_transformer}, \cite{ft_transformer}), where a feed-forward network that includes categorical features as well as continuous features is used. This means we choose the autoencoder that includes both categorical and continuous features.
 
 \begin{figure}
 \begin{center}
@@ -468,6 +468,7 @@ The next comparison revolves around the autoencoder architecture that will be ch
 \label{attention_comparison_acc}
 \end{figure}
 
+We then incorporate attention into our autoencoder. 
 
 
 \begin{figure}

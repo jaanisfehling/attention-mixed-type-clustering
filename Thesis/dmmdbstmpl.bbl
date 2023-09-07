@@ -39,6 +39,11 @@ Shiv~Ram Dubey, Satish~Kumar Singh, and Bidyut~Baran Chaudhuri.
 \newblock Activation functions in deep learning: A comprehensive survey and benchmark.
 \newblock {\em Neurocomputing}, 503:92--108, 2022.
 
+\bibitem{ft_transformer}
+Yury Gorishniy, Ivan Rubachev, Valentin Khrulkov, and Artem Babenko.
+\newblock Revisiting deep learning models for tabular data.
+\newblock In {\em {NeurIPS}}, 2021.
+
 \bibitem{gower}
 J.~C. Gower.
 \newblock A general coefficient of similarity and some of its properties.
