@@ -11,28 +11,28 @@ Clustering is an unsupervised machine learning method that groups similar observ
 \subsection{Datasets} \label{Datasets}
 
 In this work we use 8 mixed-type datasets from the UC Irvine Machine Learning Repository \cite{uci_ml_rpo}.
-The Abalone dataset \cite{abalone} contains physical measurements from abalones. It has 4177 instances, one categorial feature and seven continuous features.
-The Auction Verification dataset \cite{auction_verification} has 2043 instances that contain verification runs of multi-round auctions. It is composed of six categorial and one continuous feauture.
-The Bank Marketing dataset \cite{bank_marketing} is related to a direct marketing campaign of a portuguese banking institution. It has 49732 instances, but was downsampled to 5000 random instances. The "age", "day" and "month" features were removed, which results in eight categorial and five continuous features.
-The Breast Cancer dataset \cite{breast_cancer} contains 699 instances and 9 categorial features.
-The Census Income dataset \cite{census_income} has a total of 48842 instances. It was downsampled to 5000 random instances. It is composed of eight categorial and 6 continuous features.
-The Credit Approval dataset \cite{credit_approval} contains information of applications for credit cards. It has 690 instances, nine categorial features and six continuous features.
-The Heart Disease dataset \cite{heart_disease} is composed of four datasets and has 920 instances in total. It has seven categorial features and six continuous features.
-The Soybean (Large) Dataset \cite{abalone} consists of 683 instances from soybeans with a certain disease and has 35 categorial features.
+The Abalone dataset \cite{abalone} contains physical measurements from abalones. It has 4177 instances, one categorical feature and seven continuous features.
+The Auction Verification dataset \cite{auction_verification} has 2043 instances that contain verification runs of multi-round auctions. It is composed of six categorical and one continuous feature.
+The Bank Marketing dataset \cite{bank_marketing} is related to a direct marketing campaign of a portuguese banking institution. It has 49732 instances, but was downsampled to 5000 random instances. The "age", "day" and "month" features were removed, which results in eight categorical and five continuous features.
+The Breast Cancer dataset \cite{breast_cancer} contains 699 instances and 9 categorical features.
+The Census Income dataset \cite{census_income} has a total of 48842 instances. It was downsampled to 5000 random instances. It is composed of eight categorical and 6 continuous features.
+The Credit Approval dataset \cite{credit_approval} contains information of applications for credit cards. It has 690 instances, nine categorical features and six continuous features.
+The Heart Disease dataset \cite{heart_disease} is composed of four datasets and has 920 instances in total. It has seven categorical features and six continuous features.
+The Soybean (Large) Dataset \cite{abalone} consists of 683 instances from soybeans with a certain disease and has 35 categorical features.
 
-All instances containing missing values were removed. Duplicate instances were explicitly not removed, since there is no information available if they are duplicates by accident, or real duplicates. Categorial columns were standardized by removing the mean and scaling to unit variance, using the scikit-learn Python Library \cite{scikit_learn}. Formally, the standardized score $z$ of a sample $x$ from a feature is calculated as
+All instances containing missing values were removed. Duplicate instances were explicitly not removed, since there is no information available if they are duplicates by accident, or real duplicates. Categorical features were standardized by removing the mean and scaling to unit variance, using the scikit-learn Python library \cite{scikit_learn}. Formally, the standardized score $z$ of a sample $x$ from a feature is calculated as
 $$z = \frac{(x-\mu)}{\sigma},$$
 where $\mu$ is the mean of the samples $x_1, ...,x_N$ from a feature of length $N$, defined as
 $$\mu = \frac{1}{N} \sum^{N}_{i=1} x_i$$
 and $\sigma$ is the standard deviation of the samples of a feature, defined as
 $$\sigma = \sqrt{\frac{1}{N} \sum^{N}_{i=1}(x_i - \mu)^2}.$$
-The datasets were shuffled. For all random operations, a random state of integer value 0 was used to ensure reproducibility. When using the PyTorch Python Libary \cite{pytorch} for implementing neural networks, a flag was set to only use deterministic algorithms.
+The datasets were shuffled. For all random operations, a random state of integer value 0 was used to ensure reproducibility. When using the PyTorch Python library \cite{pytorch} for implementing neural networks, a flag was set to only use deterministic algorithms.
 
-\subsection{Evaluation}
+\subsection{Evaluation} \label{Evaluation}
 
-The clustering results were each evaluated with two measurents, \textit{Accuracy} and \textit{Normalized Mutual Information}. Accuracy is defined as 
+The clustering results were each evaluated with two measurements, \textit{Accuracy} and \textit{Normalized Mutual Information}. Accuracy is defined as 
 $$\frac{\text{Instances predicted correctly}}{\text{Total number of instances}}.$$
-Since any clustering algorithm will assign arbitrary class labels to each instance that might not allign with the ground truth class labels, we map the predicted label classes to ground truth label classes in a way maximize the number of correctly predicted instances. This is an inversion of the \textit{Linear Assignment Problem}, we use an implementation provided by the Scipy Python Library \cite{scipy} to solve this problem and find the optimal solution. 
+Since any clustering algorithm will assign arbitrary class labels to each instance that might not align with the ground truth class labels, we map the predicted label classes to ground truth label classes in a way maximize the number of correctly predicted instances. This is an inversion of the \textit{Linear Assignment Problem}, we use an implementation provided by the Scipy Python library \cite{scipy} to solve this problem and find the optimal solution. 
 
 As shown in Chapter \ref{Experiments}, some clustering methods falsely assign almost all instances to one target class. Because a part of the datasets we used are heavily imbalanced, this leads to unjustified high accuracy scores. Therefore, we use another metric, Normalized Mutual Information. It is based on \textit{Mutual Information}, which, for the ground truth labels $U$ and the predicted labels $V$ (switching both variables will not change the outcome) is defined as
 $$MI(U,V) = \sum^{|U|}_{i=1}\sum^{|V|}_{j=1} \frac{|U_i \cap V_j|}{N} log\frac{N|U_i \cap V_j|}{|U_i||V_j|}$$
@@ -52,7 +52,7 @@ $$d(p, q) = \Vert p - q \Vert = \sqrt{(p_1 - q_1)^2 + (p_2 - q_2)^2 + ... + (p_n
 Finding the optimal centroids is a NP-hard problem, even for $d=2$, as shown by Mahajan et al. \cite{kmeans_np_hard}. The most common algorithm used for the k-means problem is a iterative refinement technique proposed by Lloyd \cite{kmeans_lloyd}. It is defined as follows
 \begin{enumerate} 
 	\item Randomly set $k$ initial cluster centroids $b_1^{(1)}, ..., b_k^{(1)}$.
-	\item Assign each obseration $p_i$ to the nearest centroid using squared Euclidean distance. This splits our instances into $S$ into $k$ sets $\{S_1^{(t)}, ..., S_k^{(t)}\}$.
+	\item Assign each observation $p_i$ to the nearest centroid using squared Euclidean distance. This splits our instances into $S$ into $k$ sets $\{S_1^{(t)}, ..., S_k^{(t)}\}$.
 	\item Recalculate the optimal position of each centroid using the mean distance to each instance assigned to the centroid: 
 $$b_i^{(t+1)} = \frac{1}{|S_i^{(t)}|} \sum_{p_j \in S_i^{(t)}} p_j.$$
 	\item Repeat steps 2. and 3. until the centroid assignments no longer change.
@@ -60,16 +60,16 @@ $$b_i^{(t+1)} = \frac{1}{|S_i^{(t)}|} \sum_{p_j \in S_i^{(t)}} p_j.$$
 
 \subsection{k-modes} \label{k-modes}
 
-In many real-world scenarios, besides continuous, numerical data, \textit{categorial} data exists. While Euclidean distance or other distance measures work well with continuous data, categorial data is different. Suppose we have categories $\{A, B, C\}$ of a given feature, we would encode them into numeric values to allow for computation of a distance measure:
+In many real-world scenarios, besides continuous, numerical data, \textit{categorical} data exists. While Euclidean distance or other distance measures work well with continuous data, categorical data is different. Suppose we have categories $\{A, B, C\}$ of a given feature, we would encode them into numeric values to allow for computation of a distance measure:
 $$\{A, B, C\} \equiv \{1, 2, 3\}.$$
 While $A$ and $C$ can share the same semantic similarity as $A$ and $B$, numerically category $A$ and Category $C$ are now $|1-3| = 2$ apart, while Category $A$ and $B$ are only $|1-2|=1$ apart. During clustering, this could lead to instances being assigned to centroids based on a wrong distance assumption.
 
 A possible solution is to use \textit{one-hot encoding}, also known as \textit{dummy coding} in classical statistics. One-hot encoding turns a discrete feature containing $k$ mutually exclusive categories into a vector $x$ of length $k$, in which only one of the elements $x_k$ equals 1 and all remaining elements equal 0 \cite{pattern_recognition_machine_learning}. For an instance $B$ of a feature having $k=3$ separate categories $\{A, B, C\}$, the one-hot vector $x$ would be represented by $x = (0, 1, 0)^{\intercal}$. According to Huang \cite{kmodes}, one-hot encoding has two drawbacks:
 \begin{enumerate} 
-	\item In real-world applications, categorial features with hundreds or thousands of categories are encountered. This would result in a large number of binary features in the one-hot encoded representation, which will increase cost and space of computation.
+	\item In real-world applications, categorical features with hundreds or thousands of categories are encountered. This would result in a large number of binary features in the one-hot encoded representation, which will increase cost and space of computation.
 	\item The centroid value of a certain one-hot encoded feature, given by a real value between 0 and 1, cannot indicate the characteristics of the according cluster, since the feature only describes the presence or absence of one category.
 \end{enumerate}
-Therefore, Huang \cite{kmodes} proposed using the Kronecker-Delta as a dissimilarity measure between multiple categorial features. Formally, if we have two instances $X$ and $Y$ of a dataset with $m$ categorial features, $d_1$ will count the number of mismatches between the categorial features of both instances, defined as
+Therefore, Huang \cite{kmodes} proposed using the Kronecker-Delta as a dissimilarity measure between multiple categorical features. Formally, if we have two instances $X$ and $Y$ of a dataset with $m$ categorical features, $d_1$ will count the number of mismatches between the categorical features of both instances, defined as
 $$d_1(X, Y) = \sum^m_{j=1} \delta (x_j, y_j)$$
 where the Kronecker delta $\delta (x_j, y_j)$ is defined as
 $$\delta (x_j, y_j) = 
@@ -78,13 +78,13 @@ $$\delta (x_j, y_j) =
     1 & (x_j \neq y_j)
 \end{cases}.
 $$
-If we have a finite set of $n$ instances $S=\{p_1, p_2, ..., p_n\}$ for a dataset with $m$ categorial features, the goal of \textit{k-modes} \cite{kmodes} is to find optimal \textit{modes} $B=\{b_1, b_2, ..., b_k\}$ for a given $k (\leq n) \in \N$ that minimize
+If we have a finite set of $n$ instances $S=\{p_1, p_2, ..., p_n\}$ for a dataset with $m$ categorical features, the goal of \textit{k-modes} \cite{kmodes} is to find optimal \textit{modes} $B=\{b_1, b_2, ..., b_k\}$ for a given $k (\leq n) \in \N$ that minimize
 $$\sum_{i=1}^n  d_1(p_i, B)$$
 where
 $$d_1(p_i, B) = min_{1 \leq l \leq k} \sum^m_{j=1} \delta (p_{i,j}, b_{l,j}).$$
 Similar to k-means, we can use an iterative algorithm for efficient computation \cite{kmodes}:
 \begin{enumerate} 
-	\item Randonly choose $k$ instances from the dataset as initial modes for the clusters.
+	\item Randomly choose $k$ instances from the dataset as initial modes for the clusters.
 	\item Assign each instance to their nearest mode using the proposed dissimilarity measure one by one and update the mode of each cluster after each assignment.
 	\item Test if each instance still belongs to its assigned mode, i.e. if each instance is assigned to its nearest mode. If the instance would belong to a different mode, reassign the instance and update the modes of both clusters.
 	\item Repeat step 3. until the mode assignments no longer change.
@@ -92,7 +92,7 @@ Similar to k-means, we can use an iterative algorithm for efficient computation 
 
 \subsection{k-prototypes}
 
-As proposed by Huang \cite{kmodes}, it is straightforward to combine the k-means and k-modes algorithms into the \textit{k-prototypes} algorithm, which can be used to cluster \textit{mixed-type} data (consisting of numerical, continuous and categorial features). The dissimilarity between two instances $X$ and $Y$ with features $A^r_1, A^r_2, ..., A^r_s, A_{s+1}^c, ..., A^c_m$, where features $A^r_1, ..., A^r_s$ are continuous and features $A_{s+1}^c, ..., A^c_m$ are categorial, is defined as
+As proposed by Huang \cite{kmodes}, it is straightforward to combine the k-means and k-modes algorithms into the \textit{k-prototypes} algorithm, which can be used to cluster \textit{mixed-type} data (consisting of numerical, continuous and categorical features). The dissimilarity between two instances $X$ and $Y$ with features $A^r_1, A^r_2, ..., A^r_s, A_{s+1}^c, ..., A^c_m$, where features $A^r_1, ..., A^r_s$ are continuous and features $A_{s+1}^c, ..., A^c_m$ are categorical, is defined as
 $$d_2(X,Y) = \sum^s_{j=1}(x_j - y_j)^2 + \gamma \sum^m_{j=s+1}\delta(x_j, y_j).$$
 The first part of the equation is the Euclidean distance as used in k-means, while the second part is taken from the k-modes algorithm. Huang \cite{kmodes} states: "The weight $\gamma$ is used to avoid favouring either type of attribute".
 
@@ -111,7 +111,7 @@ $$S_{ij} = \frac{\sum^p_{k=1}s_{ijk}\delta_{ijk}}{\sum^p_{k=1}\delta_{ijk}}.$$
 The Score $s_{ijk}$ is calculated differently according to the type of feature \cite{gower}:
 \begin{enumerate}
 	\item For \textit{dichotomous} (when a value is either present or absent) features, the score $s_{ijk}$ is 1 when the value is present in both features and 0 otherwise, as shown in Figure \ref{gower_dichotomous}.
-	\item For categorial features, the score $s_{ijk}$ is 1 if they both instances match on feature $k$ and 0 otherwise.
+	\item For categorical features, the score $s_{ijk}$ is 1 if they both instances match on feature $k$ and 0 otherwise.
 	\item For continuous features the score is calculated as
 	$$s_{ijk} = 1-\frac{|x_i-x_j|}{R_k}$$
 	where $R_k$ is the range of feature $k$ in the dataset or in the sample.
@@ -160,7 +160,7 @@ $$\text{step function}(x) =
 $$
 In order to stay between 0 and 1, but also utilize all real values in between, another activation function that has historically been popular is the \textit{logistic sigmoid} function \cite{activation_functions}, that squashes any input in $]0, 1[$:
 $$\text{logistic sigmoid}(x) = \frac{1}{1 + e^{-x}}.$$
-Because the ouputs are in a range close to 0, it is prone to the \textit{vanishing gradient problem}. In the vanishing gradient problem, a gradient that is very close to 0 leads to almost no update in the weights of the network during training. Moreover, using a exponential value naturally leads to a greater computational complexity. \cite{activation_functions}
+Because the outputs are in a range close to 0, it is prone to the \textit{vanishing gradient problem}. In the vanishing gradient problem, a gradient that is very close to 0 leads to almost no update in the weights of the network during training. Moreover, using a exponential value naturally leads to a greater computational complexity. \cite{activation_functions}
 
 The current state-of-the-art activation function, the \textit{Rectified Linear Unit} (ReLU) \cite{activation_functions}, is not limited by the above disadvantages. It is simple and computationally performant. It is defined as the identity for positive values and as 0 for negative values:
 $$\text{ReLU}(x) = max(0, x) = 
@@ -247,17 +247,17 @@ The loss function consists of two parts, the reconstruction loss (first term of 
 
 \section{Autoencoder and k-means}
 
-It is difficult to formulate statistical distance measures for comparing two values of a categorial feature. Categorial features are irregular in nature, they can be binary, ordinal, non-ordinal or composed of many semantically different classes. This makes it hard to cluster a mixed-type datasets with classical clustering methods. As described by Huang \cite{kmodes} and also explained in Section \ref{k-modes}, one-hot encoding is suboptimal for the use in clustering tasks. The proposed solution by Huang, k-prototypes \cite{kmodes}, does not beat k-means or k-means with one-hot encoding on any tested dataset, as shown in Chapter \ref{Experiments}. Gower distance shows great accuracy results on all datasets and manages to beat the other methods on five out of eight datasets. As further illustrated in Chapter \ref{Experiments}, the accuracy evaluation metric is highly problematic, since some datasets are heavily imbalanced. In fact, the datasets on which gower distance achieves the best accuracy results are greatly imbalanced. This means the agglomerative clustering used with gower distance falsely assigns almost all instances to one target class. When looking at Normalized Mutual Information (NMI), gower distance with agglomerative clustering does not beat k-means or k-means with one-hot encoding on any dataset. This leaves us with naive k-means intended for only numerical, continuous data and k-means with one-hot encoding, which is a inefficient, suboptimal encoding.
+It is difficult to formulate statistical distance measures for comparing two values of a categorical feature. Categorical features are irregular in nature, they can be binary, ordinal, non-ordinal or composed of many semantically different classes. This makes it hard to cluster a mixed-type datasets with classical clustering methods. As described by Huang \cite{kmodes} and also explained in Section \ref{k-modes}, one-hot encoding is suboptimal for the use in clustering tasks. The proposed solution by Huang, k-prototypes \cite{kmodes}, does not beat k-means or k-means with one-hot encoding on any tested dataset, as shown in Chapter \ref{Experiments}. Gower distance shows great accuracy results on all datasets and manages to beat the other methods on five out of eight datasets. As further illustrated in Chapter \ref{Experiments}, the accuracy evaluation metric is highly problematic, since some datasets are heavily imbalanced. In fact, the datasets on which gower distance achieves the best accuracy results are greatly imbalanced. This means the agglomerative clustering used with gower distance falsely assigns almost all instances to one target class. When looking at Normalized Mutual Information (NMI), gower distance with agglomerative clustering does not beat k-means or k-means with one-hot encoding on any dataset. This leaves us with naive k-means intended for only numerical, continuous data and k-means with one-hot encoding, which is a inefficient, suboptimal encoding.
 
-Therefore, instead of using statistical distance measure to compare instances with categorial and continuous features, we use an autoencoder neural network to learn a dense representation of the data. The clustering architecture we build upon is a multi-stage process. We first train the autoencoder on our dataset independently of the clustering process. The training step is repeating many times, in our experiments we train the network a hundred times (hundred epochs). After the initial training step, we can feed the dataset into the encoder part of our trained autoencoder to get the dense, encoded representation of our data. We can perform k-means clustering over this representation to get the final cluster labels.
+Therefore, instead of using statistical distance measure to compare instances with categorical and continuous features, we use an autoencoder neural network to learn a dense representation of the data. The clustering architecture we build upon is a multi-stage process. We first train the autoencoder on our dataset independently of the clustering process. The training step is repeating many times, in our experiments we train the network a hundred times (hundred epochs). After the initial training step, we can feed the dataset into the encoder part of our trained autoencoder to get the dense, encoded representation of our data. We can perform k-means clustering over this representation to get the final cluster labels.
 
 \section{Column Embeddings}
 
-Even when using neural networks, there is still the problem of representing categorial values, especially non-ordinal values, as explained in depth in Section \ref{k-modes}. Therefore, we use a learnable \textit{embedding} layer for categorial values. The resulting embedded tensor of the embedding layer for a categorial feature is a meaningful representation that is more dense that a one-hot encoded feature. The embedding layer is composed of a weight tensor $e_i$ for each categorial feature $i$. The weight tensor $e_i$  has the following dimensionality: $|i| \times s_i$, where $|i|$ is the number of unique classes in categorial feature $i$ and $s_i$ is the corresponding embedding dimension. We calculate the embedding dimension $s_i$ of feature $i$ as
+Even when using neural networks, there is still the problem of representing categorical values, especially non-ordinal values, as explained in depth in Section \ref{k-modes}. Therefore, we use a learnable \textit{embedding} layer for categorical values. The resulting embedded tensor of the embedding layer for a categorical feature is a meaningful representation that is more dense that a one-hot encoded feature. The embedding layer is composed of a weight tensor $e_i$ for each categorical feature $i$. The weight tensor $e_i$  has the following dimensionality: $|i| \times s_i$, where $|i|$ is the number of unique classes in categorical feature $i$ and $s_i$ is the corresponding embedding dimension. We calculate the embedding dimension $s_i$ of feature $i$ as
 $$s_i = min(50, \lceil \frac{|i|}{2} \rceil).$$
-We then encode the classes of each categorial feature with integer values, going from 0 onwards. These integer values serve as indices for the corresponding weight tensor of our embedding layer. Passing a value $j$ of a feature $i$ in the embedding layer returns the one-dimensional tensor at index $j$ of the weight tensor $e_j$, which is of dimension $1 \times s_i$. The resulting tensors of each categorial feature from the embedding layer are concatenated into a tensor of size $1 \times \sum^n_{i=1}s_i$, where $n$ is the number of categorial features. To construct the complete input tensor, we concatenate the tensor of the embedded categorial features with the tensor of the continuous features. The continuous features of an instance are not embedded, but scaled by removing the mean and scaling to unit variance as explained in Section \ref{Datasets}. Having $m$ continuous features would result in a tensor of continuous features with size $1 \times m$. After concatenating both tensors, this leaves us with an input tensor of size $1 \times (m + \sum^n_{i=1}s_i)$. This input tensor can then be passed into the first linear layer of the encoder.
+We then encode the classes of each categorical feature with integer values, going from 0 onwards. These integer values serve as indices for the corresponding weight tensor of our embedding layer. Passing a value $j$ of a feature $i$ in the embedding layer returns the one-dimensional tensor at index $j$ of the weight tensor $e_j$, which is of dimension $1 \times s_i$. The resulting tensors of each categorical feature from the embedding layer are concatenated into a tensor of size $1 \times \sum^n_{i=1}s_i$, where $n$ is the number of categorical features. To construct the complete input tensor, we concatenate the tensor of the embedded categorical features with the tensor of the continuous features. The continuous features of an instance are not embedded, but scaled by removing the mean and scaling to unit variance as explained in Section \ref{Datasets}. Having $m$ continuous features would result in a tensor of continuous features with size $1 \times m$. After concatenating both tensors, this leaves us with an input tensor of size $1 \times (m + \sum^n_{i=1}s_i)$. This input tensor can then be passed into the first linear layer of the encoder.
 
-The goal of the autoencoder therefore is to reconstruct the embeddings, not the actual input. To be able to use a loss function on this network, we clone the tensor of the embedded categorial features and save it in a variable, and later compare the decoder output with the cloned embedded tensor (concatenated with the continuous features).
+The goal of the autoencoder therefore is to reconstruct the embeddings, not the actual input. To be able to use a loss function on this network, we clone the tensor of the embedded categorical features and save it in a variable, and later compare the decoder output with the cloned embedded tensor (concatenated with the continuous features).
 
 \section{Attention}
 
@@ -268,9 +268,9 @@ The goal of the autoencoder therefore is to reconstruct the embeddings, not the 
 	\label{attention_architecture}
 \end{figure}
 
-\textit{Self-attention} is a machine learning mechanism for sequence processing, originally used in machine translation by Bahdanau et al. \cite{bahdanau} and extended into the \textit{Transformer} architecture by Vaswani et al. \cite{attention_is_all_you_need}. It is a sequence-to-sequence operation, that aims to create a better representation of the input sequence by putting each element into the context of the other elements (paying "attention" to each other element). We do not operate with a sequence, but instead with multiple categorial features that might be related. For example, the relevance of a feature for the clustering process might depend of the value of another feature. The goal of the attention mechanism is to augment this feature (increase or decrease its vector representation) only when the other feature has this certain value. 
+\textit{Self-attention} is a machine learning mechanism for sequence processing, originally used in machine translation by Bahdanau et al. \cite{bahdanau} and extended into the \textit{Transformer} architecture by Vaswani et al. \cite{attention_is_all_you_need}. It is a sequence-to-sequence operation, that aims to create a better representation of the input sequence by putting each element into the context of the other elements (paying "attention" to each other element). We do not operate with a sequence, but instead with multiple categorical features that might be related. For example, the relevance of a feature for the clustering process might depend of the value of another feature. The goal of the attention mechanism is to augment this feature (increase or decrease its vector representation) only when the other feature has this certain value. 
 
-Self-attention operates with three input tensors: \textit{queries}, \textit{keys} and \textit{values}. Each of them is the input tensor, but used for different parts of the attention process. We add three independent linear projection to the input tensor to learn different representations for queries, keys and values. We apply attention to the categorial features after they were embedded in the embedding layer and then projected into queries, keys and values. The resulting vectors for each categorial feature are called \textit{contextual embeddings}, since they contain information on the context of the input sample. We concatenate these embedding vectors lengthwise, before passing them into the first linear layer of the encoder, as illustrated in Figure \ref{attention_architecture}.
+Self-attention operates with three input tensors: \textit{queries}, \textit{keys} and \textit{values}. Each of them is the input tensor, but used for different parts of the attention process. We add three independent linear projection to the input tensor to learn different representations for queries, keys and values. We apply attention to the categorical features after they were embedded in the embedding layer and then projected into queries, keys and values. The resulting vectors for each categorical feature are called \textit{contextual embeddings}, since they contain information on the context of the input sample. We concatenate these embedding vectors lengthwise, before passing them into the first linear layer of the encoder, as illustrated in Figure \ref{attention_architecture}.
 
 \begin{figure}
 \centering
@@ -279,9 +279,9 @@ Self-attention operates with three input tensors: \textit{queries}, \textit{keys
 	\label{attention_illustrated}
 \end{figure}
 
-Queries, keys and values are a sequence of $n$ vectors that have $d$ dimensions, resulting in dimensionality $n \times d$. In our case, the input dimension and therefore also the queries $Q$, keys $K$ and values $V$ are one-dimensional vectors, since the embedded vectors of each categorial features are concatenated along the first axis, as further illustrated in the previous section. We therefore cannot use our previously created input tensor. Because we calculate an individual embedding dimension (with a formula defined in the previous section) for each categorial feature, we cannot concatenate the vectors row-wise, since they all differ in length. Instead, we have to use a fixed embedding dimension $d$ for every categorial feature. Then, we can create tensors $Q$, $K$ and $V$ with dimension $n \times d$ each, where $n$ is the number of categorial features. The value 32 was chosen for embedding dimension $d$.
+Queries, keys and values are a sequence of $n$ vectors that have $d$ dimensions, resulting in dimensionality $n \times d$. In our case, the input dimension and therefore also the queries $Q$, keys $K$ and values $V$ are one-dimensional vectors, since the embedded vectors of each categorical features are concatenated along the first axis, as further illustrated in the previous section. We therefore cannot use our previously created input tensor. Because we calculate an individual embedding dimension (with a formula defined in the previous section) for each categorical feature, we cannot concatenate the vectors row-wise, since they all differ in length. Instead, we have to use a fixed embedding dimension $d$ for every categorical feature. Then, we can create tensors $Q$, $K$ and $V$ with dimension $n \times d$ each, where $n$ is the number of categorical features. The value 32 was chosen for embedding dimension $d$.
 
-Because Attention is a mechanism that calculates values that combine multiple features, we need to be able to differentiate between the classes of different features, since we have a separate learnable embedding for each feature. A solution in the domain of text translation proposed by Vaswani et al. \cite{attention_is_all_you_need} is to add a positional encoding to each embedding in order to indicate the position of the word in the sentence. This is not suitable for tabular data, since the features do not have a particular order. We instead use a solution proposed by Huang et al. \cite{tab_transformer}, which uses a shared embedding across all categorial features. The goal of the shared embedding is to learn dissimilar representations for different classes of separate features in order to distinguish them. The shared embedding is a learnable tensor of size $n \times \frac{d}{8}$, that is concatenated to our input tensor in the first dimension. The fixed embedding dimension $d$ is therefore subtracted by 8, which results in a input tensor of categorial features of size $n \times d$. 
+Because Attention is a mechanism that calculates values that combine multiple features, we need to be able to differentiate between the classes of different features, since we have a separate learnable embedding for each feature. A solution in the domain of text translation proposed by Vaswani et al. \cite{attention_is_all_you_need} is to add a positional encoding to each embedding in order to indicate the position of the word in the sentence. This is not suitable for tabular data, since the features do not have a particular order. We instead use a solution proposed by Huang et al. \cite{tab_transformer}, which uses a shared embedding across all categorical features. The goal of the shared embedding is to learn dissimilar representations for different classes of separate features in order to distinguish them. The shared embedding is a learnable tensor of size $n \times \frac{d}{8}$, that is concatenated to our input tensor in the first dimension. The fixed embedding dimension $d$ is therefore subtracted by 8, which results in a input tensor of categorical features of size $n \times d$. 
 
 The first step of self-attention is to calculate attention weights for every element of the input sequence. For that, we will multiply every query of our queries with the keys. Formally, we can define this as a matrix multiplication:
 $$W = QK^\intercal,$$
@@ -308,13 +308,13 @@ The \textit{Transformer} is a architecture based on the attention mechanism, fir
 
 After performing attention, the Transformer adds the attention outputs to the initial input and normalizes this sum using \textit{layer normalization} \cite{layer_normalization}. The output is then fed into two linear layers, the first layer projecting the input to four times its size, and the second layer projecting it onto the original size again. Once again, the output is added to the input of the linear layers, and normalized using layer normalization. This process, illustrated in Figure \ref{transformer_autoencoder}, is sequentially applied $N$ times. The layer normalization and feed-forward network between each multi-head attention operation allow the model to parameterize the attention outputs. This makes sure the model can learn from each attention step.
 
-The Transformer was originally designed for natural language tasks, but Huang et al. \cite{tab_transformer} proposed the \textit{Tab Transformer}, a multi-layer perceptron classifier for the tabular domain, based on the Transformer architecture. Inspired by the performance increase on mixed-type datasets using this architecture, we build a Transformer-based autoencoder network for clustering. The architecture, illustrated in Figure \ref{transformer_autoencoder}, is similar to the previous attention-based autoencoder but uses $N = 6$ Transformer blocks instead of one single self-attention block. Our categorial feature embedding size is 32 as previously. We perform multi-head attention with $h = 8$ heads, yielding a embedding dimension for each head of $\frac{d}{h} = 4$.
+The Transformer was originally designed for natural language tasks, but Huang et al. \cite{tab_transformer} proposed the \textit{Tab Transformer}, a multi-layer perceptron classifier for the tabular domain, based on the Transformer architecture. Inspired by the performance increase on mixed-type datasets using this architecture, we build a Transformer-based autoencoder network for clustering. The architecture, illustrated in Figure \ref{transformer_autoencoder}, is similar to the previous attention-based autoencoder but uses $N = 6$ Transformer blocks instead of one single self-attention block. Our categorical feature embedding size is 32 as previously. We perform multi-head attention with $h = 8$ heads, yielding a embedding dimension for each head of $\frac{d}{h} = 4$.
 
 \subsection{FT-Transformer}
 
-Gorishniy et al. extends the Tab Transformer into the \textit{FT-Transformer}, which uses embeddings for the numerical features as well. We implement a FT-Transformer autoencoder network, illustrated in Figure \ref{ft_transformer_autoencoder}. Our implementation uses separate linear layers for each continuous column, that transform a singular value of a continuous feature into a $1 \times d$ vector representation, where $d$ is the embedding dimension of the categorial features. This allows the continuous embeddings to be concatenated with the categorial embeddings, before being passed into the Transformer block. The rest of the implementation remains canonical to the previous architecture, only we do not concatenate the continuous feature values with the Transformer output, since the continuous features are already part of the Transformer block. The FT-Transformer paper does not use a shared embedding, we decided to keep still implement it, since Huang et al. \cite{tab_transformer} showed great accuracy gains when using a shared embedding.
+Gorishniy et al. extends the Tab Transformer into the \textit{FT-Transformer}, which uses embeddings for the numerical features as well. We implement a FT-Transformer autoencoder network, illustrated in Figure \ref{ft_transformer_autoencoder}. Our implementation uses separate linear layers for each continuous column, that transform a singular value of a continuous feature into a $1 \times d$ vector representation, where $d$ is the embedding dimension of the categorical features. This allows the continuous embeddings to be concatenated with the categorical embeddings, before being passed into the Transformer block. The rest of the implementation remains canonical to the previous architecture, only we do not concatenate the continuous feature values with the Transformer output, since the continuous features are already part of the Transformer block. The FT-Transformer paper does not use a shared embedding, we decided to keep still implement it, since Huang et al. \cite{tab_transformer} showed great accuracy gains when using a shared embedding.
 
-The intuition behind using the FT-Transformer is that many continuous features in the tabular domain are only composed of a small range of values, and can therefore easily represented by an embedding vector. Using Attention over both continuous and categorial features allows the model to learn dependencies across both types of features.
+The intuition behind using the FT-Transformer is that many continuous features in the tabular domain are only composed of a small range of values, and can therefore easily represented by an embedding vector. Using Attention over both continuous and categorical features allows the model to learn dependencies across both types of features.
 
 \begin{figure}
 \centering
@@ -326,8 +326,6 @@ The intuition behind using the FT-Transformer is that many continuous features i
 \chapter{Experiments} \label{Experiments}
 
 \section{Comparison of classical Clustering Methods}
-
-Our first comparison is between classical clustering methods for clustering mixed-type data. We evaluated k-means, k-means with one-hot encoding, k-prototypes and gower distance with agglomerative clustering, using average linkage (average distance between each instance of two sets).
 
 \begin{figure}
 \begin{center}
@@ -372,19 +370,22 @@ Our first comparison is between classical clustering methods for clustering mixe
 \end{figure}
 
 \begin{figure}
-	\includegraphics[width=\linewidth]{class-imbalance.png}
+\centering
+	\includegraphics[width=0.8\linewidth]{class-imbalance.png}
 	\caption{Number of instances of each target class of each dataset used.}
 	\label{class_imbalance}
 \end{figure}
 
+Our first comparison is between classical clustering methods for clustering mixed-type data. We evaluated k-means, k-means with one-hot encoding, k-prototypes and gower distance with agglomerative clustering, using average linkage (average distance between each instance of two sets). The results are given by Figure \ref{classical_comparison_nmi} and \ref{classical_comparison_acc}.
 
+k-means without any modification for mixed type data shows great Normalized Mutual Information (NMI) scores, k-means with one-hot encoding can improve these on some datasets, but looses on others. k-prototypes can beat k-means only on the Census Income dataset, which does not make it a valid choice for clustering mixed-type data. Gower distance, as explained in Section \ref{Evaluation}, falsely assigns almost all data points to one cluster centroid, which due to the high class imbalance in our datasets as shown in Figure \ref{class_imbalance}, yields high accuracy scores. Therefore more attention should be payed to NMI Scores, on which gower distance does not beat k-means or k-means with one-hot encoding on any dataset. 
 
 \begin{figure}
 \begin{center}
 \scalebox{0.8}{
 	\begin{tabular}{|p{37mm}|p{27mm}|p{27mm}|p{27mm}|p{27mm}|}
 	\hline
-	&No Column Embedding AE&All Columns AE&Categorial Columns AE&All Columns to Categroial Columns AE\\ \hline
+	&No categorical embedding AE&All features AE&Categorical features AE&All features to categorical features AE\\ \hline
 	Abalone&0.1559&0.1695&0.1684&\bf{0.1709}\\ \hline
 	Auction Verification&0.0066&0.0012&0.0002&\bf{0.0413}\\ \hline
 	Bank Marketing&0.0015&0.0039&\bf{0.0197}&0.0000\\ \hline
@@ -396,7 +397,7 @@ Our first comparison is between classical clustering methods for clustering mixe
 	\end{tabular}
 }
 \end{center}
-\caption{Comparison of Normalized Mutual Information of various Autoencoder architectures combined with k-means on clustering mixed-type datasets.}
+\caption{Comparison of Normalized Mutual Information of various autoencoder architectures combined with k-means on clustering mixed-type datasets.}
 \label{ae_architecture_comparison_nmi}
 \end{figure}
 
@@ -405,7 +406,7 @@ Our first comparison is between classical clustering methods for clustering mixe
 \scalebox{0.8}{
 	\begin{tabular}{|p{37mm}|p{27mm}|p{27mm}|p{27mm}|p{27mm}|}
 	\hline
-	&No Column Embedding AE&All Columns AE&Categorical Columns AE&All Columns to Categorical Columns AE\\ \hline
+	&No categorical embedding AE&All features AE&Categorical features AE&All features to categorical features AE\\ \hline
 	Abalone&0.1154&\bf{0.1688}&0.1384&0.1348\\ \hline
 	Auction Verification&0.5497&0.5893&0.6667&\bf{0.8243}\\ \hline
 	Bank Marketing&0.5310&0.7420&\bf{0.7894}&0.7484\\ \hline
@@ -417,9 +418,11 @@ Our first comparison is between classical clustering methods for clustering mixe
 	\end{tabular}
 }
 \end{center}
-\caption{Comparison of Accuracy of various Autoencoder architectures combined with k-means on clustering mixed-type datasets.}
+\caption{Comparison of Accuracy of various autoencoder architectures combined with k-means on clustering mixed-type datasets.}
 \label{ae_architecture_comparison_acc}
 \end{figure}
+
+The next comparison revolves around the autoencoder architecture that will be chosen for following modifications. We have the choice between only learning dense representations for categorical features or learning them for all features. Further, we can leave out the categorical column embeddings and feed the categorical values as they are into the autoencoder. An autoencoder that gets all features as input in the encoder but only learns to reconstruct the categorical features is also added.
 
 
 
@@ -428,7 +431,7 @@ Our first comparison is between classical clustering methods for clustering mixe
 \scalebox{0.8}{
 	\begin{tabular}{|p{37mm}|p{27mm}|p{27mm}|p{27mm}|p{27mm}|}
 	\hline
-	&AE with Column Embeddings&AE with Attention&Transformer N=6&FT-Transformer N=6\\ \hline
+	&AE with column Embeddings&AE with Attention&Transformer N=6&FT-Transformer N=6\\ \hline
 	Abalone&0.1603&0.1681&0.1612&\bf{0.1750}\\ \hline
 	Auction Verification&\bf{0.1234}&0.0109&0.0045&0.0065\\ \hline
 	Bank Marketing&0.0040&\bf{0.0394}&0.0022&0.0040\\ \hline
@@ -440,7 +443,7 @@ Our first comparison is between classical clustering methods for clustering mixe
 	\end{tabular}
 }
 \end{center}
-\caption{Comparison of Normalized Mutual Information between an autoencoder with Column Embeddings, an autoencoder using the attention mechanism, a 6-layer Transformer with an autoencoder and a 6-layer FT-Transformer with an autoencoder on clustering mixed-type datasets using k-means.}
+\caption{Comparison of Normalized Mutual Information between an autoencoder with column embeddings, an autoencoder using the attention mechanism, a 6-layer Transformer with an autoencoder and a 6-layer FT-Transformer with an autoencoder on clustering mixed-type datasets using k-means.}
 \label{attention_comparison_nmi}
 \end{figure}
 
@@ -449,7 +452,7 @@ Our first comparison is between classical clustering methods for clustering mixe
 \scalebox{0.8}{
 	\begin{tabular}{|p{37mm}|p{27mm}|p{27mm}|p{27mm}|p{27mm}|}
 	\hline
-	&AE with Column Embeddings&AE with Attention&Transformer N=6&FT-Transformer N=6\\ \hline
+	&AE with column Embeddings&AE with Attention&Transformer N=6&FT-Transformer N=6\\ \hline
 	Abalone&0.1503&0.1575&0.1345&\bf{0.1609}\\ \hline
 	Auction Verification&\bf{0.8331}&0.6422&0.6393&0.6290\\ \hline
 	Bank Marketing&0.7416&0.7044&0.5636&\bf{0.8796}\\ \hline
@@ -472,7 +475,7 @@ Our first comparison is between classical clustering methods for clustering mixe
 \scalebox{0.8}{
 	\begin{tabular}{|p{37mm}|p{10mm}|p{24mm}|p{24mm}|p{24mm}|p{24mm}|}
 	\hline
-	&&AE with Column Embeddings&Attention&Transformer N=6&FT-Transformer N=6\\ \hline
+	&&AE with column Embeddings&Attention&Transformer N=6&FT-Transformer N=6\\ \hline
 	&DEC&0.1585&0.1630&0.1642&0.1520\\
 	Abalone&IDEC&0.1501&0.1623&0.1653&0.1660\\
 	&DCN&0.1574&\bf{0.1717}&0.1671&0.1704\\ \hline
@@ -507,7 +510,7 @@ Our first comparison is between classical clustering methods for clustering mixe
 	\end{tabular}
 }
 \end{center}
-\caption{Comparison of Normalized Mutual Information between an autoencoder with column embeddings, an autoencoder with Attention, a 6-layer Transformer with an autoencoder and a 6-layer FT-Transformer with an autoencoder on clustering mixed-type datasets. DEC, IDEC and DCN were used as clustering methods.}
+\caption{Comparison of Normalized Mutual Information between an autoencoder with column embeddings, an autoencoder with attention, a 6-layer Transformer with an autoencoder and a 6-layer FT-Transformer with an autoencoder on clustering mixed-type datasets. DEC, IDEC and DCN were used as clustering methods.}
 \label{deep_comparison_nmi}
 \end{figure}
 
@@ -516,7 +519,7 @@ Our first comparison is between classical clustering methods for clustering mixe
 \scalebox{0.8}{
 	\begin{tabular}{|p{37mm}|p{10mm}|p{24mm}|p{24mm}|p{24mm}|p{24mm}|}
 	\hline
-	&&AE with Column Embeddings&Attention&Transformer N=6&FT-Transformer N=6\\ \hline
+	&&AE with column Embeddings&Attention&Transformer N=6&FT-Transformer N=6\\ \hline
 	&DEC&0.1621&0.1286&0.1549&0.1858\\
 	Abalone&IDEC&0.1472&0.1384&0.1559&0.1678\\
 	&DCN&0.1676&0.1585&0.1685&\bf{0.2107}\\ \hline
@@ -551,7 +554,7 @@ Our first comparison is between classical clustering methods for clustering mixe
 	\end{tabular}
 }
 \end{center}
-\caption{Comparison of Accuracy between an autoencoder with column embeddings, an autoencoder with Attention, a 6-layer Transformer with an autoencoder and a 6-layer FT-Transformer with an autoencoder on clustering mixed-type datasets. DEC, IDEC and DCN were used as clustering methods.}
+\caption{Comparison of Accuracy between an autoencoder with column embeddings, an autoencoder with attention, a 6-layer Transformer with an autoencoder and a 6-layer FT-Transformer with an autoencoder on clustering mixed-type datasets. DEC, IDEC and DCN were used as clustering methods.}
 \label{deep_comparison_acc}
 \end{figure}
 
@@ -574,7 +577,7 @@ Our first comparison is between classical clustering methods for clustering mixe
 	\end{tabular}
 }
 \end{center}
-\caption{Best Normalized Mutual Information results across all methods. Classical methods are colored in green, methods using an autoencoder with k-means are colored cyan, methods using an autoencoder and attention or a transformer mechanism are colored yellow and methods using DEC, IDEC or DCN are colored magenta.}
+\caption{Best Normalized Mutual Information results (in parenthesis) across all clustering methods. Classical methods are colored in green, methods using an autoencoder with k-means are colored cyan, methods using an autoencoder and attention or a transformer mechanism are colored yellow and methods using DEC, IDEC or DCN are colored magenta.}
 \label{final_comparison_nmi}
 \end{figure}
 	
