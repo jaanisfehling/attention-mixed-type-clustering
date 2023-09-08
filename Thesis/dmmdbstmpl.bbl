@@ -5,6 +5,10 @@ Amir Ahmad and Shehroz~S. Khan.
 \newblock Survey of state-of-the-art mixed data clustering algorithms.
 \newblock {\em {IEEE} Access}, 7:31883--31902, 2019.
 
+\bibitem{tabnet}
+Sercan~O. Arik and Tomas Pfister.
+\newblock Tabnet: Attentive interpretable tabular learning, 2020.
+
 \bibitem{layer_normalization}
 Jimmy~Lei Ba, Jamie~Ryan Kiros, and Geoffrey~E. Hinton.
 \newblock Layer normalization, 2016.
@@ -33,6 +37,11 @@ Peter Bloem.
 \newblock Transformers from scratch.
 \newblock \url{https://peterbloem.nl/blog/transformers}, August 2018.
 \newblock Accessed: 2023-08-24.
+
+\bibitem{deep_neural_networks_tabular_data_survey}
+Vadim Borisov, Tobias Leemann, Kathrin Sessler, Johannes Haug, Martin Pawelczyk, and Gjergji Kasneci.
+\newblock Deep neural networks and tabular data: A survey.
+\newblock {\em {IEEE} Transactions on Neural Networks and Learning Systems}, pages 1--21, 2022.
 
 \bibitem{activation_functions}
 Shiv~Ram Dubey, Satish~Kumar Singh, and Bidyut~Baran Chaudhuri.
@@ -79,6 +88,11 @@ Ron Kohavi.
 \newblock {Census Income}.
 \newblock UCI Machine Learning Repository, 1996.
 \newblock {DOI}: https://doi.org/10.24432/C5GP7S.
+
+\bibitem{attention_between_datapoints}
+Jannik Kossen, Neil Band, Clare Lyle, Aidan~N. Gomez, Tom Rainforth, and Yarin Gal.
+\newblock Self-attention between datapoints: Going beyond individual input-output pairs in deep learning.
+\newblock In {\em Neural Information Processing Systems}, 2021.
 
 \bibitem{comparing_DEC_and_DCN}
 Bai Li.
@@ -161,6 +175,10 @@ F.~Rosenblatt.
 D.~E. Rumelhart, G.~E. Hinton, and R.~J. Williams.
 \newblock {\em Learning Internal Representations by Error Propagation}, page 318–362.
 \newblock MIT Press, Cambridge, MA, USA, 1986.
+
+\bibitem{saint}
+Gowthami Somepalli, Micah Goldblum, Avi Schwarzschild, C.~Bayan Bruss, and Tom Goldstein.
+\newblock Saint: Improved neural networks for tabular data via row attention and contrastive pre-training, 2021.
 
 \bibitem{attention_is_all_you_need}
 Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan~N. Gomez, \L{}ukasz Kaiser, and Illia Polosukhin.

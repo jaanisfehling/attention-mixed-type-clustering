@@ -1,8 +1,10 @@
 \chapter{Introduction}
 
-Clustering is an unsupervised machine learning method that groups similar observations together. Due to its ability to find patterns in an unlabeled dataset, its an essential task in Data Mining and Knowledge Discovery. A \textit{cluster} is a group of similar instances that belongs to a \textit{centroid} (center point of a cluster). Distance-based clustering algorithms use distance measures such as Euclidean distance to calculate the similarity of datapoints. Hierarchical methods partition the instances and merge (agglomerative) or split them into bigger or smaller clusters. Many other methods exist, but this work focuses on methods for clustering \textit{mixed-type} data. \cite{mixed_type_survey_2019}
+Clustering is an unsupervised machine learning method that groups similar observations together. Due to its ability to find patterns in an unlabeled dataset, its an essential task in Data Mining and Knowledge Discovery. A \textit{cluster} is a group of similar instances that belongs to a \textit{centroid} (center point of a cluster). Distance-based clustering algorithms use distance measures such as Euclidean distance to calculate the similarity of data points. Hierarchical methods partition the instances and merge (agglomerative) or split them into bigger or smaller clusters. Many other methods exist \cite{mixed_type_survey_2019}, but this work focuses on methods for clustering \textit{mixed-type} data.
 
 \chapter{Related Work}
+
+Lots of research has been put into creating deep neural network classifiers for the tabular data domain that try to beat Gradient boosted decision trees \cite{deep_neural_networks_tabular_data_survey}. There has been some research on incorporating attention or a Transformer block into such networks. TabNet \cite{tabnet} is a self-supervised classifier using attention that makes use of feature selection to group features into semantic categories. TabTransformer \cite{tab_transformer} and FT-Transformer \cite{ft_transformer} both use a full Transformer block before feeding the tensors into a MLP classifier. TabTransformer uses embeddings only for categorical features and uses a shared embedding to distinguish classes in one column from the classes in other columns. It then uses a Transformer block to attend the categorical features. FT-Transformer also uses embeddings for continuous features but no shared embedding. Using embeddings for both categorical and continuous features allows it to utilize all features in the Transformer block. There has also been research on classifiers that utilize attention not only over the features of one instance, but over multiple instances of a datasets (\cite{attention_between_datapoints}, \cite{saint}).
 
 \chapter{Foundation}
 
@@ -35,9 +37,9 @@ $$\frac{\text{Instances predicted correctly}}{\text{Total number of instances}}.
 Since any clustering algorithm will assign arbitrary class labels to each instance that might not align with the ground truth class labels, we map the predicted label classes to ground truth label classes in a way maximize the number of correctly predicted instances. This is an inversion of the \textit{Linear Assignment Problem}, we use an implementation provided by the Scipy Python library \cite{scipy} to solve this problem and find the optimal solution. 
 
 As shown in Chapter \ref{Experiments}, some clustering methods falsely assign almost all instances to one target class. Because a part of the datasets we used are heavily imbalanced, this leads to unjustified high accuracy scores. Therefore, we use another metric, Normalized Mutual Information. It is based on \textit{Mutual Information}, which, for the ground truth labels $U$ and the predicted labels $V$ (switching both variables will not change the outcome) is defined as
-$$MI(U,V) = \sum^{|U|}_{i=1}\sum^{|V|}_{j=1} \frac{|U_i \cap V_j|}{N} log\frac{N|U_i \cap V_j|}{|U_i||V_j|}$$
+$$\text{MI}(U,V) = \sum^{|U|}_{i=1}\sum^{|V|}_{j=1} \frac{|U_i \cap V_j|}{N} log\frac{N|U_i \cap V_j|}{|U_i||V_j|}$$
 where $|U_i|$ is the number of instances assigned to cluster $U_i$ and $|V_i|$ is the number of instances assigned to cluster $V_i$ \cite{scikit_learn}. Normalized Mutual Information is Mutual Information normalized by the mean of the Entropies of $U$ and $Y$ \cite{scikit_learn}:
-$$NMI(U,V) = \frac{MI(U,V)}{\frac{1}{2}(H(U)H(V))}.$$
+$$\text{NMI}(U,V) = \frac{\text{MI}(U,V)}{\frac{1}{2}(H(U)H(V))}.$$
 
 \section{Classical Methods for clustering Mixed-Type data} \label{Classical Methods for clustering Mixed-Type data}
 
@@ -585,5 +587,4 @@ At last, we use the models from the previous comparison, but use the deep cluste
 \label{final_comparison_nmi}
 \end{figure}
 	
-
 \chapter{Conclusion}
