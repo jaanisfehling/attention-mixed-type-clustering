@@ -184,18 +184,18 @@ where $n$ is the number of input instances, $y_i$ ist the target label of instan
 
 \subsection{Autoencoder}
 
-A neural network, as defined in the previous section, needs the target labels of a dataset in order be trainable. In a unsupervised learning setting, this is unapplicable. An approach used for pre-training neural networks with unlabeled data is using an \textit{autoencoder} neural network, first formalized by Ballard \cite{autoencoder}. An autoencoder is a neural network, that projects the input into a lower-dimensional embedding space, and then back into its original dimensionality. The network tries to reconstruct the original input the best it can, after it was encoded into the embedding space. Therefore the target label fed into the loss function is the original input. This allows such a network to be trained without the need for labeled data. The autoencoder consists of two blocks, where each is a collection of fully connected linear layers. The \textit{encoder} maps the input into the embedding space, while the \textit{decoder} projects the encoded representation into its original dimensionality. Both blocks can contain multiple hidden layers, but typically they are constructed symmetrical, meaning the number and size of the linear layers in the decoder are the same as in the encoder, but inverted. 
+A neural network, as defined in the previous section, needs the target labels of a dataset in order be trainable. In a unsupervised learning setting, this is unapplicable. An approach used for pre-training neural networks with unlabeled data is using an \textit{autoencoder} neural network, first formalized by Ballard \cite{autoencoder}. An autoencoder is a neural network, that projects the input into a lower-dimensional embedding space, and then back into its original dimensionality. The network tries to reconstruct the original input the best it can, after it was encoded into the embedding space. Therefore the target label fed into the loss function is the original input. This allows such a network to be trained without the need for labeled data. The autoencoder consists of two blocks, where each is a collection of fully connected linear layers. The \textit{encoder} maps the input into the embedding space, while the \textit{decoder} projects the encoded representation into its original dimensionality. Both blocks can contain multiple hidden layers, but typically they are constructed symmetrical, meaning the number and size of the linear layers in the decoder are the same as in the encoder, but inverted (illustrated in Figure \ref{autoencoder_illustration}). 
 
 \begin{figure}
 \centering
 	\includegraphics[width=1.1\linewidth]{autoencoder.png}
 	\caption{Illustration of an autoencoder neural network.}
-	\label{autoencoder}
+	\label{autoencoder_illustration}
 \end{figure}
 
 In unsupervised learning such as clustering, the autoencoder can be used to learn a dense representation of the input data. After training, we can feed the data into the encoder part of the autoencoder in order to obtain the encoded data, before utilizing a classical clustering algorithm to acquire the final cluster labels. The encoded representation has a smaller dimensionality and only contains the most relevant parts of the data (which were needed for reconstruction), which can benefit clustering.
 
-\subsection{Deep Clustering}
+\subsection{Deep Clustering} \label{Deep Clustering}
 
 The problem of training an autoencoder before clustering is that the autoencoder cannot learn a suitable representation for the subsequent clustering step. The autoencoder has no objective that rewards learning a cluster-friendly representation \cite{dcn}. Instead of using a multi-stage process that splits autoencoder training and clustering, recent research has focused on a variety of of solutions that combine feature representation learning and clustering \cite{deep_clustering_survey}. The general goal is to learn feature representations that are suitable for clustering.
 
@@ -245,13 +245,13 @@ The loss function consists of two parts, the reconstruction loss (first term of 
 
 \chapter{Attention in Mixed-Type Clustering}
 
-\section{Autoencoder and k-means}
+\section{Autoencoder and k-means} \label{Autoencoder and k-means}
 
 It is difficult to formulate statistical distance measures for comparing two values of a categorical feature. Categorical features are irregular in nature, they can be binary, ordinal, non-ordinal or composed of many semantically different classes. This makes it hard to cluster a mixed-type datasets with classical clustering methods. As described by Huang \cite{kmodes} and also explained in Section \ref{k-modes}, one-hot encoding is suboptimal for the use in clustering tasks. The proposed solution by Huang, k-prototypes \cite{kmodes}, does not beat k-means or k-means with one-hot encoding on any tested dataset, as shown in Chapter \ref{Experiments}. Gower distance shows great accuracy results on all datasets and manages to beat the other methods on five out of eight datasets. As further illustrated in Chapter \ref{Experiments}, the accuracy evaluation metric is highly problematic, since some datasets are heavily imbalanced. In fact, the datasets on which gower distance achieves the best accuracy results are greatly imbalanced. This means the agglomerative clustering used with gower distance falsely assigns almost all instances to one target class. When looking at Normalized Mutual Information (NMI), gower distance with agglomerative clustering does not beat k-means or k-means with one-hot encoding on any dataset. This leaves us with naive k-means intended for only numerical, continuous data and k-means with one-hot encoding, which is a inefficient, suboptimal encoding.
 
 Therefore, instead of using statistical distance measure to compare instances with categorical and continuous features, we use an autoencoder neural network to learn a dense representation of the data. The clustering architecture we build upon is a multi-stage process. We first train the autoencoder on our dataset independently of the clustering process. The training step is repeating many times, in our experiments we train the network a hundred times (hundred epochs). After the initial training step, we can feed the dataset into the encoder part of our trained autoencoder to get the dense, encoded representation of our data. We can perform k-means clustering over this representation to get the final cluster labels.
 
-\section{Column Embeddings}
+\section{Column Embeddings} \label{Column Embeddings}
 
 Even when using neural networks, there is still the problem of representing categorical values, especially non-ordinal values, as explained in depth in Section \ref{k-modes}. Therefore, we use a learnable \textit{embedding} layer for categorical values. The resulting embedded tensor of the embedding layer for a categorical feature is a meaningful representation that is more dense that a one-hot encoded feature. The embedding layer is composed of a weight tensor $e_i$ for each categorical feature $i$. The weight tensor $e_i$  has the following dimensionality: $|i| \times s_i$, where $|i|$ is the number of unique classes in categorical feature $i$ and $s_i$ is the corresponding embedding dimension. We calculate the embedding dimension $s_i$ of feature $i$ as
 $$s_i = min(50, \lceil \frac{|i|}{2} \rceil).$$
@@ -259,7 +259,7 @@ We then encode the classes of each categorical feature with integer values, goin
 
 The goal of the autoencoder therefore is to reconstruct the embeddings, not the actual input. To be able to use a loss function on this network, we clone the tensor of the embedded categorical features and save it in a variable, and later compare the decoder output with the cloned embedded tensor (concatenated with the continuous features).
 
-\section{Attention}
+\section{Attention} \label{Attention}
 
 \begin{figure}
 \centering
@@ -376,9 +376,7 @@ The intuition behind using the FT-Transformer is that many continuous features i
 	\label{class_imbalance}
 \end{figure}
 
-Our first comparison is between classical clustering methods for clustering mixed-type data. We evaluated k-means, k-means with one-hot encoding, k-prototypes and gower distance with agglomerative clustering, using average linkage (average distance between each instance of two sets). The results are given by Figure \ref{classical_comparison_nmi} and \ref{classical_comparison_acc}.
-
-k-means without any modification for mixed type data shows great Normalized Mutual Information (NMI) scores, k-means with one-hot encoding can improve these on some datasets, but looses on others. k-prototypes can beat k-means only on the Census Income dataset, which does not make it a valid choice for clustering mixed-type data. Gower distance, as explained in Section \ref{Evaluation}, falsely assigns almost all data points to one cluster centroid, which due to the high class imbalance in our datasets as shown in Figure \ref{class_imbalance}, yields high accuracy scores. Therefore more attention should be payed to NMI Scores, on which gower distance does not beat k-means or k-means with one-hot encoding on any dataset. 
+Our first comparison is between classical clustering methods for clustering mixed-type data. We evaluated k-means, k-means with one-hot encoding, k-prototypes and gower distance with agglomerative clustering, using average linkage (average distance between each instance of two sets). The results are given by Figure \ref{classical_comparison_nmi} and \ref{classical_comparison_acc}. k-means without any modification for mixed type data shows great Normalized Mutual Information (NMI) scores, k-means with one-hot encoding can improve these on some datasets, but looses on others. k-prototypes can beat k-means only on the Census Income dataset, which does not make it a valid choice for clustering mixed-type data. Gower distance, as explained in Section \ref{Evaluation}, falsely assigns almost all data points to one cluster centroid, which due to the high class imbalance in our datasets as shown in Figure \ref{class_imbalance}, yields high accuracy scores. Therefore more attention should be payed to NMI Scores, on which gower distance does not beat k-means or k-means with one-hot encoding on any dataset. 
 
 \begin{figure}
 \begin{center}
@@ -422,16 +420,22 @@ k-means without any modification for mixed type data shows great Normalized Mutu
 \label{ae_architecture_comparison_acc}
 \end{figure}
 
-The next comparison (Figure \ref{ae_architecture_comparison_nmi} and \ref{ae_architecture_comparison_acc}) revolves around the autoencoder architecture that will be chosen for following modifications. We have the choice between only learning dense representations for categorical features or learning them for all features. Further, we can leave out the categorical column embeddings and feed the categorical values as they are into the autoencoder. An autoencoder that gets all features as input in the encoder but only learns to reconstruct the categorical features is also added to the comparison.
-
-The results do not clearly indicate which autoencoder architecture is the best. Therefore we build upon prior research on mixed-type classification with attention (\cite{tab_transformer}, \cite{ft_transformer}), where a feed-forward network that includes categorical features as well as continuous features is used. This means we choose the autoencoder that includes both categorical and continuous features.
+The next comparison (Figure \ref{ae_architecture_comparison_nmi} and \ref{ae_architecture_comparison_acc}) revolves around the autoencoder architecture that will be chosen for following modifications. We have the choice between only learning dense representations for categorical features or learning them for all features. Further, we can leave out the categorical embeddings and feed the categorical values as they are into the autoencoder. An autoencoder that gets all features as input in the encoder but only learns to reconstruct the categorical features is also added to the comparison. In order to equalize the autoencoders across all datasets and architectures, the hidden encoded dimension $d_h$ of the autoencoder is calculated by
+$$d_h = max(1, min(\left\lfloor d_x/4\right\rceil, \left\lfloor d_y/4\right\rceil)),$$
+where $d_x$ is the input dimension of the encoder and $d_y$ the output dimension of the decoder. The number of linear layers $n$ in both the encoder and decoder is given by
+$$n = max(1, \left\lfloor log_2 (d_x)\right\rceil).$$
+The layer sizes of the encoder are created by always reducing the tensor size by $t_e$ in each linear transformation $h_d - 1$ times, where $t_e$ is calculated as
+$$t_e = min(-1, -\left\lfloor \frac{d_x - d_h}{n} \right\rceil).$$
+For the decoder, the input dimension $d_x$ in the term is replaced by the output dimension $d_y$:
+$$t_d = min(-1, -\left\lfloor \frac{d_y - d_h}{n} \right\rceil).$$
+The decoder layer sizes are then calculated by reducing the layer size by $t_d$ from the output layer in each linear transformation $h_d - 1$ times, but inverting the resulting array of layer sizes. This gives us a natural, symmetrical autoencoder structure for each test case (such as Figure \ref{autoencoder_illustration}), which is also used for following experiments. The results do not clearly indicate which autoencoder architecture is the best. Therefore we build upon prior research on mixed-type classification with attention (\cite{tab_transformer}, \cite{ft_transformer}), where a feed-forward network that includes categorical features as well as continuous features is used. This means we choose the autoencoder that includes both categorical and continuous features.
 
 \begin{figure}
 \begin{center}
 \scalebox{0.8}{
 	\begin{tabular}{|p{37mm}|p{27mm}|p{27mm}|p{27mm}|p{27mm}|}
 	\hline
-	&AE with column Embeddings&AE with Attention&Transformer N=6&FT-Transformer N=6\\ \hline
+	&AE with categorical embeddings&AE with Attention&Transformer N=6&FT-Transformer N=6\\ \hline
 	Abalone&0.1603&0.1681&0.1612&\bf{0.1750}\\ \hline
 	Auction Verification&\bf{0.1234}&0.0109&0.0045&0.0065\\ \hline
 	Bank Marketing&0.0040&\bf{0.0394}&0.0022&0.0040\\ \hline
@@ -443,7 +447,7 @@ The results do not clearly indicate which autoencoder architecture is the best. 
 	\end{tabular}
 }
 \end{center}
-\caption{Comparison of Normalized Mutual Information between an autoencoder with column embeddings, an autoencoder using the attention mechanism, a 6-layer Transformer with an autoencoder and a 6-layer FT-Transformer with an autoencoder on clustering mixed-type datasets using k-means.}
+\caption{Comparison of Normalized Mutual Information between an autoencoder with categorical embeddings, an autoencoder using the attention mechanism, a 6-layer Transformer with an autoencoder and a 6-layer FT-Transformer with an autoencoder on clustering mixed-type datasets using k-means.}
 \label{attention_comparison_nmi}
 \end{figure}
 
@@ -452,7 +456,7 @@ The results do not clearly indicate which autoencoder architecture is the best. 
 \scalebox{0.8}{
 	\begin{tabular}{|p{37mm}|p{27mm}|p{27mm}|p{27mm}|p{27mm}|}
 	\hline
-	&AE with column Embeddings&AE with Attention&Transformer N=6&FT-Transformer N=6\\ \hline
+	&AE with categorical embeddings&AE with Attention&Transformer N=6&FT-Transformer N=6\\ \hline
 	Abalone&0.1503&0.1575&0.1345&\bf{0.1609}\\ \hline
 	Auction Verification&\bf{0.8331}&0.6422&0.6393&0.6290\\ \hline
 	Bank Marketing&0.7416&0.7044&0.5636&\bf{0.8796}\\ \hline
@@ -464,19 +468,18 @@ The results do not clearly indicate which autoencoder architecture is the best. 
 	\end{tabular}
 }
 \end{center}
-\caption{Comparison of Accuracy between an autoencoder with Column Embeddings, an autoencoder using the attention mechanism, a 6-layer Transformer with an autoencoder and a 6-layer FT-Transformer with an autoencoder on clustering mixed-type datasets using k-means.}
+\caption{Comparison of Accuracy between an autoencoder with categorical embeddings, an autoencoder using the attention mechanism, a 6-layer Transformer with an autoencoder and a 6-layer FT-Transformer with an autoencoder on clustering mixed-type datasets using k-means.}
 \label{attention_comparison_acc}
 \end{figure}
 
-We then incorporate attention into our autoencoder. 
-
+We then compare our proposed architectures, an autoencoder with attention, the Transformer with an autoencoder and the FT-Transformer with an autoencoder. We choose $N = 6$ Transformer layers for both Transformers to utilize the transformer block heavily, but not introduce too much computational complexity. The autoencoder with categorical embeddings uses variable sized embeddings for each categorical feature (that are being concatenated lengthwise), where the embedding dimension is calculated based on the number of classes in that feature, as explained in Section \ref{Column Embeddings}. The attention autoencoder as well as both Transformer autoencoders use fixed size embeddings of size 32, which allows the embeddings to be stacked on top of each other, as explained in Section \ref{Attention}. The results (Figure \ref{attention_comparison_nmi} and \ref{attention_comparison_acc}) show that the attention can benefit clustering on some datasets, but leads to a loss in performance on other datasets.
 
 \begin{figure}
 \begin{center}
 \scalebox{0.8}{
 	\begin{tabular}{|p{37mm}|p{10mm}|p{24mm}|p{24mm}|p{24mm}|p{24mm}|}
 	\hline
-	&&AE with column Embeddings&Attention&Transformer N=6&FT-Transformer N=6\\ \hline
+	&&AE with categorical embeddings&Attention&Transformer N=6&FT-Transformer N=6\\ \hline
 	&DEC&0.1585&0.1630&0.1642&0.1520\\
 	Abalone&IDEC&0.1501&0.1623&0.1653&0.1660\\
 	&DCN&0.1574&\bf{0.1717}&0.1671&0.1704\\ \hline
@@ -511,7 +514,7 @@ We then incorporate attention into our autoencoder.
 	\end{tabular}
 }
 \end{center}
-\caption{Comparison of Normalized Mutual Information between an autoencoder with column embeddings, an autoencoder with attention, a 6-layer Transformer with an autoencoder and a 6-layer FT-Transformer with an autoencoder on clustering mixed-type datasets. DEC, IDEC and DCN were used as clustering methods.}
+\caption{Comparison of Normalized Mutual Information between an autoencoder with categorical embeddings, an autoencoder with attention, a 6-layer Transformer with an autoencoder and a 6-layer FT-Transformer with an autoencoder on clustering mixed-type datasets. DEC, IDEC and DCN were used as clustering methods.}
 \label{deep_comparison_nmi}
 \end{figure}
 
@@ -520,7 +523,7 @@ We then incorporate attention into our autoencoder.
 \scalebox{0.8}{
 	\begin{tabular}{|p{37mm}|p{10mm}|p{24mm}|p{24mm}|p{24mm}|p{24mm}|}
 	\hline
-	&&AE with column Embeddings&Attention&Transformer N=6&FT-Transformer N=6\\ \hline
+	&&AE with categorical embeddings&Attention&Transformer N=6&FT-Transformer N=6\\ \hline
 	&DEC&0.1621&0.1286&0.1549&0.1858\\
 	Abalone&IDEC&0.1472&0.1384&0.1559&0.1678\\
 	&DCN&0.1676&0.1585&0.1685&\bf{0.2107}\\ \hline
@@ -555,11 +558,11 @@ We then incorporate attention into our autoencoder.
 	\end{tabular}
 }
 \end{center}
-\caption{Comparison of Accuracy between an autoencoder with column embeddings, an autoencoder with attention, a 6-layer Transformer with an autoencoder and a 6-layer FT-Transformer with an autoencoder on clustering mixed-type datasets. DEC, IDEC and DCN were used as clustering methods.}
+\caption{Comparison of Accuracy between an autoencoder with categorical embeddings, an autoencoder with attention, a 6-layer Transformer with an autoencoder and a 6-layer FT-Transformer with an autoencoder on clustering mixed-type datasets. DEC, IDEC and DCN were used as clustering methods.}
 \label{deep_comparison_acc}
 \end{figure}
 
-
+At last, we use the models from the previous comparison, but use the deep clustering techniques DEC, IDEC and DCN (Section \ref{Deep Clustering}). The Normalized Mutual Information results of these methods (Figure \ref{deep_comparison_nmi}) do not indicate that deep clustering methods are particular useful for clustering mixed-type data.
 
 \begin{figure}
 \begin{center}

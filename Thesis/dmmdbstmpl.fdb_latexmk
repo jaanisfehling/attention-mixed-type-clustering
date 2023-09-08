@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex dmmdbstmpl"] 1694105108 "dmmdbstmpl.aux" "dmmdbstmpl.bbl" "dmmdbstmpl" 1694105406 0
+["bibtex dmmdbstmpl"] 1694188597 "dmmdbstmpl.aux" "dmmdbstmpl.bbl" "dmmdbstmpl" 1694189227 0
   "./dmmdbstmpl.bib" 1693929516 13505 882eba0ab27576f44c428142f77e6a37 ""
   "/usr/local/texlive/2023/texmf-dist/bibtex/bst/base/plain.bst" 1292289607 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
-  "dmmdbstmpl.aux" 1694105406 13171 4505cbf514b46ad36d21fb9ca8174f81 "pdflatex"
+  "dmmdbstmpl.aux" 1694189227 13386 1afba98a2d95fe49e76e1b05c9160fae "pdflatex"
   (generated)
   "dmmdbstmpl.bbl"
   "dmmdbstmpl.blg"
   (rewritten before read)
-["pdflatex"] 1694105404 "/home/jaanis/repos/attention-mixed-type-clustering/Thesis/dmmdbstmpl.tex" "dmmdbstmpl.pdf" "dmmdbstmpl" 1694105406 0
+["pdflatex"] 1694189226 "/home/jaanis/repos/attention-mixed-type-clustering/Thesis/dmmdbstmpl.tex" "dmmdbstmpl.pdf" "dmmdbstmpl" 1694189227 0
   "/home/jaanis/repos/attention-mixed-type-clustering/Thesis/dmmdbstmpl.tex" 1693941433 1530 29515e4520c6c273732b2646abaf192c ""
   "/usr/local/texlive/2023/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
@@ -105,17 +105,17 @@
   "class-imbalance.png" 1692309231 37893 118516905b638759a266c7ae6beff5cf ""
   "dcn.png" 1693920890 87613 6fa2406fa586dc6aabd1d21255041b28 ""
   "dec.png" 1693670112 100818 ddac3342c6cabc3704d8f5bbacb3a484 ""
-  "dmmdbstmpl.aux" 1694105406 13171 4505cbf514b46ad36d21fb9ca8174f81 "pdflatex"
-  "dmmdbstmpl.bbl" 1694105108 8405 787c4e9b7d55c699289776b5a9a3c555 "bibtex dmmdbstmpl"
+  "dmmdbstmpl.aux" 1694189227 13386 1afba98a2d95fe49e76e1b05c9160fae "pdflatex"
+  "dmmdbstmpl.bbl" 1694188597 8405 787c4e9b7d55c699289776b5a9a3c555 "bibtex dmmdbstmpl"
   "dmmdbstmpl.sty" 1693755016 5975 8422bc03d468a89224b2ce55cf4263c1 ""
   "dmmdbstmpl.tex" 1693941433 1530 29515e4520c6c273732b2646abaf192c ""
-  "dmmdbstmpl.toc" 1694105406 1680 1db38cf7a41f9e1cc5e040d0de2d1dd6 "pdflatex"
+  "dmmdbstmpl.toc" 1694189227 1680 1db38cf7a41f9e1cc5e040d0de2d1dd6 "pdflatex"
   "dmmheader.png" 1692309231 190949 b10949d0f3b40eb482e1d316dc304305 ""
   "ft_transformer_autoencoder.png" 1693086028 62092 32af16772b3139bdf0f4f37eeeb281af ""
   "gower-dichotomous.png" 1692309231 41539 38bc2936b2441a430afcb11717b4a842 ""
   "idec.png" 1693929144 109691 85871f09162460a133d96e7742cd8f40 ""
   "p-and-q-distributions.png" 1693750593 38067 7dc2da12064d361a89e4b7ec4d2d634b ""
-  "thesis.tex" 1694105405 55130 9566e384e388137f7651d28038f69592 ""
+  "thesis.tex" 1694189227 57855 c494ed9753498caac13474ac17de30e7 ""
   "transformer_autoencoder.png" 1693060279 54469 a5c0d52d665d001bf4db0bf17aaecbb0 ""
   (generated)
   "dmmdbstmpl.aux"
