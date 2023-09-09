@@ -1,26 +1,26 @@
 \babel@toc {english}{}\relax 
 \contentsline {chapter}{\numberline {1}Introduction}{2}{}%
 \contentsline {chapter}{\numberline {2}Related Work}{3}{}%
-\contentsline {chapter}{\numberline {3}Foundation}{4}{}%
-\contentsline {section}{\numberline {3.1}Methodology}{4}{}%
-\contentsline {subsection}{\numberline {3.1.1}Datasets}{4}{}%
-\contentsline {subsection}{\numberline {3.1.2}Evaluation}{5}{}%
-\contentsline {section}{\numberline {3.2}Classical Methods for clustering Mixed-Type data}{6}{}%
-\contentsline {subsection}{\numberline {3.2.1}k-means}{6}{}%
-\contentsline {subsection}{\numberline {3.2.2}k-modes}{7}{}%
-\contentsline {subsection}{\numberline {3.2.3}k-prototypes}{8}{}%
-\contentsline {subsection}{\numberline {3.2.4}Gower distance}{9}{}%
-\contentsline {section}{\numberline {3.3}Deep Clustering}{10}{}%
-\contentsline {subsection}{\numberline {3.3.1}Neural Networks}{10}{}%
-\contentsline {subsection}{\numberline {3.3.2}Autoencoder}{13}{}%
-\contentsline {subsection}{\numberline {3.3.3}Deep Clustering}{14}{}%
-\contentsline {chapter}{\numberline {4}Attention in Mixed-Type Clustering}{19}{}%
-\contentsline {section}{\numberline {4.1}Autoencoder and k-means}{19}{}%
-\contentsline {section}{\numberline {4.2}Column Embeddings}{20}{}%
-\contentsline {section}{\numberline {4.3}Attention}{21}{}%
-\contentsline {section}{\numberline {4.4}Transformer}{25}{}%
-\contentsline {subsection}{\numberline {4.4.1}FT-Transformer}{25}{}%
-\contentsline {chapter}{\numberline {5}Experiments}{29}{}%
-\contentsline {section}{\numberline {5.1}Comparison of classical Clustering Methods}{29}{}%
-\contentsline {chapter}{\numberline {6}Conclusion}{37}{}%
-\contentsline {chapter}{Bibliography}{38}{}%
+\contentsline {chapter}{\numberline {3}Foundation}{5}{}%
+\contentsline {section}{\numberline {3.1}Methodology}{5}{}%
+\contentsline {subsection}{\numberline {3.1.1}Datasets}{5}{}%
+\contentsline {subsection}{\numberline {3.1.2}Evaluation}{6}{}%
+\contentsline {section}{\numberline {3.2}Classical Methods for clustering Mixed-Type data}{7}{}%
+\contentsline {subsection}{\numberline {3.2.1}k-means}{7}{}%
+\contentsline {subsection}{\numberline {3.2.2}k-modes}{8}{}%
+\contentsline {subsection}{\numberline {3.2.3}k-prototypes}{9}{}%
+\contentsline {subsection}{\numberline {3.2.4}Gower distance}{10}{}%
+\contentsline {section}{\numberline {3.3}Deep Clustering}{11}{}%
+\contentsline {subsection}{\numberline {3.3.1}Neural Networks}{11}{}%
+\contentsline {subsection}{\numberline {3.3.2}Autoencoder}{14}{}%
+\contentsline {subsection}{\numberline {3.3.3}Deep Clustering}{15}{}%
+\contentsline {chapter}{\numberline {4}Attention in Mixed-Type Clustering}{20}{}%
+\contentsline {section}{\numberline {4.1}Autoencoder and k-means}{20}{}%
+\contentsline {section}{\numberline {4.2}Column Embeddings}{21}{}%
+\contentsline {section}{\numberline {4.3}Attention}{22}{}%
+\contentsline {section}{\numberline {4.4}Transformer}{26}{}%
+\contentsline {subsection}{\numberline {4.4.1}FT-Transformer}{26}{}%
+\contentsline {chapter}{\numberline {5}Experiments}{30}{}%
+\contentsline {section}{\numberline {5.1}Comparison of classical Clustering Methods}{30}{}%
+\contentsline {chapter}{\numberline {6}Conclusion}{38}{}%
+\contentsline {chapter}{Bibliography}{39}{}%

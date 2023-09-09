@@ -43,6 +43,11 @@ Vadim Borisov, Tobias Leemann, Kathrin Sessler, Johannes Haug, Martin Pawelczyk,
 \newblock Deep neural networks and tabular data: A survey.
 \newblock {\em {IEEE} Transactions on Neural Networks and Learning Systems}, pages 1--21, 2022.
 
+\bibitem{sadsc}
+Zhengfan Chen, Shifei Ding, and Hou Haiwei.
+\newblock A novel self-attention deep subspace clustering.
+\newblock {\em International Journal of Machine Learning and Cybernetics}, 12, 08 2021.
+
 \bibitem{depict}
 Kamran~Ghasedi Dizaji, Amirhossein Herandi, Cheng Deng, Weidong Cai, and Heng Huang.
 \newblock Deep clustering via joint convolutional autoencoder embedding and relative entropy minimization.
@@ -72,6 +77,11 @@ Xifeng Guo, Long Gao, Xinwang Liu, and Jianping Yin.
 Xifeng Guo, En~Zhu, Xinwang Liu, and Jianping Yin.
 \newblock Deep embedded clustering with data augmentation.
 \newblock In Jun Zhu and Ichiro Takeuchi, editors, {\em Proceedings of The 10th Asian Conference on Machine Learning}, volume~95 of {\em Proceedings of Machine Learning Research}, pages 550--565. PMLR, 14--16 Nov 2018.
+
+\bibitem{cmfgn}
+Haiwei Hou, Shifei Ding, Xiao Xu, and Ling Ding.
+\newblock A novel clustering algorithm based on multi-layer features and graph attention networks.
+\newblock {\em Soft Computing}, 27:5553--5566, 2023.
 
 \bibitem{tab_transformer}
 Xin Huang, Ashish Khetan, Milan Cvitkovic, and Zohar Karnin.
@@ -109,6 +119,11 @@ Bai Li.
 \newblock Clustering autoencoders: Comparing dec and dcn.
 \newblock \url{https://luckytoilet.wordpress.com/2019/07/07/clustering-autoencoders-comparing-dec-and-dcn/}, July 2019.
 \newblock Accessed: 2023-09-03.
+
+\bibitem{dlgamc}
+Huifa Liao, Jie Hu, Tianrui Li, Shengdong Du, and Bo~Peng.
+\newblock Deep linear graph attention model for attributed graph clustering.
+\newblock {\em Knowledge-Based Systems}, 246:108665, 2022.
 
 \bibitem{kmeans_lloyd}
 S.~Lloyd.
@@ -164,6 +179,11 @@ Adam Paszke, Sam Gross, Soumith Chintala, Gregory Chanan, Edward Yang, Zachary D
 F.~Pedregosa, G.~Varoquaux, A.~Gramfort, V.~Michel, B.~Thirion, O.~Grisel, M.~Blondel, P.~Prettenhofer, R.~Weiss, V.~Dubourg, J.~Vanderplas, A.~Passos, D.~Cournapeau, M.~Brucher, M.~Perrot, and E.~Duchesnay.
 \newblock Scikit-learn: Machine learning in {P}ython.
 \newblock {\em Journal of Machine Learning Research}, 12:2825--2830, 2011.
+
+\bibitem{dagc}
+Zhihao Peng, Hui Liu, Yuheng Jia, and Junhui Hou.
+\newblock Deep attention-guided graph clustering with dual self-supervision.
+\newblock {\em IEEE Transactions on Circuits and Systems for Video Technology}, pages 1--1, 2022.
 
 \bibitem{philip_ottaway}
 G.~Philip and B.~S. Ottaway.

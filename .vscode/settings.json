@@ -7,7 +7,10 @@
         "convolutional",
         "downsampled",
         "Gorishniy",
+        "Kullback",
+        "Leibler",
         "nmis",
+        "SADSC",
         "softmax",
         "Vaswani"
     ]
