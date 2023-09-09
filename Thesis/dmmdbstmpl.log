@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.8.19)  8 SEP 2023 22:21
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.8.19)  9 SEP 2023 16:14
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -355,7 +355,7 @@ Chapter 3.
 [4
 
 ] [5]
-Overfull \hbox (1.31165pt too wide) in paragraph at lines 57--58
+Overfull \hbox (1.31165pt too wide) in paragraph at lines 59--60
 \OT1/cmr/m/n/12 clidean dis-tance. This splits our in-stances into $\OML/cmm/m/it/12 S$ \OT1/cmr/m/n/12 into $\OML/cmm/m/it/12 k$ \OT1/cmr/m/n/12 sets $\OMS/cmsy/m/n/12 f\OML/cmm/m/it/12 S[]; :::; S[]\OMS/cmsy/m/n/12 g$\OT1/cmr/m/n/12 . 
  []
 
@@ -363,22 +363,22 @@ Overfull \hbox (1.31165pt too wide) in paragraph at lines 57--58
 <gower-dichotomous.png, id=55, 475.7775pt x 204.01219pt>
 File: gower-dichotomous.png Graphic file (type png)
 <use gower-dichotomous.png>
-Package pdftex.def Info: gower-dichotomous.png  used on input line 123.
+Package pdftex.def Info: gower-dichotomous.png  used on input line 125.
 (pdftex.def)             Requested size: 398.33858pt x 170.81496pt.
  [9] [10 <./gower-dichotomous.png>]
 <activation-functions.png, id=64, 433.62pt x 338.2236pt>
 File: activation-functions.png Graphic file (type png)
 <use activation-functions.png>
-Package pdftex.def Info: activation-functions.png  used on input line 151.
+Package pdftex.def Info: activation-functions.png  used on input line 153.
 (pdftex.def)             Requested size: 318.67207pt x 248.57846pt.
  [11] [12 <./activation-functions.png>]
 <autoencoder.png, id=72, 955.57pt x 507.8975pt>
 File: autoencoder.png Graphic file (type png)
 <use autoencoder.png>
-Package pdftex.def Info: autoencoder.png  used on input line 193.
+Package pdftex.def Info: autoencoder.png  used on input line 195.
 (pdftex.def)             Requested size: 438.17487pt x 232.8917pt.
 
-Overfull \hbox (39.83629pt too wide) in paragraph at lines 193--194
+Overfull \hbox (39.83629pt too wide) in paragraph at lines 195--196
  [][] 
  []
 
@@ -386,23 +386,23 @@ Overfull \hbox (39.83629pt too wide) in paragraph at lines 193--194
 <dec.png, id=76, 1122.1925pt x 623.32875pt>
 File: dec.png Graphic file (type png)
 <use dec.png>
-Package pdftex.def Info: dec.png  used on input line 206.
+Package pdftex.def Info: dec.png  used on input line 208.
 (pdftex.def)             Requested size: 398.33858pt x 221.25948pt.
 <p-and-q-distributions.png, id=77, 881.2925pt x 382.42876pt>
 File: p-and-q-distributions.png Graphic file (type png)
 <use p-and-q-distributions.png>
-Package pdftex.def Info: p-and-q-distributions.png  used on input line 213.
+Package pdftex.def Info: p-and-q-distributions.png  used on input line 215.
 (pdftex.def)             Requested size: 278.83578pt x 120.9967pt.
  [14 <./autoencoder.png>] [15 <./dec.png> <./p-and-q-distributions.png>]
 <idec.png, id=86, 1466.47874pt x 837.1275pt>
 File: idec.png Graphic file (type png)
 <use idec.png>
-Package pdftex.def Info: idec.png  used on input line 228.
+Package pdftex.def Info: idec.png  used on input line 230.
 (pdftex.def)             Requested size: 278.83578pt x 159.17084pt.
 <dcn.png, id=87, 1421.31pt x 567.11874pt>
 File: dcn.png Graphic file (type png)
 <use dcn.png>
-Package pdftex.def Info: dcn.png  used on input line 239.
+Package pdftex.def Info: dcn.png  used on input line 241.
 (pdftex.def)             Requested size: 358.50227pt x 143.04274pt.
  [16] [17 <./idec.png> <./dcn.png>] [18]
 Chapter 4.
@@ -412,10 +412,10 @@ Chapter 4.
 <attention_autoencoder.png, id=104, 1277.77374pt x 1423.3175pt>
 File: attention_autoencoder.png Graphic file (type png)
 <use attention_autoencoder.png>
-Package pdftex.def Info: attention_autoencoder.png  used on input line 268.
+Package pdftex.def Info: attention_autoencoder.png  used on input line 270.
 (pdftex.def)             Requested size: 478.00507pt x 532.43968pt.
 
-Overfull \hbox (79.66649pt too wide) in paragraph at lines 268--269
+Overfull \hbox (79.66649pt too wide) in paragraph at lines 270--271
  [][] 
  []
 
@@ -423,10 +423,10 @@ Overfull \hbox (79.66649pt too wide) in paragraph at lines 268--269
 <attention_illustrated.png, id=108, 677.53125pt x 479.7925pt>
 File: attention_illustrated.png Graphic file (type png)
 <use attention_illustrated.png>
-Package pdftex.def Info: attention_illustrated.png  used on input line 279.
+Package pdftex.def Info: attention_illustrated.png  used on input line 281.
 (pdftex.def)             Requested size: 438.17487pt x 310.30203pt.
 
-Overfull \hbox (39.83629pt too wide) in paragraph at lines 279--280
+Overfull \hbox (39.83629pt too wide) in paragraph at lines 281--282
  [][] 
  []
 
@@ -434,10 +434,10 @@ Overfull \hbox (39.83629pt too wide) in paragraph at lines 279--280
 <transformer_autoencoder.png, id=121, 1277.77374pt x 1423.3175pt>
 File: transformer_autoencoder.png Graphic file (type png)
 <use transformer_autoencoder.png>
-Package pdftex.def Info: transformer_autoencoder.png  used on input line 304.
+Package pdftex.def Info: transformer_autoencoder.png  used on input line 306.
 (pdftex.def)             Requested size: 478.00507pt x 532.43968pt.
 
-Overfull \hbox (79.66649pt too wide) in paragraph at lines 304--305
+Overfull \hbox (79.66649pt too wide) in paragraph at lines 306--307
  [][] 
  []
 
@@ -445,314 +445,314 @@ Overfull \hbox (79.66649pt too wide) in paragraph at lines 304--305
 <ft_transformer_autoencoder.png, id=132, 1405.25pt x 1462.46375pt>
 File: ft_transformer_autoencoder.png Graphic file (type png)
 <use ft_transformer_autoencoder.png>
-Package pdftex.def Info: ft_transformer_autoencoder.png  used on input line 323.
+Package pdftex.def Info: ft_transformer_autoencoder.png  used on input line 325.
 (pdftex.def)             Requested size: 478.00507pt x 497.45425pt.
 
-Overfull \hbox (79.66649pt too wide) in paragraph at lines 323--324
+Overfull \hbox (79.66649pt too wide) in paragraph at lines 325--326
  [][] 
  []
 
 [27] [28 <./ft_transformer_autoencoder.png>]
 Chapter 5.
 
-Underfull \hbox (badness 10000) in paragraph at lines 347--347
+Underfull \hbox (badness 10000) in paragraph at lines 349--349
 []|\OT1/cmr/m/n/12 k-means one-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 347--347
+Underfull \hbox (badness 10000) in paragraph at lines 349--349
 []|\OT1/cmr/m/n/12 Gower dis-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 368--368
+Underfull \hbox (badness 10000) in paragraph at lines 370--370
 []|\OT1/cmr/m/n/12 k-means one-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 368--368
+Underfull \hbox (badness 10000) in paragraph at lines 370--370
 []|\OT1/cmr/m/n/12 Gower dis-
  []
 
 <class-imbalance.png, id=141, 463.2507pt x 338.2236pt>
 File: class-imbalance.png Graphic file (type png)
 <use class-imbalance.png>
-Package pdftex.def Info: class-imbalance.png  used on input line 376.
+Package pdftex.def Info: class-imbalance.png  used on input line 378.
 (pdftex.def)             Requested size: 318.67207pt x 232.67781pt.
 [29
 
 ] [30 <./class-imbalance.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 398--398
+Underfull \hbox (badness 10000) in paragraph at lines 400--400
 []|\OT1/cmr/m/n/12 All fea-tures
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 398--398
+Underfull \hbox (badness 10000) in paragraph at lines 400--400
 []|\OT1/cmr/m/n/12 Categorical
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 419--419
+Underfull \hbox (badness 10000) in paragraph at lines 421--421
 []|\OT1/cmr/m/n/12 All fea-tures
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 419--419
+Underfull \hbox (badness 10000) in paragraph at lines 421--421
 []|\OT1/cmr/m/n/12 Categorical
  []
 
 [31]
-Underfull \hbox (badness 3148) in paragraph at lines 450--450
+Underfull \hbox (badness 3148) in paragraph at lines 452--452
 []|\OT1/cmr/m/n/12 AE with At-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 450--450
+Underfull \hbox (badness 10000) in paragraph at lines 452--452
 []|\OT1/cmr/m/n/12 Transformer
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 450--450
+Underfull \hbox (badness 10000) in paragraph at lines 452--452
 []|\OT1/cmr/m/n/12 FT-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 450--450
+Underfull \hbox (badness 10000) in paragraph at lines 452--452
 \OT1/cmr/m/n/12 Transformer
  []
 
 
-Underfull \hbox (badness 3148) in paragraph at lines 471--471
+Underfull \hbox (badness 3148) in paragraph at lines 473--473
 []|\OT1/cmr/m/n/12 AE with At-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 471--471
+Underfull \hbox (badness 10000) in paragraph at lines 473--473
 []|\OT1/cmr/m/n/12 Transformer
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 471--471
+Underfull \hbox (badness 10000) in paragraph at lines 473--473
 []|\OT1/cmr/m/n/12 FT-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 471--471
+Underfull \hbox (badness 10000) in paragraph at lines 473--473
 \OT1/cmr/m/n/12 Transformer
  []
 
 [32]
-Underfull \hbox (badness 3281) in paragraph at lines 517--517
+Underfull \hbox (badness 3281) in paragraph at lines 519--519
 \OT1/cmr/m/n/12 e-gor-i-cal em-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 517--517
+Underfull \hbox (badness 10000) in paragraph at lines 519--519
 []|\OT1/cmr/m/n/12 Transformer
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 517--517
+Underfull \hbox (badness 10000) in paragraph at lines 519--519
 []|\OT1/cmr/m/n/12 FT-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 517--517
+Underfull \hbox (badness 10000) in paragraph at lines 519--519
 \OT1/cmr/m/n/12 Transformer
  []
 
 
-Overfull \hbox (1.24002pt too wide) in paragraph at lines 517--517
+Overfull \hbox (1.24002pt too wide) in paragraph at lines 519--519
 []|\OT1/cmr/m/n/12 IDEC| 
  []
 
 
-Overfull \hbox (1.24002pt too wide) in paragraph at lines 517--517
+Overfull \hbox (1.24002pt too wide) in paragraph at lines 519--519
 []|\OT1/cmr/m/n/12 IDEC| 
  []
 
 
-Overfull \hbox (1.24002pt too wide) in paragraph at lines 517--517
+Overfull \hbox (1.24002pt too wide) in paragraph at lines 519--519
 []|\OT1/cmr/m/n/12 IDEC| 
  []
 
 
-Overfull \hbox (1.24002pt too wide) in paragraph at lines 517--517
+Overfull \hbox (1.24002pt too wide) in paragraph at lines 519--519
 []|\OT1/cmr/m/n/12 IDEC| 
  []
 
 
-Overfull \hbox (1.24002pt too wide) in paragraph at lines 517--517
+Overfull \hbox (1.24002pt too wide) in paragraph at lines 519--519
 []|\OT1/cmr/m/n/12 IDEC| 
  []
 
 
-Overfull \hbox (1.24002pt too wide) in paragraph at lines 517--517
+Overfull \hbox (1.24002pt too wide) in paragraph at lines 519--519
 []|\OT1/cmr/m/n/12 IDEC| 
  []
 
 
-Overfull \hbox (1.24002pt too wide) in paragraph at lines 517--517
+Overfull \hbox (1.24002pt too wide) in paragraph at lines 519--519
 []|\OT1/cmr/m/n/12 IDEC| 
  []
 
 
-Overfull \hbox (1.24002pt too wide) in paragraph at lines 517--517
+Overfull \hbox (1.24002pt too wide) in paragraph at lines 519--519
 []|\OT1/cmr/m/n/12 IDEC| 
  []
 
 
-Underfull \hbox (badness 3281) in paragraph at lines 561--561
+Underfull \hbox (badness 3281) in paragraph at lines 563--563
 \OT1/cmr/m/n/12 e-gor-i-cal em-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 561--561
+Underfull \hbox (badness 10000) in paragraph at lines 563--563
 []|\OT1/cmr/m/n/12 Transformer
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 561--561
+Underfull \hbox (badness 10000) in paragraph at lines 563--563
 []|\OT1/cmr/m/n/12 FT-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 561--561
+Underfull \hbox (badness 10000) in paragraph at lines 563--563
 \OT1/cmr/m/n/12 Transformer
  []
 
 
-Overfull \hbox (1.24002pt too wide) in paragraph at lines 561--561
+Overfull \hbox (1.24002pt too wide) in paragraph at lines 563--563
 []|\OT1/cmr/m/n/12 IDEC| 
  []
 
 
-Overfull \hbox (1.24002pt too wide) in paragraph at lines 561--561
+Overfull \hbox (1.24002pt too wide) in paragraph at lines 563--563
 []|\OT1/cmr/m/n/12 IDEC| 
  []
 
 
-Overfull \hbox (1.24002pt too wide) in paragraph at lines 561--561
+Overfull \hbox (1.24002pt too wide) in paragraph at lines 563--563
 []|\OT1/cmr/m/n/12 IDEC| 
  []
 
 
-Overfull \hbox (1.24002pt too wide) in paragraph at lines 561--561
+Overfull \hbox (1.24002pt too wide) in paragraph at lines 563--563
 []|\OT1/cmr/m/n/12 IDEC| 
  []
 
 
-Overfull \hbox (1.24002pt too wide) in paragraph at lines 561--561
+Overfull \hbox (1.24002pt too wide) in paragraph at lines 563--563
 []|\OT1/cmr/m/n/12 IDEC| 
  []
 
 
-Overfull \hbox (1.24002pt too wide) in paragraph at lines 561--561
+Overfull \hbox (1.24002pt too wide) in paragraph at lines 563--563
 []|\OT1/cmr/m/n/12 IDEC| 
  []
 
 
-Overfull \hbox (1.24002pt too wide) in paragraph at lines 561--561
+Overfull \hbox (1.24002pt too wide) in paragraph at lines 563--563
 []|\OT1/cmr/m/n/12 IDEC| 
  []
 
 
-Overfull \hbox (1.24002pt too wide) in paragraph at lines 561--561
+Overfull \hbox (1.24002pt too wide) in paragraph at lines 563--563
 []|\OT1/cmr/m/n/12 IDEC| 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 584--584
+Underfull \hbox (badness 10000) in paragraph at lines 586--586
 []|\OT1/cmr/m/n/12 FT-Transformer
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 584--584
+Underfull \hbox (badness 10000) in paragraph at lines 586--586
 []|\OT1/cmr/m/n/12 k-means one-hot
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 584--584
+Underfull \hbox (badness 10000) in paragraph at lines 586--586
 []|\OT1/cmr/m/n/12 AE with Col-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 584--584
+Underfull \hbox (badness 10000) in paragraph at lines 586--586
 \OT1/cmr/m/n/12 umn Em-bed-dings
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 584--584
+Underfull \hbox (badness 10000) in paragraph at lines 586--586
 []|\OT1/cmr/m/n/12 DCN Trans-former
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 584--584
+Underfull \hbox (badness 10000) in paragraph at lines 586--586
 []|\OT1/cmr/m/n/12 DEC Trans-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 584--584
+Underfull \hbox (badness 10000) in paragraph at lines 586--586
 []|\OT1/cmr/m/n/12 k-means one-hot
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 584--584
+Underfull \hbox (badness 10000) in paragraph at lines 586--586
 []|\OT1/cmr/m/n/12 k-means one-hot
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 584--584
+Underfull \hbox (badness 10000) in paragraph at lines 586--586
 []|\OT1/cmr/m/n/12 k-means one-hot
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 584--584
+Underfull \hbox (badness 10000) in paragraph at lines 586--586
 []|\OT1/cmr/m/n/12 AE with Col-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 584--584
+Underfull \hbox (badness 10000) in paragraph at lines 586--586
 \OT1/cmr/m/n/12 umn Em-bed-dings
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 584--584
+Underfull \hbox (badness 10000) in paragraph at lines 586--586
 []|\OT1/cmr/m/n/12 FT-Transformer
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 584--584
+Underfull \hbox (badness 10000) in paragraph at lines 586--586
 []|\OT1/cmr/m/n/12 Transformer
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 584--584
+Underfull \hbox (badness 10000) in paragraph at lines 586--586
 []|\OT1/cmr/m/n/12 DCN FT-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 584--584
+Underfull \hbox (badness 10000) in paragraph at lines 586--586
 \OT1/cmr/m/n/12 Transformer
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 584--584
+Underfull \hbox (badness 10000) in paragraph at lines 586--586
 []|\OT1/cmr/m/n/12 DEC/IDEC
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 584--584
+Underfull \hbox (badness 10000) in paragraph at lines 586--586
 \OT1/cmr/m/n/12 FT-Transformer
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 584--584
+Underfull \hbox (badness 10000) in paragraph at lines 586--586
 []|\OT1/cmr/m/n/12 k-means one-hot
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 584--584
+Underfull \hbox (badness 10000) in paragraph at lines 586--586
 []|\OT1/cmr/m/n/12 Gower dis-tance
  []
 
@@ -763,39 +763,39 @@ Chapter 6.
 ] [38
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 98--102
+Underfull \hbox (badness 10000) in paragraph at lines 108--112
 []\OT1/cmr/m/n/12 Bai Li.  Clus-ter-ing au-toen-coders: Com-par-ing dec and
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 98--102
+Underfull \hbox (badness 10000) in paragraph at lines 108--112
 \OT1/cmr/m/n/12 dcn.  $\OT1/cmtt/m/n/12 https : / / luckytoilet . wordpress . com / 2019 / 07 / 07 /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 98--102
+Underfull \hbox (badness 10000) in paragraph at lines 108--112
 \OT1/cmtt/m/n/12 clustering-[]autoencoders-[]comparing-[]dec-[]and-[]dcn/$\OT1/cmr/m/n/12 , July 2019.
  []
 
-[39] [40]) [41] (./dmmdbstmpl.aux)
+[39] [40] [41]) [42] (./dmmdbstmpl.aux)
  ***********
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-08-11>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 5410 strings out of 475189
- 85496 string characters out of 5763838
+ 5412 strings out of 475189
+ 85512 string characters out of 5763838
  1976254 words of memory out of 5000000
- 26612 multiletter control sequences out of 15000+600000
+ 26614 multiletter control sequences out of 15000+600000
  566007 words of font info for 65 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 72i,13n,79p,1602b,414s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 72i,13n,79p,1602b,416s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on dmmdbstmpl.pdf (44 pages, 937307 bytes).
+Output written on dmmdbstmpl.pdf (45 pages, 939682 bytes).
 PDF statistics:
- 259 PDF objects out of 1000 (max. 8388607)
- 152 compressed objects within 2 object streams
+ 262 PDF objects out of 1000 (max. 8388607)
+ 154 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  66 words of extra memory for PDF output out of 10000 (max. 10000000)
 

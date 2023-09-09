@@ -43,6 +43,11 @@ Vadim Borisov, Tobias Leemann, Kathrin Sessler, Johannes Haug, Martin Pawelczyk,
 \newblock Deep neural networks and tabular data: A survey.
 \newblock {\em {IEEE} Transactions on Neural Networks and Learning Systems}, pages 1--21, 2022.
 
+\bibitem{depict}
+Kamran~Ghasedi Dizaji, Amirhossein Herandi, Cheng Deng, Weidong Cai, and Heng Huang.
+\newblock Deep clustering via joint convolutional autoencoder embedding and relative entropy minimization.
+\newblock In {\em 2017 IEEE International Conference on Computer Vision (ICCV)}, pages 5747--5756, 2017.
+
 \bibitem{activation_functions}
 Shiv~Ram Dubey, Satish~Kumar Singh, and Bidyut~Baran Chaudhuri.
 \newblock Activation functions in deep learning: A comprehensive survey and benchmark.
@@ -62,6 +67,11 @@ J.~C. Gower.
 Xifeng Guo, Long Gao, Xinwang Liu, and Jianping Yin.
 \newblock Improved deep embedded clustering with local structure preservation.
 \newblock In {\em Proceedings of the Twenty-Sixth International Joint Conference on Artificial Intelligence, {IJCAI-17}}, pages 1753--1759, 2017.
+
+\bibitem{dec-da}
+Xifeng Guo, En~Zhu, Xinwang Liu, and Jianping Yin.
+\newblock Deep embedded clustering with data augmentation.
+\newblock In Jun Zhu and Ichiro Takeuchi, editors, {\em Proceedings of The 10th Asian Conference on Machine Learning}, volume~95 of {\em Proceedings of Machine Learning Research}, pages 550--565. PMLR, 14--16 Nov 2018.
 
 \bibitem{tab_transformer}
 Xin Huang, Ashish Khetan, Milan Cvitkovic, and Zohar Karnin.

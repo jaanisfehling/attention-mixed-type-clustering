@@ -4,6 +4,8 @@
         "autoencoders",
         "Bahdanau",
         "Bloem",
+        "convolutional",
+        "downsampled",
         "Gorishniy",
         "nmis",
         "softmax",
