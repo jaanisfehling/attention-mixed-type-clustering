@@ -4,7 +4,7 @@ Clustering is an unsupervised machine learning method that groups similar observ
 
 Clustering mixed-type datasets is a difficult task, and many proposed methods do not manage to beat baseline clustering models that were initially designed for continuous data applications. In addition, they often introduce computational complexity, which makes them impractical in real-world applications, were there is large amounts of data present. 
 
-With autoencoder neural networks gaining popularity, the possibility of using autoencoders in clustering tasks has emerged. The autoencoder can learn a dense representation of the data, which can then be used for the following clustering step. We extend the autoencoder with an attention mechanism, which allow the autoencoder to learn dependencies between features. Further, we extend the attention mechanism to a full Transformer, which is able to provide contextual feature embeddings. We show that these methods can increase clustering performance on datasets with heavily related features.
+With autoencoder neural networks gaining popularity, the possibility of using autoencoders in clustering tasks has emerged. The autoencoder can learn a dense representation of the data, which can then be used for the following clustering step. We extend the autoencoder with an attention mechanism, which allow the autoencoder to learn dependencies between features. Further, we extend the attention mechanism to a full Transformer, which is able to provide contextual feature embeddings. We show that these methods can increase clustering performance on datasets with heavily related features. We finally combine our models with deep clustering methods, thus allowing them to learn representations more feasible for clustering.
 
 \chapter{Related Work}
 
@@ -596,3 +596,7 @@ At last, we use the models from the previous comparison, but use the deep cluste
 \end{figure}
 	
 \chapter{Conclusion}
+
+We have successfully implemented self-attention into a autoencoder-k-means clustering model. Further, we extended the attention module into a full Transformer. We also implemented a Transformer that additionally incorporates continuous features. We conducted tests on eight mixed-type datasets and show that such attention networks can improve clustering performance on some datasets. Finally, we test our networks with deep clustering methods DEC, IDEC and DCN. 
+
+However, clustering mixed-type datasets remains challenging. 
