@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex dmmdbstmpl"] 1694275665 "dmmdbstmpl.aux" "dmmdbstmpl.bbl" "dmmdbstmpl" 1694275978 0
+["bibtex dmmdbstmpl"] 1694275665 "dmmdbstmpl.aux" "dmmdbstmpl.bbl" "dmmdbstmpl" 1694326108 0
   "./dmmdbstmpl.bib" 1694275520 17240 62fa89427e154d85b5c9c8320e64f954 ""
   "/usr/local/texlive/2023/texmf-dist/bibtex/bst/base/plain.bst" 1292289607 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
-  "dmmdbstmpl.aux" 1694275978 13977 5f37956fdda30f7b25098f9509fa8353 "pdflatex"
+  "dmmdbstmpl.aux" 1694326108 13977 5f37956fdda30f7b25098f9509fa8353 "pdflatex"
   (generated)
   "dmmdbstmpl.bbl"
   "dmmdbstmpl.blg"
   (rewritten before read)
-["pdflatex"] 1694275977 "/home/jaanis/repos/attention-mixed-type-clustering/Thesis/dmmdbstmpl.tex" "dmmdbstmpl.pdf" "dmmdbstmpl" 1694275978 0
-  "/home/jaanis/repos/attention-mixed-type-clustering/Thesis/dmmdbstmpl.tex" 1693941433 1530 29515e4520c6c273732b2646abaf192c ""
+["pdflatex"] 1694326106 "/home/jaanis/repos/attention-mixed-type-clustering/Thesis/dmmdbstmpl.tex" "dmmdbstmpl.pdf" "dmmdbstmpl" 1694326108 0
+  "/home/jaanis/repos/attention-mixed-type-clustering/Thesis/dmmdbstmpl.tex" 1694326107 2265 11045e8b95e72667145364d97e35b5b0 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -105,17 +105,17 @@
   "class-imbalance.png" 1692309231 37893 118516905b638759a266c7ae6beff5cf ""
   "dcn.png" 1693920890 87613 6fa2406fa586dc6aabd1d21255041b28 ""
   "dec.png" 1693670112 100818 ddac3342c6cabc3704d8f5bbacb3a484 ""
-  "dmmdbstmpl.aux" 1694275978 13977 5f37956fdda30f7b25098f9509fa8353 "pdflatex"
+  "dmmdbstmpl.aux" 1694326108 13977 5f37956fdda30f7b25098f9509fa8353 "pdflatex"
   "dmmdbstmpl.bbl" 1694275666 10888 cf46c942eeec43af979c57bc486ae02a "bibtex dmmdbstmpl"
   "dmmdbstmpl.sty" 1693755016 5975 8422bc03d468a89224b2ce55cf4263c1 ""
-  "dmmdbstmpl.tex" 1693941433 1530 29515e4520c6c273732b2646abaf192c ""
-  "dmmdbstmpl.toc" 1694275978 1681 2d43f38f8d4067ef81f6fbb01fb02c78 "pdflatex"
+  "dmmdbstmpl.tex" 1694326107 2265 11045e8b95e72667145364d97e35b5b0 ""
+  "dmmdbstmpl.toc" 1694326108 1681 2d43f38f8d4067ef81f6fbb01fb02c78 "pdflatex"
   "dmmheader.png" 1692309231 190949 b10949d0f3b40eb482e1d316dc304305 ""
   "ft_transformer_autoencoder.png" 1693086028 62092 32af16772b3139bdf0f4f37eeeb281af ""
   "gower-dichotomous.png" 1692309231 41539 38bc2936b2441a430afcb11717b4a842 ""
   "idec.png" 1693929144 109691 85871f09162460a133d96e7742cd8f40 ""
   "p-and-q-distributions.png" 1693750593 38067 7dc2da12064d361a89e4b7ec4d2d634b ""
-  "thesis.tex" 1694275977 61320 7fb870ea3f2a78054d6baa2068639549 ""
+  "thesis.tex" 1694325947 61673 ec802d8b7929e1c703d237c65b479dab ""
   "transformer_autoencoder.png" 1693060279 54469 a5c0d52d665d001bf4db0bf17aaecbb0 ""
   (generated)
   "dmmdbstmpl.aux"
