@@ -15,7 +15,8 @@ Jimmy~Lei Ba, Jamie~Ryan Kiros, and Geoffrey~E. Hinton.
 
 \bibitem{bahdanau}
 Dzmitry Bahdanau, Kyunghyun Cho, and Yoshua Bengio.
-\newblock Neural machine translation by jointly learning to align and translate, 2016.
+\newblock Neural machine translation by jointly learning to align and
+  translate, 2016.
 
 \bibitem{autoencoder}
 Dana~H. Ballard.
@@ -29,7 +30,8 @@ Christopher~M. Bishop.
 
 \bibitem{pattern_recognition_machine_learning}
 Christopher~M. Bishop.
-\newblock {\em Pattern Recognition and Machine Learning (Information Science and Statistics)}.
+\newblock {\em Pattern Recognition and Machine Learning (Information Science
+  and Statistics)}.
 \newblock Springer-Verlag, Berlin, Heidelberg, 2006.
 
 \bibitem{transformers_from_scratch}
@@ -39,23 +41,30 @@ Peter Bloem.
 \newblock Accessed: 2023-08-24.
 
 \bibitem{deep_neural_networks_tabular_data_survey}
-Vadim Borisov, Tobias Leemann, Kathrin Sessler, Johannes Haug, Martin Pawelczyk, and Gjergji Kasneci.
+Vadim Borisov, Tobias Leemann, Kathrin Sessler, Johannes Haug, Martin
+  Pawelczyk, and Gjergji Kasneci.
 \newblock Deep neural networks and tabular data: A survey.
-\newblock {\em {IEEE} Transactions on Neural Networks and Learning Systems}, pages 1--21, 2022.
+\newblock {\em {IEEE} Transactions on Neural Networks and Learning Systems},
+  pages 1--21, 2022.
 
 \bibitem{sadsc}
 Zhengfan Chen, Shifei Ding, and Hou Haiwei.
 \newblock A novel self-attention deep subspace clustering.
-\newblock {\em International Journal of Machine Learning and Cybernetics}, 12, 08 2021.
+\newblock {\em International Journal of Machine Learning and Cybernetics}, 12,
+  08 2021.
 
 \bibitem{depict}
-Kamran~Ghasedi Dizaji, Amirhossein Herandi, Cheng Deng, Weidong Cai, and Heng Huang.
-\newblock Deep clustering via joint convolutional autoencoder embedding and relative entropy minimization.
-\newblock In {\em 2017 IEEE International Conference on Computer Vision (ICCV)}, pages 5747--5756, 2017.
+Kamran~Ghasedi Dizaji, Amirhossein Herandi, Cheng Deng, Weidong Cai, and Heng
+  Huang.
+\newblock Deep clustering via joint convolutional autoencoder embedding and
+  relative entropy minimization.
+\newblock In {\em 2017 IEEE International Conference on Computer Vision
+  (ICCV)}, pages 5747--5756, 2017.
 
 \bibitem{activation_functions}
 Shiv~Ram Dubey, Satish~Kumar Singh, and Bidyut~Baran Chaudhuri.
-\newblock Activation functions in deep learning: A comprehensive survey and benchmark.
+\newblock Activation functions in deep learning: A comprehensive survey and
+  benchmark.
 \newblock {\em Neurocomputing}, 503:92--108, 2022.
 
 \bibitem{ft_transformer}
@@ -71,25 +80,31 @@ J.~C. Gower.
 \bibitem{idec}
 Xifeng Guo, Long Gao, Xinwang Liu, and Jianping Yin.
 \newblock Improved deep embedded clustering with local structure preservation.
-\newblock In {\em Proceedings of the Twenty-Sixth International Joint Conference on Artificial Intelligence, {IJCAI-17}}, pages 1753--1759, 2017.
+\newblock In {\em Proceedings of the Twenty-Sixth International Joint
+  Conference on Artificial Intelligence, {IJCAI-17}}, pages 1753--1759, 2017.
 
 \bibitem{dec-da}
 Xifeng Guo, En~Zhu, Xinwang Liu, and Jianping Yin.
 \newblock Deep embedded clustering with data augmentation.
-\newblock In Jun Zhu and Ichiro Takeuchi, editors, {\em Proceedings of The 10th Asian Conference on Machine Learning}, volume~95 of {\em Proceedings of Machine Learning Research}, pages 550--565. PMLR, 14--16 Nov 2018.
+\newblock In Jun Zhu and Ichiro Takeuchi, editors, {\em Proceedings of The 10th
+  Asian Conference on Machine Learning}, volume~95 of {\em Proceedings of
+  Machine Learning Research}, pages 550--565. PMLR, 14--16 Nov 2018.
 
 \bibitem{cmfgn}
 Haiwei Hou, Shifei Ding, Xiao Xu, and Ling Ding.
-\newblock A novel clustering algorithm based on multi-layer features and graph attention networks.
+\newblock A novel clustering algorithm based on multi-layer features and graph
+  attention networks.
 \newblock {\em Soft Computing}, 27:5553--5566, 2023.
 
 \bibitem{tab_transformer}
 Xin Huang, Ashish Khetan, Milan Cvitkovic, and Zohar Karnin.
-\newblock Tabtransformer: Tabular data modeling using contextual embeddings, 2020.
+\newblock Tabtransformer: Tabular data modeling using contextual embeddings,
+  2020.
 
 \bibitem{kmodes}
 Zhexue Huang.
-\newblock Extensions to the k-means algorithm for clustering large data sets with categorical values.
+\newblock Extensions to the k-means algorithm for clustering large data sets
+  with categorical values.
 \newblock {\em Data Mining and Knowledge Discovery}, 2:283--304, 1998.
 
 \bibitem{algorithms_for_clustering_data}
@@ -110,14 +125,18 @@ Ron Kohavi.
 \newblock {DOI}: https://doi.org/10.24432/C5GP7S.
 
 \bibitem{attention_between_datapoints}
-Jannik Kossen, Neil Band, Clare Lyle, Aidan~N. Gomez, Tom Rainforth, and Yarin Gal.
-\newblock Self-attention between datapoints: Going beyond individual input-output pairs in deep learning.
+Jannik Kossen, Neil Band, Clare Lyle, Aidan~N. Gomez, Tom Rainforth, and Yarin
+  Gal.
+\newblock Self-attention between datapoints: Going beyond individual
+  input-output pairs in deep learning.
 \newblock In {\em Neural Information Processing Systems}, 2021.
 
 \bibitem{comparing_DEC_and_DCN}
 Bai Li.
 \newblock Clustering autoencoders: Comparing dec and dcn.
-\newblock \url{https://luckytoilet.wordpress.com/2019/07/07/clustering-autoencoders-comparing-dec-and-dcn/}, July 2019.
+\newblock
+  \url{https://luckytoilet.wordpress.com/2019/07/07/clustering-autoencoders-comparing-dec-and-dcn/},
+  July 2019.
 \newblock Accessed: 2023-09-03.
 
 \bibitem{dlgamc}
@@ -132,14 +151,18 @@ S.~Lloyd.
 
 \bibitem{kmeans}
 J.~B. MacQueen.
-\newblock Some methods for classification and analysis of multivariate observations.
-\newblock In L.~M.~Le Cam and J.~Neyman, editors, {\em Proc. of the fifth Berkeley Symposium on Mathematical Statistics and Probability}, volume~1, pages 281--297. University of California Press, 1967.
+\newblock Some methods for classification and analysis of multivariate
+  observations.
+\newblock In L.~M.~Le Cam and J.~Neyman, editors, {\em Proc. of the fifth
+  Berkeley Symposium on Mathematical Statistics and Probability}, volume~1,
+  pages 281--297. University of California Press, 1967.
 
 \bibitem{kmeans_np_hard}
 Meena Mahajan, Prajakta Nimbhorkar, and Kasturi Varadarajan.
 \newblock The planar k-means problem is np-hard.
 \newblock {\em Theoretical Computer Science}, 442:13--21, 2012.
-\newblock Special Issue on the Workshop on Algorithms and Computation (WALCOM 2009).
+\newblock Special Issue on the Workshop on Algorithms and Computation (WALCOM
+  2009).
 
 \bibitem{uci_ml_rpo}
 Kolby~Nottingham Markelle~Kelly, Rachel~Longjohn.
@@ -171,23 +194,28 @@ Elaheh Ordoni, Jakob Bach, Ann-Katrin Fleck, and Jakob Bach.
 \newblock {DOI}: https://doi.org/10.24432/C52K6N.
 
 \bibitem{pytorch}
-Adam Paszke, Sam Gross, Soumith Chintala, Gregory Chanan, Edward Yang, Zachary DeVito, Zeming Lin, Alban Desmaison, Luca Antiga, and Adam Lerer.
+Adam Paszke, Sam Gross, Soumith Chintala, Gregory Chanan, Edward Yang, Zachary
+  DeVito, Zeming Lin, Alban Desmaison, Luca Antiga, and Adam Lerer.
 \newblock Automatic differentiation in pytorch.
 \newblock In {\em NIPS-W}, 2017.
 
 \bibitem{scikit_learn}
-F.~Pedregosa, G.~Varoquaux, A.~Gramfort, V.~Michel, B.~Thirion, O.~Grisel, M.~Blondel, P.~Prettenhofer, R.~Weiss, V.~Dubourg, J.~Vanderplas, A.~Passos, D.~Cournapeau, M.~Brucher, M.~Perrot, and E.~Duchesnay.
+F.~Pedregosa, G.~Varoquaux, A.~Gramfort, V.~Michel, B.~Thirion, O.~Grisel,
+  M.~Blondel, P.~Prettenhofer, R.~Weiss, V.~Dubourg, J.~Vanderplas, A.~Passos,
+  D.~Cournapeau, M.~Brucher, M.~Perrot, and E.~Duchesnay.
 \newblock Scikit-learn: Machine learning in {P}ython.
 \newblock {\em Journal of Machine Learning Research}, 12:2825--2830, 2011.
 
 \bibitem{dagc}
 Zhihao Peng, Hui Liu, Yuheng Jia, and Junhui Hou.
 \newblock Deep attention-guided graph clustering with dual self-supervision.
-\newblock {\em IEEE Transactions on Circuits and Systems for Video Technology}, pages 1--1, 2022.
+\newblock {\em IEEE Transactions on Circuits and Systems for Video Technology},
+  pages 1--1, 2022.
 
 \bibitem{philip_ottaway}
 G.~Philip and B.~S. Ottaway.
-\newblock Mixed data cluster analysis: An illustration using cypriot hooked-tang weapons.
+\newblock Mixed data cluster analysis: An illustration using cypriot
+  hooked-tang weapons.
 \newblock {\em Archaeometry}, 25(2):119--133, 1983.
 
 \bibitem{credit_approval}
@@ -199,25 +227,40 @@ Quinlan Quinlan.
 \bibitem{perceptron}
 F.~Rosenblatt.
 \newblock The perceptron - a perceiving and recognizing automaton.
-\newblock Technical Report 85-460-1, Cornell Aeronautical Laboratory, Ithaca, New York, January 1957.
+\newblock Technical Report 85-460-1, Cornell Aeronautical Laboratory, Ithaca,
+  New York, January 1957.
 
 \bibitem{hidden_layer_backprop}
 D.~E. Rumelhart, G.~E. Hinton, and R.~J. Williams.
-\newblock {\em Learning Internal Representations by Error Propagation}, page 318–362.
+\newblock {\em Learning Internal Representations by Error Propagation}, page
+  318–362.
 \newblock MIT Press, Cambridge, MA, USA, 1986.
 
 \bibitem{saint}
-Gowthami Somepalli, Micah Goldblum, Avi Schwarzschild, C.~Bayan Bruss, and Tom Goldstein.
-\newblock Saint: Improved neural networks for tabular data via row attention and contrastive pre-training, 2021.
+Gowthami Somepalli, Micah Goldblum, Avi Schwarzschild, C.~Bayan Bruss, and Tom
+  Goldstein.
+\newblock Saint: Improved neural networks for tabular data via row attention
+  and contrastive pre-training, 2021.
 
 \bibitem{attention_is_all_you_need}
-Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan~N. Gomez, \L{}ukasz Kaiser, and Illia Polosukhin.
+Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones,
+  Aidan~N. Gomez, \L{}ukasz Kaiser, and Illia Polosukhin.
 \newblock Attention is all you need.
-\newblock In {\em Proceedings of the 31st International Conference on Neural Information Processing Systems}, NIPS'17, page 6000–6010, Red Hook, NY, USA, 2017. Curran Associates Inc.
+\newblock In {\em Proceedings of the 31st International Conference on Neural
+  Information Processing Systems}, NIPS'17, page 6000–6010, Red Hook, NY,
+  USA, 2017. Curran Associates Inc.
 
 \bibitem{scipy}
-Pauli Virtanen, Ralf Gommers, Travis~E. Oliphant, Matt Haberland, Tyler Reddy, David Cournapeau, Evgeni Burovski, Pearu Peterson, Warren Weckesser, Jonathan Bright, St{\'e}fan~J. {van der Walt}, Matthew Brett, Joshua Wilson, K.~Jarrod Millman, Nikolay Mayorov, Andrew R.~J. Nelson, Eric Jones, Robert Kern, Eric Larson, C~J Carey, {\.I}lhan Polat, Yu~Feng, Eric~W. Moore, Jake {VanderPlas}, Denis Laxalde, Josef Perktold, Robert Cimrman, Ian Henriksen, E.~A. Quintero, Charles~R. Harris, Anne~M. Archibald, Ant{\^o}nio~H. Ribeiro, Fabian Pedregosa, Paul {van Mulbregt}, and {SciPy 1.0 Contributors}.
-\newblock {{SciPy} 1.0: Fundamental Algorithms for Scientific Computing in Python}.
+Pauli Virtanen, Ralf Gommers, Travis~E. Oliphant, Matt Haberland, Tyler Reddy,
+  David Cournapeau, Evgeni Burovski, Pearu Peterson, Warren Weckesser, Jonathan
+  Bright, St{\'e}fan~J. {van der Walt}, Matthew Brett, Joshua Wilson, K.~Jarrod
+  Millman, Nikolay Mayorov, Andrew R.~J. Nelson, Eric Jones, Robert Kern, Eric
+  Larson, C~J Carey, {\.I}lhan Polat, Yu~Feng, Eric~W. Moore, Jake
+  {VanderPlas}, Denis Laxalde, Josef Perktold, Robert Cimrman, Ian Henriksen,
+  E.~A. Quintero, Charles~R. Harris, Anne~M. Archibald, Ant{\^o}nio~H. Ribeiro,
+  Fabian Pedregosa, Paul {van Mulbregt}, and {SciPy 1.0 Contributors}.
+\newblock {{SciPy} 1.0: Fundamental Algorithms for Scientific Computing in
+  Python}.
 \newblock {\em Nature Methods}, 17:261--272, 2020.
 
 \bibitem{breast_cancer}
@@ -232,10 +275,13 @@ Junyuan Xie, Ross Girshick, and Ali Farhadi.
 
 \bibitem{dcn}
 Bo~Yang, Xiao Fu, Nicholas~D. Sidiropoulos, and Mingyi Hong.
-\newblock Towards k-means-friendly spaces: Simultaneous deep learning and clustering, 2017.
+\newblock Towards k-means-friendly spaces: Simultaneous deep learning and
+  clustering, 2017.
 
 \bibitem{deep_clustering_survey}
-Sheng Zhou, Hongjia Xu, Zhuonan Zheng, Jiawei Chen, Zhao li, Jiajun Bu, Jia Wu, Xin Wang, Wenwu Zhu, and Martin Ester.
-\newblock A comprehensive survey on deep clustering: Taxonomy, challenges, and future directions, 2022.
+Sheng Zhou, Hongjia Xu, Zhuonan Zheng, Jiawei Chen, Zhao li, Jiajun Bu, Jia Wu,
+  Xin Wang, Wenwu Zhu, and Martin Ester.
+\newblock A comprehensive survey on deep clustering: Taxonomy, challenges, and
+  future directions, 2022.
 
 \end{thebibliography}
