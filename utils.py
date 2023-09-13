@@ -31,9 +31,10 @@ def build_block(layers: list, activation_fn: torch.nn.Module = torch.nn.LeakyReL
                     block_list.append(output_fn())
     return torch.nn.Sequential(*block_list)
 
-def build_autoencoder(input_dim: int, output_dim: int, layer_per_block: int, activation_fn: torch.nn.Module = torch.nn.LeakyReLU, 
+def build_autoencoder(input_dim: int, output_dim: int, layer_per_block: int, hidden_dim: int = None, activation_fn: torch.nn.Module = torch.nn.LeakyReLU, 
                       output_fn: torch.nn.Module = torch.nn.LeakyReLU, bias: bool = True, batch_norm: bool = False, dropout: float = None):
-    hidden_dim = max(1, min(round(input_dim/4), round(output_dim/4)))
+    if not hidden_dim:
+        hidden_dim = max(1, min(round(input_dim/4), round(output_dim/4)))
 
     encoder_layer_list = list(range(input_dim, hidden_dim - 1, min(-1, -round((input_dim - hidden_dim) / layer_per_block))))
     encoder_layer_list[-1] = hidden_dim
