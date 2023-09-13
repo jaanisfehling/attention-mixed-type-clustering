@@ -432,11 +432,11 @@ The next comparison (Table \ref{ae_architecture_comparison_nmi} and Table \ref{a
 $$d_h = max(1, min(\left\lfloor d_x/4\right\rceil, \left\lfloor d_y/4\right\rceil)),$$
 where $d_x$ is the input dimension of the encoder and $d_y$ the output dimension of the decoder. The number of linear layers $n$ in both the encoder and decoder is given by
 $$n = max(1, \left\lfloor log_2 (d_x)\right\rceil).$$
-The layer sizes of the encoder are created by always reducing the tensor size by $t_e$ in each linear transformation $h_d - 1$ times, where $t_e$ is calculated as
+The layer sizes of the encoder are created by always reducing the tensor size by $t_e$ in each linear transformation ($h_d - 1$ times in total), where $t_e$ is calculated as
 $$t_e = min(-1, -\left\lfloor \frac{d_x - d_h}{n} \right\rceil).$$
 For the decoder, the input dimension $d_x$ in the term is replaced by the output dimension $d_y$:
 $$t_d = min(-1, -\left\lfloor \frac{d_y - d_h}{n} \right\rceil).$$
-The decoder layer sizes are then calculated by reducing the layer size by $t_d$ from the output layer in each linear transformation $h_d - 1$ times, but inverting the resulting array of layer sizes. This gives us a natural, symmetrical autoencoder structure for each test case (such as Figure \ref{autoencoder_illustration}), which is also used for following experiments. The results do not clearly indicate which autoencoder architecture is the best. Therefore we build upon prior research on mixed-type classification with attention \cite{tab_transformer, ft_transformer}, where a feed-forward network that includes categorical features as well as continuous features is used. This means we choose the autoencoder that includes both categorical and continuous features.
+The decoder layer sizes are then calculated by reducing the layer size by $t_d$ from the output layer in each linear transformation (again, $h_d - 1$ times in total), but inverting the resulting array of layer sizes. This gives us a natural, symmetrical autoencoder structure for each test case (such as Figure \ref{autoencoder_illustration}), which is also used for following experiments. We use mean squared error loss (Section \ref{Neural Networks}) and the Adam optimizer \cite{adam_optimizer} when training any neural network. The results do not clearly indicate which autoencoder architecture is the best. Therefore we build upon prior research on mixed-type classification with attention \cite{tab_transformer, ft_transformer}, where a feed-forward network that includes categorical features as well as continuous features is used. This means we choose the autoencoder that includes both categorical and continuous features.
 
 \begin{table}
 \begin{center}

@@ -118,6 +118,11 @@ Andras Janosi, William Steinbrunn, Matthias Pfisterer, and Robert Detrano.
 \newblock UCI Machine Learning Repository, 1988.
 \newblock {DOI}: https://doi.org/10.24432/C52P4X.
 
+\bibitem{adam_optimizer}
+Diederik~P. Kingma and Jimmy Ba.
+\newblock Adam: A method for stochastic optimization.
+\newblock {\em CoRR}, abs/1412.6980, 2014.
+
 \bibitem{census_income}
 Ron Kohavi.
 \newblock {Census Income}.
