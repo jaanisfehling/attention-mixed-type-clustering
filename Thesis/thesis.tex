@@ -1,10 +1,8 @@
 \chapter{Introduction}
 
-Clustering is an unsupervised machine learning method that groups similar observations together. Due to its ability to find patterns in an unlabeled dataset, its an essential task in Data Mining and Knowledge Discovery. A \textit{cluster} is a group of similar instances that belongs to a \textit{centroid} (center point of a cluster). The goal of this work is to explore clustering of mixed-type datasets, which contain continuous, numeric features as well as categorical features. A wide variety of clustering methods for this domain has been explored \cite{mixed_type_survey_2019}. Distance-based clustering algorithms use distance measures such as Euclidean distance to calculate the similarity of data points and assign them to the nearest cluster centroid. Hierarchical methods partition the instances and merge (agglomerative clustering) or split them into bigger or smaller clusters. 
+Clustering is an unsupervised machine learning method that groups similar observations together. Due to its ability to find patterns in an unlabeled dataset, its an essential task in Data Mining and Knowledge Discovery. A \textit{cluster} is a group of similar instances that belongs to a \textit{centroid} (center point of a cluster). The goal of this work is to explore clustering of mixed-type datasets, which contain continuous, numeric features as well as categorical features. A wide variety of clustering methods for this domain has been explored \cite{mixed_type_survey_2019}. For example, distance-based clustering algorithms use distance measures such as Euclidean distance to calculate the similarity of data points and assign them to the nearest cluster centroid. Hierarchical methods partition the instances and merge (agglomerative clustering) or split them into bigger or smaller clusters. 
 
-Clustering mixed-type datasets is a difficult task, and many proposed methods do not manage to beat baseline clustering models that were initially designed for continuous data applications. In addition, they often introduce computational complexity, which makes them impractical in real-world applications, were there is large amounts of data present. 
-
-With autoencoder neural networks gaining popularity, the possibility of using autoencoders in clustering tasks has emerged. The autoencoder can learn a dense representation of the data, which can then be used for the following clustering step. We extend the autoencoder with an attention mechanism, which allow the autoencoder to learn dependencies between features. Further, we extend the attention mechanism to a full Transformer, which is able to provide contextual feature embeddings. We show that these methods can increase clustering performance on some datasets. We finally combine our models with deep clustering methods, thus allowing them to learn representations more feasible for clustering.
+Clustering mixed-type datasets is a difficult task, and many proposed methods do not manage to beat baseline clustering models that were initially designed for continuous data applications. With autoencoder neural networks gaining popularity, the possibility of using autoencoders in clustering tasks has emerged. The autoencoder can learn a dense representation of the data, which can then be used for the following clustering step, where a classical clustering method such as k-means is used. We extend the autoencoder with an attention mechanism, which allows the autoencoder to learn dependencies between features. Further, we extend the attention mechanism into a full Transformer, which is able to provide contextual feature embeddings. We implement a Transformer only for categorical features and a Transformer for both categorical and continuous features. We show that these methods can increase clustering performance on some datasets. We finally combine our models with deep clustering methods DEC, IDEC and DCN, which aim to create dense representations of the input data more feasible for clustering.
 
 \chapter{Related Work}
 
@@ -337,7 +335,7 @@ The intuition behind using the FT-Transformer is that many continuous features i
 
 \section{Comparison of classical Clustering Methods}
 
-\begin{figure}
+\begin{table}
 \begin{center}
 \scalebox{0.8}{
 	\begin{tabular}{|p{37mm}|p{27mm}|p{27mm}|p{27mm}|p{27mm}|}
@@ -356,9 +354,9 @@ The intuition behind using the FT-Transformer is that many continuous features i
 \end{center}
 \caption{Comparison of Normalized Mutual Information of various classical methods on clustering mixed-type datasets.}
 \label{classical_comparison_nmi}
-\end{figure}
+\end{table}
 
-\begin{figure}
+\begin{table}
 \begin{center}
 \scalebox{0.8}{
 	\begin{tabular}{|p{37mm}|p{27mm}|p{27mm}|p{27mm}|p{27mm}|}
@@ -377,7 +375,7 @@ The intuition behind using the FT-Transformer is that many continuous features i
 \end{center}
 \caption{Comparison of accuracy of various classical methods on clustering mixed-type datasets.}
 \label{classical_comparison_acc}
-\end{figure}
+\end{table}
 
 \begin{figure}
 \centering
@@ -386,9 +384,9 @@ The intuition behind using the FT-Transformer is that many continuous features i
 	\label{class_imbalance}
 \end{figure}
 
-Our first comparison is between classical clustering methods for clustering mixed-type data. We evaluated k-means, k-means with one-hot encoding, k-prototypes and gower distance with agglomerative clustering, using average linkage (average distance between each instance of two sets). The results are given by Figure \ref{classical_comparison_nmi} and \ref{classical_comparison_acc}. k-means without any modification for mixed type data shows great Normalized Mutual Information (NMI) scores, k-means with one-hot encoding can improve these on some datasets, but looses on others. k-prototypes can beat k-means only on the Census Income dataset, which does not make it a valid choice for clustering mixed-type data. Gower distance, as explained in Section \ref{Evaluation}, falsely assigns almost all data points to one cluster centroid, which due to the high class imbalance in our datasets as shown in Figure \ref{class_imbalance}, yields high accuracy scores. Therefore more attention should be payed to NMI Scores, on which gower distance does not beat k-means or k-means with one-hot encoding on any dataset. 
+Our first comparison is between classical clustering methods for clustering mixed-type data. We evaluated k-means, k-means with one-hot encoding, k-prototypes and gower distance with agglomerative clustering, using average linkage (average distance between each instance of two sets). The results are given by Table \ref{classical_comparison_nmi} and Table \ref{classical_comparison_acc}. k-means without any modification for mixed type data shows great Normalized Mutual Information (NMI) scores, k-means with one-hot encoding can improve these on some datasets, but looses on others. k-prototypes can beat k-means only on the Census Income dataset, which does not make it a valid choice for clustering mixed-type data. Gower distance, as explained in Section \ref{Evaluation}, falsely assigns almost all data points to one cluster centroid, which due to the high class imbalance in our datasets as shown in Figure \ref{class_imbalance}, yields high accuracy scores. Therefore more attention should be payed to NMI Scores, on which gower distance does not beat k-means or k-means with one-hot encoding on any dataset. 
 
-\begin{figure}
+\begin{table}
 \begin{center}
 \scalebox{0.8}{
 	\begin{tabular}{|p{37mm}|p{27mm}|p{27mm}|p{27mm}|p{27mm}|}
@@ -407,9 +405,9 @@ Our first comparison is between classical clustering methods for clustering mixe
 \end{center}
 \caption{Comparison of Normalized Mutual Information of various autoencoder architectures combined with k-means on clustering mixed-type datasets.}
 \label{ae_architecture_comparison_nmi}
-\end{figure}
+\end{table}
 
-\begin{figure}
+\begin{table}
 \begin{center}
 \scalebox{0.8}{
 	\begin{tabular}{|p{37mm}|p{27mm}|p{27mm}|p{27mm}|p{27mm}|}
@@ -428,9 +426,9 @@ Our first comparison is between classical clustering methods for clustering mixe
 \end{center}
 \caption{Comparison of accuracy of various autoencoder architectures combined with k-means on clustering mixed-type datasets.}
 \label{ae_architecture_comparison_acc}
-\end{figure}
+\end{table}
 
-The next comparison (Figure \ref{ae_architecture_comparison_nmi} and \ref{ae_architecture_comparison_acc}) revolves around the autoencoder architecture that will be chosen for following modifications. We have the choice between only learning dense representations for categorical features or learning them for all features. Further, we can leave out the categorical embeddings and feed the categorical values as they are into the autoencoder. An autoencoder that gets all features as input in the encoder but only learns to reconstruct the categorical features is also added to the comparison. In order to equalize the autoencoders across all datasets and architectures, the hidden encoded dimension $d_h$ of the autoencoder is calculated by
+The next comparison (Table \ref{ae_architecture_comparison_nmi} and Table \ref{ae_architecture_comparison_acc}) revolves around the autoencoder architecture that will be chosen for following modifications. We have the choice between only learning dense representations for categorical features or learning them for all features. Further, we can leave out the categorical embeddings and feed the categorical values as they are into the autoencoder. An autoencoder that gets all features as input in the encoder but only learns to reconstruct the categorical features is also added to the comparison. In order to equalize the autoencoders across all datasets and architectures, the hidden encoded dimension $d_h$ of the autoencoder is calculated by
 $$d_h = max(1, min(\left\lfloor d_x/4\right\rceil, \left\lfloor d_y/4\right\rceil)),$$
 where $d_x$ is the input dimension of the encoder and $d_y$ the output dimension of the decoder. The number of linear layers $n$ in both the encoder and decoder is given by
 $$n = max(1, \left\lfloor log_2 (d_x)\right\rceil).$$
@@ -440,7 +438,7 @@ For the decoder, the input dimension $d_x$ in the term is replaced by the output
 $$t_d = min(-1, -\left\lfloor \frac{d_y - d_h}{n} \right\rceil).$$
 The decoder layer sizes are then calculated by reducing the layer size by $t_d$ from the output layer in each linear transformation $h_d - 1$ times, but inverting the resulting array of layer sizes. This gives us a natural, symmetrical autoencoder structure for each test case (such as Figure \ref{autoencoder_illustration}), which is also used for following experiments. The results do not clearly indicate which autoencoder architecture is the best. Therefore we build upon prior research on mixed-type classification with attention \cite{tab_transformer, ft_transformer}, where a feed-forward network that includes categorical features as well as continuous features is used. This means we choose the autoencoder that includes both categorical and continuous features.
 
-\begin{figure}
+\begin{table}
 \begin{center}
 \scalebox{0.8}{
 	\begin{tabular}{|p{37mm}|p{27mm}|p{27mm}|p{27mm}|p{27mm}|}
@@ -459,9 +457,9 @@ The decoder layer sizes are then calculated by reducing the layer size by $t_d$ 
 \end{center}
 \caption{Comparison of Normalized Mutual Information between an autoencoder with categorical embeddings, an autoencoder using the attention mechanism, a 6-layer Transformer with an autoencoder and a 6-layer FT-Transformer with an autoencoder on clustering mixed-type datasets using k-means.}
 \label{attention_comparison_nmi}
-\end{figure}
+\end{table}
 
-\begin{figure}
+\begin{table}
 \begin{center}
 \scalebox{0.8}{
 	\begin{tabular}{|p{37mm}|p{27mm}|p{27mm}|p{27mm}|p{27mm}|}
@@ -480,11 +478,11 @@ The decoder layer sizes are then calculated by reducing the layer size by $t_d$ 
 \end{center}
 \caption{Comparison of accuracy between an autoencoder with categorical embeddings, an autoencoder using the attention mechanism, a 6-layer Transformer with an autoencoder and a 6-layer FT-Transformer with an autoencoder on clustering mixed-type datasets using k-means.}
 \label{attention_comparison_acc}
-\end{figure}
+\end{table}
 
-We then compare our proposed architectures, an autoencoder with attention, the Transformer with an autoencoder and the FT-Transformer with an autoencoder. We choose $N = 6$ Transformer layers for both Transformers to utilize the transformer block heavily, but not introduce too much computational complexity. The autoencoder with categorical embeddings uses variable sized embeddings for each categorical feature (that are being concatenated lengthwise), where the embedding dimension is calculated based on the number of classes in that feature, as explained in Section \ref{Column Embeddings}. The attention autoencoder as well as both Transformer autoencoders use fixed size embeddings of size 32, which allows the embeddings to be stacked on top of each other, as explained in Section \ref{Attention}. The results (Figure \ref{attention_comparison_nmi} and \ref{attention_comparison_acc}) show that the attention can benefit clustering on some datasets, but leads to a loss in performance on other datasets.
+We then compare our proposed architectures, an autoencoder with attention, the Transformer with an autoencoder and the FT-Transformer with an autoencoder. We choose $N = 6$ Transformer layers for both Transformers to utilize the transformer block heavily, but not introduce too much computational complexity. The autoencoder with categorical embeddings uses variable sized embeddings for each categorical feature (that are being concatenated lengthwise), where the embedding dimension is calculated based on the number of classes in that feature, as explained in Section \ref{Column Embeddings}. The attention autoencoder as well as both Transformer autoencoders use fixed size embeddings of size 32, which allows the embeddings to be stacked on top of each other, as explained in Section \ref{Attention}. The results (Table \ref{attention_comparison_nmi} and Table \ref{attention_comparison_acc}) show that the attention can benefit clustering on some datasets, but leads to a loss in performance on other datasets.
 
-\begin{figure}
+\begin{table}
 \begin{center}
 \scalebox{0.8}{
 	\begin{tabular}{|p{37mm}|p{10mm}|p{24mm}|p{24mm}|p{24mm}|p{24mm}|}
@@ -526,9 +524,9 @@ We then compare our proposed architectures, an autoencoder with attention, the T
 \end{center}
 \caption{Comparison of Normalized Mutual Information between an autoencoder with categorical embeddings, an autoencoder with attention, a 6-layer Transformer with an autoencoder and a 6-layer FT-Transformer with an autoencoder on clustering mixed-type datasets. DEC, IDEC and DCN were used as clustering methods.}
 \label{deep_comparison_nmi}
-\end{figure}
+\end{table}
 
-\begin{figure}
+\begin{table}
 \begin{center}
 \scalebox{0.8}{
 	\begin{tabular}{|p{37mm}|p{10mm}|p{24mm}|p{24mm}|p{24mm}|p{24mm}|}
@@ -570,11 +568,11 @@ We then compare our proposed architectures, an autoencoder with attention, the T
 \end{center}
 \caption{Comparison of accuracy between an autoencoder with categorical embeddings, an autoencoder with attention, a 6-layer Transformer with an autoencoder and a 6-layer FT-Transformer with an autoencoder on clustering mixed-type datasets. DEC, IDEC and DCN were used as clustering methods.}
 \label{deep_comparison_acc}
-\end{figure}
+\end{table}
 
-At last, we use the models from the previous comparison, but use the deep clustering techniques DEC, IDEC and DCN (Section \ref{Deep Clustering}). While the accuracy results (Figure \ref{deep_comparison_acc}) are good, the Normalized Mutual Information results of these methods (Figure \ref{deep_comparison_nmi}) do not indicate that deep clustering methods are particular useful for clustering mixed-type tabular data.
+At last, we use the models from the previous comparison, but use the deep clustering techniques DEC, IDEC and DCN (Section \ref{Deep Clustering}). While the accuracy results (Table \ref{deep_comparison_acc}) are good, the Normalized Mutual Information results of these methods (Table \ref{deep_comparison_nmi}) do not indicate that deep clustering methods are particular useful for clustering mixed-type tabular data.
 
-\begin{figure}
+\begin{table}
 \begin{center}
 \scalebox{0.8}{
 	\begin{tabular}{|p{37mm}|p{36mm}|p{36mm}|p{36mm}|}
@@ -593,12 +591,14 @@ At last, we use the models from the previous comparison, but use the deep cluste
 \end{center}
 \caption{Best Normalized Mutual Information scores (in parenthesis) across all clustering methods. Classical methods are colored in green, methods using an autoencoder with k-means are colored cyan, methods using an autoencoder and attention or a transformer mechanism are colored yellow and methods using DEC, IDEC or DCN are colored magenta.}
 \label{final_comparison_nmi}
-\end{figure}
+\end{table}
+
+We also provide an overview that lists the three best clustering methods we used in this work on each of the eight mixed-type datasets in Table \ref{final_comparison_nmi}. The results show that although neural network augmented clustering methods show strong results on some datasets, classic k-means and k-means with one hot encoding only perform worse by a small margin and win out on the other datasets. With the exception of the Auction Verification dataset that contains only one continuous feature, either k-means, k-means with one-hot encoding or both are in the top three performing methods. 12 out of 24 best performing clustering methods across all datasets are either k-means or k-means one-hot.
 	
 \chapter{Conclusion}
 
 We have successfully implemented self-attention into a autoencoder-k-means clustering model. Further, we extended the attention module into a full Transformer. We also implemented a Transformer that additionally incorporates continuous features. We conducted tests on eight mixed-type datasets and show that such attention networks can improve clustering performance on some datasets. Finally, we test our networks with deep clustering methods DEC, IDEC and DCN. 
 
-However, clustering mixed-type datasets remains challenging. As shown in Figure \ref{final_comparison_nmi}, in general it is better to rely on k-means or k-means with one-hot encoding when clustering mixed-type datasets in practice. Even on datasets where our proposed models perform better, k-means often does not perform significantly worse. Additionally, training an autoencoder neural network requires more computational resources. Especially considering the complex networks of our multi-layer transformers, large real-world datasets cannot be clustered without the help of graphics processing units (GPUs), tensor processing units (TPUs) or other hardware accelerators.
+However, clustering mixed-type datasets remains challenging. As explained in detail in the previous chapter, in general it is better to rely on k-means or k-means with one-hot encoding when clustering mixed-type datasets in practice. Even on datasets where our proposed models perform better, k-means often does not perform significantly worse. Additionally, training an autoencoder neural network requires more computational resources. Especially considering the complex networks of our multi-layer transformers, large real-world datasets cannot be clustered without the help of graphics processing units (GPUs), tensor processing units (TPUs) or other hardware accelerators.
 
 For further research, methods could be explored that can estimate if an attention based clustering method is effective on a given dataset before clustering. Also, current deep clustering methods focus on text and image data. It could be explored why these methods perform bad with tabular data and if any improvements can be made.

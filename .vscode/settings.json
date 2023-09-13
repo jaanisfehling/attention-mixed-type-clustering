@@ -12,6 +12,7 @@
         "nmis",
         "SADSC",
         "softmax",
+        "TPUs",
         "Vaswani"
     ]
 }
